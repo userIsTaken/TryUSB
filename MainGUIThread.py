@@ -90,7 +90,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 connected_devices = getDevicesFromComboBoxes(self.ui.comboBox_for_generator, self.ui.comboBox_for_oscillograph, self.Devices_dict)
                 self.Osciloscope = RigolDS1000SeriesScope(connected_devices[3])
                 msg = self.Osciloscope.get_name()
-                self.ui.idn_label_oscilograph.setText(msg.decode())
+                self.ui.idn_label_oscilograph.setText((msg.decode())[0:10])
                 self.DebugMessage("IDN: "+msg.decode(), 1000)
                 self.Osciloscope.set_y_scale("CHAN1", "2")
                 self.Osciloscope.set_time_scale("0.000002")
