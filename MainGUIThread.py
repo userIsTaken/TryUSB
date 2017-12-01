@@ -93,6 +93,8 @@ class MainWindow(QtWidgets.QMainWindow):
                 msg = self.Osciloscope.get_name()
                 self.ui.idn_label_oscilograph.setText(msg.decode())
                 self.DebugMessage("IDN: "+msg.decode(), 1000)
+                self.Osciloscope.set_y_scale("CHAN1", "2")
+                self.Osciloscope.set_time_scale("0.000002")
                 pass
 
         def getVoltsFromCH1_button_clicked(self):

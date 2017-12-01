@@ -119,6 +119,7 @@ class RigolDS1000SeriesScope:
                 self.write(":WAV:DATA? "+channel)
                 dataFromBuffer = self.read(length)
                 data = np.frombuffer(dataFromBuffer, 'B')
+                #:CHANnel < n >: SCALe < range >
                 return data
                 
         def get_channel_scale(self, CH:str):
@@ -161,10 +162,10 @@ class RigolDS1000SeriesScope:
                 self.write(":TIM:OFFS?")
                 timeoffset = float(self.read(20))
                 return timeoffset
-        
+
         def get_time_array(self, dataCHANNEL):
                 '''
-                
+
                 :param array dataCHANNEL: array of data from channel
                 :return: time, time Unit - time array and time dimension
                 '''
@@ -176,7 +177,11 @@ class RigolDS1000SeriesScope:
                 # If we generated too many points due to overflow, crop the length of time.
                 if (time.size > dataCHANNEL.size):
                         time = time[0:600:1]  # need to adopt to my needs.
-        
+                elif (time.size < dataCHANNEL.size):
+                        dataCHANNEL = dataCHANNEL[0:600:1]
+                        pass
+                else:
+                        pass
                 # tUnit section:
                 if (time[599] < 1e-3):
                         time = time * 1e6
@@ -186,8 +191,8 @@ class RigolDS1000SeriesScope:
                         tUnit = "mS"
                 else:
                         tUnit = "S"
-                        
-                return time, tUnit
+        
+                return time, tUnit, dataCHANNEL
         
         def get_channel_offset(self, CHANNEL):
                 '''
@@ -232,4 +237,24 @@ class RigolDS1000SeriesScope:
                 self.run()
                 self.unlock_key()
                 return dataCH2, time_array, time_unit
+                pass
+
+        def run(self):
+                self.write(":RUN")
+                pass
+
+        def unlock_key(self):
+                self.write(":KEY:FORC")
+                pass
+        
+        def set_y_scale(self, CHAN, y_scale):
+                #self.write(":CHAN1:PROB 1")
+                self.write(":"+CHAN+":SCAL "+y_scale)
+                time.sleep(2)
+                pass
+        
+        def set_time_scale(self, time_scale):
+                self.write(":TIM:SCAL "+ time_scale)
+                time.sleep(2)
+                self.write(":TRIG:EDGE:LEV 1")
                 pass

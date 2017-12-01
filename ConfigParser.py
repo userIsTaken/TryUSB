@@ -6,6 +6,7 @@ class Configuration:
                 self.FilePath = FilePath
                 self.config = configparser.ConfigParser()
                 pass
+
         
         def readDefaultInitCommandsForSiglent(self, section, option : str):
                 self.config.read(self.FilePath)
