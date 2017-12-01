@@ -45,21 +45,46 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.ui.getVoltsFromCH1_button.clicked.connect(self.getVoltsFromCH1_button_clicked)
                 self.ui.getVoltasFromCH2_button.clicked.connect(self.getVoltsFromCH2_button_clicked)
                 self.ui.getDatafromBothChannels_button.clicked.connect(self.getDatafromBothChannels_button_clicked)
+                self.dataCurveOne = self.ui.dataViewWidget.plot()
+                self.dataCurveTwo = self.ui.dataViewWidget.plot()
                 self.SetupWindow()
                 pass
-        
+
         def SetupWindow(self):
                 icon = QtGui.QIcon()
                 icon.addPixmap(QtGui.QPixmap("Icons/comport.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
                 self.setWindowIcon(icon)
+                self.dataCurveOne.setPen((200, 200, 100))
+                self.dataCurveTwo.setPen((100, 200, 255))
+
                 pass
-        
+
         def getDatafromBothChannels_button_clicked(self):
-                self.DebugMessage("Not implemented yet", 1000)
+                data_from_channel, time_array, time_unit = self.Osciloscope.get_data_points_from_channel("CHAN1")
+                self.ui.dataViewWidget.setLabel('bottom', 'Time', units=time_unit)
+                self.ui.dataViewWidget.setLabel('left', 'Voltage', units='V')
+                # plot = self.ui.dataViewWidget.plot()
+                # plot.setPen(200, 200, 100)
+                self.dataCurveOne.setData(time_array, data_from_channel)
+                self.DebugMessage("Working on it ...", 1000)
                 pass
-        
+                data_from_channel, time_array, time_unit = self.Osciloscope.get_data_points_from_channel("CHAN2")
+                self.ui.dataViewWidget.setLabel('bottom', 'Time', units=time_unit)
+                self.ui.dataViewWidget.setLabel('left', 'Voltage', units='V')
+                # plot = self.ui.dataViewWidget.plot()
+                # plot.setPen(200, 200, 100)
+                self.dataCurveTwo.setData(time_array, data_from_channel)
+                self.DebugMessage("Working on it ...", 1000)
+                pass
+
         def getVoltsFromCH2_button_clicked(self):
-                self.DebugMessage("Not implemented yet", 1000)
+                data_from_channel, time_array, time_unit = self.Osciloscope.get_data_points_from_channel("CHAN2")
+                self.ui.dataViewWidget.setLabel('bottom', 'Time', units=time_unit)
+                self.ui.dataViewWidget.setLabel('left', 'Voltage', units='V')
+                # plot = self.ui.dataViewWidget.plot()
+                # plot.setPen(200, 200, 100)
+                self.dataCurveTwo.setData(time_array, data_from_channel)
+                self.DebugMessage("Working on it ...", 1000)
                 pass
         
         def connectOscilograph(self):
@@ -69,13 +94,15 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.ui.idn_label_oscilograph.setText(msg.decode())
                 self.DebugMessage("IDN: "+msg.decode(), 1000)
                 pass
-        
+
         def getVoltsFromCH1_button_clicked(self):
+
                 data_from_channel, time_array, time_unit = self.Osciloscope.get_data_points_from_channel("CHAN1")
-                # plot data:
+                self.ui.dataViewWidget.setLabel('bottom', 'Time', units=time_unit)
+                self.ui.dataViewWidget.setLabel('left', 'Voltage', units='V')
                 # plot = self.ui.dataViewWidget.plot()
-                # plot.setPen((200, 200, 100))
-                # plot.setData(time_array,data_from_channel)
+                # plot.setPen(200, 200, 100)
+                self.dataCurveOne.setData(time_array, data_from_channel)
                 self.DebugMessage("Working on it ...", 1000)
                 pass
         

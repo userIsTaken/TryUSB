@@ -199,10 +199,10 @@ class RigolDS1000SeriesScope:
                 self.write(":"+CHANNEL+":OFFS?")
                 voltoffsetCH = float(self.read(20))
                 return voltoffsetCH
-        
-        def get_data_points_from_channel(self, CH:str):
+
+        def get_data_points_from_channel(self, CH: str):
                 '''
-                
+
                 :param str CH: channel
                 :return: dataCH1, time_array, time_unit
                 '''
@@ -210,7 +210,7 @@ class RigolDS1000SeriesScope:
                 self.stop()
                 # set wave data points mode to normal:
                 self.channels_mode("NORM")
-                data_array_from_channel = self.get_data_from_channel(CH,9000)
+                data_array_from_channel = self.get_data_from_channel(CH, 9000)
                 # Walk through the data, and map it to actual voltages
                 # First invert the data (ya rly)
                 dataCH = data_array_from_channel * -1 + 255
@@ -228,6 +228,8 @@ class RigolDS1000SeriesScope:
                 # get a time offset:
                 time_offset = self.get_time_offset()
                 # get time array:
-                time_array, time_unit = self.get_time_array(dataCH1)
-                return dataCH1, time_array, time_unit
+                time_array, time_unit, dataCH2 = self.get_time_array(dataCH1)
+                self.run()
+                self.unlock_key()
+                return dataCH2, time_array, time_unit
                 pass
