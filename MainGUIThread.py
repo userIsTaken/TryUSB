@@ -87,13 +87,27 @@ class MainWindow(QtWidgets.QMainWindow):
                 pass
         
         def connectOscilograph(self):
-                connected_devices = getDevicesFromComboBoxes(self.ui.comboBox_for_generator, self.ui.comboBox_for_oscillograph, self.Devices_dict)
-                self.Osciloscope = RigolDS1000SeriesScope(connected_devices[3])
-                msg = self.Osciloscope.get_name()
-                self.ui.idn_label_oscilograph.setText((msg.decode())[0:10])
-                self.DebugMessage("IDN: "+msg.decode(), 1000)
-                self.Osciloscope.set_y_scale("CHAN1", "2")
-                self.Osciloscope.set_time_scale("0.000002")
+                try:
+                        connected_devices = getDevicesFromComboBoxes(self.ui.comboBox_for_generator, self.ui.comboBox_for_oscillograph, self.Devices_dict)
+                        self.Osciloscope = RigolDS1000SeriesScope(connected_devices[3])
+                        msg = self.Osciloscope.get_name()
+                        self.ui.idn_label_oscilograph.setText((msg.decode())[0:10])
+                        self.DebugMessage("IDN: "+msg.decode(), 1000)
+                        # Function which sets up osciloscope:
+
+                        # self.Osciloscope.set_y_scale("CHAN1", "2")
+                        # self.Osciloscope.set_time_scale("0.000002")
+                except Exception as ex:
+                        self.DebugLog("===Problemos su oscilografu===")
+                        self.DebugLog(str(ex))
+                        pass
+                pass
+
+        def initOscilograph(self):
+                osc_conf = Configuration("Configs/RigolDS1101E.ini")
+                list_cmds = osc_conf.readDefaultInitCommands("RIGOL INIT SETUP","InitRigol")
+                self.DebugLog("===Rigol init file===")
+                self.DebugLog(list_cmds)
                 pass
 
         def getVoltsFromCH1_button_clicked(self):
@@ -162,7 +176,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.ui.connection_status_label.setText(self.Generator.ask("*IDN?"))
                 #  populate init commands from file:
                 myConf = Configuration("Configs/Siglent.ini")
-                lines = myConf.readDefaultInitCommandsForSiglent("SIGLENT INIT CONFIG", "InitCMD")
+                lines = myConf.readDefaultInitCommands("SIGLENT INIT CONFIG", "InitCMD")
                 self.DebugLog(lines)
                 self.ui.initialConfigurationForGenerator.setPlainText(lines)
                 pass
@@ -212,7 +226,8 @@ class MainWindow(QtWidgets.QMainWindow):
                 
         def closeFn(self):
                 if self.Generator is not None:
-                        self.Generator.ask("*RST")
+                        # self.Generator.ask("*RST")
+                        # Nereikia čia reset'o daryti.
                         self.Generator.close()
                 if self.Osciloscope is not None:
                         self.Osciloscope.close()

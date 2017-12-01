@@ -247,14 +247,35 @@ class RigolDS1000SeriesScope:
                 self.write(":KEY:FORC")
                 pass
         
-        def set_y_scale(self, CHAN, y_scale):
+        def set_y_scale(self, CHAN, y_scale:str, sleep_time = 0.5):
+                '''
+
+                :param CHAN: channel CHAN1, CHAN2
+                :param y_scale: volts
+                :return:
+                '''
+
                 #self.write(":CHAN1:PROB 1")
                 self.write(":"+CHAN+":SCAL "+y_scale)
-                time.sleep(2)
+                time.sleep(sleep_time)
                 pass
         
-        def set_time_scale(self, time_scale):
+        def set_time_scale(self, time_scale:str, sleep_time=0.5):
+                '''
+
+                :param str time_scale: time scale in seconds
+                :return:
+                '''
                 self.write(":TIM:SCAL "+ time_scale)
-                time.sleep(2)
-                self.write(":TRIG:EDGE:LEV 1")
+                time.sleep(sleep_time)
+                pass
+
+        def set_trigger_edge_level(self, level:str):
+                '''
+
+                :param level: trigger level
+                :return:
+                '''
+
+                self.write(":TRIG:EDGE:LEV "+level)
                 pass
