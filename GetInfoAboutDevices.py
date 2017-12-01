@@ -81,20 +81,4 @@ def getTextLinesFromQTextEditField(QTextEdit: QtWidgets.QTextEdit):
         pass
 
 def scan_USBTMC_devices(mypath:str, devices_dic:dict):
-        # for f in os.listdir(mypath):
-        #         if f.startswith('usbtmc'):
-        #                 try:
-        #                         dvs = SimpleInstrument("/dev/" + f)
-        #                         answer = dvs.getName()
-        #                         # self.DebugLog(str(answer.decode("utf-8")).replace("\n", ""))
-        #                         # put this device name into dictionary, to use them later
-        #                         devices_dic["/dev/" + f] = str(answer.decode("utf-8")).replace("\n", "")
-        #                         # fill_all_boxes_with_devices(mypath + "/" + f)
-        #                         dvs.reset()
-        #                         dvs.close()
-        #                 except Exception as e:
-        #                         print(e.args)
-        #                         print(e)
-        #                         pass
-        # return devices_dic
-        pass
+       pass

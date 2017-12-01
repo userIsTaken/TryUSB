@@ -56,7 +56,6 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.setWindowIcon(icon)
                 self.dataCurveOne.setPen((200, 200, 100))
                 self.dataCurveTwo.setPen((100, 200, 255))
-
                 pass
 
         def getDatafromBothChannels_button_clicked(self):
