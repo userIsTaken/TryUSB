@@ -186,6 +186,8 @@ class MainWindow(QtWidgets.QMainWindow):
                 if self.Generator is not None:
                         self.Generator.ask("*RST")
                         self.Generator.close()
+                if self.Osciloscope is not None:
+                        self.Osciloscope.close()
                 print("Debug: exit")
                 # čia turi būti funkcija, atsijungianti nuo prietaisų ir juos nustatanti į defaul režimą;
                 sys.exit(0)
