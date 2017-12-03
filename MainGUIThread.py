@@ -51,11 +51,12 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.ui.useRegularUpdateBox.stateChanged.connect(self.StateChanged)
                 pass
 
-        def StateChanged(self):
+        def StateChanged(self, int):
                 # TODO implement threading by using QThread objects: if useRegularUpdateBox is
                 # checked, run QThread, get volts from channels, update GUI, graphs with new
                 # set of data
-                self.DebugMessage("State changed", 1000)
+                self.DebugMessage("State changed, got parameter "+str(int), 1000)
+                # self.DebugMessage("")
 
         def SetupWindow(self):
                 icon = QtGui.QIcon()
