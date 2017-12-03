@@ -48,7 +48,14 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.dataCurveOne = self.ui.dataViewWidget.plot()
                 self.dataCurveTwo = self.ui.dataViewWidget.plot()
                 self.SetupWindow()
+                self.ui.useRegularUpdateBox.stateChanged.connect(self.StateChanged)
                 pass
+
+        def StateChanged(self):
+                # TODO implement threading by using QThread objects: if useRegularUpdateBox is
+                # checked, run QThread, get volts from channels, update GUI, graphs with new
+                # set of data
+                self.DebugMessage("State changed", 1000)
 
         def SetupWindow(self):
                 icon = QtGui.QIcon()
