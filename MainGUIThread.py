@@ -59,30 +59,29 @@ class MainWindow(QtWidgets.QMainWindow):
                 pass
 
         def getDatafromBothChannels_button_clicked(self):
-                data_from_channel, time_array, time_unit = self.Osciloscope.get_data_points_from_channel("CHAN1")
-                self.ui.dataViewWidget.setLabel('bottom', 'Time', units=time_unit)
-                self.ui.dataViewWidget.setLabel('left', 'Voltage', units='V')
-                # plot = self.ui.dataViewWidget.plot()
-                # plot.setPen(200, 200, 100)
-                self.dataCurveOne.setData(time_array, data_from_channel)
-                self.DebugMessage("Working on it ...", 1000)
-                pass
-                data_from_channel, time_array, time_unit = self.Osciloscope.get_data_points_from_channel("CHAN2")
-                self.ui.dataViewWidget.setLabel('bottom', 'Time', units=time_unit)
-                self.ui.dataViewWidget.setLabel('left', 'Voltage', units='V')
-                # plot = self.ui.dataViewWidget.plot()
-                # plot.setPen(200, 200, 100)
-                self.dataCurveTwo.setData(time_array, data_from_channel)
-                self.DebugMessage("Working on it ...", 1000)
+                self.getVoltsFromChannel("CHAN1", self.dataCurveOne)
+                self.getVoltsFromChannel("CHAN2", self.dataCurveTwo)
                 pass
 
         def getVoltsFromCH2_button_clicked(self):
-                data_from_channel, time_array, time_unit = self.Osciloscope.get_data_points_from_channel("CHAN2")
+                self.getVoltsFromChannel("CHAN2", self.dataCurveTwo)
+                # TODO :  Iškelti į atskirą funkciją viską, idant veiktų time.clock.update()
+                # data_from_channel, time_array, time_unit = self.Osciloscope.get_data_points_from_channel("CHAN2")
+                # self.ui.dataViewWidget.setLabel('bottom', 'Time', units=time_unit)
+                # self.ui.dataViewWidget.setLabel('left', 'Voltage', units='V')
+                # # plot = self.ui.dataViewWidget.plot()
+                # # plot.setPen(200, 200, 100)
+                # self.dataCurveTwo.setData(time_array, data_from_channel)
+                # self.DebugMessage("Working on it ...", 1000)
+                pass
+
+        def getVoltsFromChannel(self, CH:str, dataCurve):
+                data_from_channel, time_array, time_unit = self.Osciloscope.get_data_points_from_channel(CH)
                 self.ui.dataViewWidget.setLabel('bottom', 'Time', units=time_unit)
                 self.ui.dataViewWidget.setLabel('left', 'Voltage', units='V')
                 # plot = self.ui.dataViewWidget.plot()
                 # plot.setPen(200, 200, 100)
-                self.dataCurveTwo.setData(time_array, data_from_channel)
+                dataCurve.setData(time_array, data_from_channel)
                 self.DebugMessage("Working on it ...", 1000)
                 pass
         
@@ -93,10 +92,7 @@ class MainWindow(QtWidgets.QMainWindow):
                         msg = self.Osciloscope.get_name()
                         self.ui.idn_label_oscilograph.setText((msg.decode())[0:10])
                         self.DebugMessage("IDN: "+msg.decode(), 1000)
-                        # Function which sets up osciloscope:
-
-                        # self.Osciloscope.set_y_scale("CHAN1", "2")
-                        # self.Osciloscope.set_time_scale("0.000002")
+                        # TODO self.initOscilograph() # do not forget to call this function
                 except Exception as ex:
                         self.DebugLog("===Problemos su oscilografu===")
                         self.DebugLog(str(ex))
@@ -111,15 +107,17 @@ class MainWindow(QtWidgets.QMainWindow):
                 pass
 
         def getVoltsFromCH1_button_clicked(self):
-
-                data_from_channel, time_array, time_unit = self.Osciloscope.get_data_points_from_channel("CHAN1")
-                self.ui.dataViewWidget.setLabel('bottom', 'Time', units=time_unit)
-                self.ui.dataViewWidget.setLabel('left', 'Voltage', units='V')
-                # plot = self.ui.dataViewWidget.plot()
-                # plot.setPen(200, 200, 100)
-                self.dataCurveOne.setData(time_array, data_from_channel)
-                self.DebugMessage("Working on it ...", 1000)
+                self.getVoltsFromChannel("CHAN1", self.dataCurveOne)
                 pass
+
+                # data_from_channel, time_array, time_unit = self.Osciloscope.get_data_points_from_channel("CHAN1")
+                # self.ui.dataViewWidget.setLabel('bottom', 'Time', units=time_unit)
+                # self.ui.dataViewWidget.setLabel('left', 'Voltage', units='V')
+                # # plot = self.ui.dataViewWidget.plot()
+                # # plot.setPen(200, 200, 100)
+                # self.dataCurveOne.setData(time_array, data_from_channel)
+                # self.DebugMessage("Working on it ...", 1000)
+                # pass
         
         def setupPlotWidget(self):
                 '''
