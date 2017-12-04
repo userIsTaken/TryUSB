@@ -109,7 +109,7 @@ class MainWindow(QtWidgets.QMainWindow):
                         msg = self.Osciloscope.get_name()
                         self.ui.idn_label_oscilograph.setText((msg.decode())[0:10])
                         self.DebugMessage("IDN: "+msg.decode(), 1000)
-                        # TODO self.initOscilograph() # do not forget to call this function
+                        self.initOscilograph() # do not forget to call this function
                 except Exception as ex:
                         self.DebugLog("===Problemos su oscilografu===")
                         self.DebugLog(str(ex))
