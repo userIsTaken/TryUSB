@@ -122,9 +122,12 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.DebugLog("===Rigol init file===")
                 self.DebugLog(list_cmds)
                 self.ui.plainConfigOscilograph.setPlainText(list_cmds)
+                cmds = getTextLinesFromQTextEditField(self.ui.plainConfigOscilograph)
                 # It seems working until ths point:
-                for i in list_cmds:
-                        print(i)
+                for i in cmds:
+                        self.Osciloscope.write(i)
+                        time.sleep(0.25)
+                self.Osciloscope.unlock()
                 pass
 
         def getVoltsFromCH1_button_clicked(self):
