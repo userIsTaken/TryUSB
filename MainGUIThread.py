@@ -127,7 +127,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 for i in cmds:
                         self.Osciloscope.write(i)
                         time.sleep(0.25)
-                self.Osciloscope.unlock()
+                self.Osciloscope.unlock_key()
                 pass
 
         def getVoltsFromCH1_button_clicked(self):
