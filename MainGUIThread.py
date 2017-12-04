@@ -121,6 +121,9 @@ class MainWindow(QtWidgets.QMainWindow):
                 list_cmds = osc_conf.readDefaultInitCommands("RIGOL INIT SETUP","InitRigol")
                 self.DebugLog("===Rigol init file===")
                 self.DebugLog(list_cmds)
+                # It seems working until ths point:
+                for i in list_cmds:
+                        print(i)
                 pass
 
         def getVoltsFromCH1_button_clicked(self):
