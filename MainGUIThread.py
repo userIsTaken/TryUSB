@@ -56,6 +56,15 @@ class MainWindow(QtWidgets.QMainWindow):
                 # checked, run QThread, get volts from channels, update GUI, graphs with new
                 # set of data
                 self.DebugMessage("State changed, got parameter "+str(int), 1000)
+                if (int == 0):
+                        # Unchecked
+                        pass
+                elif (int == 2):
+                        # checked state
+                        pass
+                else:
+                        self.DebugMessage("Shit happened "+str(int), 1000)
+                        pass
                 # self.DebugMessage("")
 
         def SetupWindow(self):
