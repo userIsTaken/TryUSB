@@ -195,7 +195,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.DebugLog(Gen)
                 self.Generator = vxi11.Instrument(Gen)
                 self.DebugLog("Testas prisijungimo")
-                self.ui.connection_status_label.setText(self.Generator.ask("*IDN?"))
+                self.ui.connection_status_label.setText(self.Generator.ask("*IDN?")[0:15])
                 #  populate init commands from file:
                 myConf = Configuration("Configs/Siglent.ini")
                 lines = myConf.readDefaultInitCommands("SIGLENT INIT CONFIG", "InitCMD")
