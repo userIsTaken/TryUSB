@@ -14,7 +14,7 @@ class TektronixGenerator_TCP():
                 :param gen_path: path (IP) for generator
                 '''
                 self.Instrument = vxi11.Instrument(gen_path)
-                self.Instrument.timeout = 50
+                self.Instrument.timeout = 100
                 self.CH1 = "SOUR1"
                 self.CH2 = "SOUR2"
                 # channel 1 - CH1, channel 2 - CH2
