@@ -44,16 +44,20 @@ class TektronixGenerator_TCP():
                 pass
 
         def GetInitConfiguration(self):
-                myConf = Configuration("Configs/Siglent.ini")
-                lines = myConf.readDefaultInitCommands("SIGLENT INIT CONFIG", "InitCMD")
+                myConf = Configuration("")
+                lines = myConf.readDefaultInitCommands("TEKTRONIX INIT CONFIG", "InitCMD")
                 return lines
                 pass
 
         def Ask(self, cmd: str):
-                self.Instrument.ask(cmd)
+                return self.Instrument.ask(cmd)
                 pass
 
         def Close(self):
                 self.Instrument.close()
+                pass
+        
+        def Write(self, cmd:str):
+                self.Instrument.write(cmd)
                 pass
         
