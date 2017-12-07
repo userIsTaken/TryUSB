@@ -39,3 +39,7 @@ class SiglentGenerator_TCP():
         def Ask(self, cmd:str):
                 self.Instrument.ask(cmd)
                 pass
+        
+        def Close(self):
+                self.Instrument.close()
+                pass
