@@ -14,7 +14,7 @@ class TektronixGenerator_TCP():
                 :param gen_path: path (IP) for generator
                 '''
                 self.Instrument = vxi11.Instrument(gen_path)
-                self.Instrument.timeout = 100
+                # self.Instrument.timeout = 1
                 self.CH1 = "SOUR1"
                 self.CH2 = "SOUR2"
                 # channel 1 - CH1, channel 2 - CH2
@@ -26,10 +26,11 @@ class TektronixGenerator_TCP():
 
         def EnableOutput(self, channel, out: str):
                 if "1" in channel:
-                        self.Instrument.ask("OUTP1:STAT "+out)
-                        pass
+                        self.Instrument.write("OUTP1:STAT "+out)
+                        # self.Instrument.
+                        # pass
                 elif "2" in channel:
-                        self.Instrument.ask("OUTP2:STAT " + out)
+                        self.Instrument.write("OUTP2:STAT " + out)
                         pass
                 else:
                         print("Stupid argument")
