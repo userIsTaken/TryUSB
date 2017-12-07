@@ -25,6 +25,12 @@ class TektronixGenerator_TCP():
                 return name
 
         def EnableOutput(self, channel, out: str):
+                '''
+                
+                :param channel: self.object.ch1 or ch2
+                :param out: str ON, OFF
+                :return:
+                '''
                 if "1" in channel:
                         self.Instrument.write("OUTP1:STAT "+out)
                         # self.Instrument.
