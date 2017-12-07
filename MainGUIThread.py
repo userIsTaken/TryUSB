@@ -82,14 +82,6 @@ class MainWindow(QtWidgets.QMainWindow):
 
         def getVoltsFromCH2_button_clicked(self):
                 self.getVoltsFromChannel("CHAN2", self.dataCurveTwo)
-                # TODO :  Iškelti į atskirą funkciją viską, idant veiktų su Thread'ais?
-                # data_from_channel, time_array, time_unit = self.Osciloscope.get_data_points_from_channel("CHAN2")
-                # self.ui.dataViewWidget.setLabel('bottom', 'Time', units=time_unit)
-                # self.ui.dataViewWidget.setLabel('left', 'Voltage', units='V')
-                # # plot = self.ui.dataViewWidget.plot()
-                # # plot.setPen(200, 200, 100)
-                # self.dataCurveTwo.setData(time_array, data_from_channel)
-                # self.DebugMessage("Working on it ...", 1000)
                 pass
 
         def getVoltsFromChannel(self, CH:str, dataCurve):
