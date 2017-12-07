@@ -265,7 +265,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 if self.Generator is not None:
                         # self.Generator.ask("*RST")
                         # Nereikia čia reset'o daryti.
-                        self.Generator.close()
+                        self.Generator.Close()
                 if self.Osciloscope is not None:
                         self.Osciloscope.close()
                 print("Debug: exit")
