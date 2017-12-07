@@ -16,6 +16,9 @@ from Generators.TektronixGenerator import *
 # Very global dictionary for all devices?
 # prettier graphs:
 pG.setConfigOptions(antialias=True)
+# very global variables:
+ON = "ON"
+OFF = "OFF"
 
 class MainWindow(QtWidgets.QMainWindow):
         def __init__(self):
@@ -153,22 +156,22 @@ class MainWindow(QtWidgets.QMainWindow):
         def changeOutputCH1(self):
                 if(self.ui.InputOutputCH1Button.isChecked()):
                         # self.Generator.ask("C1:OUTP ON")
-                        self.Generator.EnableOutput(self.Generator.CH1, True)
+                        self.Generator.EnableOutput(self.Generator.CH1, ON)
                         self.DebugMessage("CH1 ON", 1000)
                 else:
                         # self.Generator.ask("C1:OUTP OFF")
-                        self.Generator.EnableOutput(self.Generator.CH1, False)
+                        self.Generator.EnableOutput(self.Generator.CH1, OFF)
                         self.DebugMessage("CH1 OFF", 1000)
                 pass
         
         def changeOutputCH2(self):
                 if (self.ui.InputOutputCH2Button.isChecked()):
                         # self.Generator.ask("C2:OUTP ON")
-                        self.Generator.EnableOutput(self.Generator.CH2, True)
+                        self.Generator.EnableOutput(self.Generator.CH2, ON)
                         self.DebugMessage("CH2 ON", 1000)
                 else:
                         # self.Generator.ask("C2:OUTP OFF")
-                        self.Generator.EnableOutput(self.Generator.CH2, False)
+                        self.Generator.EnableOutput(self.Generator.CH2, OFF)
                         self.DebugMessage("CH2 OFF", 1000)
                 pass
         

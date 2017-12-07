@@ -23,12 +23,8 @@ class SiglentGenerator_TCP():
                 name = self.Instrument.ask("*IDN?")
                 return name
         
-        def EnableOutput(self, channel:str, out:bool):
-                if out:
-                        self.Instrument.ask(channel+":OUTP ON")
-                elif not out:
-                        self.Instrument.ask(channel+":OUTP OFF")
-                pass
+        def EnableOutput(self, channel, out: str):
+                self.Instrument.ask(channel+":OUTP "+out)
         
         def GetInitConfiguration(self):
                 myConf = Configuration("Configs/Siglent.ini")
