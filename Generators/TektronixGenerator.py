@@ -24,6 +24,15 @@ class TektronixGenerator_TCP():
                 return name
 
         def EnableOutput(self, channel, out: str):
+                if "1" in channel:
+                        self.Instrument.ask("OUTP1:STAT "+out)
+                        pass
+                elif "2" in channel:
+                        self.Instrument.ask("OUTP2:STAT " + out)
+                        pass
+                else:
+                        print("Stupid argument")
+                        pass
                 pass
 
         def GetInitConfiguration(self):
