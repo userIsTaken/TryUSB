@@ -8,6 +8,11 @@ from GetInfoAboutDevices import *
 from ConfigParser import *
 import vxi11
 import pyqtgraph as pG
+
+#
+
+from Generators.SiglentGenerator import *
+from Generators.TektronixGenerator import *
 # Very global dictionary for all devices?
 # prettier graphs:
 pG.setConfigOptions(antialias=True)
@@ -147,19 +152,23 @@ class MainWindow(QtWidgets.QMainWindow):
                 
         def changeOutputCH1(self):
                 if(self.ui.InputOutputCH1Button.isChecked()):
-                        self.Generator.ask("C1:OUTP ON")
+                        # self.Generator.ask("C1:OUTP ON")
+                        self.Generator.EnableOutput(self.Generator.CH1, True)
                         self.DebugMessage("CH1 ON", 1000)
                 else:
-                        self.Generator.ask("C1:OUTP OFF")
+                        # self.Generator.ask("C1:OUTP OFF")
+                        self.Generator.EnableOutput(self.Generator.CH1, False)
                         self.DebugMessage("CH1 OFF", 1000)
                 pass
         
         def changeOutputCH2(self):
                 if (self.ui.InputOutputCH2Button.isChecked()):
-                        self.Generator.ask("C2:OUTP ON")
+                        # self.Generator.ask("C2:OUTP ON")
+                        self.Generator.EnableOutput(self.Generator.CH2, True)
                         self.DebugMessage("CH2 ON", 1000)
                 else:
-                        self.Generator.ask("C2:OUTP OFF")
+                        # self.Generator.ask("C2:OUTP OFF")
+                        self.Generator.EnableOutput(self.Generator.CH2, False)
                         self.DebugMessage("CH2 OFF", 1000)
                 pass
         
@@ -169,7 +178,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 # for i in listOfCommands:
                 #         print(i)
                 for i in listOfCommands:
-                        message = self.Generator.ask(str(i))
+                        message = self.Generator.Ask(str(i))
                         self.DebugLog(message)
                         self.ui.statusbar.showMessage(message, 500)
                 pass
@@ -185,12 +194,24 @@ class MainWindow(QtWidgets.QMainWindow):
                         self.DebugLog(Devices_from_TCP_table[key])
                 Gen = getDevicePathWithRoleFromList("Generatorius", Devices_from_TCP_table)
                 self.DebugLog(Gen)
-                self.Generator = vxi11.Instrument(Gen)
+                # test IDN again:
+                idn = vxi11.Instrument(Gen)
+                name = idn.ask("*IDN?")
+                idn.close() # close device, we will initialize it a little bit later;
+                if "Siglent" in name:
+                        self.Generator = SiglentGenerator_TCP(Gen)
+                        pass
+                elif "Tektronix" in name:
+                        self.Generator = TektronixGenerator_TCP(Gen)
+                        pass
+                else:
+                        self.DebugMessage("Unknown device", 2500)
+                        pass
                 self.DebugLog("Testas prisijungimo")
-                self.ui.connection_status_label.setText(self.Generator.ask("*IDN?")[0:15])
+                self.ui.connection_status_label.setText(self.Generator.GetIDN()[0:15])
                 #  populate init commands from file:
-                myConf = Configuration("Configs/Siglent.ini")
-                lines = myConf.readDefaultInitCommands("SIGLENT INIT CONFIG", "InitCMD")
+                # myConf = Configuration("Configs/Siglent.ini")
+                lines = self.Generator.GetInitConfiguration()
                 self.DebugLog(lines)
                 self.ui.initialConfigurationForGenerator.setPlainText(lines)
                 pass

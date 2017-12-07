@@ -1,5 +1,6 @@
 import os, sys
 import vxi11
+from ConfigParser import *
 
 
 class SiglentGenerator_TCP():
@@ -23,4 +24,18 @@ class SiglentGenerator_TCP():
                 return name
         
         def EnableOutput(self, channel:str, out:bool):
+                if out:
+                        self.Instrument.ask(channel+":OUTP ON")
+                elif not out:
+                        self.Instrument.ask(channel+":OUTP OFF")
+                pass
+        
+        def GetInitConfiguration(self):
+                myConf = Configuration("Configs/Siglent.ini")
+                lines = myConf.readDefaultInitCommands("SIGLENT INIT CONFIG", "InitCMD")
+                return lines
+                pass
+        
+        def Ask(self, cmd:str):
+                self.Instrument.ask(cmd)
                 pass
