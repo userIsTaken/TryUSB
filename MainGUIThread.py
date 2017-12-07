@@ -201,11 +201,11 @@ class MainWindow(QtWidgets.QMainWindow):
                 idn = vxi11.Instrument(Gen)
                 name = idn.ask("*IDN?")
                 idn.close() # close device, we will initialize it a little bit later;
-                if "Siglent" in name:
+                if "Siglent".lower() in name.lower():
                         self.Generator = SiglentGenerator_TCP(Gen)
                         self.DebugLog("Siglent rastas")
                         pass
-                elif "Tektronix" in name:
+                elif "Tektronix".lower() in name.lower():
                         self.Generator = TektronixGenerator_TCP(Gen)
                         self.DebugLog("Tektronix rastas")
                         pass
