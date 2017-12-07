@@ -200,9 +200,11 @@ class MainWindow(QtWidgets.QMainWindow):
                 idn.close() # close device, we will initialize it a little bit later;
                 if "Siglent" in name:
                         self.Generator = SiglentGenerator_TCP(Gen)
+                        self.DebugLog("Siglent rastas")
                         pass
                 elif "Tektronix" in name:
                         self.Generator = TektronixGenerator_TCP(Gen)
+                        self.DebugLog("Tektronix rastas")
                         pass
                 else:
                         self.DebugMessage("Unknown device", 2500)

@@ -12,6 +12,8 @@ class TektronixGenerator_TCP():
                 :param gen_path: path (IP) for generator
                 '''
                 self.Instrument = vxi11.Instrument(gen_path)
+                self.CH1 = "SOUR1"
+                self.CH2 = "SOUR2"
                 pass
         
         def GetIDN(self):
