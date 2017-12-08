@@ -181,9 +181,10 @@ class MainWindow(QtWidgets.QMainWindow):
                 # for i in listOfCommands:
                 #         print(i)
                 for i in listOfCommands:
-                        message = self.Generator.Ask(str(i))
-                        self.DebugLog(message)
-                        self.ui.statusbar.showMessage(message, 500)
+                        self.Generator.Write(str(i))
+                        time.sleep(0.1)
+                        # self.DebugLog(message)
+                        # self.ui.statusbar.showMessage(message, 500)
                 pass
                 
                 
