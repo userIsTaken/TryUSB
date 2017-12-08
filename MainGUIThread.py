@@ -304,7 +304,7 @@ class MainWindow(QtWidgets.QMainWindow):
                                         # put this device name into dictionary, to use them later
                                         self.Devices_dict["/dev/"+f] = str(answer.decode("utf-8")).replace("\n","")
                                         self.fill_all_boxes_with_devices(mypath+"/"+f)
-                                        if "rigol".lower() in answer.lower():
+                                        if "rigol".lower() in str(answer.decode("utf-8")).lower():
                                                 dvs.write(":KEY:FORC")
                                                 pass
                                         # dvs.reset()
