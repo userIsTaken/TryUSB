@@ -304,7 +304,10 @@ class MainWindow(QtWidgets.QMainWindow):
                                         # put this device name into dictionary, to use them later
                                         self.Devices_dict["/dev/"+f] = str(answer.decode("utf-8")).replace("\n","")
                                         self.fill_all_boxes_with_devices(mypath+"/"+f)
-                                        dvs.reset()
+                                        if "rigol".lower() in answer.lower():
+                                                dvs.write(":KEY:FORC")
+                                                pass
+                                        # dvs.reset()
                                         dvs.close()
                                 except Exception as e:
                                         print("Scan function failed")
