@@ -307,12 +307,11 @@ class MainWindow(QtWidgets.QMainWindow):
                                         if "rigol".lower() in str(answer.decode("utf-8")).lower():
                                                 dvs.write(":KEY:FORC")
                                                 pass
-                                        # dvs.reset()
+                                        # dvs.reset() # no reset!
                                         dvs.close()
                                 except Exception as e:
-                                        print("Scan function failed")
-                                        print(e.args)
-                                        print(e)
+                                        self.DebugLog(str(e))
+                                        self.DebugMessage("Problemos su USBTMC prietaisais?", 2500)
                                         pass
                 # nothing to do
                 # last entry is related to the ability to unset any device:
