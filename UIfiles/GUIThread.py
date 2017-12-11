@@ -283,6 +283,7 @@ class Ui_MainGuiWindow(object):
         self.mSeconds_generator_button.setMinimumSize(QtCore.QSize(32, 28))
         self.mSeconds_generator_button.setMaximumSize(QtCore.QSize(32, 28))
         self.mSeconds_generator_button.setCheckable(True)
+        self.mSeconds_generator_button.setChecked(True)
         self.mSeconds_generator_button.setObjectName("mSeconds_generator_button")
         self.horizontalLayout_3.addWidget(self.mSeconds_generator_button)
         self.Seconds_generator_button = QtWidgets.QPushButton(self.morphedWidget)
@@ -331,6 +332,7 @@ class Ui_MainGuiWindow(object):
         self.mSeconds_generator_button_2.setMinimumSize(QtCore.QSize(32, 28))
         self.mSeconds_generator_button_2.setMaximumSize(QtCore.QSize(32, 28))
         self.mSeconds_generator_button_2.setCheckable(True)
+        self.mSeconds_generator_button_2.setChecked(True)
         self.mSeconds_generator_button_2.setObjectName("mSeconds_generator_button_2")
         self.horizontalLayout_4.addWidget(self.mSeconds_generator_button_2)
         self.Seconds_generator_button_2 = QtWidgets.QPushButton(self.morphedWidget_2)
@@ -431,7 +433,7 @@ class Ui_MainGuiWindow(object):
 
         self.retranslateUi(MainGuiWindow)
         self.devicesTabWidget.setCurrentIndex(0)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainGuiWindow)
 
     def retranslateUi(self, MainGuiWindow):

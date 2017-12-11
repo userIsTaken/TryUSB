@@ -317,7 +317,7 @@
         </size>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="oscligraph_tab">
         <attribute name="title">
@@ -619,6 +619,9 @@
                 <property name="checkable">
                  <bool>true</bool>
                 </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
                </widget>
               </item>
               <item>
@@ -740,6 +743,9 @@
                  <string>mS</string>
                 </property>
                 <property name="checkable">
+                 <bool>true</bool>
+                </property>
+                <property name="checked">
                  <bool>true</bool>
                 </property>
                </widget>
