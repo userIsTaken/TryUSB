@@ -60,6 +60,33 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.SetupWindow()
                 self.ui.useRegularUpdateBox.stateChanged.connect(self.StateChanged)
                 pass
+        
+        def checkStateOfRadioButtons(self):
+                if(self.ui.periodRadioButton_uS.isChecked()):
+                        self.PeriodUnit = "uS"
+                        pass
+                elif(self.ui.periodRadioButton_mS.isChecked()):
+                        self.PeriodUnit = "mS"
+                        pass
+                elif(self.ui.periodradioButton_S.isChecked()):
+                        self.PeriodUnit = "S"
+                        pass
+                else:
+                        self.PeriodUnit = "mS"
+                        self.DebugMessage("mS liko, nekeista", 1000)
+                        pass
+                if(self.ui.triggerInterval_mS.isChecked()):
+                        self.TriggerIntervalUnit = "mS"
+                        pass
+                elif(self.ui.triggerInterval_uS.isChecked()):
+                        self.TriggerIntervalUnit = "uS"
+                        pass
+                elif(self.ui.triggerInterval_S.isChecked()):
+                        self.TriggerIntervalUnit = "S"
+                        pass
+                else:
+                        pass
+                pass
 
         def StateChanged(self, int):
                 self.DebugMessage("State changed, got parameter "+str(int), 1000)
