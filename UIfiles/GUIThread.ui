@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>900</width>
-    <height>879</height>
+    <height>800</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -486,6 +486,12 @@
            </item>
            <item row="0" column="1">
             <widget class="QPushButton" name="runInitiallConfiguration_button">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>Pirminė konfigūracija</string>
              </property>
@@ -493,15 +499,18 @@
            </item>
            <item row="1" column="0" colspan="2">
             <widget class="QLabel" name="connection_status_label">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>IDN, jei pavyko prisijunti</string>
              </property>
             </widget>
            </item>
           </layout>
-         </item>
-         <item row="0" column="1" rowspan="6">
-          <widget class="QPlainTextEdit" name="initialConfigurationForGenerator"/>
          </item>
          <item row="1" column="0">
           <layout class="QGridLayout" name="gridLayout_15">
@@ -520,11 +529,20 @@
            </item>
            <item row="0" column="1">
             <widget class="QDoubleSpinBox" name="voltageAmplitudeBox">
+             <property name="minimumSize">
+              <size>
+               <width>120</width>
+               <height>0</height>
+              </size>
+             </property>
              <property name="maximumSize">
               <size>
                <width>120</width>
                <height>16777215</height>
               </size>
+             </property>
+             <property name="decimals">
+              <number>3</number>
              </property>
             </widget>
            </item>
@@ -534,11 +552,11 @@
               <enum>Qt::Horizontal</enum>
              </property>
              <property name="sizeType">
-              <enum>QSizePolicy::Preferred</enum>
+              <enum>QSizePolicy::Fixed</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
-               <width>120</width>
+               <width>200</width>
                <height>20</height>
               </size>
              </property>
@@ -546,6 +564,12 @@
            </item>
            <item row="1" column="0">
             <widget class="QPushButton" name="setOffsetButton">
+             <property name="minimumSize">
+              <size>
+               <width>230</width>
+               <height>0</height>
+              </size>
+             </property>
              <property name="maximumSize">
               <size>
                <width>230</width>
@@ -559,49 +583,6 @@
            </item>
            <item row="1" column="1">
             <widget class="QDoubleSpinBox" name="voltageOffsetBox">
-             <property name="maximumSize">
-              <size>
-               <width>120</width>
-               <height>16777215</height>
-              </size>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="2">
-            <spacer name="horizontalSpacer_12">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeType">
-              <enum>QSizePolicy::Preferred</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>120</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-          </layout>
-         </item>
-         <item row="4" column="0">
-          <layout class="QGridLayout" name="gridLayout_17">
-           <item row="0" column="0" colspan="2">
-            <widget class="QPushButton" name="setBurstNCyclesButton">
-             <property name="maximumSize">
-              <size>
-               <width>230</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Ciklų kiekis (BURST NCYCLES)</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="2">
-            <widget class="QDoubleSpinBox" name="nCyclesBox">
              <property name="minimumSize">
               <size>
                <width>120</width>
@@ -613,6 +594,48 @@
                <width>120</width>
                <height>16777215</height>
               </size>
+             </property>
+             <property name="decimals">
+              <number>3</number>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <spacer name="horizontalSpacer_12">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Fixed</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>200</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+         <item row="4" column="0">
+          <layout class="QGridLayout" name="gridLayout_17">
+           <item row="0" column="0" colspan="2">
+            <widget class="QPushButton" name="setBurstNCyclesButton">
+             <property name="minimumSize">
+              <size>
+               <width>230</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>230</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Ciklų kiekis (BURST NCYCLES)</string>
              </property>
             </widget>
            </item>
@@ -659,6 +682,22 @@
              </property>
             </widget>
            </item>
+           <item row="0" column="2">
+            <widget class="QDoubleSpinBox" name="nCyclesBox">
+             <property name="minimumSize">
+              <size>
+               <width>120</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>120</width>
+               <height>16777215</height>
+              </size>
+             </property>
+            </widget>
+           </item>
           </layout>
          </item>
          <item row="2" column="0">
@@ -690,11 +729,23 @@
            </item>
            <item row="0" column="1">
             <widget class="QDoubleSpinBox" name="periodBox">
+             <property name="minimumSize">
+              <size>
+               <width>120</width>
+               <height>0</height>
+              </size>
+             </property>
              <property name="maximumSize">
               <size>
                <width>120</width>
                <height>16777215</height>
               </size>
+             </property>
+             <property name="decimals">
+              <number>0</number>
+             </property>
+             <property name="maximum">
+              <double>100000.000000000000000</double>
              </property>
             </widget>
            </item>
@@ -711,21 +762,24 @@
              </property>
              <layout class="QGridLayout" name="gridLayout_7">
               <item row="0" column="0">
-               <widget class="QRadioButton" name="radioButton">
+               <widget class="QRadioButton" name="periodRadioButton_uS">
                 <property name="text">
                  <string>μS</string>
                 </property>
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QRadioButton" name="radioButton_2">
+               <widget class="QRadioButton" name="periodRadioButton_mS">
                 <property name="text">
                  <string>mS</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
               <item row="0" column="2">
-               <widget class="QRadioButton" name="radioButton_3">
+               <widget class="QRadioButton" name="periodradioButton_S">
                 <property name="text">
                  <string>S</string>
                 </property>
@@ -753,11 +807,23 @@
            </item>
            <item row="0" column="1">
             <widget class="QDoubleSpinBox" name="triggerIntervalBox">
+             <property name="minimumSize">
+              <size>
+               <width>120</width>
+               <height>0</height>
+              </size>
+             </property>
              <property name="maximumSize">
               <size>
                <width>120</width>
                <height>16777215</height>
               </size>
+             </property>
+             <property name="decimals">
+              <number>0</number>
+             </property>
+             <property name="maximum">
+              <double>1000000.000000000000000</double>
              </property>
             </widget>
            </item>
@@ -774,21 +840,24 @@
              </property>
              <layout class="QGridLayout" name="gridLayout_12">
               <item row="0" column="0">
-               <widget class="QRadioButton" name="radioButton_4">
+               <widget class="QRadioButton" name="triggerInterval_uS">
                 <property name="text">
                  <string>μS</string>
                 </property>
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QRadioButton" name="radioButton_5">
+               <widget class="QRadioButton" name="triggerInterval_mS">
                 <property name="text">
                  <string>mS</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
               <item row="0" column="2">
-               <widget class="QRadioButton" name="radioButton_6">
+               <widget class="QRadioButton" name="triggerInterval_S">
                 <property name="text">
                  <string>S</string>
                 </property>
@@ -834,6 +903,22 @@
             </widget>
            </item>
           </layout>
+         </item>
+         <item row="6" column="0">
+          <spacer name="verticalSpacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="0" column="1" rowspan="7">
+          <widget class="QPlainTextEdit" name="initialConfigurationForGenerator"/>
          </item>
         </layout>
        </widget>
