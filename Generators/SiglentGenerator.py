@@ -37,6 +37,31 @@ class SiglentGenerator_TCP():
                 self.Instrument.ask(cmd)
                 pass
         
+        def Write(self, cmd):
+                self.Instrument.write(cmd)
+                pass
+        
         def Close(self):
                 self.Instrument.close()
+                pass
+
+        def GetAmplitude(self, channel):
+                pass
+
+        def SetOffset(self, channel, offset):
+                pass
+
+        def GetOffset(self, channel):
+                pass
+
+        def SetPeriod(self, channel, period):
+                pass
+
+        def GetPeriod(self, channel):
+                pass
+
+        def SetFrequency(self, channel, freq):
+                pass
+
+        def GetFrequency(self, channel):
                 pass
