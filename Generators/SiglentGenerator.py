@@ -16,6 +16,7 @@ class SiglentGenerator_TCP():
                 self.Instrument = vxi11.Instrument(gen_path)
                 self.CH1 = "C1"
                 self.CH2 = "C2"
+                self.IDN = None
                 # channel 1 - CH1, channel 2 - CH2
                 pass
         

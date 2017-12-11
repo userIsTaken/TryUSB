@@ -204,17 +204,19 @@ class MainWindow(QtWidgets.QMainWindow):
                 idn.close() # close device, we will initialize it a little bit later;
                 if "Siglent".lower() in name.lower():
                         self.Generator = SiglentGenerator_TCP(Gen)
+                        self.Generator.IDN = name
                         self.DebugLog("Siglent rastas")
                         pass
                 elif "Tektronix".lower() in name.lower():
                         self.Generator = TektronixGenerator_TCP(Gen)
+                        self.Generator.IDN = name
                         self.DebugLog("Tektronix rastas")
                         pass
                 else:
                         self.DebugMessage("Unknown device", 2500)
                         pass
                 self.DebugLog("Testas prisijungimo")
-                self.ui.connection_status_label.setText(self.Generator.GetIDN()[0:15])
+                self.ui.connection_status_label.setText(name[0:15])
                 #  populate init commands from file:
                 # myConf = Configuration("Configs/Siglent.ini")
                 lines = self.Generator.GetInitConfiguration()
