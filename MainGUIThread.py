@@ -33,7 +33,9 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.Generator = None
                 self.Osciloscope = None
                 self.PeriodUnit = None
+                self.PeriodPower = None
                 self.TriggerIntervalUnit = None
+                self.TriggerIntervalPower = None
                 # set up a table:
                 self.setupTable()
                 # close functions:
@@ -84,28 +86,36 @@ class MainWindow(QtWidgets.QMainWindow):
         def checkStateOfRadioButtons(self):
                 if(self.ui.periodRadioButton_uS.isChecked()):
                         self.PeriodUnit = "uS"
+                        self.PeriodPower = 1E-6
                         pass
                 elif(self.ui.periodRadioButton_mS.isChecked()):
                         self.PeriodUnit = "mS"
+                        self.PeriodPower = 1E-3
                         pass
                 elif(self.ui.periodradioButton_S.isChecked()):
                         self.PeriodUnit = "S"
+                        self.PeriodPower = 1e0
                         pass
                 else:
                         self.PeriodUnit = "mS"
+                        self.PeriodPower = 1e-3
                         self.DebugMessage("mS liko, nekeista", 1000)
                         pass
                 if(self.ui.triggerInterval_mS.isChecked()):
                         self.TriggerIntervalUnit = "mS"
+                        self.TriggerIntervalPower = 1e-3
                         pass
                 elif(self.ui.triggerInterval_uS.isChecked()):
                         self.TriggerIntervalUnit = "uS"
+                        self.TriggerIntervalPower = 1e-6
                         pass
                 elif(self.ui.triggerInterval_S.isChecked()):
                         self.TriggerIntervalUnit = "S"
+                        self.TriggerIntervalPower = 1e0
                         pass
                 else:
                         self.TriggerIntervalUnit = "mS"
+                        self.TriggerIntervalPower = 1e-3
                         pass
                 pass
 
