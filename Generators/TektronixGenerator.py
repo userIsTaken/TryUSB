@@ -62,3 +62,29 @@ class TektronixGenerator_TCP():
                 self.Instrument.write(cmd)
                 pass
         
+        def SetAmplitude(self, channel, amplitude):
+                # cmd = "SOUR1:VOLT:LEV:IMM:AMP 1VPP"
+                cmd = channel+":VOLT:LEV:IMM:AMPL "+str(amplitude)+"VPP"
+                self.Write(cmd)
+                pass
+        
+        def GetAmplitude(self, channel):
+                pass
+        
+        def SetOffset(self, channel, offset):
+                pass
+        
+        def GetOffset(self, channel):
+                pass
+        
+        def SetPeriod(self, channel, period):
+                pass
+        
+        def GetPeriod(self, channel):
+                pass
+        
+        def SetFrequency(self, channel, freq):
+                pass
+        
+        def GetFrequency(self, channel):
+                pass

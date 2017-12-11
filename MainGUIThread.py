@@ -59,7 +59,27 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.dataCurveTwo = self.ui.dataViewWidget.plot()
                 self.SetupWindow()
                 self.ui.useRegularUpdateBox.stateChanged.connect(self.StateChanged)
+                # everything related to control of generator:
+                self.ui.setSignalAmplitudeButton.clicked.connect(self.setGeneratorsAmplitude)
+                self.ui.sendCustomCmd_gen_button.clicked.connect(self.sendCustomGenCmd)
                 pass
+        
+        def sendCustomGenCmd(self):
+                cmd = self.ui.cmd_custom_for_generator.currentText()
+                self.DebugMessage(cmd, 3000)
+                if("?" in cmd):
+                        ats = self.Generator.Ask(cmd)
+                        self.DebugLog(ats)
+                else:
+                        self.Generator.Write(cmd)
+                pass
+
+        
+        
+        def setGeneratorsAmplitude(self):
+                Amplitude = self.ui.voltageAmplitudeBox.value()
+                self.DebugMessage(str(Amplitude), 2000)
+                self.Generator.SetAmplitude(self.Generator.CH1, Amplitude)
         
         def checkStateOfRadioButtons(self):
                 if(self.ui.periodRadioButton_uS.isChecked()):
@@ -85,6 +105,7 @@ class MainWindow(QtWidgets.QMainWindow):
                         self.TriggerIntervalUnit = "S"
                         pass
                 else:
+                        self.TriggerIntervalUnit = "mS"
                         pass
                 pass
 
@@ -122,8 +143,6 @@ class MainWindow(QtWidgets.QMainWindow):
                 data_from_channel, time_array, time_unit = self.Osciloscope.get_data_points_from_channel(CH)
                 self.ui.dataViewWidget.setLabel('bottom', 'Time', units=time_unit)
                 self.ui.dataViewWidget.setLabel('left', 'Voltage', units='V')
-                # plot = self.ui.dataViewWidget.plot()
-                # plot.setPen(200, 200, 100)
                 dataCurve.setData(time_array, data_from_channel)
                 self.DebugMessage("Working on it ...", 1000)
                 pass
@@ -159,16 +178,6 @@ class MainWindow(QtWidgets.QMainWindow):
         def getVoltsFromCH1_button_clicked(self):
                 self.getVoltsFromChannel("CHAN1", self.dataCurveOne)
                 pass
-
-                # data_from_channel, time_array, time_unit = self.Osciloscope.get_data_points_from_channel("CHAN1")
-                # self.ui.dataViewWidget.setLabel('bottom', 'Time', units=time_unit)
-                # self.ui.dataViewWidget.setLabel('left', 'Voltage', units='V')
-                # # plot = self.ui.dataViewWidget.plot()
-                # # plot.setPen(200, 200, 100)
-                # self.dataCurveOne.setData(time_array, data_from_channel)
-                # self.DebugMessage("Working on it ...", 1000)
-                # pass
-        
         def setupPlotWidget(self):
                 '''
                 Draw correct axes and so on:
@@ -203,14 +212,9 @@ class MainWindow(QtWidgets.QMainWindow):
         
         def runInitGenerator(self):
                 listOfCommands = getTextLinesFromQTextEditField(self.ui.initialConfigurationForGenerator)
-                # print("List contains:")
-                # for i in listOfCommands:
-                #         print(i)
                 for i in listOfCommands:
                         self.Generator.Write(str(i))
                         time.sleep(0.1)
-                        # self.DebugLog(message)
-                        # self.ui.statusbar.showMessage(message, 500)
                 pass
                 
                 
