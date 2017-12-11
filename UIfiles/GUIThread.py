@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'GUIThread.ui'
 #
-# Created by: PyQt5 UI code generator 5.7
+# Created by: PyQt5 UI code generator 5.8.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainGuiWindow(object):
     def setupUi(self, MainGuiWindow):
         MainGuiWindow.setObjectName("MainGuiWindow")
-        MainGuiWindow.resize(900, 800)
+        MainGuiWindow.resize(900, 804)
         self.centralwidget = QtWidgets.QWidget(MainGuiWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout_3 = QtWidgets.QGridLayout(self.centralwidget)
@@ -42,7 +42,6 @@ class Ui_MainGuiWindow(object):
         self.usbtmcTab = QtWidgets.QWidget()
         self.usbtmcTab.setObjectName("usbtmcTab")
         self.gridLayout_5 = QtWidgets.QGridLayout(self.usbtmcTab)
-        self.gridLayout_5.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_5.setObjectName("gridLayout_5")
         self.gridLayout_2 = QtWidgets.QGridLayout()
         self.gridLayout_2.setObjectName("gridLayout_2")
@@ -117,7 +116,6 @@ class Ui_MainGuiWindow(object):
         self.tcpipDevicesTab = QtWidgets.QWidget()
         self.tcpipDevicesTab.setObjectName("tcpipDevicesTab")
         self.gridLayout_4 = QtWidgets.QGridLayout(self.tcpipDevicesTab)
-        self.gridLayout_4.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_4.setObjectName("gridLayout_4")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
@@ -155,7 +153,6 @@ class Ui_MainGuiWindow(object):
         self.oscligraph_tab = QtWidgets.QWidget()
         self.oscligraph_tab.setObjectName("oscligraph_tab")
         self.gridLayout_11 = QtWidgets.QGridLayout(self.oscligraph_tab)
-        self.gridLayout_11.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_11.setObjectName("gridLayout_11")
         self.gridLayout_10 = QtWidgets.QGridLayout()
         self.gridLayout_10.setObjectName("gridLayout_10")
@@ -216,7 +213,6 @@ class Ui_MainGuiWindow(object):
         self.generator_tab = QtWidgets.QWidget()
         self.generator_tab.setObjectName("generator_tab")
         self.gridLayout_18 = QtWidgets.QGridLayout(self.generator_tab)
-        self.gridLayout_18.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_18.setObjectName("gridLayout_18")
         self.gridLayout_16 = QtWidgets.QGridLayout()
         self.gridLayout_16.setObjectName("gridLayout_16")
@@ -248,7 +244,8 @@ class Ui_MainGuiWindow(object):
         self.gridLayout_15 = QtWidgets.QGridLayout()
         self.gridLayout_15.setObjectName("gridLayout_15")
         self.setSignalAmplitudeButton = QtWidgets.QPushButton(self.generator_tab)
-        self.setSignalAmplitudeButton.setMaximumSize(QtCore.QSize(230, 16777215))
+        self.setSignalAmplitudeButton.setMinimumSize(QtCore.QSize(280, 0))
+        self.setSignalAmplitudeButton.setMaximumSize(QtCore.QSize(300, 16777215))
         self.setSignalAmplitudeButton.setObjectName("setSignalAmplitudeButton")
         self.gridLayout_15.addWidget(self.setSignalAmplitudeButton, 0, 0, 1, 1)
         self.voltageAmplitudeBox = QtWidgets.QDoubleSpinBox(self.generator_tab)
@@ -261,8 +258,8 @@ class Ui_MainGuiWindow(object):
         spacerItem9 = QtWidgets.QSpacerItem(200, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout_15.addItem(spacerItem9, 0, 2, 1, 1)
         self.setOffsetButton = QtWidgets.QPushButton(self.generator_tab)
-        self.setOffsetButton.setMinimumSize(QtCore.QSize(230, 0))
-        self.setOffsetButton.setMaximumSize(QtCore.QSize(230, 16777215))
+        self.setOffsetButton.setMinimumSize(QtCore.QSize(300, 0))
+        self.setOffsetButton.setMaximumSize(QtCore.QSize(300, 16777215))
         self.setOffsetButton.setObjectName("setOffsetButton")
         self.gridLayout_15.addWidget(self.setOffsetButton, 1, 0, 1, 1)
         self.voltageOffsetBox = QtWidgets.QDoubleSpinBox(self.generator_tab)
@@ -278,8 +275,8 @@ class Ui_MainGuiWindow(object):
         self.gridLayout_17 = QtWidgets.QGridLayout()
         self.gridLayout_17.setObjectName("gridLayout_17")
         self.setBurstNCyclesButton = QtWidgets.QPushButton(self.generator_tab)
-        self.setBurstNCyclesButton.setMinimumSize(QtCore.QSize(230, 0))
-        self.setBurstNCyclesButton.setMaximumSize(QtCore.QSize(230, 16777215))
+        self.setBurstNCyclesButton.setMinimumSize(QtCore.QSize(300, 0))
+        self.setBurstNCyclesButton.setMaximumSize(QtCore.QSize(300, 16777215))
         self.setBurstNCyclesButton.setObjectName("setBurstNCyclesButton")
         self.gridLayout_17.addWidget(self.setBurstNCyclesButton, 0, 0, 1, 2)
         self.InputOutputCH1Button = QtWidgets.QPushButton(self.generator_tab)
@@ -401,7 +398,6 @@ class Ui_MainGuiWindow(object):
         self.tab = QtWidgets.QWidget()
         self.tab.setObjectName("tab")
         self.gridLayout = QtWidgets.QGridLayout(self.tab)
-        self.gridLayout.setContentsMargins(0, 0, 0, 0)
         self.gridLayout.setObjectName("gridLayout")
         self.clearErrorTextButton = QtWidgets.QPushButton(self.tab)
         self.clearErrorTextButton.setObjectName("clearErrorTextButton")
@@ -415,7 +411,7 @@ class Ui_MainGuiWindow(object):
         self.gridLayout_3.addWidget(self.splitter, 0, 0, 1, 1)
         MainGuiWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainGuiWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 900, 30))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 900, 28))
         self.menubar.setObjectName("menubar")
         self.menuFailas = QtWidgets.QMenu(self.menubar)
         self.menuFailas.setObjectName("menuFailas")

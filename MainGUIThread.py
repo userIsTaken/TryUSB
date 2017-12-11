@@ -64,8 +64,21 @@ class MainWindow(QtWidgets.QMainWindow):
                 # everything related to control of generator:
                 self.ui.setSignalAmplitudeButton.clicked.connect(self.setGeneratorsAmplitude)
                 self.ui.sendCustomCmd_gen_button.clicked.connect(self.sendCustomGenCmd)
+                self.ui.setOffsetButton.clicked.connect(self.setOffset_generator)
+                self.ui.setPeriodButton.clicked.connect(self.setPeriod_generator)
                 pass
-        
+
+        def setPeriod_generator(self):
+                self.checkStateOfRadioButtons()
+                period = self.ui.periodBox.value()
+                self.Generator.SetPeriod(self.Generator.CH1, period, self.PeriodUnit, self.PeriodPower)
+                pass
+
+        def setOffset_generator(self):
+                offset = self.ui.voltageOffsetBox.value()
+                self.Generator.SetOffset(self.Generator.CH1, offset)
+                pass
+
         def sendCustomGenCmd(self):
                 cmd = self.ui.cmd_custom_for_generator.currentText()
                 self.DebugMessage(cmd, 3000)
@@ -90,7 +103,7 @@ class MainWindow(QtWidgets.QMainWindow):
                         pass
                 elif(self.ui.periodRadioButton_mS.isChecked()):
                         self.PeriodUnit = "mS"
-                        self.PeriodPower = 1E-3
+                        self.PeriodPower = 1e-3
                         pass
                 elif(self.ui.periodradioButton_S.isChecked()):
                         self.PeriodUnit = "S"

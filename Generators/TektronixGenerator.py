@@ -77,7 +77,33 @@ class TektronixGenerator_TCP():
         def GetOffset(self, channel):
                 pass
         
-        def SetPeriod(self, channel, period):
+        def SetPeriod(self, channel, period, power, unit):
+                '''
+
+                Tektronix seems able to set just a frequency. Workaround is setting a frequency,
+                calculated from period, using well known relation:
+                ν = 1 / T
+
+                :param channel: CH1 or CH2
+                :param period: period
+                :param power: power of period
+                :param unit: μs, ms or s
+                :return:
+                '''
+
+                freq = 1 / period
+                freq_pow = None
+                if("uS" in unit):
+                        freq_pow = "MHz"
+                        pass
+                elif("mS" in unit):
+                        freq_pow = "kHz"
+                        pass
+                elif("S" == unit):
+                        freq_pow = "Hz"
+                        pass
+                else:
+                        pass
                 pass
         
         def GetPeriod(self, channel):
