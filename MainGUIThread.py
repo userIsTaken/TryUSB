@@ -32,6 +32,8 @@ class MainWindow(QtWidgets.QMainWindow):
                 # Globals for our devices
                 self.Generator = None
                 self.Osciloscope = None
+                self.PeriodUnit = None
+                self.TriggerIntervalUnit = None
                 # set up a table:
                 self.setupTable()
                 # close functions:
@@ -60,9 +62,6 @@ class MainWindow(QtWidgets.QMainWindow):
                 pass
 
         def StateChanged(self, int):
-                # TODO implement threading by using QThread objects: if useRegularUpdateBox is
-                # checked, run QThread, get volts from channels, update GUI, graphs with new
-                # set of data
                 self.DebugMessage("State changed, got parameter "+str(int), 1000)
                 if (int == 0):
                         # Unchecked

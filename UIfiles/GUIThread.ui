@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>900</width>
-    <height>788</height>
+    <height>879</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -468,11 +468,17 @@
         <attribute name="title">
          <string>Generatorius</string>
         </attribute>
-        <layout class="QGridLayout" name="gridLayout_7">
-         <item row="0" column="0" colspan="2">
-          <layout class="QGridLayout" name="ConnectionLayout">
+        <layout class="QGridLayout" name="gridLayout_18">
+         <item row="0" column="0">
+          <layout class="QGridLayout" name="gridLayout_16">
            <item row="0" column="0">
             <widget class="QPushButton" name="connectToGeneratorButton">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
               <string>Prisijunti prie generatoriaus</string>
              </property>
@@ -494,16 +500,19 @@
            </item>
           </layout>
          </item>
-         <item row="0" column="3" rowspan="9">
+         <item row="0" column="1" rowspan="6">
           <widget class="QPlainTextEdit" name="initialConfigurationForGenerator"/>
          </item>
-         <item row="1" column="0" colspan="2">
-          <layout class="QGridLayout" name="SignalLayout">
-           <property name="sizeConstraint">
-            <enum>QLayout::SetFixedSize</enum>
-           </property>
+         <item row="1" column="0">
+          <layout class="QGridLayout" name="gridLayout_15">
            <item row="0" column="0">
-            <widget class="QLabel" name="label_3">
+            <widget class="QPushButton" name="setSignalAmplitudeButton">
+             <property name="maximumSize">
+              <size>
+               <width>230</width>
+               <height>16777215</height>
+              </size>
+             </property>
              <property name="text">
               <string>Signalo amplitudė, V</string>
              </property>
@@ -519,29 +528,159 @@
              </property>
             </widget>
            </item>
+           <item row="0" column="2">
+            <spacer name="horizontalSpacer_8">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Preferred</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>120</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
            <item row="1" column="0">
-            <widget class="QLabel" name="label_4">
+            <widget class="QPushButton" name="setOffsetButton">
+             <property name="maximumSize">
+              <size>
+               <width>230</width>
+               <height>16777215</height>
+              </size>
+             </property>
              <property name="text">
               <string>Signalo nuokrypis (offset), V</string>
              </property>
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QDoubleSpinBox" name="voltageOffsetBox"/>
+            <widget class="QDoubleSpinBox" name="voltageOffsetBox">
+             <property name="maximumSize">
+              <size>
+               <width>120</width>
+               <height>16777215</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <spacer name="horizontalSpacer_12">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Preferred</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>120</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
            </item>
           </layout>
          </item>
-         <item row="2" column="0" colspan="2">
-          <layout class="QGridLayout" name="PeriodLayout">
-           <property name="sizeConstraint">
-            <enum>QLayout::SetFixedSize</enum>
-           </property>
-           <item row="0" column="0">
-            <widget class="QLabel" name="label_5">
+         <item row="4" column="0">
+          <layout class="QGridLayout" name="gridLayout_17">
+           <item row="0" column="0" colspan="2">
+            <widget class="QPushButton" name="setBurstNCyclesButton">
+             <property name="maximumSize">
+              <size>
+               <width>230</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Ciklų kiekis (BURST NCYCLES)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QDoubleSpinBox" name="nCyclesBox">
              <property name="minimumSize">
               <size>
-               <width>200</width>
+               <width>120</width>
                <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>120</width>
+               <height>16777215</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QPushButton" name="InputOutputCH1Button">
+             <property name="text">
+              <string>CH1</string>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1" colspan="2">
+            <spacer name="horizontalSpacer_9">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Fixed</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>300</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="1" column="3">
+            <widget class="QPushButton" name="InputOutputCH2Button">
+             <property name="text">
+              <string>CH2</string>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0" colspan="4">
+            <widget class="QLabel" name="label_8">
+             <property name="text">
+              <string>Nustatytas dažnis, Hz|kHz|MHz = </string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="2" column="0">
+          <layout class="QGridLayout" name="gridLayout_13">
+           <item row="0" column="0">
+            <widget class="QPushButton" name="setPeriodButton">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>230</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>230</width>
+               <height>16777215</height>
               </size>
              </property>
              <property name="text">
@@ -560,89 +699,35 @@
             </widget>
            </item>
            <item row="0" column="2">
-            <widget class="QWidget" name="morphedWidget" native="true">
-             <property name="minimumSize">
-              <size>
-               <width>200</width>
-               <height>0</height>
-              </size>
+            <widget class="QGroupBox" name="groupBox">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
              </property>
-             <layout class="QHBoxLayout" name="horizontalLayout_3">
-              <property name="sizeConstraint">
-               <enum>QLayout::SetFixedSize</enum>
-              </property>
-              <item>
-               <widget class="QPushButton" name="uSeconds_generator_button">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>32</width>
-                  <height>28</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>32</width>
-                  <height>28</height>
-                 </size>
-                </property>
+             <property name="title">
+              <string>Laiko vienetai periodui</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_7">
+              <item row="0" column="0">
+               <widget class="QRadioButton" name="radioButton">
                 <property name="text">
                  <string>μS</string>
                 </property>
-                <property name="checkable">
-                 <bool>true</bool>
-                </property>
                </widget>
               </item>
-              <item>
-               <widget class="QPushButton" name="mSeconds_generator_button">
-                <property name="minimumSize">
-                 <size>
-                  <width>32</width>
-                  <height>28</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>32</width>
-                  <height>28</height>
-                 </size>
-                </property>
+              <item row="0" column="1">
+               <widget class="QRadioButton" name="radioButton_2">
                 <property name="text">
                  <string>mS</string>
                 </property>
-                <property name="checkable">
-                 <bool>true</bool>
-                </property>
-                <property name="checked">
-                 <bool>true</bool>
-                </property>
                </widget>
               </item>
-              <item>
-               <widget class="QPushButton" name="Seconds_generator_button">
-                <property name="minimumSize">
-                 <size>
-                  <width>32</width>
-                  <height>28</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>32</width>
-                  <height>28</height>
-                 </size>
-                </property>
+              <item row="0" column="2">
+               <widget class="QRadioButton" name="radioButton_3">
                 <property name="text">
                  <string>S</string>
-                </property>
-                <property name="checkable">
-                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -651,17 +736,14 @@
            </item>
           </layout>
          </item>
-         <item row="3" column="0" colspan="2">
-          <layout class="QGridLayout" name="TriggerLayout">
-           <property name="sizeConstraint">
-            <enum>QLayout::SetFixedSize</enum>
-           </property>
+         <item row="3" column="0">
+          <layout class="QGridLayout" name="gridLayout_14">
            <item row="0" column="0">
-            <widget class="QLabel" name="label_6">
-             <property name="minimumSize">
+            <widget class="QPushButton" name="setTriggerIntervalButton">
+             <property name="maximumSize">
               <size>
-               <width>200</width>
-               <height>0</height>
+               <width>230</width>
+               <height>16777215</height>
               </size>
              </property>
              <property name="text">
@@ -680,101 +762,35 @@
             </widget>
            </item>
            <item row="0" column="2">
-            <widget class="QWidget" name="morphedWidget_2" native="true">
-             <property name="minimumSize">
-              <size>
-               <width>200</width>
-               <height>0</height>
-              </size>
+            <widget class="QGroupBox" name="groupBox_2">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
              </property>
-             <layout class="QHBoxLayout" name="horizontalLayout_4">
-              <property name="sizeConstraint">
-               <enum>QLayout::SetFixedSize</enum>
-              </property>
-              <item>
-               <widget class="QPushButton" name="uSeconds_generator_button_2">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>20</width>
-                  <height>28</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>32</width>
-                  <height>28</height>
-                 </size>
-                </property>
+             <property name="title">
+              <string>Laiko vienetai trigeriui</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_12">
+              <item row="0" column="0">
+               <widget class="QRadioButton" name="radioButton_4">
                 <property name="text">
                  <string>μS</string>
                 </property>
-                <property name="checkable">
-                 <bool>true</bool>
-                </property>
                </widget>
               </item>
-              <item>
-               <widget class="QPushButton" name="mSeconds_generator_button_2">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>32</width>
-                  <height>28</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>32</width>
-                  <height>28</height>
-                 </size>
-                </property>
+              <item row="0" column="1">
+               <widget class="QRadioButton" name="radioButton_5">
                 <property name="text">
                  <string>mS</string>
                 </property>
-                <property name="checkable">
-                 <bool>true</bool>
-                </property>
-                <property name="checked">
-                 <bool>true</bool>
-                </property>
                </widget>
               </item>
-              <item>
-               <widget class="QPushButton" name="Seconds_generator_button_2">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>32</width>
-                  <height>28</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>32</width>
-                  <height>28</height>
-                 </size>
-                </property>
+              <item row="0" column="2">
+               <widget class="QRadioButton" name="radioButton_6">
                 <property name="text">
                  <string>S</string>
-                </property>
-                <property name="checkable">
-                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -783,94 +799,11 @@
            </item>
           </layout>
          </item>
-         <item row="3" column="2">
-          <spacer name="horizontalSpacer_8">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Fixed</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="4" column="0" colspan="2">
-          <layout class="QGridLayout" name="cyclesLayout">
+         <item row="5" column="0">
+          <layout class="QGridLayout" name="gridLayout_6">
            <property name="sizeConstraint">
             <enum>QLayout::SetFixedSize</enum>
            </property>
-           <item row="0" column="0">
-            <widget class="QLabel" name="label_7">
-             <property name="text">
-              <string>Ciklų kiekis (BURST NCYCLES)</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QDoubleSpinBox" name="nCyclesBox">
-             <property name="minimumSize">
-              <size>
-               <width>120</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>120</width>
-               <height>16777215</height>
-              </size>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item row="5" column="0">
-          <widget class="QPushButton" name="InputOutputCH1Button">
-           <property name="text">
-            <string>CH1</string>
-           </property>
-           <property name="checkable">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="1">
-          <widget class="QPushButton" name="InputOutputCH2Button">
-           <property name="text">
-            <string>CH2</string>
-           </property>
-           <property name="checkable">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item row="6" column="1">
-          <spacer name="verticalSpacer">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>72</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="7" column="0" colspan="2">
-          <widget class="QLabel" name="label_8">
-           <property name="text">
-            <string>Nustatytas dažnis, Hz|kHz|MHz = </string>
-           </property>
-          </widget>
-         </item>
-         <item row="8" column="0" colspan="2">
-          <layout class="QGridLayout" name="gridLayout_6">
            <item row="0" column="0">
             <widget class="QPushButton" name="sendCustomCmd_gen_button">
              <property name="maximumSize">
