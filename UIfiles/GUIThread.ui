@@ -553,6 +553,9 @@
              <property name="decimals">
               <number>3</number>
              </property>
+             <property name="maximum">
+              <double>10.000000000000000</double>
+             </property>
             </widget>
            </item>
            <item row="0" column="2">
@@ -609,6 +612,12 @@
              </property>
              <property name="decimals">
               <number>3</number>
+             </property>
+             <property name="minimum">
+              <double>-10.000000000000000</double>
+             </property>
+             <property name="maximum">
+              <double>10.000000000000000</double>
              </property>
             </widget>
            </item>
@@ -707,6 +716,12 @@
                <width>120</width>
                <height>16777215</height>
               </size>
+             </property>
+             <property name="decimals">
+              <number>0</number>
+             </property>
+             <property name="maximum">
+              <double>10000000.000000000000000</double>
              </property>
             </widget>
            </item>
@@ -980,7 +995,7 @@
      <x>0</x>
      <y>0</y>
      <width>900</width>
-     <height>28</height>
+     <height>30</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFailas">

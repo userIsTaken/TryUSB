@@ -96,23 +96,36 @@ class TektronixGenerator_TCP():
                 freq_pow = None
                 if("uS" == unit):
                         freq_pow = "MHz"
+                        # print(freq_pow +" " + unit)
                         pass
                 elif("mS" == unit):
                         freq_pow = "kHz"
+                        # print(freq_pow + " " + unit)
                         pass
                 elif("S" == unit):
                         freq_pow = "Hz"
+                        # print(freq_pow + " " + unit)
                         pass
                 else:
                         pass
                 cmd_freq = channel+":FREQ:FIX "+str(freq)+freq_pow
                 # pass it into other function:
+
                 self.Write(cmd_freq)
                 pass
         
         
         def GetPeriod(self, channel):
-                pass
+                '''
+                Need workaround - there aren't any functions related to the period
+                
+                :param channel:
+                :return:
+                '''
+                sfreq = self.GetFrequency(channel)
+                freq = float(sfreq)
+                period = 1/freq
+                return period
         
         def SetFrequency(self, channel:str, freq:float, freq_pow="kHz"):
                 '''
@@ -128,4 +141,13 @@ class TektronixGenerator_TCP():
                 pass
         
         def GetFrequency(self, channel):
+                '''
+                Gets frequency from channel
+                
+                :param channel:
+                :return:
+                '''
+                ask_freq = channel+":FREQ:FIX?"
+                ask_freq = self.Ask(ask_freq)
+                return  ask_freq
                 pass

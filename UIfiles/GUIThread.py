@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'GUIThread.ui'
 #
-# Created by: PyQt5 UI code generator 5.8.2
+# Created by: PyQt5 UI code generator 5.7
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -42,6 +42,7 @@ class Ui_MainGuiWindow(object):
         self.usbtmcTab = QtWidgets.QWidget()
         self.usbtmcTab.setObjectName("usbtmcTab")
         self.gridLayout_5 = QtWidgets.QGridLayout(self.usbtmcTab)
+        self.gridLayout_5.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_5.setObjectName("gridLayout_5")
         self.gridLayout_2 = QtWidgets.QGridLayout()
         self.gridLayout_2.setObjectName("gridLayout_2")
@@ -116,6 +117,7 @@ class Ui_MainGuiWindow(object):
         self.tcpipDevicesTab = QtWidgets.QWidget()
         self.tcpipDevicesTab.setObjectName("tcpipDevicesTab")
         self.gridLayout_4 = QtWidgets.QGridLayout(self.tcpipDevicesTab)
+        self.gridLayout_4.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_4.setObjectName("gridLayout_4")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
@@ -153,6 +155,7 @@ class Ui_MainGuiWindow(object):
         self.oscligraph_tab = QtWidgets.QWidget()
         self.oscligraph_tab.setObjectName("oscligraph_tab")
         self.gridLayout_11 = QtWidgets.QGridLayout(self.oscligraph_tab)
+        self.gridLayout_11.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_11.setObjectName("gridLayout_11")
         self.gridLayout_10 = QtWidgets.QGridLayout()
         self.gridLayout_10.setObjectName("gridLayout_10")
@@ -213,6 +216,7 @@ class Ui_MainGuiWindow(object):
         self.generator_tab = QtWidgets.QWidget()
         self.generator_tab.setObjectName("generator_tab")
         self.gridLayout_18 = QtWidgets.QGridLayout(self.generator_tab)
+        self.gridLayout_18.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_18.setObjectName("gridLayout_18")
         self.gridLayout_16 = QtWidgets.QGridLayout()
         self.gridLayout_16.setObjectName("gridLayout_16")
@@ -253,6 +257,7 @@ class Ui_MainGuiWindow(object):
         self.voltageAmplitudeBox.setMaximumSize(QtCore.QSize(120, 16777215))
         self.voltageAmplitudeBox.setLocale(QtCore.QLocale(QtCore.QLocale.C, QtCore.QLocale.AnyCountry))
         self.voltageAmplitudeBox.setDecimals(3)
+        self.voltageAmplitudeBox.setMaximum(10.0)
         self.voltageAmplitudeBox.setObjectName("voltageAmplitudeBox")
         self.gridLayout_15.addWidget(self.voltageAmplitudeBox, 0, 1, 1, 1)
         spacerItem9 = QtWidgets.QSpacerItem(200, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
@@ -267,6 +272,8 @@ class Ui_MainGuiWindow(object):
         self.voltageOffsetBox.setMaximumSize(QtCore.QSize(120, 16777215))
         self.voltageOffsetBox.setLocale(QtCore.QLocale(QtCore.QLocale.C, QtCore.QLocale.AnyCountry))
         self.voltageOffsetBox.setDecimals(3)
+        self.voltageOffsetBox.setMinimum(-10.0)
+        self.voltageOffsetBox.setMaximum(10.0)
         self.voltageOffsetBox.setObjectName("voltageOffsetBox")
         self.gridLayout_15.addWidget(self.voltageOffsetBox, 1, 1, 1, 1)
         spacerItem10 = QtWidgets.QSpacerItem(200, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
@@ -295,6 +302,8 @@ class Ui_MainGuiWindow(object):
         self.nCyclesBox = QtWidgets.QDoubleSpinBox(self.generator_tab)
         self.nCyclesBox.setMinimumSize(QtCore.QSize(120, 0))
         self.nCyclesBox.setMaximumSize(QtCore.QSize(120, 16777215))
+        self.nCyclesBox.setDecimals(0)
+        self.nCyclesBox.setMaximum(10000000.0)
         self.nCyclesBox.setObjectName("nCyclesBox")
         self.gridLayout_17.addWidget(self.nCyclesBox, 0, 2, 1, 1)
         self.gridLayout_18.addLayout(self.gridLayout_17, 4, 0, 1, 1)
@@ -398,6 +407,7 @@ class Ui_MainGuiWindow(object):
         self.tab = QtWidgets.QWidget()
         self.tab.setObjectName("tab")
         self.gridLayout = QtWidgets.QGridLayout(self.tab)
+        self.gridLayout.setContentsMargins(0, 0, 0, 0)
         self.gridLayout.setObjectName("gridLayout")
         self.clearErrorTextButton = QtWidgets.QPushButton(self.tab)
         self.clearErrorTextButton.setObjectName("clearErrorTextButton")
@@ -411,7 +421,7 @@ class Ui_MainGuiWindow(object):
         self.gridLayout_3.addWidget(self.splitter, 0, 0, 1, 1)
         MainGuiWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainGuiWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 900, 28))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 900, 30))
         self.menubar.setObjectName("menubar")
         self.menuFailas = QtWidgets.QMenu(self.menubar)
         self.menuFailas.setObjectName("menuFailas")

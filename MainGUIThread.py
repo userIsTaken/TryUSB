@@ -72,6 +72,8 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.checkStateOfRadioButtons()
                 period = self.ui.periodBox.value()
                 self.Generator.SetPeriod(self.Generator.CH1, period, self.PeriodUnit, self.PeriodPower)
+                period = self.Generator.GetPeriod(self.Generator.CH1)
+                self.DebugLog("Periodas "+str(period))
                 pass
 
         def setOffset_generator(self):
