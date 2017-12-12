@@ -153,6 +153,14 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.setWindowIcon(icon)
                 self.dataCurveOne.setPen((200, 200, 100))
                 self.dataCurveTwo.setPen((100, 200, 255))
+                icon2 = QtGui.QIcon()
+                icon2.addPixmap(QtGui.QPixmap("Icons/save.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+                self.ui.actionI_saugoti_DAT.setIcon(icon2)
+                self.ui.actionI_saugoti_TXT.setIcon(icon2)
+                self.ui.actionI_saugoti_QTI_projekt.setIcon(icon2)
+                icon3 = QtGui.QIcon()
+                icon3.addPixmap(QtGui.QPixmap("Icons/reload.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+                self.ui.findAllUSBTMC_devices_button.setIcon(icon3)
                 pass
 
         def getDatafromBothChannels_button_clicked(self):
