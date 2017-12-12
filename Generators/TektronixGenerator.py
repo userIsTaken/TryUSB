@@ -69,12 +69,20 @@ class TektronixGenerator_TCP():
                 pass
         
         def GetAmplitude(self, channel):
+                cmd = channel+":VOLT:LEV:IMM:AMPL?"
+                answer= self.Ask(cmd)
+                return answer
                 pass
         
         def SetOffset(self, channel, offset):
+                cmd = channel+":VOLT:LEV:IMM:OFFS "+str(offset)+"V"
+                self.Write(cmd)
                 pass
         
         def GetOffset(self, channel):
+                cmd = channel + ":VOLT:LEV:IMM:OFFS?"
+                answer = self.Ask(cmd)
+                return answer
                 pass
         
         def SetPeriod(self, channel, period, unit, power):
@@ -150,4 +158,18 @@ class TektronixGenerator_TCP():
                 ask_freq = channel+":FREQ:FIX?"
                 ask_freq = self.Ask(ask_freq)
                 return  ask_freq
+                pass
+        
+        def SetTriggerMode(self, mode):
+                pass
+        
+        def SetTriggerInterval(self, interval, unit:str):
+                cmd = "TRIG:SEQ:TIM "+str(interval)+unit.upper()
+                self.Write(cmd)
+                pass
+        
+        def GetTriggerInterval(self):
+                cmd = "TRIG:SEQ:TIM?"
+                answer = self.Ask(cmd)
+                return answer
                 pass
