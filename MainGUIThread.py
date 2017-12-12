@@ -101,7 +101,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.DebugMessage(cmd, 3000)
                 if("?" in cmd):
                         ats = self.Generator.Ask(cmd)
-                        self.DebugGenerator(ats)
+                        self.DebugGenerator(cmd, ats)
                 else:
                         self.Generator.Write(cmd)
                 pass
@@ -419,13 +419,13 @@ class MainWindow(QtWidgets.QMainWindow):
                         pass
                 pass
         
-        def DebugMessage(self, msg, time=500):
+        def DebugMessage(self, msg, time=1000):
                 self.ui.statusbar.showMessage(msg, time)
                 pass
         
         def DebugGenerator(self, msg, txt=None):
                 if txt is not None:
-                        self.ui.answersFromGeneratorTextBox.appendPlainText(str(msg)+" "+str(txt)+" |")
+                        self.ui.answersFromGeneratorTextBox.appendPlainText(str(msg)+" :: "+str(txt)+" |")
                 else:
                         self.ui.answersFromGeneratorTextBox.appendPlainText(str(msg) + " |")
                 
