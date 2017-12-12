@@ -188,6 +188,10 @@
              <property name="text">
               <string>Prietaisai</string>
              </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>../Icons/reload.png</normaloff>../Icons/reload.png</iconset>
+             </property>
             </widget>
            </item>
            <item row="0" column="2">
@@ -1037,16 +1041,28 @@
    </property>
   </action>
   <action name="actionI_saugoti_DAT">
+   <property name="icon">
+    <iconset>
+     <normaloff>../Icons/save.png</normaloff>../Icons/save.png</iconset>
+   </property>
    <property name="text">
     <string>Išsaugoti į DAT</string>
    </property>
   </action>
   <action name="actionI_saugoti_TXT">
+   <property name="icon">
+    <iconset>
+     <normaloff>../Icons/save.png</normaloff>../Icons/save.png</iconset>
+   </property>
    <property name="text">
     <string>Išsaugoti į TXT</string>
    </property>
   </action>
   <action name="actionI_saugoti_QTI_projekt">
+   <property name="icon">
+    <iconset>
+     <normaloff>../Icons/save.png</normaloff>../Icons/save.png</iconset>
+   </property>
    <property name="text">
     <string>Išsaugoti į QTI projektą</string>
    </property>
