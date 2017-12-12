@@ -234,9 +234,15 @@ class MainWindow(QtWidgets.QMainWindow):
                 pass
         
         def runInitGenerator(self):
+                '''
+                Initialization of generator, populate QComboBox Items also.
+                
+                :return:
+                '''
                 listOfCommands = getTextLinesFromQTextEditField(self.ui.initialConfigurationForGenerator)
                 for i in listOfCommands:
                         self.Generator.Write(str(i))
+                        self.ui.cmd_custom_for_generator.addItem(str(i))
                         time.sleep(0.1)
                 pass
                 
