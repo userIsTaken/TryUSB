@@ -66,6 +66,15 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.ui.sendCustomCmd_gen_button.clicked.connect(self.sendCustomGenCmd)
                 self.ui.setOffsetButton.clicked.connect(self.setOffset_generator)
                 self.ui.setPeriodButton.clicked.connect(self.setPeriod_generator)
+                self.ui.setTriggerIntervalButton.clicked.connect(self.SetTriggerInterval_gen)
+                pass
+        
+        def SetTriggerInterval_gen(self):
+                self.checkStateOfRadioButtons()
+                interval = self.ui.triggerIntervalBox.value()
+                self.Generator.SetTriggerInterval(interval, self.TriggerIntervalUnit)
+                int=self.Generator.GetTriggerInterval()
+                self.DebugGenerator("Intervalas", int)
                 pass
 
         def setPeriod_generator(self):
@@ -408,8 +417,12 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.ui.statusbar.showMessage(msg, time)
                 pass
         
-        def DebugGenerator(self, msg):
-                self.ui.answersFromGeneratorTextBox.appendPlainText(str(msg))
+        def DebugGenerator(self, msg, txt=None):
+                if txt is not None:
+                        self.ui.answersFromGeneratorTextBox.appendPlainText(str(msg)+" "+str(txt)+" |")
+                else:
+                        self.ui.answersFromGeneratorTextBox.appendPlainText(str(msg) + " |")
+                
                 pass
         
         def get_IDN_from_IP(self, ip_string):
