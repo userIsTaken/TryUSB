@@ -160,8 +160,21 @@ class TektronixGenerator_TCP():
                 return  ask_freq
                 pass
         
-        def SetTriggerMode(self, mode):
+        def SetTriggerSource(self, source:str):
+                '''
+                This command sets or queries the trigger source for an external trigger signal.
+
+                :param source: TIM or EXT
+                :return:
+                '''
+                cmd = "TRIG:SEQ:SOUR "+source
+                self.Write(cmd)
                 pass
+
+        def GetTriggerSource(self):
+                cmd = "TRIG:SEQ:SOUR?"
+                answer = self.Ask(cmd)
+                return  answer
         
         def SetTriggerInterval(self, interval, unit:str):
                 cmd = "TRIG:SEQ:TIM "+str(interval)+unit.upper()
