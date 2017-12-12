@@ -176,6 +176,9 @@ class MainWindow(QtWidgets.QMainWindow):
                 icon3 = QtGui.QIcon()
                 icon3.addPixmap(QtGui.QPixmap("Icons/reload.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
                 self.ui.findAllUSBTMC_devices_button.setIcon(icon3)
+                icon4 = QtGui.QIcon()
+                icon4.addPixmap(QtGui.QPixmap("Icons/close.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+                self.ui.actionU_daryti.setIcon(icon4)
                 pass
 
         def getDatafromBothChannels_button_clicked(self):
