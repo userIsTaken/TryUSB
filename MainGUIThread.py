@@ -73,7 +73,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 period = self.ui.periodBox.value()
                 self.Generator.SetPeriod(self.Generator.CH1, period, self.PeriodUnit, self.PeriodPower)
                 period = self.Generator.GetPeriod(self.Generator.CH1)
-                self.DebugLog("Periodas "+str(period))
+                self.DebugGenerator(period)
                 pass
 
         def setOffset_generator(self):
@@ -86,7 +86,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.DebugMessage(cmd, 3000)
                 if("?" in cmd):
                         ats = self.Generator.Ask(cmd)
-                        self.DebugLog(ats)
+                        self.DebugGenerator(ats)
                 else:
                         self.Generator.Write(cmd)
                 pass
@@ -398,6 +398,11 @@ class MainWindow(QtWidgets.QMainWindow):
         
         def DebugMessage(self, msg, time=500):
                 self.ui.statusbar.showMessage(msg, time)
+                pass
+        
+        def DebugGenerator(self, msg):
+                self.ui.answersFromGeneratorTextBox.appendPlainText(str(msg))
+                pass
         
         def get_IDN_from_IP(self, ip_string):
                 instr = vxi11.Instrument(ip_string)
