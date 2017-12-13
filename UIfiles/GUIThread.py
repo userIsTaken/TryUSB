@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainGuiWindow(object):
     def setupUi(self, MainGuiWindow):
         MainGuiWindow.setObjectName("MainGuiWindow")
-        MainGuiWindow.resize(1019, 841)
+        MainGuiWindow.resize(960, 818)
         self.centralwidget = QtWidgets.QWidget(MainGuiWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout_3 = QtWidgets.QGridLayout(self.centralwidget)
@@ -414,7 +414,7 @@ class Ui_MainGuiWindow(object):
         self.cmd_custom_for_generator.setObjectName("cmd_custom_for_generator")
         self.gridLayout_6.addWidget(self.cmd_custom_for_generator, 0, 1, 1, 1)
         self.gridLayout_20.addLayout(self.gridLayout_6, 6, 0, 1, 1)
-        spacerItem12 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        spacerItem12 = QtWidgets.QSpacerItem(20, 5, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
         self.gridLayout_20.addItem(spacerItem12, 7, 0, 1, 1)
         self.tabWidget.addTab(self.generator_tab, "")
         self.expSessionTab = QtWidgets.QWidget()
@@ -437,7 +437,7 @@ class Ui_MainGuiWindow(object):
         self.gridLayout_3.addWidget(self.splitter, 0, 0, 1, 1)
         MainGuiWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainGuiWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1019, 30))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 960, 30))
         self.menubar.setObjectName("menubar")
         self.menuFailas = QtWidgets.QMenu(self.menubar)
         self.menuFailas.setObjectName("menuFailas")
