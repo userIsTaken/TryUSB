@@ -8,7 +8,20 @@ from ConfigParser import *
 import vxi11
 
 class RigolBackGround_scanner(QRunnable):
-        def __init__(self):
+        def __init__(self, function, *args, **kwargs):
                 super().__init__()
+                # init with passed function, args for funcktio, kyworrds for function
+                self.fn = function
+                self.args = args
+                self.kwargs = kwargs
+                pass
+
+        @pyqtSlot()
+        def run(self):
+                '''
+                my code goes here?
+                :return:
+                '''
+                self.fn(self.args, self.kwargs)
                 pass
 
