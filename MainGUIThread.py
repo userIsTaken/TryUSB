@@ -19,13 +19,14 @@ pG.setConfigOptions(antialias=True)
 # very global variables:
 ON = "ON"
 OFF = "OFF"
-
+from ThreadedRigolreading import *
 class MainWindow(QtWidgets.QMainWindow):
         def __init__(self):
                 super(MainWindow, self).__init__()
                 self.ui = Ui_MainGuiWindow()
                 self.ui.setupUi(self)
                 #Normally this is all to be done in order to show a window
+                self.threadpool = QThreadPool() # because of threading?
                 #declare global self.dictionary:
                 self.Devices_dict={} # for USBTMC
                 self.Devices_TCP={} # for TCP/IP devices
@@ -150,12 +151,15 @@ class MainWindow(QtWidgets.QMainWindow):
                 pass
 
         def StateChanged(self, int):
+                # TODO threading?
                 self.DebugMessage("State changed, got parameter "+str(int), 1000)
                 if (int == 0):
                         # Unchecked
                         pass
                 elif (int == 2):
                         # checked state
+                        worker = RigolBackGround_scanner(self.getDatafromBothChannels_button_clicked)
+                        worker.signals.result.connect(self.closeFn)
                         pass
                 else:
                         self.DebugMessage("Shit happened "+str(int), 1000)

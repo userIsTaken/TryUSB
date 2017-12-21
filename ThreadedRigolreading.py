@@ -23,7 +23,11 @@ class RigolBackGround_scanner(QRunnable):
                 my code goes here?
                 :return:
                 '''
-                self.fn(self.args, self.kwargs)
+                try:
+                        result = self.fn(self.args, self.kwargs)
+                        self.signals.result.emit(result)
+                except Exception as ex:
+                        self.signals.error.emit(("Error", ex.args))
                 pass
 
 
