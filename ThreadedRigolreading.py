@@ -25,3 +25,15 @@ class RigolBackGround_scanner(QRunnable):
                 self.fn(self.args, self.kwargs)
                 pass
 
+
+
+class WorkerSignals(QObject):
+        '''
+        Just simple class encapsulator
+
+        '''
+        finished = pyqtSignal()
+        error = pyqtSignal(tuple)
+        result = pyqtSignal(object)
+        progress = pyqtSignal(int)
+        pass
