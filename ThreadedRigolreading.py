@@ -14,6 +14,7 @@ class RigolBackGround_scanner(QRunnable):
                 self.fn = function
                 self.args = args
                 self.kwargs = kwargs
+                self.signals = WorkerSignals()
                 pass
 
         @pyqtSlot()
@@ -29,7 +30,7 @@ class RigolBackGround_scanner(QRunnable):
 
 class WorkerSignals(QObject):
         '''
-        Just simple class encapsulator
+        Just simple class?
 
         '''
         finished = pyqtSignal()
