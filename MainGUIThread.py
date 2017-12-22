@@ -158,6 +158,7 @@ class MainWindow(QtWidgets.QMainWindow):
                         pass
                 elif (int == 2):
                         # checked state
+                        # TODO we need normal signal handling
                         worker = RigolBackGround_scanner(self.Osciloscope.get_data_points_from_channel, "CHAN1")
                         worker.signals.result.connect(self.DrawOscilogramm)
                         pass
