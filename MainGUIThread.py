@@ -158,8 +158,8 @@ class MainWindow(QtWidgets.QMainWindow):
                         pass
                 elif (int == 2):
                         # checked state
-                        worker = RigolBackGround_scanner(self.getDatafromBothChannels_button_clicked)
-                        worker.signals.result.connect(self.closeFn)
+                        worker = RigolBackGround_scanner(self.Osciloscope.get_data_points_from_channel, "CHAN1")
+                        worker.signals.result.connect(self.DrawOscilogramm)
                         pass
                 else:
                         self.DebugMessage("Shit happened "+str(int), 1000)
@@ -200,6 +200,10 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.ui.dataViewWidget.setLabel('left', 'Voltage', units='V')
                 dataCurve.setData(time_array, data_from_channel)
                 self.DebugMessage("Working on it ...", 1000)
+                pass
+        
+        def DrawOscilogramm(self, dataCurve, time_array, data_from_channel):
+                dataCurve.setData(time_array, data_from_channel)
                 pass
         
         def connectOscilograph(self):
