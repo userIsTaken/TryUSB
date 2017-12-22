@@ -25,8 +25,10 @@ class RigolBackGround_scanner(QRunnable):
                 '''
                 try:
                         result = self.fn(self.args, self.kwargs)
+                        print(result)
                         self.signals.result.emit(result)
                 except Exception as ex:
+                        print(ex)
                         self.signals.error.emit(("Error", ex.args))
                 pass
 
