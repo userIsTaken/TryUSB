@@ -26,7 +26,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.ui = Ui_MainGuiWindow()
                 self.ui.setupUi(self)
                 #Normally this is all to be done in order to show a window
-                self.threadpool = QThreadPool() # because of threading?
+                self.ThreadPool = QThreadPool() # because of threading?
                 #declare global self.dictionary:
                 self.Devices_dict={} # for USBTMC
                 self.Devices_TCP={} # for TCP/IP devices
@@ -155,12 +155,14 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.DebugMessage("State changed, got parameter "+str(int), 1000)
                 if (int == 0):
                         # Unchecked
+                        self.ThreadPool.clear()
                         pass
                 elif (int == 2):
                         # checked state
                         # TODO we need normal signal handling
                         worker = RigolBackGround_scanner(self.Osciloscope.get_data_points_from_channel, "CHAN1")
                         worker.signals.result.connect(self.DrawOscilogramm)
+                        self.ThreadPool.start(worker)
                         pass
                 else:
                         self.DebugMessage("Shit happened "+str(int), 1000)
