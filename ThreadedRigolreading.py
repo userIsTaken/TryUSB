@@ -24,7 +24,7 @@ class RigolBackGround_scanner(QRunnable):
                 :return:
                 '''
                 try:
-                        result = self.fn(self.args, self.kwargs)
+                        result = self.fn(self.args)
                         print(result)
                         self.signals.result.emit(result)
                 except Exception as ex:
