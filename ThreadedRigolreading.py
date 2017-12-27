@@ -10,6 +10,9 @@ from ConfigParser import *
 import vxi11
 
 class RigolBackGround_scanner(QRunnable):
+        '''
+        QRunnable based object - do not use for normal long-term tasks!
+        '''
         def __init__(self, function, *args, **kwargs):
                 super().__init__()
                 # init with passed function, args for function, keywords for function
