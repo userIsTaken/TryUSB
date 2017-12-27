@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainGuiWindow(object):
     def setupUi(self, MainGuiWindow):
         MainGuiWindow.setObjectName("MainGuiWindow")
-        MainGuiWindow.resize(960, 818)
+        MainGuiWindow.resize(960, 866)
         self.centralwidget = QtWidgets.QWidget(MainGuiWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout_3 = QtWidgets.QGridLayout(self.centralwidget)
@@ -434,6 +434,18 @@ class Ui_MainGuiWindow(object):
         self.tabWidget.addTab(self.generator_tab, "")
         self.expSessionTab = QtWidgets.QWidget()
         self.expSessionTab.setObjectName("expSessionTab")
+        self.label_5 = QtWidgets.QLabel(self.expSessionTab)
+        self.label_5.setGeometry(QtCore.QRect(10, 10, 68, 20))
+        self.label_5.setText("")
+        self.label_5.setObjectName("label_5")
+        self.groupBox_5 = QtWidgets.QGroupBox(self.expSessionTab)
+        self.groupBox_5.setGeometry(QtCore.QRect(9, 9, 251, 91))
+        self.groupBox_5.setObjectName("groupBox_5")
+        self.gridLayout_11 = QtWidgets.QGridLayout(self.groupBox_5)
+        self.gridLayout_11.setObjectName("gridLayout_11")
+        self.startExperimentButton = QtWidgets.QPushButton(self.groupBox_5)
+        self.startExperimentButton.setObjectName("startExperimentButton")
+        self.gridLayout_11.addWidget(self.startExperimentButton, 0, 0, 1, 1)
         self.tabWidget.addTab(self.expSessionTab, "")
         self.tab = QtWidgets.QWidget()
         self.tab.setObjectName("tab")
@@ -481,7 +493,7 @@ class Ui_MainGuiWindow(object):
 
         self.retranslateUi(MainGuiWindow)
         self.devicesTabWidget.setCurrentIndex(0)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(MainGuiWindow)
 
     def retranslateUi(self, MainGuiWindow):
@@ -533,6 +545,8 @@ class Ui_MainGuiWindow(object):
         self.label_8.setText(_translate("MainGuiWindow", "Nustatytas dažnis, Hz|kHz|MHz = "))
         self.sendCustomCmd_gen_button.setText(_translate("MainGuiWindow", "Siųsti CMD"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.generator_tab), _translate("MainGuiWindow", "Generatorius"))
+        self.groupBox_5.setTitle(_translate("MainGuiWindow", "Eksperimento pradžia/pabaiga"))
+        self.startExperimentButton.setText(_translate("MainGuiWindow", "Pradėti"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.expSessionTab), _translate("MainGuiWindow", "Eksperimentas"))
         self.clearErrorTextButton.setText(_translate("MainGuiWindow", "Išvalyti klaidų pranešimus"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainGuiWindow", "Klaidų/informacijos pranešimai"))

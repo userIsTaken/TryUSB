@@ -155,7 +155,8 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.DebugMessage("State changed, got parameter "+str(int), 1000)
                 if (int == 0):
                         # Unchecked
-                        
+                        # We can not terminate QRunnable, at least not now. This
+                        # functionality is not supported yet.
                         pass
                 elif (int == 2):
                         # checked state
