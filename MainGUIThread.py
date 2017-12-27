@@ -157,7 +157,6 @@ class MainWindow(QtWidgets.QMainWindow):
                 if (int == 0):
                         # Unchecked
                         if (self.ThreadPool.activeThreadCount() > 0):
-                                global STOP
                                 STOP = True
                                 print("Count? ", STOP)
                                 pass
@@ -165,7 +164,6 @@ class MainWindow(QtWidgets.QMainWindow):
                 elif (int == 2):
                         # checked state
                         # TODO we need normal signal handling
-                        global STOP
                         STOP = False
                         time = self.ui.secondsToWait.value()
                         
