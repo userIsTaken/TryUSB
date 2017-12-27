@@ -166,6 +166,7 @@ class MainWindow(QtWidgets.QMainWindow):
                                 worker = RigolBackGround_scanner(self.Osciloscope.get_data_points_from_channel, "CHAN1", time, count)
                                 worker.signals.result.connect(self.DrawOscilogramm)
                                 worker.signals.error.connect(self.DebugLog)
+                                worker.signals.finished.connect(self.FinnishedQRunnable)
                                 self.ThreadPool.start(worker)
                         else:
                                 print(self.ThreadPool.activeThreadCount(), "Already something's running")
@@ -174,6 +175,10 @@ class MainWindow(QtWidgets.QMainWindow):
                         self.DebugMessage("Shit happened "+str(int), 1000)
                         pass
                 # self.DebugMessage("")
+                
+        def FinnishedQRunnable(self):
+                self.ui.useRegularUpdateBox.setChecked(False)
+                pass
 
         def SetupWindow(self):
                 icon = QtGui.QIcon()
