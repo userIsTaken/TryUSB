@@ -23,7 +23,7 @@ class RigolBackGround_scanner(QRunnable):
 
         def __del__(self):
                 self.exiting = True
-                self.wait()
+                pass
 
         @pyqtSlot()
         def run(self):
