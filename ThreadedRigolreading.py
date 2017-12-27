@@ -18,11 +18,6 @@ class RigolBackGround_scanner(QRunnable):
                 self.args = args
                 self.kwargs = kwargs
                 self.signals = WorkerSignals()
-                self.exiting = False
-                pass
-
-        def __del__(self):
-                self.exiting = True
                 pass
 
         @pyqtSlot()
@@ -33,20 +28,18 @@ class RigolBackGround_scanner(QRunnable):
                 '''
                 
                 time_sleep = float(self.args[1])
+                no_more = self.args[2]
                 print(time_sleep, "time sleep")
                 try:
                         print("try loop")
-                        while not self.exiting:
+                        index = 0
+                        while index < no_more:
                                 print("while loop")
-                                print("Global stop", STOP)
-                                # global STOP
-                                if STOP:
-                                        self.exiting = True
-                                        print("global STOP", STOP)
                                 data, timeArray, timeUnit = self.fn(str(self.args[0]))
                                 # print(result)
                                 self.signals.result.emit((data, timeArray, timeUnit))
                                 time.sleep(time_sleep)
+                                index = index + 1
                 except Exception as ex:
                         print(ex)
                         self.signals.error.emit(("Error", ex.args))
