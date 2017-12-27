@@ -213,7 +213,10 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.DebugMessage("Working on it ...", 1000)
                 pass
         
-        def DrawOscilogramm(self, data, time, timeUnit):
+        def DrawOscilogramm(self, result):
+                data = result[0]
+                time = result[1]
+                timeUnit = result[2]
                 #
                 self.dataCurveOne.setData(time, data)
                 pass
