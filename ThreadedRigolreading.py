@@ -33,7 +33,6 @@ class RigolBackGround_scanner(QRunnable):
                         print("try loop")
                         index = 0
                         while index < no_more:
-                                print("while loop")
                                 data, timeArray, timeUnit = self.fn(str(self.args[0]))
                                 # print(result)
                                 self.signals.result.emit((data, timeArray, timeUnit))
