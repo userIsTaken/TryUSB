@@ -164,7 +164,8 @@ class MainWindow(QtWidgets.QMainWindow):
                 elif (int == 2):
                         # checked state
                         # TODO we need normal signal handling
-                        
+                        global STOP
+                        STOP = False
                         time = self.ui.secondsToWait.value()
                         
                         worker = RigolBackGround_scanner(self.Osciloscope.get_data_points_from_channel, "CHAN1", time)
