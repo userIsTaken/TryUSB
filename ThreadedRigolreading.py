@@ -39,6 +39,7 @@ class RigolBackGround_scanner(QRunnable):
                                 self.signals.result.emit((data, timeArray, timeUnit))
                                 time.sleep(time_sleep)
                                 index = index + 1
+                        print(index, "Done")
                 except Exception as ex:
                         print(ex)
                         self.signals.error.emit(("Error", ex.args))
