@@ -159,6 +159,7 @@ class MainWindow(QtWidgets.QMainWindow):
                         if (self.ThreadPool.activeThreadCount() > 0):
                                 global STOP
                                 STOP = True
+                                print("Count? ", STOP)
                                 pass
                         pass
                 elif (int == 2):
