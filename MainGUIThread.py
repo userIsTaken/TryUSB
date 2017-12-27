@@ -155,16 +155,18 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.DebugMessage("State changed, got parameter "+str(int), 1000)
                 if (int == 0):
                         # Unchecked
+                        
                         pass
                 elif (int == 2):
                         # checked state
                         # TODO we need normal signal handling
-                        time = self.ui.secondsToWait.value()
-                        count = self.ui.noMoreThanTimes_oscilograph.value()
-                        worker = RigolBackGround_scanner(self.Osciloscope.get_data_points_from_channel, "CHAN1", time, count)
-                        worker.signals.result.connect(self.DrawOscilogramm)
-                        worker.signals.error.connect(self.DebugLog)
-                        self.ThreadPool.start(worker)
+                        if self.ThreadPool.activeThreadCount()>0:
+                                time = self.ui.secondsToWait.value()
+                                count = self.ui.noMoreThanTimes_oscilograph.value()
+                                worker = RigolBackGround_scanner(self.Osciloscope.get_data_points_from_channel, "CHAN1", time, count)
+                                worker.signals.result.connect(self.DrawOscilogramm)
+                                worker.signals.error.connect(self.DebugLog)
+                                self.ThreadPool.start(worker)
                         pass
                 else:
                         self.DebugMessage("Shit happened "+str(int), 1000)
