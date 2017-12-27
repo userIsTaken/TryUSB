@@ -35,10 +35,13 @@ class RigolBackGround_scanner(QRunnable):
                 time_sleep = float(self.args[1])
                 print(time_sleep, "time sleep")
                 try:
+                        print("try loop")
                         while not self.exiting:
+                                print("while loop")
                                 # global STOP
-                                if not STOP:
+                                if STOP:
                                         self.exiting = True
+                                        print("global STOP", STOP)
                                 data, timeArray, timeUnit = self.fn(str(self.args[0]))
                                 # print(result)
                                 self.signals.result.emit((data, timeArray, timeUnit))
