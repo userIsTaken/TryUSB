@@ -1,7 +1,7 @@
 from PyQt5 import QtCore, QtWidgets, QtGui
 from PyQt5.QtCore import QThread, pyqtSignal, pyqtSlot
 import os, sys
-
+# from DummyFiles.DummyFunctions import *
 
 class LoopWorker(QThread):
         results = pyqtSignal(list, list, str)
@@ -13,8 +13,17 @@ class LoopWorker(QThread):
                 self.fn = function,
                 self.args = args
                 self.kwargs = kwargs
+                print("Init")
                 pass
         
         @pyqtSlot()
-        def run(self):
+        def work(self):
+                print("Try to run this stuff")
+                try:
+                        result = self.fn(str(self.args[0]))
+                        print(result)
+                        self.results.emit([5],[5], "BLA!")
+                except Exception as ex:
+                        print(ex)
+                        pass
                 pass

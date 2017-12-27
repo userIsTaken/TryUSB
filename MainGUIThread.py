@@ -13,6 +13,8 @@ import pyqtgraph as pG
 
 from Generators.SiglentGenerator import *
 from Generators.TektronixGenerator import *
+from MainExperimentLoopThread import *
+from DummyFiles.DummyFunctions import *
 # Very global dictionary for all devices?
 # prettier graphs:
 pG.setConfigOptions(antialias=True)
@@ -27,6 +29,8 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.ui.setupUi(self)
                 #Normally this is all to be done in order to show a window
                 self.ThreadPool = QThreadPool() # because of threading?
+                self.Thread = QThread()
+                self._threads = []
                 #declare global self.dictionary:
                 self.Devices_dict={} # for USBTMC
                 self.Devices_TCP={} # for TCP/IP devices
@@ -68,6 +72,18 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.ui.setOffsetButton.clicked.connect(self.setOffset_generator)
                 self.ui.setPeriodButton.clicked.connect(self.setPeriod_generator)
                 self.ui.setTriggerIntervalButton.clicked.connect(self.SetTriggerInterval_gen)
+                # Main loop:
+                self.ui.startExperimentButton.clicked.connect(self.StartExperimentLoop)
+                pass
+        
+        def StartExperimentLoop(self):
+                thread = QThread()
+                self._threads.append(thread)
+                workerLoop = LoopWorker(DummyArgs, "Args!")
+                workerLoop.moveToThread(thread)
+                workerLoop.results.connect(DummyResults)
+                thread.started.connect(workerLoop.work)
+                thread.start()
                 pass
         
         def SetTriggerInterval_gen(self):
