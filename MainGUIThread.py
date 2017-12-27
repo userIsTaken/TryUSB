@@ -80,14 +80,14 @@ class MainWindow(QtWidgets.QMainWindow):
                 # TODO it looks like the right way how I need to implement this stuff:
                 # thread = QThread()
                 # self._threads.append(thread)
-                workerLoop = LoopWorker(DummyArgs, "Args!")
-
-
+                # workerLoop = LoopWorker(DummyArgs, "Args!")
+                #
+                #
                 # workerLoop.moveToThread(thread)
-                self._threads.append(workerLoop)
-                workerLoop.results.connect(DummyResults)
-                workerLoop.start()
-                # thread.started.connect(workerLoop.run)
+                # # self._threads.append(workerLoop)
+                # workerLoop.results.connect(DummyResults)
+                # # workerLoop.start()
+                # thread.started.connect(workerLoop.start)
                 # thread.start()
                 pass
         
