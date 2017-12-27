@@ -160,13 +160,15 @@ class MainWindow(QtWidgets.QMainWindow):
                 elif (int == 2):
                         # checked state
                         # TODO we need normal signal handling
-                        if self.ThreadPool.activeThreadCount()>0:
+                        if self.ThreadPool.activeThreadCount()<=0:
                                 time = self.ui.secondsToWait.value()
                                 count = self.ui.noMoreThanTimes_oscilograph.value()
                                 worker = RigolBackGround_scanner(self.Osciloscope.get_data_points_from_channel, "CHAN1", time, count)
                                 worker.signals.result.connect(self.DrawOscilogramm)
                                 worker.signals.error.connect(self.DebugLog)
                                 self.ThreadPool.start(worker)
+                        else:
+                                print(self.ThreadPool.activeThreadCount(), "Already something's running")
                         pass
                 else:
                         self.DebugMessage("Shit happened "+str(int), 1000)
