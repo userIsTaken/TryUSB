@@ -38,6 +38,7 @@ class RigolBackGround_scanner(QRunnable):
                         print("try loop")
                         while not self.exiting:
                                 print("while loop")
+                                print("Global stop", STOP)
                                 # global STOP
                                 if STOP:
                                         self.exiting = True
