@@ -82,7 +82,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 workerLoop = LoopWorker(DummyArgs, "Args!")
                 workerLoop.moveToThread(thread)
                 workerLoop.results.connect(DummyResults)
-                thread.started.connect(workerLoop.work)
+                thread.started.connect(workerLoop.run)
                 thread.start()
                 pass
         

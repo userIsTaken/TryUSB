@@ -3,6 +3,7 @@ import time
 def DummyArgs(args):
         print(args)
         print("DUMMY", "===============")
+        return "STR"
         pass
 
 def DummyResults(l1,l2,i):
