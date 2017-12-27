@@ -11,10 +11,11 @@ class LoopWorker(QThread):
         
         def __init__(self, function, *args, **kwargs):
                 super(LoopWorker, self).__init__()
+                # QThread().__init__(self)
                 self.fn = function
                 self.args = args
                 self.kwargs = kwargs
-                self.start() # WHY?????
+                # self.start() # WHY?????
                 print("Init")
                 pass
         
