@@ -17,6 +17,7 @@ class RigolBackGround_scanner(QRunnable):
                 self.args = args
                 self.kwargs = kwargs
                 self.signals = WorkerSignals()
+                self.exiting = False
                 pass
 
         @pyqtSlot()
@@ -29,10 +30,10 @@ class RigolBackGround_scanner(QRunnable):
                 time_sleep = float(self.args[1])
                 print(time_sleep, "time sleep")
                 try:
-                        while True:
-                                result = self.fn(str(self.args[0]))
-                                print(result)
-                                self.signals.result.emit(result)
+                        while not self.exiting:
+                                data, time, timeUnit = self.fn(str(self.args[0]))
+                                # print(result)
+                                self.signals.result.emit(data, time, timeUnit)
                                 time.sleep(time_sleep)
                 except Exception as ex:
                         print(ex)
