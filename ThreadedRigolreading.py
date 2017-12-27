@@ -1,6 +1,8 @@
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 
+import time
+
 import sys, os
 from USBTMC_Devices import *
 from GetInfoAboutDevices import *
@@ -23,10 +25,15 @@ class RigolBackGround_scanner(QRunnable):
                 my code goes here?
                 :return:
                 '''
+                
+                time_sleep = float(self.args[1])
+                print(time_sleep, "time sleep")
                 try:
-                        result = self.fn(str(self.args[0]))
-                        print(result)
-                        self.signals.result.emit(result)
+                        while True:
+                                result = self.fn(str(self.args[0]))
+                                print(result)
+                                self.signals.result.emit(result)
+                                time.sleep(time_sleep)
                 except Exception as ex:
                         print(ex)
                         self.signals.error.emit(("Error", ex.args))
