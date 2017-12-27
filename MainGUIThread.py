@@ -160,7 +160,10 @@ class MainWindow(QtWidgets.QMainWindow):
                 elif (int == 2):
                         # checked state
                         # TODO we need normal signal handling
-                        worker = RigolBackGround_scanner(self.Osciloscope.get_data_points_from_channel, "CHAN1")
+                        
+                        time = self.ui.secondsToWait.value()
+                        
+                        worker = RigolBackGround_scanner(self.Osciloscope.get_data_points_from_channel, "CHAN1", time)
                         worker.signals.result.connect(self.DrawOscilogramm)
                         worker.signals.error.connect(self.DebugLog)
                         self.ThreadPool.start(worker)
