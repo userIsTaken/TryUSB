@@ -162,6 +162,7 @@ class MainWindow(QtWidgets.QMainWindow):
                         # TODO we need normal signal handling
                         worker = RigolBackGround_scanner(self.Osciloscope.get_data_points_from_channel, "CHAN1")
                         worker.signals.result.connect(self.DrawOscilogramm)
+                        worker.signals.error.connect(self.DebugLog)
                         self.ThreadPool.start(worker)
                         pass
                 else:
@@ -205,8 +206,10 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.DebugMessage("Working on it ...", 1000)
                 pass
         
-        def DrawOscilogramm(self, dataCurve, time_array, data_from_channel):
-                dataCurve.setData(time_array, data_from_channel)
+        def DrawOscilogramm(self, ArrayTuple):
+                time_array = ArrayTuple[1]
+                data = ArrayTuple[0]
+                self.dataCurveOne.setData(time_array, data)
                 pass
         
         def connectOscilograph(self):
