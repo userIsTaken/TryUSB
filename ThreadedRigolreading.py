@@ -8,7 +8,6 @@ from USBTMC_Devices import *
 from GetInfoAboutDevices import *
 from ConfigParser import *
 import vxi11
-from MainGUIThread import STOP
 
 class RigolBackGround_scanner(QRunnable):
         def __init__(self, function, *args, **kwargs):
