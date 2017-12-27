@@ -4,7 +4,6 @@ import os, sys
 
 
 class LoopWorker(QThread):
-        
         results = pyqtSignal(list, list, str)
         errors = pyqtSignal(int, str)
         final = pyqtSignal(int)
