@@ -19,6 +19,7 @@ pG.setConfigOptions(antialias=True)
 # very global variables:
 ON = "ON"
 OFF = "OFF"
+STOP = False
 from ThreadedRigolreading import *
 class MainWindow(QtWidgets.QMainWindow):
         def __init__(self):
@@ -155,7 +156,10 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.DebugMessage("State changed, got parameter "+str(int), 1000)
                 if (int == 0):
                         # Unchecked
-                        self.ThreadPool.clear()
+                        if (self.ThreadPool.activeThreadCount() > 0):
+                                global STOP
+                                STOP = True
+                                pass
                         pass
                 elif (int == 2):
                         # checked state

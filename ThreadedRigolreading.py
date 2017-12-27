@@ -8,17 +8,22 @@ from USBTMC_Devices import *
 from GetInfoAboutDevices import *
 from ConfigParser import *
 import vxi11
+from MainGUIThread import STOP
 
 class RigolBackGround_scanner(QRunnable):
         def __init__(self, function, *args, **kwargs):
                 super().__init__()
-                # init with passed function, args for funcktio, kyworrds for function
+                # init with passed function, args for function, keywords for function
                 self.fn = function
                 self.args = args
                 self.kwargs = kwargs
                 self.signals = WorkerSignals()
                 self.exiting = False
                 pass
+
+        def __del__(self):
+                self.exiting = True
+                self.wait()
 
         @pyqtSlot()
         def run(self):
@@ -31,6 +36,9 @@ class RigolBackGround_scanner(QRunnable):
                 print(time_sleep, "time sleep")
                 try:
                         while not self.exiting:
+                                # global STOP
+                                if not STOP:
+                                        self.exiting = True
                                 data, time, timeUnit = self.fn(str(self.args[0]))
                                 # print(result)
                                 self.signals.result.emit(data, time, timeUnit)
