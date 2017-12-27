@@ -78,17 +78,15 @@ class MainWindow(QtWidgets.QMainWindow):
         
         def StartExperimentLoop(self):
                 # TODO it looks like the right way how I need to implement this stuff:
-                # thread = QThread()
-                # self._threads.append(thread)
-                # workerLoop = LoopWorker(DummyArgs, "Args!")
-                #
-                #
-                # workerLoop.moveToThread(thread)
+                thread = QThread()
+                self._threads.append(thread)
+                workerLoop = LoopWorker(DummyArgs, "Args!")
+                workerLoop.moveToThread(thread)
                 # # self._threads.append(workerLoop)
-                # workerLoop.results.connect(DummyResults)
+                workerLoop.results.connect(DummyResults)
                 # # workerLoop.start()
-                # thread.started.connect(workerLoop.start)
-                # thread.start()
+                thread.started.connect(workerLoop.start) # Why????
+                thread.start()
                 pass
         
         def SetTriggerInterval_gen(self):

@@ -18,13 +18,14 @@ class LoopWorker(QThread):
                 # self.start() # WHY?????
                 print("Init")
                 pass
-        
+
+
         @pyqtSlot()
         def run(self):
                 print("Try to run this stuff")
                 i = 0
                 try:
-                        while i <= 100:
+                        while i <= 5:
                                 print("?????", i)
                                 result = self.fn(str(self.args[0]))
                                 print(result)
