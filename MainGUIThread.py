@@ -29,7 +29,6 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.ui.setupUi(self)
                 #Normally this is all to be done in order to show a window
                 self.ThreadPool = QThreadPool() # because of threading?
-                self.Thread = QThread()
                 self._threads = []
                 #declare global self.dictionary:
                 self.Devices_dict={} # for USBTMC
@@ -78,15 +77,15 @@ class MainWindow(QtWidgets.QMainWindow):
         
         def StartExperimentLoop(self):
                 # TODO it looks like the right way how I need to implement this stuff:
-                thread = QThread()
-                self._threads.append(thread)
-                workerLoop = LoopWorker(DummyArgs, "Args!")
-                workerLoop.moveToThread(thread)
-                # # self._threads.append(workerLoop)
-                workerLoop.results.connect(DummyResults)
-                # # workerLoop.start()
-                thread.started.connect(workerLoop.start) # Why????
-                thread.start()
+                # thread = QThread()
+                # self._threads.append(thread)
+                # workerLoop = LoopWorker(DummyArgs, "Args!")
+                # workerLoop.moveToThread(thread)
+                # # # self._threads.append(workerLoop)
+                # workerLoop.results.connect(DummyResults)
+                # # # workerLoop.start()
+                # thread.started.connect(workerLoop.start) # Why????
+                # thread.start()
                 pass
         
         def SetTriggerInterval_gen(self):
