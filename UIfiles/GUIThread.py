@@ -253,7 +253,7 @@ class Ui_MainGuiWindow(object):
         sizePolicy.setHeightForWidth(self.runInitiallConfiguration_button.sizePolicy().hasHeightForWidth())
         self.runInitiallConfiguration_button.setSizePolicy(sizePolicy)
         self.runInitiallConfiguration_button.setObjectName("runInitiallConfiguration_button")
-        self.gridLayout_16.addWidget(self.runInitiallConfiguration_button, 0, 1, 1, 1)
+        self.gridLayout_16.addWidget(self.runInitiallConfiguration_button, 0, 2, 1, 1)
         self.connection_status_label = QtWidgets.QLabel(self.generator_tab)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -261,7 +261,10 @@ class Ui_MainGuiWindow(object):
         sizePolicy.setHeightForWidth(self.connection_status_label.sizePolicy().hasHeightForWidth())
         self.connection_status_label.setSizePolicy(sizePolicy)
         self.connection_status_label.setObjectName("connection_status_label")
-        self.gridLayout_16.addWidget(self.connection_status_label, 1, 0, 1, 2)
+        self.gridLayout_16.addWidget(self.connection_status_label, 1, 0, 1, 3)
+        self.renewGeneratorInfoButton = QtWidgets.QPushButton(self.generator_tab)
+        self.renewGeneratorInfoButton.setObjectName("renewGeneratorInfoButton")
+        self.gridLayout_16.addWidget(self.renewGeneratorInfoButton, 0, 1, 1, 1)
         self.gridLayout_20.addLayout(self.gridLayout_16, 0, 0, 1, 1)
         self.groupBox_4 = QtWidgets.QGroupBox(self.generator_tab)
         self.groupBox_4.setObjectName("groupBox_4")
@@ -493,7 +496,7 @@ class Ui_MainGuiWindow(object):
 
         self.retranslateUi(MainGuiWindow)
         self.devicesTabWidget.setCurrentIndex(0)
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainGuiWindow)
 
     def retranslateUi(self, MainGuiWindow):
@@ -525,6 +528,7 @@ class Ui_MainGuiWindow(object):
         self.connectToGeneratorButton.setText(_translate("MainGuiWindow", "Prisijunti prie generatoriaus"))
         self.runInitiallConfiguration_button.setText(_translate("MainGuiWindow", "Pirminė konfigūracija"))
         self.connection_status_label.setText(_translate("MainGuiWindow", "IDN, jei pavyko prisijunti"))
+        self.renewGeneratorInfoButton.setText(_translate("MainGuiWindow", "Atnaujinti laukus"))
         self.groupBox_4.setTitle(_translate("MainGuiWindow", "Pradinė generatoriaus konfigūracija"))
         self.setSignalAmplitudeButton.setText(_translate("MainGuiWindow", "Signalo amplitudė, V"))
         self.setOffsetButton.setText(_translate("MainGuiWindow", "Signalo nuokrypis (offset), V"))
