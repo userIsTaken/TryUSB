@@ -347,7 +347,10 @@ class MainWindow(QtWidgets.QMainWindow):
                         self.Generator.Write(str(i))
                         self.ui.cmd_custom_for_generator.addItem(str(i))
                         time.sleep(0.1)
+                        pass
+                self.RenewGeneratorFields()
                 pass
+        
                 
                 
         
