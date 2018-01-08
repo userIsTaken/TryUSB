@@ -32,7 +32,11 @@ class LoopWorker(QObject):
                                 self.results.emit([5],[5], "BLA!")
                                 time.sleep(2)
                                 i=i+1
+                                pass
+                        # self.final.emit(42)
                 except Exception as ex:
                         print(ex)
                         pass
+                finally:
+                        self.final.emit(42)
                 pass

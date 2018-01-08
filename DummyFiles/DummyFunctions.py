@@ -8,4 +8,5 @@ def DummyArgs(args):
 
 def DummyResults(l1,l2,i):
         print("Results have been got!")
+        # self.ui.startExperimentButton.setText(
         pass

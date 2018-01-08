@@ -89,10 +89,17 @@ class MainWindow(QtWidgets.QMainWindow):
                         self._threads.append((thread, workerLoop))
                         workerLoop.moveToThread(thread)
                         workerLoop.results.connect(DummyResults)
+                        workerLoop.final.connect(self.WorkerEnded)
                         thread.started.connect(workerLoop.run) # Why????
                         thread.start()
                         self.ui.startExperimentButton.setText("Pradėta")
                         pass
+                pass
+        
+        def WorkerEnded(self, i:int):
+                print("Gauta", str(i))
+                self.ui.startExperimentButton.setText("Pradėti")
+                self._threads = []
                 pass
         
         def SetTriggerInterval_gen(self):
