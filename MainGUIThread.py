@@ -84,6 +84,10 @@ class MainWindow(QtWidgets.QMainWindow):
                 offset = self.Generator.GetOffset(self.Generator.CH1)
                 # Print all :
                 print("FREQ", frequency, "PERIOD", period, "AMPL", amplitude, "TRIG INT", trigger_interval, "OFFS", offset)
+                self.ui.voltageOffsetBox.setValue(float(offset))
+                self.ui.voltageAmplitudeBox.setValue(float(amplitude))
+                self.ui.periodBox.setValue(float(period))
+                self.ui.triggerIntervalBox.setValue(float(trigger_interval))
                 pass
         
         def StartExperimentLoop(self):
