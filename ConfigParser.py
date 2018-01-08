@@ -13,3 +13,15 @@ class Configuration:
                 longString=self.config.get(section, option)
                 return longString
                 pass
+
+        def ConfigFileLoader(self, tableWidget):
+                pass
+
+        def ConfigFileSaver(self, tableWidget):
+                pass
+
+        def USBTMCDevicesSaver(self):
+                pass
+
+        def USBTMCDevicesLoader(self):
+                pass
