@@ -105,7 +105,8 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.ui.periodBox.setValue(float(period_floored))
                 self.ui.triggerIntervalBox.setValue(float(trigger_interval_floored))
                 #  TODO fix and correctly set units for freq trigg and period!
-
+                self.DebugGenerator("========================")
+                self.DebugGenerator("freq", freq_floored, unit_freq, "trigg", trigger_interval_floored, unit_trigger, "period", period_floored, unit_period)
                 pass
         
         def StartExperimentLoop(self):
@@ -528,6 +529,14 @@ class MainWindow(QtWidgets.QMainWindow):
                 else:
                         self.ui.answersFromGeneratorTextBox.appendPlainText(str(msg) + " |")
                 
+                pass
+
+        def DebugGenerator(self, *args):
+                l = None
+                for i in args:
+                        l = l + str(i)+" "
+                        pass
+                self.ui.answersFromGeneratorTextBox.appendPlainText(l)
                 pass
         
         def get_IDN_from_IP(self, ip_string):
