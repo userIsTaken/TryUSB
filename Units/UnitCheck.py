@@ -34,7 +34,10 @@ def getNumberSIprefix(value:float):
                 pass
                 pass
         else:
+                flt = value
+                unit = ""
                 pass
+        return flt, unit
         pass
 
 
