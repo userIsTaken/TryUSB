@@ -74,6 +74,15 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.ui.renewGeneratorInfoButton.clicked.connect(self.RenewGeneratorFields)
                 # Main loop:
                 self.ui.startExperimentButton.clicked.connect(self.StartExperimentLoop)
+                # Configuration saving and loading:
+                self.ui.saveEntriesButton.clicked.connect(self.saveEntriesToConfig)
+                self.ui.loadEntriesButton.clicked.connect(self.loadEntriesFromConfig)
+                pass
+
+        def loadEntriesFromConfig(self):
+                pass
+
+        def saveEntriesToConfig(self):
                 pass
         
         def RenewGeneratorFields(self):
