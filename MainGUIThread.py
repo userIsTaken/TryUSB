@@ -82,6 +82,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 amplitude = self.Generator.GetAmplitude(self.Generator.CH1)
                 trigger_interval = self.Generator.GetTriggerInterval()
                 offset = self.Generator.GetOffset(self.Generator.CH1)
+                # Need to fix units, aka μS, mS, S ...
                 # Print all :
                 print("FREQ", frequency, "PERIOD", period, "AMPL", amplitude, "TRIG INT", trigger_interval, "OFFS", offset)
                 self.ui.voltageOffsetBox.setValue(float(offset))
