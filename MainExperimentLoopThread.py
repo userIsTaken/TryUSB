@@ -1,10 +1,10 @@
 from PyQt5 import QtCore, QtWidgets, QtGui
-from PyQt5.QtCore import QThread, pyqtSignal, pyqtSlot
+from PyQt5.QtCore import QThread, pyqtSignal, pyqtSlot, QObject
 import os, sys
 import time
 # from DummyFiles.DummyFunctions import *
 
-class LoopWorker(QThread):
+class LoopWorker(QObject):
         results = pyqtSignal(list, list, str)
         errors = pyqtSignal(int, str)
         final = pyqtSignal(int)
@@ -25,7 +25,7 @@ class LoopWorker(QThread):
                 print("Try to run this stuff")
                 i = 0
                 try:
-                        while i <= 5:
+                        while i <= 15:
                                 print("?????", i)
                                 result = self.fn(str(self.args[0]))
                                 print(result)
