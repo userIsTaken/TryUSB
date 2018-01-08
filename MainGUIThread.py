@@ -98,8 +98,14 @@ class MainWindow(QtWidgets.QMainWindow):
                 print("FREQ", frequency, "PERIOD", period, "AMPL", amplitude, "TRIG INT", trigger_interval, "OFFS", offset)
                 self.ui.voltageOffsetBox.setValue(float(offset))
                 self.ui.voltageAmplitudeBox.setValue(float(amplitude))
-                self.ui.periodBox.setValue(float(period))
-                self.ui.triggerIntervalBox.setValue(float(trigger_interval))
+                # We need appropriate values and their units
+                period_floored, unit_period = getNumberSIprefix(float(period))
+                trigger_interval_floored, unit_trigger = getNumberSIprefix(float(trigger_interval))
+                freq_floored, unit_freq = getNumberSIprefix(float(frequency))
+                self.ui.periodBox.setValue(float(period_floored))
+                self.ui.triggerIntervalBox.setValue(float(trigger_interval_floored))
+                #  TODO fix and correctly set units for freq trigg and period!
+
                 pass
         
         def StartExperimentLoop(self):
