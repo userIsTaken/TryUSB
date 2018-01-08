@@ -91,6 +91,7 @@ class MainWindow(QtWidgets.QMainWindow):
                         workerLoop.results.connect(DummyResults)
                         thread.started.connect(workerLoop.run) # Why????
                         thread.start()
+                        self.ui.startExperimentButton.setText("Pradėta")
                         pass
                 pass
         
