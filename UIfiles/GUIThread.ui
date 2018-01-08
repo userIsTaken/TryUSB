@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>960</width>
-    <height>866</height>
+    <width>995</width>
+    <height>874</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -71,7 +71,7 @@
         </size>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="usbtmcTab">
         <attribute name="title">
@@ -250,6 +250,13 @@
             </widget>
            </item>
            <item>
+            <widget class="QPushButton" name="removeSelectedRowButton">
+             <property name="text">
+              <string>Pašalinti įrašą</string>
+             </property>
+            </widget>
+           </item>
+           <item>
             <spacer name="horizontalSpacer_6">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
@@ -270,6 +277,20 @@
             </widget>
            </item>
            <item>
+            <widget class="QPushButton" name="saveEntriesButton">
+             <property name="text">
+              <string>Išsaugoti įrašus</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="loadEntriesButton">
+             <property name="text">
+              <string>Įkelti įrašus</string>
+             </property>
+            </widget>
+           </item>
+           <item>
             <spacer name="horizontalSpacer_7">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
@@ -281,13 +302,6 @@
               </size>
              </property>
             </spacer>
-           </item>
-           <item>
-            <widget class="QPushButton" name="removeSelectedRowButton">
-             <property name="text">
-              <string>Pašalinti įrašą</string>
-             </property>
-            </widget>
            </item>
           </layout>
          </item>
@@ -1097,8 +1111,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>960</width>
-     <height>30</height>
+     <width>995</width>
+     <height>28</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFailas">

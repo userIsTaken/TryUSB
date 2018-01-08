@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'GUIThread.ui'
 #
-# Created by: PyQt5 UI code generator 5.7
+# Created by: PyQt5 UI code generator 5.8.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainGuiWindow(object):
     def setupUi(self, MainGuiWindow):
         MainGuiWindow.setObjectName("MainGuiWindow")
-        MainGuiWindow.resize(960, 866)
+        MainGuiWindow.resize(995, 874)
         self.centralwidget = QtWidgets.QWidget(MainGuiWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout_3 = QtWidgets.QGridLayout(self.centralwidget)
@@ -42,7 +42,6 @@ class Ui_MainGuiWindow(object):
         self.usbtmcTab = QtWidgets.QWidget()
         self.usbtmcTab.setObjectName("usbtmcTab")
         self.gridLayout_5 = QtWidgets.QGridLayout(self.usbtmcTab)
-        self.gridLayout_5.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_5.setObjectName("gridLayout_5")
         self.gridLayout_2 = QtWidgets.QGridLayout()
         self.gridLayout_2.setObjectName("gridLayout_2")
@@ -120,23 +119,28 @@ class Ui_MainGuiWindow(object):
         self.tcpipDevicesTab = QtWidgets.QWidget()
         self.tcpipDevicesTab.setObjectName("tcpipDevicesTab")
         self.gridLayout_4 = QtWidgets.QGridLayout(self.tcpipDevicesTab)
-        self.gridLayout_4.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_4.setObjectName("gridLayout_4")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.addDeviceEntryTableButton = QtWidgets.QPushButton(self.tcpipDevicesTab)
         self.addDeviceEntryTableButton.setObjectName("addDeviceEntryTableButton")
         self.horizontalLayout_2.addWidget(self.addDeviceEntryTableButton)
+        self.removeSelectedRowButton = QtWidgets.QPushButton(self.tcpipDevicesTab)
+        self.removeSelectedRowButton.setObjectName("removeSelectedRowButton")
+        self.horizontalLayout_2.addWidget(self.removeSelectedRowButton)
         spacerItem4 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem4)
         self.getIDNfroSelectedIPButton = QtWidgets.QPushButton(self.tcpipDevicesTab)
         self.getIDNfroSelectedIPButton.setObjectName("getIDNfroSelectedIPButton")
         self.horizontalLayout_2.addWidget(self.getIDNfroSelectedIPButton)
+        self.saveEntriesButton = QtWidgets.QPushButton(self.tcpipDevicesTab)
+        self.saveEntriesButton.setObjectName("saveEntriesButton")
+        self.horizontalLayout_2.addWidget(self.saveEntriesButton)
+        self.loadEntriesButton = QtWidgets.QPushButton(self.tcpipDevicesTab)
+        self.loadEntriesButton.setObjectName("loadEntriesButton")
+        self.horizontalLayout_2.addWidget(self.loadEntriesButton)
         spacerItem5 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem5)
-        self.removeSelectedRowButton = QtWidgets.QPushButton(self.tcpipDevicesTab)
-        self.removeSelectedRowButton.setObjectName("removeSelectedRowButton")
-        self.horizontalLayout_2.addWidget(self.removeSelectedRowButton)
         self.gridLayout_4.addLayout(self.horizontalLayout_2, 0, 0, 1, 1)
         self.tableWithTCPIPDevices = QtWidgets.QTableWidget(self.tcpipDevicesTab)
         self.tableWithTCPIPDevices.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
@@ -158,7 +162,6 @@ class Ui_MainGuiWindow(object):
         self.oscligraph_tab = QtWidgets.QWidget()
         self.oscligraph_tab.setObjectName("oscligraph_tab")
         self.gridLayout_10 = QtWidgets.QGridLayout(self.oscligraph_tab)
-        self.gridLayout_10.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_10.setObjectName("gridLayout_10")
         self.connectToOscilograph_button = QtWidgets.QPushButton(self.oscligraph_tab)
         self.connectToOscilograph_button.setObjectName("connectToOscilograph_button")
@@ -234,7 +237,6 @@ class Ui_MainGuiWindow(object):
         self.generator_tab = QtWidgets.QWidget()
         self.generator_tab.setObjectName("generator_tab")
         self.gridLayout_20 = QtWidgets.QGridLayout(self.generator_tab)
-        self.gridLayout_20.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_20.setObjectName("gridLayout_20")
         self.gridLayout_16 = QtWidgets.QGridLayout()
         self.gridLayout_16.setObjectName("gridLayout_16")
@@ -453,7 +455,6 @@ class Ui_MainGuiWindow(object):
         self.tab = QtWidgets.QWidget()
         self.tab.setObjectName("tab")
         self.gridLayout = QtWidgets.QGridLayout(self.tab)
-        self.gridLayout.setContentsMargins(0, 0, 0, 0)
         self.gridLayout.setObjectName("gridLayout")
         self.clearErrorTextButton = QtWidgets.QPushButton(self.tab)
         self.clearErrorTextButton.setObjectName("clearErrorTextButton")
@@ -467,7 +468,7 @@ class Ui_MainGuiWindow(object):
         self.gridLayout_3.addWidget(self.splitter, 0, 0, 1, 1)
         MainGuiWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainGuiWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 960, 30))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 995, 28))
         self.menubar.setObjectName("menubar")
         self.menuFailas = QtWidgets.QMenu(self.menubar)
         self.menuFailas.setObjectName("menuFailas")
@@ -495,7 +496,7 @@ class Ui_MainGuiWindow(object):
         self.menubar.addAction(self.menuFailas.menuAction())
 
         self.retranslateUi(MainGuiWindow)
-        self.devicesTabWidget.setCurrentIndex(0)
+        self.devicesTabWidget.setCurrentIndex(1)
         self.tabWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainGuiWindow)
 
@@ -512,8 +513,10 @@ class Ui_MainGuiWindow(object):
         self.selectedIDN_label.setText(_translate("MainGuiWindow", "*IDN?"))
         self.devicesTabWidget.setTabText(self.devicesTabWidget.indexOf(self.usbtmcTab), _translate("MainGuiWindow", "USBTMC prietaisai"))
         self.addDeviceEntryTableButton.setText(_translate("MainGuiWindow", "Pridėti naują eilutę"))
-        self.getIDNfroSelectedIPButton.setText(_translate("MainGuiWindow", "*IDN?"))
         self.removeSelectedRowButton.setText(_translate("MainGuiWindow", "Pašalinti įrašą"))
+        self.getIDNfroSelectedIPButton.setText(_translate("MainGuiWindow", "*IDN?"))
+        self.saveEntriesButton.setText(_translate("MainGuiWindow", "Išsaugoti įrašus"))
+        self.loadEntriesButton.setText(_translate("MainGuiWindow", "Įkelti įrašus"))
         self.devicesTabWidget.setTabText(self.devicesTabWidget.indexOf(self.tcpipDevicesTab), _translate("MainGuiWindow", "Tinklo (TCP/IP) prietaisai"))
         self.connectToOscilograph_button.setText(_translate("MainGuiWindow", "Prisijungti prie oscilografo"))
         self.idn_label_oscilograph.setText(_translate("MainGuiWindow", "IDN, jei sėkmingai"))
