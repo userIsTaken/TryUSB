@@ -15,6 +15,7 @@ from Generators.SiglentGenerator import *
 from Generators.TektronixGenerator import *
 from MainExperimentLoopThread import *
 from DummyFiles.DummyFunctions import *
+from Units.UnitCheck import *
 # Very global dictionary for all devices?
 # prettier graphs:
 pG.setConfigOptions(antialias=True)
@@ -80,6 +81,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 pass
 
         def loadEntriesFromConfig(self):
+
                 pass
 
         def saveEntriesToConfig(self):
