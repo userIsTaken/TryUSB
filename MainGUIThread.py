@@ -115,6 +115,7 @@ class MainWindow(QtWidgets.QMainWindow):
         def WorkerEnded(self, i:int):
                 print("Gauta", str(i))
                 self.ui.startExperimentButton.setText("Pradėti")
+                # Bad bad behaviour   :
                 self._threads = []
                 pass
         
