@@ -71,12 +71,12 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.ui.setOffsetButton.clicked.connect(self.setOffset_generator)
                 self.ui.setPeriodButton.clicked.connect(self.setPeriod_generator)
                 self.ui.setTriggerIntervalButton.clicked.connect(self.SetTriggerInterval_gen)
-                self.ui.renewGeneratorInfoButton.clicked.connect(self.RenewgeneratorFields)
+                self.ui.renewGeneratorInfoButton.clicked.connect(self.RenewGeneratorFields)
                 # Main loop:
                 self.ui.startExperimentButton.clicked.connect(self.StartExperimentLoop)
                 pass
         
-        def RenewgeneratorFields(self):
+        def RenewGeneratorFields(self):
                 frequency = self.Generator.GetFrequency(self.Generator.CH1)
                 period = self.Generator.GetPeriod(self.Generator.CH1)
                 amplitude = self.Generator.GetAmplitude(self.Generator.CH1)
