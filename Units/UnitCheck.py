@@ -9,7 +9,7 @@ def getNumberSIprefix(value:float):
         flt = None
         unit = None
         log = math.floor(math.log10(value))
-        print("1st", log, " log", value, " value")
+        # print("1st", log, " log", value, " value")
         if log < 0:
                 # value of log shows that we need multiply(!) by ten log times to get integer value
                 if log>=-3:
@@ -59,7 +59,7 @@ def getNumberSIprefix(val: str):
         flt = None
         unit = None
         log = math.floor(math.log10(value))
-        print("2nd", log, " log", value, " value")
+        # print("2nd", log, " log", value, " value")
         if log < 0:
                 # value of log shows that we need multiply(!) by ten log times to get integer value
                 if log>=-3:
