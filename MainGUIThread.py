@@ -532,7 +532,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 pass
 
         def DebugGenerator(self, *args):
-                l = None
+                l = ""
                 for i in args:
                         l = l + str(i)+" "
                         pass
