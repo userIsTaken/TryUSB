@@ -11,16 +11,16 @@ def getNumberSIprefix(value:float):
         log = math.floor(math.log10(value))
         if log < 0:
                 # value of log shows that we need multiply(!) by ten log times to get integer value
-                if log>-3:
-                        flt = value
-                        unit = ""
-                if log<=-3  and log>-6:
-                        flt = value * 1e3
+                if log>=-3:
+                        flt = value*1e3
                         unit = "m"
-                        pass
-                if log<=-6:
+                if log<-3  and log>=-6:
                         flt = value * 1e6
                         unit = "μ"
+                        pass
+                if log<=-6:
+                        flt = value * 1e9
+                        unit = "n"
                         pass
                 pass
         elif log > 0:
