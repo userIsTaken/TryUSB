@@ -9,6 +9,7 @@ def getNumberSIprefix(value:float):
         flt = None
         unit = None
         log = math.floor(math.log10(value))
+        print(log, " log", value, " value")
         if log < 0:
                 # value of log shows that we need multiply(!) by ten log times to get integer value
                 if log>=-3:
