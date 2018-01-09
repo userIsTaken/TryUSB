@@ -106,7 +106,9 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.ui.triggerIntervalBox.setValue(float(trigger_interval_floored))
                 #  TODO fix and correctly set units for freq trigg and period!
                 self.DebugGenerator("========================")
+                self.DebugGenerator("freq", frequency, "trigg", trigger_interval, "period", period)
                 self.DebugGenerator("freq", freq_floored, unit_freq, "trigg", trigger_interval_floored, unit_trigger, "period", period_floored, unit_period)
+                self.DebugGenerator("========================")
                 pass
         
         def StartExperimentLoop(self):
