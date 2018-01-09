@@ -109,12 +109,31 @@ class MainWindow(QtWidgets.QMainWindow):
                 freq_floored, unit_freq = getNumberSIprefix(float(frequency))
                 self.ui.periodBox.setValue(float(period_floored))
                 self.ui.triggerIntervalBox.setValue(float(trigger_interval_floored))
+                self.setCorrectUnits(unit_freq, unit_period, unit_trigger)
+                # ============================
                 #  TODO fix and correctly set units for freq trigg and period!
                 self.DebugGenerator("========================")
                 self.DebugGenerator("freq", frequency, "trigg", trigger_interval, "period", period)
                 self.DebugGenerator("freq", freq_floored, unit_freq, "trigg", trigger_interval_floored, unit_trigger, "period", period_floored, unit_period)
                 self.DebugGenerator("========================")
                 pass
+        
+        def setCorrectUnits(self, freq_unit, period_unit, trigger_unit):
+                if "μ" in period_unit:
+                        self.ui.periodRadioButton_uS.setChecked(True)
+                elif "m" in period_unit:
+                        self.ui.periodRadioButton_mS.setChecked(True)
+                else:
+                        self.ui.periodradioButton_S.setChecked(True)
+                        pass
+                if "μ" in trigger_unit:
+                        self.ui.triggerInterval_uS.setChecked(True)
+                elif "m" in trigger_unit:
+                        self.ui.triggerInterval_mS.setChecked(True)
+                else:
+                        self.ui.triggerInterval_S.setChecked(True)
+                        pass
+                
         
         def StartExperimentLoop(self):
                 # TODO it looks like the right way how I need to implement this stuff:
