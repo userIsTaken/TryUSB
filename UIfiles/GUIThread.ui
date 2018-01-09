@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1148</width>
-    <height>874</height>
+    <width>1213</width>
+    <height>921</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,37 +16,33 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_3">
     <item row="1" column="0">
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <widget class="QPushButton" name="closeButton">
-        <property name="text">
-         <string>Išeiti iš programos</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>278</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QPushButton" name="unused_button">
-        <property name="text">
-         <string>Neveikiantis mygis</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
+     <widget class="QPushButton" name="closeButton">
+      <property name="text">
+       <string>Išeiti iš programos</string>
+      </property>
+     </widget>
     </item>
-    <item row="0" column="0">
+    <item row="1" column="1">
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>927</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="1" column="2">
+     <widget class="QPushButton" name="unused_button">
+      <property name="text">
+       <string>Neveikiantis mygis</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0" colspan="3">
      <widget class="QSplitter" name="splitter">
       <property name="orientation">
        <enum>Qt::Vertical</enum>
@@ -335,7 +331,7 @@
         </size>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>2</number>
        </property>
        <widget class="QWidget" name="oscligraph_tab">
         <attribute name="title">
@@ -1035,41 +1031,227 @@
         <attribute name="title">
          <string>Eksperimentas</string>
         </attribute>
-        <widget class="QLabel" name="label_5">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>10</y>
-           <width>68</width>
-           <height>20</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-        <widget class="QGroupBox" name="groupBox_5">
-         <property name="geometry">
-          <rect>
-           <x>9</x>
-           <y>9</y>
-           <width>251</width>
-           <height>91</height>
-          </rect>
-         </property>
-         <property name="title">
-          <string>Eksperimento pradžia/pabaiga</string>
-         </property>
-         <layout class="QGridLayout" name="gridLayout_11">
-          <item row="0" column="0">
-           <widget class="QPushButton" name="startExperimentButton">
-            <property name="text">
-             <string>Pradėti</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
+        <layout class="QGridLayout" name="gridLayout_23">
+         <item row="0" column="0" colspan="2">
+          <widget class="QGroupBox" name="groupBox_5">
+           <property name="title">
+            <string>Eksperimento pradžia/pabaiga</string>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_11">
+            <item row="0" column="0">
+             <widget class="QPushButton" name="startExperimentButton">
+              <property name="text">
+               <string>Pradėti</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="0" column="3" rowspan="7">
+          <widget class="PlotWidget" name="graphicsView"/>
+         </item>
+         <item row="1" column="0" colspan="2">
+          <layout class="QGridLayout" name="gridLayout_21">
+           <item row="0" column="1" colspan="3">
+            <widget class="QRadioButton" name="radioButton">
+             <property name="text">
+              <string>Keisti amplitudę:</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_10">
+             <property name="text">
+              <string>Nuo</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QDoubleSpinBox" name="doubleSpinBox_2"/>
+           </item>
+           <item row="1" column="2">
+            <widget class="QLabel" name="label_6">
+             <property name="text">
+              <string>V</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3">
+            <widget class="QLabel" name="label_9">
+             <property name="text">
+              <string>iki</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="4">
+            <widget class="QDoubleSpinBox" name="doubleSpinBox"/>
+           </item>
+           <item row="1" column="5">
+            <widget class="QLabel" name="label_7">
+             <property name="text">
+              <string>V</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLabel" name="label_11">
+             <property name="text">
+              <string>Žingsnis :</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="4" colspan="2">
+            <widget class="QLabel" name="label_13">
+             <property name="text">
+              <string>Pastovus OFFSET:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QDoubleSpinBox" name="doubleSpinBox_3"/>
+           </item>
+           <item row="3" column="2">
+            <widget class="QLabel" name="label_12">
+             <property name="text">
+              <string>V</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="4">
+            <widget class="QDoubleSpinBox" name="doubleSpinBox_4"/>
+           </item>
+           <item row="3" column="5">
+            <widget class="QLabel" name="label_14">
+             <property name="text">
+              <string>V</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_5">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="2">
+          <spacer name="horizontalSpacer_13">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>78</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="5" column="0" colspan="2">
+          <layout class="QGridLayout" name="gridLayout_22">
+           <item row="0" column="1" colspan="2">
+            <widget class="QRadioButton" name="radioButton_2">
+             <property name="text">
+              <string>Keisti OFFSET:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_16">
+             <property name="text">
+              <string>Nuo</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QDoubleSpinBox" name="doubleSpinBox_5"/>
+           </item>
+           <item row="1" column="2">
+            <widget class="QLabel" name="label_17">
+             <property name="text">
+              <string>V</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3">
+            <widget class="QLabel" name="label_15">
+             <property name="text">
+              <string>iki</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="4">
+            <widget class="QDoubleSpinBox" name="doubleSpinBox_6"/>
+           </item>
+           <item row="1" column="5">
+            <widget class="QLabel" name="label_18">
+             <property name="text">
+              <string>V</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLabel" name="label_19">
+             <property name="text">
+              <string>Žingsnis :</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="3" colspan="3">
+            <widget class="QLabel" name="label_20">
+             <property name="text">
+              <string>Pastovi amplitudė:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QDoubleSpinBox" name="doubleSpinBox_7"/>
+           </item>
+           <item row="3" column="2">
+            <widget class="QLabel" name="label_22">
+             <property name="text">
+              <string>V</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="4">
+            <widget class="QDoubleSpinBox" name="doubleSpinBox_8"/>
+           </item>
+           <item row="3" column="5">
+            <widget class="QLabel" name="label_21">
+             <property name="text">
+              <string>V</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="6" column="1">
+          <spacer name="verticalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Expanding</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>199</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
        </widget>
        <widget class="QWidget" name="tab">
         <attribute name="title">
@@ -1111,8 +1293,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1148</width>
-     <height>30</height>
+     <width>1213</width>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFailas">

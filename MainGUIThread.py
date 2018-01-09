@@ -64,6 +64,11 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.ui.getDatafromBothChannels_button.clicked.connect(self.getDatafromBothChannels_button_clicked)
                 self.dataCurveOne = self.ui.dataViewWidget.plot()
                 self.dataCurveTwo = self.ui.dataViewWidget.plot()
+                #eksperimento kreives:
+                self.ui.startExperimentButton.clicked.connect(self.ekspMatavimas_clicked)
+                self.ekspCurveOne = self.ui.graphicsView.plot()
+                self.ekspCurveTwo = self.ui.graphicsView.plot()
+                #---------------------
                 self.SetupWindow()
                 self.ui.useRegularUpdateBox.stateChanged.connect(self.StateChanged)
                 # everything related to control of generator:
@@ -270,18 +275,23 @@ class MainWindow(QtWidgets.QMainWindow):
                 pass
 
         def getDatafromBothChannels_button_clicked(self):
-                self.getVoltsFromChannel("CHAN1", self.dataCurveOne)
-                self.getVoltsFromChannel("CHAN2", self.dataCurveTwo)
+                self.getVoltsFromChannel("CHAN1", self.dataCurveOne, self.ui.dataViewWidget)
+                self.getVoltsFromChannel("CHAN2", self.dataCurveTwo, self.ui.dataViewWidget)
                 pass
 
         def getVoltsFromCH2_button_clicked(self):
-                self.getVoltsFromChannel("CHAN2", self.dataCurveTwo)
+                self.getVoltsFromChannel("CHAN2", self.dataCurveTwo, self.ui.dataViewWidget)
+                pass
+        
+        def ekspMatavimas_clicked(self):
+                self.getVoltsFromChannel("CHAN1", self.ekspCurveOne, self.ui.graphicsView)
+                self.getVoltsFromChannel("CHAN2", self.ekspCurveTwo, self.ui.graphicsView)
                 pass
 
-        def getVoltsFromChannel(self, CH:str, dataCurve):
+        def getVoltsFromChannel(self, CH:str, dataCurve, graph:pG.PlotWidget):
                 data_from_channel, time_array, time_unit = self.Osciloscope.get_data_points_from_channel(CH)
-                self.ui.dataViewWidget.setLabel('bottom', 'Time', units=time_unit)
-                self.ui.dataViewWidget.setLabel('left', 'Voltage', units='V')
+                graph.setLabel('bottom', 'Time', units=time_unit)
+                graph.setLabel('left', 'Voltage', units='V')
                 dataCurve.setData(time_array, data_from_channel)
                 self.DebugMessage("Working on it ...", 1000)
                 pass
