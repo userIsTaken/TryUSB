@@ -46,6 +46,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 # close functions:
                 self.ui.actionU_daryti.triggered.connect(self.closeFn)
                 self.ui.closeButton.clicked.connect(self.closeFn)
+                self.ui.anotherExitButton.clicked.connect(self.closeFn)
                 self.ui.unused_button.clicked.connect(self.unusedFunction)
                 self.ui.findAllUSBTMC_devices_button.clicked.connect(self.scan_for_all_USBTMC_devices)
                 self.ui.clearErrorTextButton.clicked.connect(self.clearTextInIfoFiel)
@@ -291,6 +292,9 @@ class MainWindow(QtWidgets.QMainWindow):
                 icon4 = QtGui.QIcon()
                 icon4.addPixmap(QtGui.QPixmap("Icons/close.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
                 self.ui.actionU_daryti.setIcon(icon4)
+                icon5=QtGui.QIcon()
+                icon5.addPixmap(QtGui.QPixmap("Icons/exit.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+                self.ui.anotherExitButton.setIcon(icon5)
                 pass
 
         def getDatafromBothChannels_button_clicked(self):
