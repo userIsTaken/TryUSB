@@ -87,10 +87,11 @@ class MainWindow(QtWidgets.QMainWindow):
                 pass
 
         def loadEntriesFromConfig(self):
-
+                self.DebugMessage("Not implemented yet!")
                 pass
 
         def saveEntriesToConfig(self):
+                self.DebugMessage("Not implemented yet!")
                 pass
         
         def RenewGeneratorFields(self):
