@@ -30,6 +30,7 @@ class Configuration:
                 pass
 
         def USBTMCDevicesLoader(self, gui:Ui_MainGuiWindow):
+                path = None
                 self.config.read(self.FilePath)
                 section = "USBTMC devices"
                 for key in self.config[section]:
@@ -40,7 +41,8 @@ class Configuration:
                                         print(value)
                                         pass
                                 else:
-                                        gui.comboBox_for_generator.addItem(str(value))
+                                        idn, path = value.split("|")
+                                        gui.comboBox_for_generator.addItem(idn)
                                         #
                                         pass
                                 pass
@@ -51,6 +53,7 @@ class Configuration:
                                         print(value)
                                         pass
                                 else:
+
                                         gui.comboBox_for_oscillograph.addItem(str(value))
                                         pass
                                 pass
