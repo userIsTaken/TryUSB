@@ -1193,7 +1193,11 @@
             </widget>
            </item>
            <item row="1" column="1" colspan="3">
-            <widget class="QDoubleSpinBox" name="startAplitudeSweepBox"/>
+            <widget class="QDoubleSpinBox" name="startAmplitudeSweepBox">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+            </widget>
            </item>
            <item row="1" column="7">
             <widget class="QLabel" name="label_9">
@@ -1203,7 +1207,11 @@
             </widget>
            </item>
            <item row="1" column="8" colspan="2">
-            <widget class="QDoubleSpinBox" name="stopAplitudeSweepBox"/>
+            <widget class="QDoubleSpinBox" name="stopAmplitudeSweepBox">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+            </widget>
            </item>
            <item row="2" column="0" colspan="2">
             <widget class="QLabel" name="label_11">
@@ -1213,7 +1221,11 @@
             </widget>
            </item>
            <item row="2" column="2" colspan="4">
-            <widget class="QDoubleSpinBox" name="stepForAmplitudeSweepBox"/>
+            <widget class="QDoubleSpinBox" name="stepForAmplitudeSweepBox">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+            </widget>
            </item>
            <item row="2" column="8" colspan="3">
             <widget class="QLabel" name="label_13">
@@ -1226,7 +1238,11 @@
             </widget>
            </item>
            <item row="2" column="11" colspan="2">
-            <widget class="QDoubleSpinBox" name="fixedOffsetBox"/>
+            <widget class="QDoubleSpinBox" name="fixedOffsetBox">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+            </widget>
            </item>
            <item row="3" column="0" colspan="7">
             <widget class="QRadioButton" name="sweepOffsetRadioButton">
@@ -1265,7 +1281,11 @@
             </widget>
            </item>
            <item row="4" column="1" colspan="3">
-            <widget class="QDoubleSpinBox" name="startOffsetSweepBox"/>
+            <widget class="QDoubleSpinBox" name="startOffsetSweepBox">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+            </widget>
            </item>
            <item row="4" column="5" colspan="2">
             <widget class="QLabel" name="label_15">
@@ -1275,10 +1295,18 @@
             </widget>
            </item>
            <item row="4" column="8" colspan="2">
-            <widget class="QDoubleSpinBox" name="stopOffsetSweepBox"/>
+            <widget class="QDoubleSpinBox" name="stopOffsetSweepBox">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+            </widget>
            </item>
            <item row="4" column="12">
-            <widget class="QDoubleSpinBox" name="fixedAmplitudeBox"/>
+            <widget class="QDoubleSpinBox" name="fixedAmplitudeBox">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+            </widget>
            </item>
            <item row="5" column="0" colspan="2">
             <widget class="QLabel" name="label_19">
@@ -1288,10 +1316,17 @@
             </widget>
            </item>
            <item row="5" column="4" colspan="4">
-            <widget class="QDoubleSpinBox" name="stepForOffsetSweep"/>
+            <widget class="QDoubleSpinBox" name="stepForOffsetSweep">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+            </widget>
            </item>
            <item row="5" column="8" rowspan="2" colspan="3">
-            <widget class="QGroupBox" name="groupBox_9">
+            <widget class="QGroupBox" name="groupBoxForSweepAO">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -1337,7 +1372,11 @@
             </widget>
            </item>
            <item row="6" column="4" colspan="2">
-            <widget class="QSpinBox" name="timeForAmplOffsSweepBox"/>
+            <widget class="QSpinBox" name="timeForAmplOffsSweepBox">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+            </widget>
            </item>
            <item row="7" column="0" colspan="5">
             <widget class="QRadioButton" name="sweepTimeRadioButton">
@@ -1366,7 +1405,11 @@
             </widget>
            </item>
            <item row="8" column="1" colspan="2">
-            <widget class="QSpinBox" name="startTimeSweepBox"/>
+            <widget class="QSpinBox" name="startTimeSweepBox">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+            </widget>
            </item>
            <item row="8" column="4">
             <widget class="QLabel" name="label_24">
@@ -1376,10 +1419,17 @@
             </widget>
            </item>
            <item row="8" column="6" colspan="3">
-            <widget class="QSpinBox" name="stopTimeSweepBox"/>
+            <widget class="QSpinBox" name="stopTimeSweepBox">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+            </widget>
            </item>
            <item row="8" column="9" rowspan="2" colspan="3">
-            <widget class="QGroupBox" name="groupBox_6">
+            <widget class="QGroupBox" name="groupBoxForSwepTime">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -1425,7 +1475,11 @@
             </widget>
            </item>
            <item row="9" column="3" colspan="4">
-            <widget class="QDoubleSpinBox" name="stepForTimeSweepBox"/>
+            <widget class="QDoubleSpinBox" name="stepForTimeSweepBox">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+            </widget>
            </item>
            <item row="10" column="0" colspan="5">
             <widget class="QLabel" name="label_26">
@@ -1435,7 +1489,11 @@
             </widget>
            </item>
            <item row="10" column="5" colspan="4">
-            <widget class="QDoubleSpinBox" name="fixedAmplTimeSweepBox"/>
+            <widget class="QDoubleSpinBox" name="fixedAmplTimeSweepBox">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+            </widget>
            </item>
            <item row="11" column="0" colspan="7">
             <widget class="QLabel" name="label_27">
@@ -1445,7 +1503,11 @@
             </widget>
            </item>
            <item row="11" column="7" colspan="3">
-            <widget class="QDoubleSpinBox" name="fixedOffsTimeSweepBox"/>
+            <widget class="QDoubleSpinBox" name="fixedOffsTimeSweepBox">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+            </widget>
            </item>
           </layout>
          </item>

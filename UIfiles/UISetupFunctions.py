@@ -34,17 +34,70 @@ def SweepButtonsFunctionality(gui:Ui_MainGuiWindow):
         :return:
         '''
         if gui.sweepAmplitudeRadioButton.isChecked():
+                #enable controls for amplitude sweep:
+                gui.startAmplitudeSweepBox.setEnabled(True)
+                gui.stopAmplitudeSweepBox.setEnabled(True)
+                gui.fixedOffsetBox.setEnabled(True)
+                gui.stepForAmplitudeSweepBox.setEnabled(True)
+                gui.timeForAmplOffsSweepBox.setEnabled(True)
+                gui.groupBoxForSweepAO.setEnabled(True)
+                # disable controls for Offset and time sweeps:
+                gui.startOffsetSweepBox.setEnabled(False)
+                gui.stopOffsetSweepBox.setEnabled(False)
+                gui.stepForOffsetSweep.setEnabled(False)
+                gui.fixedAmplitudeBox.setEnabled(False)
                 #
-
+                gui.startTimeSweepBox.setEnabled(False)
+                gui.stopTimeSweepBox.setEnabled(False)
+                gui.stepForTimeSweepBox.setEnabled(False)
+                gui.groupBoxForSwepTime.setEnabled(False)
+                gui.fixedAmplTimeSweepBox.setEnabled(False)
+                gui.fixedOffsTimeSweepBox.setEnabled(False)
                 print("Sweep Ampl")
                 pass
         elif gui.sweepOffsetRadioButton.isChecked():
+                gui.startOffsetSweepBox.setEnabled(True)
+                gui.stopOffsetSweepBox.setEnabled(True)
+                gui.stepForOffsetSweep.setEnabled(True)
+                gui.fixedAmplitudeBox.setEnabled(True)
+                gui.timeForAmplOffsSweepBox.setEnabled(True)
+                gui.groupBoxForSweepAO.setEnabled(True)
                 print("Sweep OFFS")
                 #
+                gui.startAmplitudeSweepBox.setEnabled(False)
+                gui.stopAmplitudeSweepBox.setEnabled(False)
+                gui.fixedOffsetBox.setEnabled(False)
+                gui.stepForAmplitudeSweepBox.setEnabled(False)
+                #
+                gui.startTimeSweepBox.setEnabled(False)
+                gui.stopTimeSweepBox.setEnabled(False)
+                gui.stepForTimeSweepBox.setEnabled(False)
+                gui.groupBoxForSwepTime.setEnabled(False)
+                gui.fixedAmplTimeSweepBox.setEnabled(False)
+                gui.fixedOffsTimeSweepBox.setEnabled(False)
+
                 pass
         elif gui.sweepTimeRadioButton.isChecked():
+                gui.startTimeSweepBox.setEnabled(True)
+                gui.stopTimeSweepBox.setEnabled(True)
+                gui.stepForTimeSweepBox.setEnabled(True)
+                gui.groupBoxForSwepTime.setEnabled(True)
+                gui.fixedAmplTimeSweepBox.setEnabled(True)
+                gui.fixedOffsTimeSweepBox.setEnabled(True)
                 print("Sweep time")
                 #
+                gui.startAmplitudeSweepBox.setEnabled(False)
+                gui.stopAmplitudeSweepBox.setEnabled(False)
+                gui.fixedOffsetBox.setEnabled(False)
+                gui.stepForAmplitudeSweepBox.setEnabled(False)
+                gui.timeForAmplOffsSweepBox.setEnabled(False)
+                gui.groupBoxForSweepAO.setEnabled(False)
+                #
+                gui.startOffsetSweepBox.setEnabled(False)
+                gui.stopOffsetSweepBox.setEnabled(False)
+                gui.stepForOffsetSweep.setEnabled(False)
+                gui.fixedAmplitudeBox.setEnabled(False)
+
                 pass
         else:
                 print("Some shit in SweepButtonsFunctionality")
