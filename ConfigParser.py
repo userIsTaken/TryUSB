@@ -40,6 +40,8 @@ class Configuration:
                                         print(value)
                                         pass
                                 else:
+                                        gui.comboBox_for_generator.addItem(str(value))
+                                        #
                                         pass
                                 pass
                         elif key == "oscilograph":
@@ -49,6 +51,10 @@ class Configuration:
                                         print(value)
                                         pass
                                 else:
+                                        gui.comboBox_for_oscillograph.addItem(str(value))
                                         pass
                                 pass
+                        else:
+                                pass
+
                 pass
