@@ -482,6 +482,9 @@ class MainWindow(QtWidgets.QMainWindow):
                         self.ui.tableWithTCPIPDevices.cellWidget(i,1).addItems(listOfDevices)
                         self.ui.tableWithTCPIPDevices.setCellWidget(i,2, QtWidgets.QCheckBox())
                         self.ui.tableWithTCPIPDevices.cellWidget(i,2).setChecked(False)
+                        cell = QtWidgets.QTableWidgetItem()
+                        cell.setText(str(i))
+                        self.ui.tableWithTCPIPDevices.setItem(i, 4, cell)
                         self.ui.tableWithTCPIPDevices.selectRow(i)
                 else:
                         self.ui.tableWithTCPIPDevices.setRowCount(1)
@@ -489,6 +492,9 @@ class MainWindow(QtWidgets.QMainWindow):
                         self.ui.tableWithTCPIPDevices.cellWidget(1, 1).addItems(listOfDevices)
                         self.ui.tableWithTCPIPDevices.setCellWidget(1, 2, QtWidgets.QCheckBox())
                         self.ui.tableWithTCPIPDevices.cellWidget(1, 2).setChecked(False)
+                        cell = QtWidgets.QTableWidgetItem()
+                        cell.setText(str(1))
+                        self.ui.tableWithTCPIPDevices.setItem(1, 4, cell)
                         self.ui.tableWithTCPIPDevices.selectRow(1)
                 pass
                 
