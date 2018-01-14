@@ -97,6 +97,8 @@ class MainWindow(QtWidgets.QMainWindow):
                         pass
                 except Exception as ex:
                         self.DebugLog(str(ex))
+                        #  we will continue even if renew function fails - we need this for debugging reasons
+                        SweepButtonsFunctionality(self.ui)
                         pass
                 pass
 
