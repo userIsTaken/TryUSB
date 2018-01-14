@@ -22,7 +22,11 @@ class Configuration:
                 pass
 
         def USBTMCDevicesSaver(self, gui:Ui_MainGuiWindow):
+                """
 
+                :param gui:
+                :return:
+                """
                 pass
 
         def USBTMCDevicesLoader(self, gui:Ui_MainGuiWindow):
