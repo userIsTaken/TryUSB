@@ -1603,6 +1603,16 @@
          </item>
         </layout>
        </widget>
+       <widget class="QWidget" name="rawDataViewPage">
+        <attribute name="title">
+         <string>Pliki duomenys</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayout_24">
+         <item row="0" column="0">
+          <widget class="QPlainTextEdit" name="rawDataViewEdit"/>
+         </item>
+        </layout>
+       </widget>
       </widget>
      </widget>
     </item>
