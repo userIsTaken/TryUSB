@@ -99,7 +99,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 pass
 
         def saveEntriesToConfig(self):
-                # TODO implementĄ
+                # TODO implement
                 self.DebugMessage("Not implemented yet!")
                 pass
         
