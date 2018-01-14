@@ -60,10 +60,24 @@ def SweepButtonsFunctionality(gui:Ui_MainGuiWindow):
                 period = gui.periodBox.value()
                 start_amplitude = amplitude
                 stop_amplitude = amplitude + 2.0
-                start_offset = offset;
-                stop_offset = offset + 2.0
-                period_start = period
-                period_stop = period + 10.0
+                # start_offset = offset;
+                # stop_offset = offset + 2.0
+                # period_start = period
+                # period_stop = period + 10.0
+                gui.startAmplitudeSweepBox.setValue(start_amplitude)
+                gui.stopAmplitudeSweepBox.setValue(stop_amplitude)
+                gui.fixedOffsetBox.setValue(offset)
+                gui.timeForAmplOffsSweepBox.setValue(period)
+                if gui.periodRadioButton_mS.isChecked():
+                        gui.time_unit_mS.setChecked(True)
+                elif gui.periodRadioButton_uS.isChecked():
+                        gui.time_unit_uS.setChecked(True)
+                        pass
+                elif gui.periodradioButton_S.isChecked():
+                        gui.time_unit_S.setChecked(True)
+                        pass
+                else:
+                        print("Some shit happens")
                 pass
         elif gui.sweepOffsetRadioButton.isChecked():
                 gui.startOffsetSweepBox.setEnabled(True)
@@ -91,13 +105,13 @@ def SweepButtonsFunctionality(gui:Ui_MainGuiWindow):
                 period = gui.periodBox.value()
                 start_amplitude = amplitude
                 stop_amplitude = amplitude + 2.0
-                # start_offset = offset;
-                # stop_offset = offset + 2.0
-                # period_start = period
-                # period_stop = period + 10.0
-                gui.startAmplitudeSweepBox.setValue(start_amplitude)
-                gui.stopAmplitudeSweepBox.setValue(stop_amplitude)
-                gui.fixedOffsetBox.setValue(offset)
+                start_offset = offset;
+                stop_offset = offset + 2.0
+                period_start = period
+                period_stop = period + 10.0
+                gui.startOffsetSweepBox.setValue(start_offset)
+                gui.stopOffsetSweepBox.setValue(stop_offset)
+                gui.fixedAmplitudeBox.setValue(amplitude)
                 gui.timeForAmplOffsSweepBox.setValue(period)
                 if gui.periodRadioButton_mS.isChecked():
                         gui.time_unit_mS.setChecked(True)
@@ -134,12 +148,23 @@ def SweepButtonsFunctionality(gui:Ui_MainGuiWindow):
                 amplitude = gui.voltageAmplitudeBox.value()
                 offset = gui.voltageOffsetBox.value()
                 period = gui.periodBox.value()
-                start_amplitude = amplitude
-                stop_amplitude = amplitude + 2.0
-                start_offset = offset
-                stop_offset = offset + 2.0
                 period_start = period
                 period_stop = period + 10.0
+                gui.fixedOffsTimeSweepBox.setValue(offset)
+                gui.fixedAmplTimeSweepBox.setValue(amplitude)
+                gui.startTimeSweepBox.setValue(period_start)
+                gui.stopTimeSweepBox.setValue(period_stop)
+                if gui.periodRadioButton_mS.isChecked():
+                        gui.time_unit_mS_t.setChecked(True)
+                elif gui.periodRadioButton_uS.isChecked():
+                        gui.time_unit_us_t.setChecked(True)
+                        pass
+                elif gui.periodradioButton_S.isChecked():
+                        gui.time_unit_S_t.setChecked(True)
+                        pass
+                else:
+                        print("Some shit happens")
+                pass
                 pass
         else:
                 print("Some shit in SweepButtonsFunctionality")
