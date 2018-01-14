@@ -87,10 +87,12 @@ class MainWindow(QtWidgets.QMainWindow):
                 pass
 
         def loadEntriesFromConfig(self):
+                # TODO implement!
                 self.DebugMessage("Not implemented yet!")
                 pass
 
         def saveEntriesToConfig(self):
+                # TODO implementĄ
                 self.DebugMessage("Not implemented yet!")
                 pass
         
