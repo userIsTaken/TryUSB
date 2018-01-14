@@ -3,6 +3,8 @@ from UIfiles.GUIThread import Ui_MainGuiWindow
 import datetime as dt
 
 def SetupWindow(gui:Ui_MainGuiWindow):
+        # icons:
+
         icon2 = QtGui.QIcon()
         icon2.addPixmap(QtGui.QPixmap("Icons/save.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         gui.actionI_saugoti_DAT.setIcon(icon2)
