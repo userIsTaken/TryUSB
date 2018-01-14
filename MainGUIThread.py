@@ -16,7 +16,7 @@ from Generators.TektronixGenerator import *
 from MainExperimentLoopThread import *
 from DummyFiles.DummyFunctions import *
 from Units.UnitCheck import *
-from UIfiles.UIsetupFunctions import *
+from UIfiles.UISetupFunctions import *
 # Very global dictionary for all devices?
 # prettier graphs:
 pG.setConfigOptions(antialias=True)
