@@ -53,7 +53,7 @@ class Configuration:
                                         print(value)
                                         pass
                                 else:
-
+                                        idn, path = value.split("|")
                                         gui.comboBox_for_oscillograph.addItem(str(value))
                                         pass
                                 pass
