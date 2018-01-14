@@ -1165,6 +1165,12 @@
           <layout class="QGridLayout" name="gridLayout_21">
            <item row="0" column="0" colspan="5">
             <widget class="QRadioButton" name="sweepAmplitudeRadioButton">
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
              <property name="text">
               <string>Keisti amplitudę:</string>
              </property>
@@ -1218,6 +1224,12 @@
            </item>
            <item row="3" column="0" rowspan="2" colspan="5">
             <widget class="QRadioButton" name="sweepOffsetRadioButton">
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
              <property name="text">
               <string>Keisti priešįtampį:</string>
              </property>
@@ -1337,6 +1349,12 @@
           <layout class="QGridLayout" name="gridLayout_24">
            <item row="0" column="0" colspan="3">
             <widget class="QRadioButton" name="sweepTimeRadioButton">
+             <property name="font">
+              <font>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
              <property name="text">
               <string>Keisti trukmę</string>
              </property>
