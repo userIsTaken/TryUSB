@@ -90,7 +90,14 @@ class MainWindow(QtWidgets.QMainWindow):
                 pass
 
         def SetSweepFunctions(self):
-                SweepButtonsFunctionality(self.ui)
+                # we need always check if we have a proper status of generator:
+                try:
+                        self.RenewGeneratorFields()
+                        SweepButtonsFunctionality(self.ui)
+                        pass
+                except Exception as ex:
+                        self.DebugLog(str(ex))
+                        pass
                 pass
 
         def loadEntriesFromConfig(self):
