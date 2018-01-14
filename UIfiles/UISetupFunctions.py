@@ -67,6 +67,7 @@ def SweepButtonsFunctionality(gui:Ui_MainGuiWindow):
                 gui.startAmplitudeSweepBox.setValue(start_amplitude)
                 gui.stopAmplitudeSweepBox.setValue(stop_amplitude)
                 gui.fixedOffsetBox.setValue(offset)
+                gui.stepForAmplitudeSweepBox.setValue(1.0)
                 gui.timeForAmplOffsSweepBox.setValue(period)
                 if gui.periodRadioButton_mS.isChecked():
                         gui.time_unit_mS.setChecked(True)
@@ -113,6 +114,7 @@ def SweepButtonsFunctionality(gui:Ui_MainGuiWindow):
                 gui.stopOffsetSweepBox.setValue(stop_offset)
                 gui.fixedAmplitudeBox.setValue(amplitude)
                 gui.timeForAmplOffsSweepBox.setValue(period)
+                gui.stepForOffsetSweep.setValue(1.0)
                 if gui.periodRadioButton_mS.isChecked():
                         gui.time_unit_mS.setChecked(True)
                 elif gui.periodRadioButton_uS.isChecked():
@@ -154,6 +156,7 @@ def SweepButtonsFunctionality(gui:Ui_MainGuiWindow):
                 gui.fixedAmplTimeSweepBox.setValue(amplitude)
                 gui.startTimeSweepBox.setValue(period_start)
                 gui.stopTimeSweepBox.setValue(period_stop)
+                gui.stepForTimeSweepBox.setValue(1.0)
                 if gui.periodRadioButton_mS.isChecked():
                         gui.time_unit_mS_t.setChecked(True)
                 elif gui.periodRadioButton_uS.isChecked():
@@ -164,7 +167,6 @@ def SweepButtonsFunctionality(gui:Ui_MainGuiWindow):
                         pass
                 else:
                         print("Some shit happens")
-                pass
                 pass
         else:
                 print("Some shit in SweepButtonsFunctionality")

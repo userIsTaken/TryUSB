@@ -1242,6 +1242,12 @@
              <property name="enabled">
               <bool>false</bool>
              </property>
+             <property name="minimum">
+              <double>-20.000000000000000</double>
+             </property>
+             <property name="maximum">
+              <double>20.000000000000000</double>
+             </property>
             </widget>
            </item>
            <item row="3" column="0" colspan="7">
@@ -1285,6 +1291,12 @@
              <property name="enabled">
               <bool>false</bool>
              </property>
+             <property name="minimum">
+              <double>-20.000000000000000</double>
+             </property>
+             <property name="maximum">
+              <double>20.000000000000000</double>
+             </property>
             </widget>
            </item>
            <item row="4" column="5" colspan="2">
@@ -1298,6 +1310,12 @@
             <widget class="QDoubleSpinBox" name="stopOffsetSweepBox">
              <property name="enabled">
               <bool>false</bool>
+             </property>
+             <property name="minimum">
+              <double>-20.000000000000000</double>
+             </property>
+             <property name="maximum">
+              <double>20.000000000000000</double>
              </property>
             </widget>
            </item>
@@ -1506,6 +1524,12 @@
             <widget class="QDoubleSpinBox" name="fixedOffsTimeSweepBox">
              <property name="enabled">
               <bool>false</bool>
+             </property>
+             <property name="minimum">
+              <double>-20.000000000000000</double>
+             </property>
+             <property name="maximum">
+              <double>20.000000000000000</double>
              </property>
             </widget>
            </item>
