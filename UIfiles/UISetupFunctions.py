@@ -53,7 +53,7 @@ def SweepButtonsFunctionality(gui:Ui_MainGuiWindow):
                 gui.groupBoxForSwepTime.setEnabled(False)
                 gui.fixedAmplTimeSweepBox.setEnabled(False)
                 gui.fixedOffsTimeSweepBox.setEnabled(False)
-                print("Sweep Ampl")
+                # print("Sweep Ampl")
                 # fill information from Generator tab:
                 amplitude = gui.voltageAmplitudeBox.value()
                 offset = gui.voltageOffsetBox.value()
@@ -87,7 +87,7 @@ def SweepButtonsFunctionality(gui:Ui_MainGuiWindow):
                 gui.fixedAmplitudeBox.setEnabled(True)
                 gui.timeForAmplOffsSweepBox.setEnabled(True)
                 gui.groupBoxForSweepAO.setEnabled(True)
-                print("Sweep OFFS")
+                # print("Sweep OFFS")
                 #
                 gui.startAmplitudeSweepBox.setEnabled(False)
                 gui.stopAmplitudeSweepBox.setEnabled(False)
@@ -133,7 +133,7 @@ def SweepButtonsFunctionality(gui:Ui_MainGuiWindow):
                 gui.groupBoxForSwepTime.setEnabled(True)
                 gui.fixedAmplTimeSweepBox.setEnabled(True)
                 gui.fixedOffsTimeSweepBox.setEnabled(True)
-                print("Sweep time")
+                # print("Sweep time")
                 #
                 gui.startAmplitudeSweepBox.setEnabled(False)
                 gui.stopAmplitudeSweepBox.setEnabled(False)
