@@ -499,7 +499,7 @@ class MainWindow(QtWidgets.QMainWindow):
                         self.Generator.Close()
                 if self.Osciloscope is not None:
                         self.Osciloscope.close()
-                print("Debug: exit")
+                # print("Debug: exit")
                 # čia turi būti funkcija, atsijungianti nuo prietaisų ir juos nustatanti į defaul režimą;
                 sys.exit(0)
                 pass
