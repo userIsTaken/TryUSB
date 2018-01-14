@@ -104,6 +104,8 @@ class MainWindow(QtWidgets.QMainWindow):
 
         def loadEntriesFromConfig(self):
                 # TODO implement!
+                configLoader = Configuration("Configs/Entries.ini")
+                configLoader.USBTMCDevicesLoader(self.ui)
                 self.DebugMessage("Not implemented yet!")
                 pass
 

@@ -31,4 +31,24 @@ class Configuration:
 
         def USBTMCDevicesLoader(self, gui:Ui_MainGuiWindow):
                 self.config.read(self.FilePath)
+                section = "USBTMC devices"
+                for key in self.config[section]:
+                        if key == "generator":
+                                print("gen")
+                                value = self.config[section][key]
+                                if len(value) == 0:
+                                        print(value)
+                                        pass
+                                else:
+                                        pass
+                                pass
+                        elif key == "oscilograph":
+                                print("osc")
+                                value = self.config[section][key]
+                                if len(value) == 0:
+                                        print(value)
+                                        pass
+                                else:
+                                        pass
+                                pass
                 pass
