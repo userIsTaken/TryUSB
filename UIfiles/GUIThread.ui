@@ -1134,7 +1134,7 @@
           </widget>
          </item>
          <item row="0" column="3" rowspan="5">
-          <widget class="PlotWidget" name="graphicsView"/>
+          <widget class="PlotWidget" name="experimentDataViewPlot"/>
          </item>
          <item row="1" column="0">
           <layout class="QGridLayout" name="gridLayout_21">

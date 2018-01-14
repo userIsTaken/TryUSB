@@ -66,8 +66,8 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.dataCurveTwo = self.ui.dataViewWidget.plot()
                 #eksperimento kreives:
                 self.ui.startExperimentButton.clicked.connect(self.ekspMatavimas_clicked)
-                self.ekspCurveOne = self.ui.graphicsView.plot()
-                self.ekspCurveTwo = self.ui.graphicsView.plot()
+                self.ekspCurveOne = self.ui.experimentDataViewPlot.plot()
+                self.ekspCurveTwo = self.ui.experimentDataViewPlot.plot()
                 #---------------------
                 self.SetupWindow()
                 self.ui.useRegularUpdateBox.stateChanged.connect(self.StateChanged)
@@ -361,7 +361,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 :return:
                 '''
                 self.ui.dataViewWidget.plotItem.showGrid(True, True, 1.0)
-                
+                self.ui.experimentDataViewPlot.plotItem.showGrid(True, True, 1.0)
                 pass
                 
         def changeOutputCH1(self):
