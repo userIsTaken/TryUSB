@@ -58,7 +58,6 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.ui.runInitiallConfiguration_button.clicked.connect(self.runInitGenerator)
                 self.ui.InputOutputCH1Button.clicked.connect(self.changeOutputCH1)
                 self.ui.InputOutputCH2Button.clicked.connect(self.changeOutputCH2)
-                self.setupPlotWidget()
                 # Other signals:
                 self.ui.connectToOscilograph_button.clicked.connect(self.connectOscilograph)
                 self.ui.getVoltsFromCH1_button.clicked.connect(self.getVoltsFromCH1_button_clicked)
@@ -350,15 +349,15 @@ class MainWindow(QtWidgets.QMainWindow):
         def getVoltsFromCH1_button_clicked(self):
                 self.getVoltsFromChannel("CHAN1", self.dataCurveOne)
                 pass
-        def setupPlotWidget(self):
-                '''
-                Draw correct axes and so on:
-                
-                :return:
-                '''
-                self.ui.dataViewWidget.plotItem.showGrid(True, True, 1.0)
-                self.ui.experimentDataViewPlot.plotItem.showGrid(True, True, 1.0)
-                pass
+        # def setupPlotWidget(self):
+        #         '''
+        #         Draw correct axes and so on:
+        #
+        #         :return:
+        #         '''
+        #         self.ui.dataViewWidget.plotItem.showGrid(True, True, 1.0)
+        #         self.ui.experimentDataViewPlot.plotItem.showGrid(True, True, 1.0)
+        #         pass
                 
         def changeOutputCH1(self):
                 if(self.ui.InputOutputCH1Button.isChecked()):

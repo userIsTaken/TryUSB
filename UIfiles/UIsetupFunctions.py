@@ -1,5 +1,6 @@
 from PyQt5 import QtCore, QtWidgets, QtGui
 from UIfiles.GUIThread import Ui_MainGuiWindow
+import datetime as dt
 
 def SetupWindow(gui:Ui_MainGuiWindow):
         icon2 = QtGui.QIcon()
@@ -16,4 +17,10 @@ def SetupWindow(gui:Ui_MainGuiWindow):
         icon5 = QtGui.QIcon()
         icon5.addPixmap(QtGui.QPixmap("Icons/exit.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         gui.anotherExitButton.setIcon(icon5)
+        #  insert current date:
+        cDate = dt.datetime.now()
+        gui.dateEdit.setDate(cDate)
+        # print(cDate)
+        gui.dataViewWidget.plotItem.showGrid(True, True, 1.0)
+        gui.experimentDataViewPlot.plotItem.showGrid(True, True, 1.0)
         pass
