@@ -466,8 +466,8 @@ class MainWindow(QtWidgets.QMainWindow):
         
         
         def setupTable(self):
-                self.ui.tableWithTCPIPDevices.setColumnCount(4)
-                self.ui.tableWithTCPIPDevices.setHorizontalHeaderLabels(["TCP/IP adresas","Gen/Osc?", "Naudoti?", "*IDN?"])
+                self.ui.tableWithTCPIPDevices.setColumnCount(5)
+                self.ui.tableWithTCPIPDevices.setHorizontalHeaderLabels(["TCP/IP adresas","Gen/Osc?", "Naudoti?", "*IDN?", "Nr."])
                 self.ui.tableWithTCPIPDevices.setColumnWidth(0, 160)
                 self.ui.tableWithTCPIPDevices.setColumnWidth(1, 160)
                 pass

@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainGuiWindow(object):
     def setupUi(self, MainGuiWindow):
         MainGuiWindow.setObjectName("MainGuiWindow")
-        MainGuiWindow.resize(1213, 921)
+        MainGuiWindow.resize(1213, 906)
         self.centralwidget = QtWidgets.QWidget(MainGuiWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout_3 = QtWidgets.QGridLayout(self.centralwidget)
@@ -145,6 +145,7 @@ class Ui_MainGuiWindow(object):
         self.tableWithTCPIPDevices.setObjectName("tableWithTCPIPDevices")
         self.tableWithTCPIPDevices.setColumnCount(0)
         self.tableWithTCPIPDevices.setRowCount(0)
+        self.tableWithTCPIPDevices.horizontalHeader().setDefaultSectionSize(250)
         self.tableWithTCPIPDevices.horizontalHeader().setStretchLastSection(True)
         self.gridLayout_4.addWidget(self.tableWithTCPIPDevices, 1, 0, 1, 1)
         self.devicesTabWidget.addTab(self.tcpipDevicesTab, "")
@@ -748,7 +749,7 @@ class Ui_MainGuiWindow(object):
         self.menubar.addAction(self.menuFailas.menuAction())
 
         self.retranslateUi(MainGuiWindow)
-        self.devicesTabWidget.setCurrentIndex(2)
+        self.devicesTabWidget.setCurrentIndex(1)
         self.tabWidget.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(MainGuiWindow)
 
