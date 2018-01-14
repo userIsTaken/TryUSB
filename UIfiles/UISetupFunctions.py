@@ -91,10 +91,24 @@ def SweepButtonsFunctionality(gui:Ui_MainGuiWindow):
                 period = gui.periodBox.value()
                 start_amplitude = amplitude
                 stop_amplitude = amplitude + 2.0
-                start_offset = offset;
-                stop_offset = offset + 2.0
-                period_start = period
-                period_stop = period + 10.0
+                # start_offset = offset;
+                # stop_offset = offset + 2.0
+                # period_start = period
+                # period_stop = period + 10.0
+                gui.startAmplitudeSweepBox.setValue(start_amplitude)
+                gui.stopAmplitudeSweepBox.setValue(stop_amplitude)
+                gui.fixedOffsetBox.setValue(offset)
+                gui.timeForAmplOffsSweepBox.setValue(period)
+                if gui.periodRadioButton_mS.isChecked():
+                        gui.time_unit_mS.setChecked(True)
+                elif gui.periodRadioButton_uS.isChecked():
+                        gui.time_unit_uS.setChecked(True)
+                        pass
+                elif gui.periodradioButton_S.isChecked():
+                        gui.time_unit_S.setChecked(True)
+                        pass
+                else:
+                        print("Some shit happens")
                 pass
         elif gui.sweepTimeRadioButton.isChecked():
                 gui.startTimeSweepBox.setEnabled(True)
