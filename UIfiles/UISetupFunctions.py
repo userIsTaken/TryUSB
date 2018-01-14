@@ -54,6 +54,16 @@ def SweepButtonsFunctionality(gui:Ui_MainGuiWindow):
                 gui.fixedAmplTimeSweepBox.setEnabled(False)
                 gui.fixedOffsTimeSweepBox.setEnabled(False)
                 print("Sweep Ampl")
+                # fill information from Generator tab:
+                amplitude = gui.voltageAmplitudeBox.value()
+                offset = gui.voltageOffsetBox.value()
+                period = gui.periodBox.value()
+                start_amplitude = amplitude
+                stop_amplitude = amplitude + 2.0
+                start_offset = offset;
+                stop_offset = offset + 2.0
+                period_start = period
+                period_stop = period + 10.0
                 pass
         elif gui.sweepOffsetRadioButton.isChecked():
                 gui.startOffsetSweepBox.setEnabled(True)
@@ -75,7 +85,16 @@ def SweepButtonsFunctionality(gui:Ui_MainGuiWindow):
                 gui.groupBoxForSwepTime.setEnabled(False)
                 gui.fixedAmplTimeSweepBox.setEnabled(False)
                 gui.fixedOffsTimeSweepBox.setEnabled(False)
-
+                # fill information from Generator tab:
+                amplitude = gui.voltageAmplitudeBox.value()
+                offset = gui.voltageOffsetBox.value()
+                period = gui.periodBox.value()
+                start_amplitude = amplitude
+                stop_amplitude = amplitude + 2.0
+                start_offset = offset;
+                stop_offset = offset + 2.0
+                period_start = period
+                period_stop = period + 10.0
                 pass
         elif gui.sweepTimeRadioButton.isChecked():
                 gui.startTimeSweepBox.setEnabled(True)
@@ -97,7 +116,16 @@ def SweepButtonsFunctionality(gui:Ui_MainGuiWindow):
                 gui.stopOffsetSweepBox.setEnabled(False)
                 gui.stepForOffsetSweep.setEnabled(False)
                 gui.fixedAmplitudeBox.setEnabled(False)
-
+                # fill information from Generator tab:
+                amplitude = gui.voltageAmplitudeBox.value()
+                offset = gui.voltageOffsetBox.value()
+                period = gui.periodBox.value()
+                start_amplitude = amplitude
+                stop_amplitude = amplitude + 2.0
+                start_offset = offset;
+                stop_offset = offset + 2.0
+                period_start = period
+                period_stop = period + 10.0
                 pass
         else:
                 print("Some shit in SweepButtonsFunctionality")
