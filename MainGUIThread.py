@@ -84,6 +84,13 @@ class MainWindow(QtWidgets.QMainWindow):
                 # Configuration saving and loading:
                 self.ui.saveEntriesButton.clicked.connect(self.saveEntriesToConfig)
                 self.ui.loadEntriesButton.clicked.connect(self.loadEntriesFromConfig)
+                self.ui.sweepAmplitudeRadioButton.clicked.connect(self.SetSweepFunctions)
+                self.ui.sweepOffsetRadioButton.clicked.connect(self.SetSweepFunctions)
+                self.ui.sweepTimeRadioButton.clicked.connect(self.SetSweepFunctions)
+                pass
+
+        def SetSweepFunctions(self):
+                SweepButtonsFunctionality(self.ui)
                 pass
 
         def loadEntriesFromConfig(self):

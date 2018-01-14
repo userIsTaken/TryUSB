@@ -26,3 +26,26 @@ def SetupWindow(gui:Ui_MainGuiWindow):
         gui.dataViewWidget.plotItem.showGrid(True, True, 1.0)
         gui.experimentDataViewPlot.plotItem.showGrid(True, True, 1.0)
         pass
+
+def SweepButtonsFunctionality(gui:Ui_MainGuiWindow):
+        '''
+
+        :param gui: Main Widget of window
+        :return:
+        '''
+        if gui.sweepAmplitudeRadioButton.isChecked():
+                #
+
+                print("Sweep Ampl")
+                pass
+        elif gui.sweepOffsetRadioButton.isChecked():
+                print("Sweep OFFS")
+                #
+                pass
+        elif gui.sweepTimeRadioButton.isChecked():
+                print("Sweep time")
+                #
+                pass
+        else:
+                print("Some shit in SweepButtonsFunctionality")
+        pass
