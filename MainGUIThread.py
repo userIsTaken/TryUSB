@@ -158,6 +158,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 pass
         
         def WorkerEnded(self, i:int):
+                # TODO bad bad behaviour - fix it!
                 print("Gauta", str(i))
                 self.ui.startExperimentButton.setText("Pradėti")
                 # Bad bad behaviour   :
