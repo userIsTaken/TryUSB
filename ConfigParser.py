@@ -1,5 +1,6 @@
 import os, sys
 import configparser
+from UIfiles.GUIThread import Ui_MainGuiWindow
 
 class Configuration:
         def __init__(self, FilePath):
@@ -20,8 +21,10 @@ class Configuration:
         def ConfigFileSaver(self, tableWidget):
                 pass
 
-        def USBTMCDevicesSaver(self):
+        def USBTMCDevicesSaver(self, gui:Ui_MainGuiWindow):
+
                 pass
 
-        def USBTMCDevicesLoader(self):
+        def USBTMCDevicesLoader(self, gui:Ui_MainGuiWindow):
+                self.config.read(self.FilePath)
                 pass
