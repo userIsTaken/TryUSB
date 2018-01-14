@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'GUIThread.ui'
 #
-# Created by: PyQt5 UI code generator 5.7
+# Created by: PyQt5 UI code generator 5.8.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -39,7 +39,6 @@ class Ui_MainGuiWindow(object):
         self.usbtmcTab = QtWidgets.QWidget()
         self.usbtmcTab.setObjectName("usbtmcTab")
         self.gridLayout_5 = QtWidgets.QGridLayout(self.usbtmcTab)
-        self.gridLayout_5.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_5.setObjectName("gridLayout_5")
         self.gridLayout_2 = QtWidgets.QGridLayout()
         self.gridLayout_2.setObjectName("gridLayout_2")
@@ -117,7 +116,6 @@ class Ui_MainGuiWindow(object):
         self.tcpipDevicesTab = QtWidgets.QWidget()
         self.tcpipDevicesTab.setObjectName("tcpipDevicesTab")
         self.gridLayout_4 = QtWidgets.QGridLayout(self.tcpipDevicesTab)
-        self.gridLayout_4.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_4.setObjectName("gridLayout_4")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
@@ -153,7 +151,6 @@ class Ui_MainGuiWindow(object):
         self.experimentParametersTabPage = QtWidgets.QWidget()
         self.experimentParametersTabPage.setObjectName("experimentParametersTabPage")
         self.gridLayout_28 = QtWidgets.QGridLayout(self.experimentParametersTabPage)
-        self.gridLayout_28.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_28.setObjectName("gridLayout_28")
         self.groupBox_7 = QtWidgets.QGroupBox(self.experimentParametersTabPage)
         self.groupBox_7.setObjectName("groupBox_7")
@@ -206,7 +203,6 @@ class Ui_MainGuiWindow(object):
         self.oscligraph_tab = QtWidgets.QWidget()
         self.oscligraph_tab.setObjectName("oscligraph_tab")
         self.gridLayout_10 = QtWidgets.QGridLayout(self.oscligraph_tab)
-        self.gridLayout_10.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_10.setObjectName("gridLayout_10")
         self.connectToOscilograph_button = QtWidgets.QPushButton(self.oscligraph_tab)
         self.connectToOscilograph_button.setObjectName("connectToOscilograph_button")
@@ -282,7 +278,6 @@ class Ui_MainGuiWindow(object):
         self.generator_tab = QtWidgets.QWidget()
         self.generator_tab.setObjectName("generator_tab")
         self.gridLayout_20 = QtWidgets.QGridLayout(self.generator_tab)
-        self.gridLayout_20.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_20.setObjectName("gridLayout_20")
         self.gridLayout_16 = QtWidgets.QGridLayout()
         self.gridLayout_16.setObjectName("gridLayout_16")
@@ -486,7 +481,6 @@ class Ui_MainGuiWindow(object):
         self.expSessionTab = QtWidgets.QWidget()
         self.expSessionTab.setObjectName("expSessionTab")
         self.gridLayout_25 = QtWidgets.QGridLayout(self.expSessionTab)
-        self.gridLayout_25.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_25.setObjectName("gridLayout_25")
         self.groupBox_5 = QtWidgets.QGroupBox(self.expSessionTab)
         self.groupBox_5.setObjectName("groupBox_5")
@@ -652,7 +646,6 @@ class Ui_MainGuiWindow(object):
         self.tab = QtWidgets.QWidget()
         self.tab.setObjectName("tab")
         self.gridLayout = QtWidgets.QGridLayout(self.tab)
-        self.gridLayout.setContentsMargins(0, 0, 0, 0)
         self.gridLayout.setObjectName("gridLayout")
         self.clearErrorTextButton = QtWidgets.QPushButton(self.tab)
         self.clearErrorTextButton.setObjectName("clearErrorTextButton")
