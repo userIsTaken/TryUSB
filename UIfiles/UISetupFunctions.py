@@ -136,7 +136,7 @@ def SweepButtonsFunctionality(gui:Ui_MainGuiWindow):
                 period = gui.periodBox.value()
                 start_amplitude = amplitude
                 stop_amplitude = amplitude + 2.0
-                start_offset = offset;
+                start_offset = offset
                 stop_offset = offset + 2.0
                 period_start = period
                 period_stop = period + 10.0
