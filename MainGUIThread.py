@@ -315,8 +315,8 @@ class MainWindow(QtWidgets.QMainWindow):
                 pass
         
         def ekspMatavimas_clicked(self):
-                self.getVoltsFromChannel("CHAN1", self.ekspCurveOne, self.ui.graphicsView)
-                self.getVoltsFromChannel("CHAN2", self.ekspCurveTwo, self.ui.graphicsView)
+                self.getVoltsFromChannel("CHAN1", self.ekspCurveOne, self.ui.experimentDataViewPlot)
+                self.getVoltsFromChannel("CHAN2", self.ekspCurveTwo, self.ui.experimentDataViewPlot)
                 pass
 
         def getVoltsFromChannel(self, CH:str, dataCurve, graph:pG.PlotWidget):
