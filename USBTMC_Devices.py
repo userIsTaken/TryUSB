@@ -67,6 +67,8 @@ class SimpleInstrument:
 class RigolDS1000SeriesScope:
         def __init__(self, device):
                 self.meas = USBTMC(device)
+                self.CH1 = "CHAN1"
+                self.CH2 = "CHAN2"
                 # Initialization part
         def write(self, command):
                 """Send an arbitrary command directly to the scope"""
