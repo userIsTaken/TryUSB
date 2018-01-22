@@ -5,14 +5,15 @@ import time
 # from DummyFiles.DummyFunctions import *
 
 class LoopWorker(QObject):
-        results = pyqtSignal(list, list, str)
+        results = pyqtSignal(list, list, list, str)
         errors = pyqtSignal(int, str)
         final = pyqtSignal(int)
         
-        def __init__(self, function, *args, **kwargs):
+        def __init__(self, generator, oscilograph, *args, **kwargs):
                 super(LoopWorker, self).__init__()
                 # QThread().__init__(self)
-                self.fn = function
+                self.Generator = generator
+                self.Oscilograph = oscilograph
                 self.args = args
                 self.kwargs = kwargs
                 # self.start() # WHY?????
@@ -27,11 +28,13 @@ class LoopWorker(QObject):
                 try:
                         while i <= 15:
                                 print("?????", i)
-                                result = self.fn(str(self.args[0]))
-                                print(result)
-                                self.results.emit([5],[5], "BLA!")
+                                # result = self.fn(str(self.args[0]))
+                                data_from_channel, time_array, time_unit = self.Oscilograph.get_data_points_from_channel("CHAN1")
+                                data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel("CHAN2")
+                                # print(result)
+                                self.results.emit(data_from_channel.tolist(), data_from_channel2.tolist(), time_array.tolist(), time_unit)
                                 time.sleep(2)
-                                i=i+1
+                                i = i+1
                                 pass
                         # self.final.emit(42)
                 except Exception as ex:

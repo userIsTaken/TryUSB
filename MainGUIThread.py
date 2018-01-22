@@ -89,6 +89,10 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.ui.sweepTimeRadioButton.clicked.connect(self.SetSweepFunctions)
                 pass
 
+        def GetAllParameters(self):
+                
+
+        
         def SetSweepFunctions(self):
                 # we need always check if we have a proper status of generator:
                 try:
@@ -166,13 +170,16 @@ class MainWindow(QtWidgets.QMainWindow):
                         if len(self._threads) > 0:
                                 self._threads = []
                                 pass
+                        # get all parameters:
+                        parameters_tuple = self.GetAllParameters()
+                        #
                         thread = QThread()
                         thread.setObjectName("WLoop")
-                        workerLoop = LoopWorker(DummyArgs, "Args!")
+                        workerLoop = LoopWorker(self.Generator, self.Osciloscope, parameters_tuple)
                         print(thread.objectName())
                         self._threads.append((thread, workerLoop))
                         workerLoop.moveToThread(thread)
-                        workerLoop.results.connect(DummyResults)
+                        workerLoop.results.connect(self.drawexp)
                         workerLoop.final.connect(self.WorkerEnded)
                         thread.started.connect(workerLoop.run) # Why????
                         thread.start()
@@ -326,6 +333,14 @@ class MainWindow(QtWidgets.QMainWindow):
                 dataCurve.setData(time_array, data_from_channel)
                 self.DebugMessage("Working on it ...", 1000)
                 pass
+        
+        def drawexp(self, CH1, CH2, time, time_unit):
+                self.ui.experimentDataViewPlot.setLabel('bottom', 'Time', units=time_unit)
+                self.ui.experimentDataViewPlot.setLabel('left', 'Voltage', units='V')
+                self.ekspCurveOne.setData(time, CH1)
+                self.ekspCurveTwo.setData(time, CH2)
+                self.DebugMessage("Working on it ...", 1000)
+                
         
         def DrawOscilogramm(self, result):
                 data = result[0]
