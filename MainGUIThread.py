@@ -90,7 +90,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 pass
 
         def GetAllParameters(self):
-                
+                pass
 
         
         def SetSweepFunctions(self):
