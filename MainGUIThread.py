@@ -90,6 +90,56 @@ class MainWindow(QtWidgets.QMainWindow):
                 pass
 
         def GetAllParameters(self):
+                if self.ui.sweepAmplitudeRadioButton.isChecked():
+                        start = self.ui.startAmplitudeSweepBox.value()
+                        stop = self.ui.stopAmplitudeSweepBox.value()
+                        step = self.ui.stepForAmplitudeSweepBox.value()
+                        fixedOFF = self.ui.fixedOffsetBox.value()
+                        parameters = {'key': 1,
+                                      'startV': start,
+                                      'stopV': stop,
+                                      'stepV': step,
+                                      'fixedOFF': fixedOFF}
+                elif self.ui.sweepOffsetRadioButton.isChecked():
+                        start = self.ui.startOffsetSweepBox.value()
+                        stop = self.ui.stopOffsetSweepBox.value()
+                        step = self.ui.stepForOffsetSweep.value()
+                        fixedV = self.ui.fixedAmplitudeBox.value()
+                        time = self.ui.timeForAmplOffsSweepBox.value()
+                        if self.ui.time_unit_mS.isChecked():
+                                t_unit = "mS"
+                        elif self.ui.time_unit_S.isChecked():
+                                t_unit = "S"
+                        else:
+                                t_unit = "uS"
+                                
+                        parameters = {'key': 2,
+                                      'startOFF': start,
+                                      'stopOFF': stop,
+                                      'stepOFF': step,
+                                      'fixedV': fixedV,
+                                      'OFFtime': time,
+                                      'timeU': t_unit}
+                else:
+                        start = self.ui.startTimeSweepBox.value()
+                        stop = self.ui.stopTimeSweepBox.value()
+                        step = self.ui.stepForTimeSweepBox.value()
+                        fixedV = self.ui.fixedAmplTimeSweepBox.value()
+                        fixedOFF = self.ui.fixedOffsTimeSweepBox.value()
+                        if self.ui.time_unit_mS_t.isChecked():
+                                t_unit = "mS"
+                        elif self.ui.time_unit_S_t.isChecked():
+                                t_unit = "S"
+                        else:
+                                t_unit = "uS"
+                        parameters = {'key': 3,
+                                      'startT': start,
+                                      'stopT': stop,
+                                      'stepT': step,
+                                      'fixedV': fixedV,
+                                      'fixedOFF': fixedOFF,
+                                      'timeU': t_unit}
+                return parameters
                 pass
 
         

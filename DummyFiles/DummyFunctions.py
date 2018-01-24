@@ -6,7 +6,11 @@ def DummyArgs(args):
         return "STR"
         pass
 
-def DummyResults(l1,l2,i):
+def DummyResults():
         print("Results have been got!")
+        # print(l1)
+        # print(l2)
+        # print(l3)
+        # print(i)
         # self.ui.startExperimentButton.setText(
         pass

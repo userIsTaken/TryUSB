@@ -177,6 +177,13 @@ class TektronixGenerator_TCP():
                 return  answer
         
         def SetTriggerInterval(self, interval, unit:str):
+                '''
+                
+                
+                :param interval:
+                :param unit:
+                :return:
+                '''
                 cmd = "TRIG:SEQ:TIM "+str(interval)+unit.upper()
                 self.Write(cmd)
                 pass
