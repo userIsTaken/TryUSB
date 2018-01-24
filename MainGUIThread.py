@@ -225,7 +225,7 @@ class MainWindow(QtWidgets.QMainWindow):
                         #
                         thread = QThread()
                         thread.setObjectName("WLoop")
-                        workerLoop = LoopWorker(self.Generator, self.Osciloscope, parameters_tuple)
+                        workerLoop = LoopWorker(self.Generator, self.Osciloscope, **parameters_tuple)
                         print(thread.objectName())
                         self._threads.append((thread, workerLoop))
                         workerLoop.moveToThread(thread)
