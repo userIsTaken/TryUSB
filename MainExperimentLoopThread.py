@@ -31,17 +31,63 @@ class LoopWorker(QObject):
                         stopV = self.kwargs['stopV']
                         totalV = startV
                         stepV = self.kwargs['stepV']
-                i = 0
-                try:
-                        while totalV <= stopV:
-                                self.Generator.SetAmplitude(self.Generator.CH1, totalV)
-                                data_from_channel, time_array, time_unit = self.Oscilograph.get_data_points_from_channel("CHAN1")
-                                data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel("CHAN2")
-                                self.results.emit(data_from_channel.tolist(), data_from_channel2.tolist(), time_array.tolist(), time_unit)
-                                time.sleep(2)
-                                totalV += stepV
-                                print("measured at ", totalV)
+                        timeOFF = self.kwargs['OFFtime']
+                        i = 0
+                        try:
+                                while totalV <= stopV:
+                                        self.Generator.SetAmplitude(self.Generator.CH1, totalV)
+                                        trigger = totalV / 4 + self.kwargs['fixedOFF']
+                                        tr = str("{0:.2f}".format(trigger))
+                                        print(tr, "tr")
+                                        scale = totalV / 4
+                                        sc = str("{0:.2f}".format(scale))
+                                        self.Oscilograph.set_y_scale("CHAN1", sc)
+                                        self.Oscilograph.set_trigger_edge_level(tr)
+                                        time.sleep(3.0)
+                                        
+                                        data_from_channel, time_array, time_unit = self.Oscilograph.get_data_points_from_channel("CHAN1")
+                                        data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel("CHAN2")
+                                        self.results.emit(data_from_channel.tolist(), data_from_channel2.tolist(), time_array.tolist(), time_unit)
+                                        time.sleep(5.0)
+                                        print("measured at ", totalV)
+                                        totalV = totalV + stepV
+                                        pass
+                        except Exception as ex:
+                                print(ex)
                                 pass
+                        finally:
+                                self.final.emit(42)
+                        pass
+                                
+                elif self.kwargs['key'] == 2:
+                        self.Generator.SetAmplitude(self.Generator.CH1, self.kwargs['fixedV'])
+                        startOFF = self.kwargs['startOFF']
+                        stopOFF = self.kwargs['stopOFF']
+                        totalOFF = startOFF
+                        stepOFF = self.kwargs['stepOFF']
+                        timeOFF = self.kwargs['OFFtime']
+                        i = 0
+                        try:
+                                while totalOFF <= stopOFF:
+                                        self.Generator.SetOffset(self.Generator.CH1, totalOFF)
+                                        trigger = totalOFF + self.kwargs['fixedV'] / 4
+                                        tr = str("{0:.2f}".format(trigger))
+                                        print(tr, "tr")
+                                        scale = self.kwargs['fixedV'] / 4
+                                        sc = str("{0:.2f}".format(scale))
+                                        self.Oscilograph.set_y_scale("CHAN1", sc)
+                                        self.Oscilograph.set_trigger_edge_level(tr)
+                                        time.sleep(3.0)
+                        
+                                        data_from_channel, time_array, time_unit = self.Oscilograph.get_data_points_from_channel(
+                                                "CHAN1")
+                                        data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel(
+                                                "CHAN2")
+                                        self.results.emit(data_from_channel.tolist(), data_from_channel2.tolist(),
+                                                          time_array.tolist(), time_unit)
+                                        time.sleep(5.0)
+                                        print("measured at ", totalOFF)
+                                        totalOFF = totalOFF + stepOFF
                         # while i <= 15:
                                 # print("?????", i)
                                 # # setting parameters:
@@ -58,9 +104,13 @@ class LoopWorker(QObject):
                                 # i = i+1
                                 # pass
                         # self.final.emit(42)
-                except Exception as ex:
-                        print(ex)
+                        except Exception as ex:
+                                print(ex)
+                                pass
+                        finally:
+                                self.final.emit(42)
                         pass
-                finally:
-                        self.final.emit(42)
-                pass
+                else:
+                        pass
+                
+                # self.deleteLater()

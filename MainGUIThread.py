@@ -7,6 +7,7 @@ from USBTMC_Devices import *
 from GetInfoAboutDevices import *
 from ConfigParser import *
 import vxi11
+import random
 import pyqtgraph as pG
 
 #
@@ -32,6 +33,8 @@ class MainWindow(QtWidgets.QMainWindow):
                 #Normally this is all to be done in order to show a window
                 self.ThreadPool = QThreadPool() # because of threading?
                 self._threads = []
+                # plots:
+                self._plots = []
                 #declare global self.dictionary:
                 self.Devices_dict={} # for USBTMC
                 self.Devices_TCP={} # for TCP/IP devices
@@ -66,7 +69,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.dataCurveOne = self.ui.dataViewWidget.plot()
                 self.dataCurveTwo = self.ui.dataViewWidget.plot()
                 #eksperimento kreives:
-                self.ui.startExperimentButton.clicked.connect(self.ekspMatavimas_clicked)
+                #self.ui.startExperimentButton.clicked.connect(self.ekspMatavimas_clicked)
                 self.ekspCurveOne = self.ui.experimentDataViewPlot.plot()
                 self.ekspCurveTwo = self.ui.experimentDataViewPlot.plot()
                 #---------------------
@@ -95,11 +98,13 @@ class MainWindow(QtWidgets.QMainWindow):
                         stop = self.ui.stopAmplitudeSweepBox.value()
                         step = self.ui.stepForAmplitudeSweepBox.value()
                         fixedOFF = self.ui.fixedOffsetBox.value()
+                        time = self.ui.timeForAmplOffsSweepBox.value()
                         parameters = {'key': 1,
                                       'startV': start,
                                       'stopV': stop,
                                       'stepV': step,
-                                      'fixedOFF': fixedOFF}
+                                      'fixedOFF': fixedOFF,
+                                      'OFFtime': time}
                 elif self.ui.sweepOffsetRadioButton.isChecked():
                         start = self.ui.startOffsetSweepBox.value()
                         stop = self.ui.stopOffsetSweepBox.value()
@@ -218,6 +223,7 @@ class MainWindow(QtWidgets.QMainWindow):
                         pass
                 elif "Pradėti" in self.ui.startExperimentButton.text():
                         if len(self._threads) > 0:
+                                # self._threads[0][0].terminate()
                                 self._threads = []
                                 pass
                         # get all parameters:
@@ -371,10 +377,10 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.getVoltsFromChannel("CHAN2", self.dataCurveTwo, self.ui.dataViewWidget)
                 pass
         
-        def ekspMatavimas_clicked(self):
-                self.getVoltsFromChannel(self.Osciloscope.CH1, self.ekspCurveOne, self.ui.experimentDataViewPlot)
-                self.getVoltsFromChannel(self.Osciloscope.CH2, self.ekspCurveTwo, self.ui.experimentDataViewPlot)
-                pass
+        # def ekspMatavimas_clicked(self):
+        #         self.getVoltsFromChannel(self.Osciloscope.CH1, self.ekspCurveOne, self.ui.experimentDataViewPlot)
+        #         self.getVoltsFromChannel(self.Osciloscope.CH2, self.ekspCurveTwo, self.ui.experimentDataViewPlot)
+        #         pass
 
         def getVoltsFromChannel(self, CH:str, dataCurve, graph:pG.PlotWidget):
                 data_from_channel, time_array, time_unit = self.Osciloscope.get_data_points_from_channel(CH)
@@ -387,8 +393,23 @@ class MainWindow(QtWidgets.QMainWindow):
         def drawexp(self, CH1, CH2, time, time_unit):
                 self.ui.experimentDataViewPlot.setLabel('bottom', 'Time', units=time_unit)
                 self.ui.experimentDataViewPlot.setLabel('left', 'Voltage', units='V')
-                self.ekspCurveOne.setData(time, CH1)
-                self.ekspCurveTwo.setData(time, CH2)
+                expCOne = self.ui.experimentDataViewPlot.plot()
+                expCTwo = self.ui.experimentDataViewPlot.plot()
+                # self.dataCurveOne.setPen((200, 200, 100))
+                # self.dataCurveTwo.setPen((100, 200, 255))
+                rOne = random.randint(100, 255)
+                gOne = random.randint(100, 255)
+                bOne = random.randint(100, 255)
+                rTwo = random.randint(100, 255)
+                gTwo = random.randint(100, 255)
+                bTwo = random.randint(100, 255)
+                expCOne.setPen((rOne, gOne, bOne))
+                expCTwo.setPen((rTwo, gTwo, bTwo))
+                self._plots.append((expCOne, expCTwo))
+                # self.ekspCurveOne.setData(time, CH1)
+                # self.ekspCurveTwo.setData(time, CH2)
+                expCOne.setData(time, CH1)
+                # expCTwo.setData(time, CH2)
                 self.DebugMessage("Working on it ...", 1000)
                 
         
