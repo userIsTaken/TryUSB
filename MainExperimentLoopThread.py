@@ -88,22 +88,7 @@ class LoopWorker(QObject):
                                         time.sleep(5.0)
                                         print("measured at ", totalOFF)
                                         totalOFF = totalOFF + stepOFF
-                        # while i <= 15:
-                                # print("?????", i)
-                                # # setting parameters:
-                                # if self.kwargs["key"] is 1:
-                                #
-                                #         pass
-                                #
-                                # # result = self.fn(str(self.args[0]))
-                                # data_from_channel, time_array, time_unit = self.Oscilograph.get_data_points_from_channel("CHAN1")
-                                # data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel("CHAN2")
-                                # # print(result)
-                                # self.results.emit(data_from_channel.tolist(), data_from_channel2.tolist(), time_array.tolist(), time_unit)
-                                # time.sleep(2)
-                                # i = i+1
-                                # pass
-                        # self.final.emit(42)
+                        
                         except Exception as ex:
                                 print(ex)
                                 pass
