@@ -11,12 +11,10 @@ class LoopWorker(QObject):
         
         def __init__(self, generator, oscilograph, *args, **kwargs):
                 super(LoopWorker, self).__init__()
-                # QThread().__init__(self)
                 self.Generator = generator
                 self.Oscilograph = oscilograph
                 self.args = args
                 self.kwargs = kwargs
-                # self.start() # WHY?????
                 print("Init")
                 pass
 
@@ -24,7 +22,7 @@ class LoopWorker(QObject):
         @pyqtSlot()
         def run(self):
                 print("Try to run this stuff")
-                # TODO it seems that this logic is wrong. 
+                # TODO it seems that this logic is wrong.
                 if self.kwargs['key'] == 1:
                         self.Generator.SetOffset(self.Generator.CH1, self.kwargs['fixedOFF'])
                         startV = self.kwargs['startV']
