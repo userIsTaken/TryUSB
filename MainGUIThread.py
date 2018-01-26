@@ -99,12 +99,19 @@ class MainWindow(QtWidgets.QMainWindow):
                         step = self.ui.stepForAmplitudeSweepBox.value()
                         fixedOFF = self.ui.fixedOffsetBox.value()
                         time = self.ui.timeForAmplOffsSweepBox.value()
+                        if self.ui.time_unit_mS.isChecked():
+                                t_unit = "mS"
+                        elif self.ui.time_unit_S.isChecked():
+                                t_unit = "S"
+                        else:
+                                t_unit = "uS"
                         parameters = {'key': 1,
                                       'startV': start,
                                       'stopV': stop,
                                       'stepV': step,
                                       'fixedOFF': fixedOFF,
-                                      'OFFtime': time}
+                                      'OFFtime': time,
+                                      'timeU': t_unit}
                 elif self.ui.sweepOffsetRadioButton.isChecked():
                         start = self.ui.startOffsetSweepBox.value()
                         stop = self.ui.stopOffsetSweepBox.value()
@@ -226,6 +233,8 @@ class MainWindow(QtWidgets.QMainWindow):
                                 # self._threads[0][0].terminate()
                                 self._threads = []
                                 pass
+                        self._plots = []
+                        self.ui.experimentDataViewPlot.clear()
                         # get all parameters:
                         parameters_tuple = self.GetAllParameters()
                         #
@@ -409,7 +418,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 # self.ekspCurveOne.setData(time, CH1)
                 # self.ekspCurveTwo.setData(time, CH2)
                 expCOne.setData(time, CH1)
-                # expCTwo.setData(time, CH2)
+                expCTwo.setData(time, CH2)
                 self.DebugMessage("Working on it ...", 1000)
                 
         

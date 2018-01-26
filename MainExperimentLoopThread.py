@@ -32,20 +32,45 @@ class LoopWorker(QObject):
                         totalV = startV
                         stepV = self.kwargs['stepV']
                         timeOFF = self.kwargs['OFFtime']
+                        timeU = self.kwargs['timeU']
                         i = 0
                         try:
                                 while totalV <= stopV:
                                         self.Generator.SetAmplitude(self.Generator.CH1, totalV)
+                                        self.Generator.SetPeriod(self.Generator.CH1, timeOFF, timeU, i)
                                         trigger = totalV / 4 + self.kwargs['fixedOFF']
                                         tr = str("{0:.2f}".format(trigger))
                                         print(tr, "tr")
                                         scale = totalV / 4
                                         sc = str("{0:.2f}".format(scale))
                                         self.Oscilograph.set_y_scale("CHAN1", sc)
+                                        
+                                        if ("uS" == timeU):
+                                                t_u = str((timeOFF/4) * (10 ** -6))
+                                                self.Oscilograph.set_time_scale(t_u)
+                                                print("Periodas ", t_u)
+                                                time.sleep(2.0)
+                                                pass
+                                        elif ("mS" == timeU):
+                                                t_u = str((timeOFF/4) * (10 ** -3))
+                                                self.Oscilograph.set_time_scale(t_u)
+                                                print("Periodas ", t_u)
+                                                time.sleep(2.0)
+                                                pass
+                                        elif ("S" == timeU):
+                                                t_u = str(timeOFF/4)
+                                                self.Oscilograph.set_time_scale(t_u)
+                                                print("Periodas ", t_u)
+                                                time.sleep(2.0)
+                                                pass
+                                        else:
+                                                pass
+                                        
                                         self.Oscilograph.set_trigger_edge_level(tr)
                                         time.sleep(3.0)
                                         
                                         data_from_channel, time_array, time_unit = self.Oscilograph.get_data_points_from_channel("CHAN1")
+                                        time.sleep(1.0)
                                         data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel("CHAN2")
                                         self.results.emit(data_from_channel.tolist(), data_from_channel2.tolist(), time_array.tolist(), time_unit)
                                         time.sleep(5.0)
@@ -66,10 +91,12 @@ class LoopWorker(QObject):
                         totalOFF = startOFF
                         stepOFF = self.kwargs['stepOFF']
                         timeOFF = self.kwargs['OFFtime']
+                        timeU = self.kwargs['timeU']
                         i = 0
                         try:
                                 while totalOFF <= stopOFF:
                                         self.Generator.SetOffset(self.Generator.CH1, totalOFF)
+                                        self.Generator.SetPeriod("CH1", timeOFF, timeU)
                                         trigger = totalOFF + self.kwargs['fixedV'] / 4
                                         tr = str("{0:.2f}".format(trigger))
                                         print(tr, "tr")
