@@ -236,7 +236,7 @@ class MainWindow(QtWidgets.QMainWindow):
                         workerLoop.moveToThread(thread)
                         workerLoop.results.connect(self.drawexp)
                         workerLoop.final.connect(self.WorkerEnded)
-                        thread.started.connect(workerLoop.run) # Why????
+                        thread.started.connect(workerLoop.run)
                         thread.start()
                         self.ui.startExperimentButton.setText("Pradėta")
                         pass
