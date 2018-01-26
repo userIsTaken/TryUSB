@@ -236,14 +236,19 @@ class MainWindow(QtWidgets.QMainWindow):
                         workerLoop.moveToThread(thread)
                         workerLoop.results.connect(self.drawexp)
                         workerLoop.final.connect(self.WorkerEnded)
+                        workerLoop.errors.connect(self.ErrorHasBeenGot)
                         thread.started.connect(workerLoop.run)
                         thread.start()
                         self.ui.startExperimentButton.setText("Pradėta")
                         pass
                 pass
+
+        def ErrorHasBeenGot(self, *args):
+                self.DebugLog(str(args[0]))
+                self.DebugLog(args[1])
+                pass
         
         def WorkerEnded(self, i:int):
-                # TODO bad bad behaviour - fix it!
                 self.ui.startExperimentButton.setText("Pradėti")
                 pass
         
