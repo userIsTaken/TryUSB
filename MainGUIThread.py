@@ -230,7 +230,6 @@ class MainWindow(QtWidgets.QMainWindow):
                         pass
                 elif "Pradėti" in self.ui.startExperimentButton.text():
                         if len(self._threads) > 0:
-                                # self._threads[0][0].terminate()
                                 self._threads = []
                                 pass
                         self._plots = []
@@ -246,7 +245,7 @@ class MainWindow(QtWidgets.QMainWindow):
                         workerLoop.moveToThread(thread)
                         workerLoop.results.connect(self.drawexp)
                         workerLoop.final.connect(self.WorkerEnded)
-                        thread.started.connect(workerLoop.run) # Why????
+                        thread.started.connect(workerLoop.run)
                         thread.start()
                         self.ui.startExperimentButton.setText("Pradėta")
                         pass
