@@ -54,7 +54,7 @@ class LoopWorker(QObject):
                                 except Exception as ex:
                                         print(ex)
                                         self.errors.emit(-1, str(ex)+" " + ex.args)
-                                        pass
+                                        # sys.exit(-1)
 
                         elif self.kwargs['key'] == 2:
                                 self.Generator.SetAmplitude(self.Generator.CH1, self.kwargs['fixedV'])
@@ -89,12 +89,15 @@ class LoopWorker(QObject):
                                 except Exception as ex:
                                         print(ex)
                                         self.errors.emit(-1, str(ex) + " " + ex.args)
-                                        pass
+                                        # sys.exit(-1)
                         else:
-                                pass
+                                print("Else fork, stopping ... ")
+                                # TODO we need to describe all variants which can occur in if conditions
+                                # sys.exit(-1)
                 except Exception as ex:
                         print(ex)
                         self.errors.emit(-1, str(ex) + " " + ex.args)
+                        # sys.exit(-1)
                         pass
                 finally:
                         self.final.emit(42)
