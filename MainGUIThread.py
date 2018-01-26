@@ -223,7 +223,6 @@ class MainWindow(QtWidgets.QMainWindow):
                         pass
                 elif "Pradėti" in self.ui.startExperimentButton.text():
                         if len(self._threads) > 0:
-                                # self._threads[0][0].terminate()
                                 self._threads = []
                                 pass
                         # get all parameters:
