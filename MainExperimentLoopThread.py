@@ -22,7 +22,6 @@ class LoopWorker(QObject):
         @pyqtSlot()
         def run(self):
                 print("Try to run this stuff")
-                # TODO it seems that this logic is wrong.
                 if self.kwargs['key'] == 1:
                         self.Generator.SetOffset(self.Generator.CH1, self.kwargs['fixedOFF'])
                         startV = self.kwargs['startV']
