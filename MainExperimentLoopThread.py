@@ -54,6 +54,7 @@ class LoopWorker(QObject):
                                 except Exception as ex:
                                         print(ex)
                                         self.errors.emit(-1, str(ex)+" " + ex.args)
+                                        # self.deleteLater()
                                         # sys.exit(-1)
 
                         elif self.kwargs['key'] == 2:
@@ -92,7 +93,7 @@ class LoopWorker(QObject):
                                         # sys.exit(-1)
                         else:
                                 print("Else fork, stopping ... ")
-                                # TODO we need to describe all variants which can occur in if conditions
+                                # TODO we need to describe all variants who can occur in if conditions
                                 # sys.exit(-1)
                 except Exception as ex:
                         print(ex)
