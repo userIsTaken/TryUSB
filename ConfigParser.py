@@ -1,5 +1,6 @@
 import os, sys
 import configparser
+from PyQt5 import QtCore, QtWidgets, QtGui
 from UIfiles.GUIThread import Ui_MainGuiWindow
 
 class Configuration:
@@ -22,6 +23,7 @@ class Configuration:
                 :param tableWidget:
                 :return:
                 '''
+                
                 self.config.read(self.FilePath)
                 section = "TCP IP devices"
                 for key in self.config[section]:
@@ -33,8 +35,43 @@ class Configuration:
                                 print(dkey, dev_dic[dkey])
                                 pass
                         # ADD row, insert values:
-                        
+                        self.addRow(tableWidget, dev_dic)
                         pass
+                pass
+        
+        def addRow(self, tWidget, dev_dict):
+                listOfDevices = ["Generatorius", "Oscilografas"]
+                IP = dev_dict["IP"]
+                GENOSCI = dev_dict["GENOSCI"]
+                USE = dev_dict["USE"]
+                IDN = dev_dict["IDN"]
+                i = tWidget.rowCount()
+                if i is not None:
+                        tWidget.setRowCount(i + 1)
+                        tWidget.setCellWidget(i, 1, QtWidgets.QComboBox())
+                        tWidget.cellWidget(i, 1).addItems(listOfDevices)
+                        tWidget.setCellWidget(i, 2, QtWidgets.QCheckBox())
+                        tWidget.cellWidget(i, 2).setChecked(False)
+                        cell = QtWidgets.QTableWidgetItem()
+                        cell.setText(str(i))
+                        tWidget.setItem(i, 4, cell)
+                        tWidget.selectRow(i)
+                else:
+                        tWidget.setRowCount(1)
+                        tWidget.setCellWidget(1, 1, QtWidgets.QComboBox())
+                        tWidget.cellWidget(1, 1).addItems(listOfDevices)
+                        if "gen" in GENOSCI:
+                                pass
+                        elif "osc" in GENOSCI:
+                                pass
+                        else:
+                                pass
+                        tWidget.setCellWidget(1, 2, QtWidgets.QCheckBox())
+                        tWidget.cellWidget(1, 2).setChecked(False)
+                        cell = QtWidgets.QTableWidgetItem()
+                        cell.setText(str(1))
+                        tWidget.setItem(1, 4, cell)
+                        tWidget.selectRow(1)
                 pass
         
         def getKeyValue(self, string):
