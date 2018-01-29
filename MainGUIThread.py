@@ -542,35 +542,38 @@ class MainWindow(QtWidgets.QMainWindow):
                 
         
         def connectGenerator(self):
-                # at first, we should get an generator from our tables/comboBox:
-                # second, we have to check USBTMC devices for a generator
-                Devices_from_TCP_table=getDevicesFromTable(self.ui.tableWithTCPIPDevices)
-                for key in Devices_from_TCP_table.keys():
-                        self.DebugLog(str(key))
-                        self.DebugLog(Devices_from_TCP_table[key])
-                Gen = getDevicePathWithRoleFromList("Generatorius", Devices_from_TCP_table)
-                self.DebugLog(Gen)
-                # test IDN again:
-                idn = vxi11.Instrument(Gen)
-                name = idn.ask("*IDN?")
-                idn.close() # close device, we will initialize it a little bit later;
-                if "Siglent".lower() in name.lower():
-                        self.Generator = SiglentGenerator_TCP(Gen)
-                        self.Generator.IDN = name
-                        self.DebugLog("Siglent rastas")
-                        pass
-                elif "Tektronix".lower() in name.lower():
-                        self.Generator = TektronixGenerator_TCP(Gen)
-                        self.Generator.IDN = name
-                        self.DebugLog("Tektronix rastas")
-                        pass
-                else:
-                        self.DebugMessage("Unknown device", 2500)
-                        pass
+                self.Generator = GetGenerator(self.ui)
+                name = self.Generator.GetIDN()
+                # pass
+                # # at first, we should get an generator from our tables/comboBox:
+                # # second, we have to check USBTMC devices for a generator
+                # Devices_from_TCP_table=getDevicesFromTable(self.ui.tableWithTCPIPDevices)
+                # for key in Devices_from_TCP_table.keys():
+                #         self.DebugLog(str(key))
+                #         self.DebugLog(Devices_from_TCP_table[key])
+                # Gen = getDevicePathWithRoleFromList("Generatorius", Devices_from_TCP_table)
+                # self.DebugLog(Gen)
+                # # test IDN again:
+                # idn = vxi11.Instrument(Gen)
+                # name = idn.ask("*IDN?")
+                # idn.close() # close device, we will initialize it a little bit later;
+                # if "Siglent".lower() in name.lower():
+                #         self.Generator = SiglentGenerator_TCP(Gen)
+                #         self.Generator.IDN = name
+                #         self.DebugLog("Siglent rastas")
+                #         pass
+                # elif "Tektronix".lower() in name.lower():
+                #         self.Generator = TektronixGenerator_TCP(Gen)
+                #         self.Generator.IDN = name
+                #         self.DebugLog("Tektronix rastas")
+                #         pass
+                # else:
+                #         self.DebugMessage("Unknown device", 2500)
+                #         pass
                 self.DebugLog("Testas prisijungimo")
                 self.ui.connection_status_label.setText(name[0:15])
-                #  populate init commands from file:
-                # myConf = Configuration("Configs/Siglent.ini")
+                # #  populate init commands from file:
+                # # myConf = Configuration("Configs/Siglent.ini")
                 lines = self.Generator.GetInitConfiguration()
                 self.DebugLog(lines)
                 self.ui.initialConfigurationForGenerator.setPlainText(lines)

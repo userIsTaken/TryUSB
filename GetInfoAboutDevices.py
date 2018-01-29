@@ -1,6 +1,11 @@
 import os, sys
 from PyQt5 import QtCore, QtWidgets, QtGui
 from USBTMC_Devices import *
+from Generators.SiglentGenerator import *
+from Generators.TektronixGenerator import *
+import vxi11
+
+from UIfiles.GUIThread import Ui_MainGuiWindow
 
 def getDevicesFromComboBoxes(comboGenerator, comboOsciloscope : QtWidgets.QComboBox, Devices_dic):
         Osciloscope=None
@@ -82,3 +87,27 @@ def getTextLinesFromQTextEditField(QTextEdit: QtWidgets.QTextEdit):
 
 def scan_USBTMC_devices(mypath:str, devices_dic:dict):
        pass
+
+def GetGenerator(gui:Ui_MainGuiWindow):
+        USBTMCGenerator = gui.comboBox_for_generator.currentText()
+        devices_from_IPtable = getDevicesFromTable(gui.tableWithTCPIPDevices)
+        Generator = None
+        try:
+                if devices_from_IPtable["Generatorius"] is not None:
+                        dev = vxi11.Instrument(devices_from_IPtable["Generatorius"])
+                        name = dev.ask("*IDN?")
+                        dev.close() # init will occur later
+                        if "Siglent" in name.lower():
+                                Generator = SiglentGenerator_TCP(devices_from_IPtable["Generatorius"])
+                        elif "Tektronix" in name.lower():
+                                Generator = TektronixGenerator_TCP(devices_from_IPtable["Generatorius"])
+                        pass
+                elif USBTMCGenerator != "[Nėra]":
+                        # Generator = RigolDS1000SeriesScope()
+                        Generator = None
+        except Exception as ex:
+                print("Generatoriaus gavimo klaida", str(ex))
+                pass
+
+        return Generator
+        pass
