@@ -115,12 +115,16 @@ class Configuration:
         def ConfigFileSaver(self, tableWidget):
                 pass
 
-        def USBTMCDevicesSaver(self, gui:Ui_MainGuiWindow):
+        def USBTMCDevicesSaver(self,file:str, gui:Ui_MainGuiWindow):
                 """
 
                 :param gui:
                 :return:
                 """
+                tableWidget = gui.tableWithTCPIPDevices
+                comboGen = gui.comboBox_for_generator
+                comboOsc = gui.comboBox_for_oscillograph
+                
                 pass
 
         def USBTMCDevicesLoader(self):
