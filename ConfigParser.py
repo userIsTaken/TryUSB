@@ -48,30 +48,58 @@ class Configuration:
                 i = tWidget.rowCount()
                 if i is not None:
                         tWidget.setRowCount(i + 1)
+                        cell = QtWidgets.QTableWidgetItem()
+                        cell.setText(str(IP))
+                        tWidget.setItem(i, 0, cell)
                         tWidget.setCellWidget(i, 1, QtWidgets.QComboBox())
                         tWidget.cellWidget(i, 1).addItems(listOfDevices)
+                        if "gen" in GENOSCI.lower():
+                                tWidget.cellWidget(i,1).setCurrentIndex(0)
+                                pass
+                        elif "osc" in GENOSCI.lower():
+                                tWidget.cellWidget(i, 1).setCurrentIndex(1)
+                                pass
+                        else:
+                                pass
                         tWidget.setCellWidget(i, 2, QtWidgets.QCheckBox())
-                        tWidget.cellWidget(i, 2).setChecked(False)
+                        if "yes" in USE.lower():
+                                tWidget.cellWidget(i, 2).setChecked(True)
+                                pass
+                        else:
+                                tWidget.cellWidget(i, 2).setChecked(False)
+                                pass
+                        # tWidget.cellWidget(i, 2).setChecked(False)
                         cell = QtWidgets.QTableWidgetItem()
                         cell.setText(str(i))
                         tWidget.setItem(i, 4, cell)
                         tWidget.selectRow(i)
                 else:
                         tWidget.setRowCount(1)
+                        cell = QtWidgets.QTableWidgetItem()
+                        cell.setText(str(IP))
+                        tWidget.setItem(1, 0, cell)
                         tWidget.setCellWidget(1, 1, QtWidgets.QComboBox())
                         tWidget.cellWidget(1, 1).addItems(listOfDevices)
-                        if "gen" in GENOSCI:
+                        if "gen" in GENOSCI.lower():
+                                tWidget.cellWidget(1,1).setCurrentIndex(0)
                                 pass
-                        elif "osc" in GENOSCI:
+                        elif "osc" in GENOSCI.lower():
+                                tWidget.cellWidget(1, 1).setCurrentIndex(1)
                                 pass
                         else:
                                 pass
                         tWidget.setCellWidget(1, 2, QtWidgets.QCheckBox())
-                        tWidget.cellWidget(1, 2).setChecked(False)
+                        if "yes" in USE.lower():
+                                tWidget.cellWidget(1, 2).setChecked(True)
+                                pass
+                        else:
+                                tWidget.cellWidget(1, 2).setChecked(False)
+                                pass
+                        
                         cell = QtWidgets.QTableWidgetItem()
                         cell.setText(str(1))
                         tWidget.setItem(1, 4, cell)
-                        tWidget.selectRow(1)
+                        # tWidget.selectRow(1)
                 pass
         
         def getKeyValue(self, string):
