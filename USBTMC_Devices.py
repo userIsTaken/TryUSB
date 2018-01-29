@@ -206,7 +206,11 @@ class RigolDS1000SeriesScope:
                 self.write(":"+CHANNEL+":OFFS?")
                 voltoffsetCH = float(self.read(20))
                 return voltoffsetCH
-
+        
+        def set_channel_offset(self, CHANNEL, OFFset:str):
+                self.write(":" + CHANNEL + ":OFFS " + OFFset)
+                pass
+        
         def get_data_points_from_channel(self, CH: str):
                 '''
 

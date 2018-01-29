@@ -34,7 +34,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.ThreadPool = QThreadPool() # because of threading?
                 self._threads = []
                 # plots:
-                self._plots = []
+                #self._plots = []
                 #declare global self.dictionary:
                 self.Devices_dict={} # for USBTMC
                 self.Devices_TCP={} # for TCP/IP devices
@@ -99,12 +99,19 @@ class MainWindow(QtWidgets.QMainWindow):
                         step = self.ui.stepForAmplitudeSweepBox.value()
                         fixedOFF = self.ui.fixedOffsetBox.value()
                         time = self.ui.timeForAmplOffsSweepBox.value()
+                        if self.ui.time_unit_mS.isChecked():
+                                t_unit = "mS"
+                        elif self.ui.time_unit_S.isChecked():
+                                t_unit = "S"
+                        else:
+                                t_unit = "uS"
                         parameters = {'key': 1,
                                       'startV': start,
                                       'stopV': stop,
                                       'stepV': step,
                                       'fixedOFF': fixedOFF,
-                                      'OFFtime': time}
+                                      'OFFtime': time,
+                                      'timeU': t_unit}
                 elif self.ui.sweepOffsetRadioButton.isChecked():
                         start = self.ui.startOffsetSweepBox.value()
                         stop = self.ui.stopOffsetSweepBox.value()
@@ -250,6 +257,7 @@ class MainWindow(QtWidgets.QMainWindow):
                                 # get all parameters:
                                 parameters_tuple = self.GetAllParameters()
                                 #
+                                self.ui.experimentDataViewPlot.clear()
                                 self.ui.startExperimentButton.setText("Pradėta")
                                 thread = QThread()
                                 thread.setObjectName("WLoop")
@@ -436,7 +444,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 bTwo = random.randint(100, 255)
                 expCOne.setPen((rOne, gOne, bOne))
                 expCTwo.setPen((rTwo, gTwo, bTwo))
-                self._plots.append((expCOne, expCTwo))
+                #self._plots.append((expCOne, expCTwo))
                 # self.ekspCurveOne.setData(time, CH1)
                 # self.ekspCurveTwo.setData(time, CH2)
                 expCOne.setData(time, CH1)

@@ -25,24 +25,59 @@ class LoopWorker(QObject):
                         print("Try to run this stuff")
                         if self.kwargs['key'] == 1:
                                 self.Generator.SetOffset(self.Generator.CH1, self.kwargs['fixedOFF'])
+                                self.Oscilograph.set_channel_offset(self.Oscilograph.CH1, "-2")
                                 startV = self.kwargs['startV']
                                 stopV = self.kwargs['stopV']
                                 totalV = startV
                                 stepV = self.kwargs['stepV']
                                 timeOFF = self.kwargs['OFFtime']
+                                time_u = self.kwargs['timeU']
                                 i = 0
                                 try:
                                         while totalV <= stopV:
                                                 self.Generator.SetAmplitude(self.Generator.CH1, totalV)
-                                                trigger = totalV / 4 + self.kwargs['fixedOFF']
+                                                trigger = (totalV + self.kwargs['fixedOFF']) / 4
                                                 tr = str("{0:.2f}".format(trigger))
                                                 print(tr, "tr")
                                                 scale = totalV / 4
                                                 sc = str("{0:.2f}".format(scale))
+                                                self.Generator.SetPeriod(self.Generator.CH1, timeOFF, time_u, i)
+                                                time.sleep(1)
                                                 self.Oscilograph.set_y_scale("CHAN1", sc)
-                                                time.sleep(0.1) # 100 ms is enough
-                                                self.Oscilograph.set_trigger_edge_level(tr)
-                                                time.sleep(0.1)
+                                                time.sleep(1) # 100 ms is enough
+                                                
+                                                
+                                                if ("uS" == time_u):
+                                                        t_u = (timeOFF / 4) * (10 ** -6)
+                                                        self.Oscilograph.set_time_scale(str("{0:.8f}".format(t_u)))
+                                                        print("Periodas ", str("{0:.8f}".format(t_u)))
+                                                        wait_pls = float(timeOFF) * 2.1
+                                                        print("Laukiam ", wait_pls)
+                                                        self.Oscilograph.set_trigger_edge_level(tr)
+                                                        time.sleep(wait_pls)
+                                                        pass
+                                                elif ("mS" == time_u):
+                                                        t_u = str((timeOFF / 4) * (10 ** -3))
+                                                        self.Oscilograph.set_time_scale(t_u)
+                                                        print("Periodas ", t_u)
+                                                        wait_pls = float(timeOFF) * 2.1
+                                                        print("Laukiam ", wait_pls)
+                                                        self.Oscilograph.set_trigger_edge_level(tr)
+                                                        time.sleep(wait_pls)
+                                                        pass
+                                                elif ("S" == time_u):
+                                                        t_u = str(timeOFF / 4)
+                                                        self.Oscilograph.set_time_scale(t_u)
+                                                        print("Periodas ", timeOFF)
+                                                        # self.Oscilograph.set_trigger_edge_level(tr)
+                                                        wait_pls = float(timeOFF) * 2.1
+                                                        print("Laukiam ", wait_pls)
+                                                        self.Oscilograph.set_trigger_edge_level(tr)
+                                                        time.sleep(wait_pls)
+                                                        pass
+                                                else:
+                                                        print("shit here")
+                                                        pass
                                                 data_from_channel, time_array, time_unit = self.Oscilograph.get_data_points_from_channel("CHAN1")
                                                 time.sleep(0.1)
                                                 data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel("CHAN2")
