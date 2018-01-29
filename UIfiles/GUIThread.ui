@@ -6,429 +6,411 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1213</width>
-    <height>906</height>
+    <width>1111</width>
+    <height>894</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>GenOsci</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_3">
-    <item row="1" column="0">
-     <widget class="QPushButton" name="closeButton">
-      <property name="text">
-       <string>Išeiti iš programos</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1">
-     <spacer name="horizontalSpacer">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>927</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="1" column="2">
-     <widget class="QPushButton" name="unused_button">
-      <property name="text">
-       <string>Neveikiantis mygis</string>
-      </property>
-     </widget>
-    </item>
+   <layout class="QGridLayout" name="gridLayout_29">
     <item row="0" column="0" colspan="3">
      <widget class="QSplitter" name="splitter">
       <property name="orientation">
        <enum>Qt::Vertical</enum>
       </property>
-      <widget class="QTabWidget" name="devicesTabWidget">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>180</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>220</height>
-        </size>
-       </property>
-       <property name="currentIndex">
-        <number>1</number>
-       </property>
-       <widget class="QWidget" name="usbtmcTab">
-        <attribute name="title">
-         <string>USBTMC prietaisai</string>
-        </attribute>
-        <layout class="QGridLayout" name="gridLayout_5">
-         <item row="0" column="0">
-          <layout class="QGridLayout" name="gridLayout_2">
-           <item row="1" column="2" colspan="2">
-            <widget class="QComboBox" name="comboBox_for_generator">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>220</width>
-               <height>0</height>
-              </size>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="5" colspan="2">
-            <spacer name="horizontalSpacer_3">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item row="1" column="0" colspan="2">
-            <widget class="QLabel" name="label_2">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="text">
-              <string>Generatorius</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="6">
-            <spacer name="horizontalSpacer_2">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item row="2" column="0" colspan="2">
-            <widget class="QLabel" name="label">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="text">
-              <string>Oscilografas:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="6">
-            <spacer name="horizontalSpacer_4">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item row="2" column="2" colspan="2">
-            <widget class="QComboBox" name="comboBox_for_oscillograph">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>220</width>
-               <height>0</height>
-              </size>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="0">
-            <widget class="QPushButton" name="findAllUSBTMC_devices_button">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="text">
-              <string>Prietaisai</string>
-             </property>
-             <property name="icon">
-              <iconset>
-               <normaloff>../Icons/reload.png</normaloff>../Icons/reload.png</iconset>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="2">
-            <widget class="QComboBox" name="list_of_devices_comboBox">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="minimumSize">
-              <size>
-               <width>220</width>
-               <height>0</height>
-              </size>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="4">
-            <widget class="QLabel" name="custom_info_label">
-             <property name="text">
-              <string>/DEV</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="4" colspan="2">
-            <widget class="QLabel" name="IDn_generator_label">
-             <property name="text">
-              <string>*IDN?</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="4" colspan="2">
-            <widget class="QLabel" name="selectedIDN_label">
-             <property name="text">
-              <string>*IDN?</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QWidget" name="tcpipDevicesTab">
-        <attribute name="title">
-         <string>Tinklo (TCP/IP) prietaisai</string>
-        </attribute>
-        <layout class="QGridLayout" name="gridLayout_4">
-         <item row="0" column="0">
-          <layout class="QHBoxLayout" name="horizontalLayout_2">
-           <item>
-            <widget class="QPushButton" name="addDeviceEntryTableButton">
-             <property name="text">
-              <string>Pridėti naują eilutę</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="removeSelectedRowButton">
-             <property name="text">
-              <string>Pašalinti įrašą</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <spacer name="horizontalSpacer_6">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item>
-            <widget class="QPushButton" name="getIDNfroSelectedIPButton">
-             <property name="text">
-              <string>*IDN?</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="saveEntriesButton">
-             <property name="text">
-              <string>Išsaugoti įrašus</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="loadEntriesButton">
-             <property name="text">
-              <string>Įkelti įrašus</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <spacer name="horizontalSpacer_7">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-          </layout>
-         </item>
-         <item row="1" column="0">
-          <widget class="QTableWidget" name="tableWithTCPIPDevices">
-           <property name="selectionMode">
-            <enum>QAbstractItemView::SingleSelection</enum>
-           </property>
-           <property name="selectionBehavior">
-            <enum>QAbstractItemView::SelectRows</enum>
-           </property>
-           <attribute name="horizontalHeaderDefaultSectionSize">
-            <number>250</number>
+      <widget class="QWidget" name="">
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="0">
+         <widget class="QTabWidget" name="devicesTabWidget">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>180</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>220</height>
+           </size>
+          </property>
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <widget class="QWidget" name="usbtmcTab">
+           <attribute name="title">
+            <string>USBTMC prietaisai</string>
            </attribute>
-           <attribute name="horizontalHeaderStretchLastSection">
-            <bool>true</bool>
-           </attribute>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QWidget" name="experimentParametersTabPage">
-        <attribute name="title">
-         <string>Eksperimento parametrai</string>
-        </attribute>
-        <layout class="QGridLayout" name="gridLayout_28">
-         <item row="0" column="0">
-          <widget class="QGroupBox" name="groupBox_7">
-           <property name="title">
-            <string>Medžiagos informacija, duomenų išsaugojimas</string>
-           </property>
-           <layout class="QGridLayout" name="gridLayout_26">
+           <layout class="QGridLayout" name="gridLayout_5">
             <item row="0" column="0">
-             <widget class="QLabel" name="label_28">
-              <property name="text">
-               <string>Pavadinimas</string>
-              </property>
-             </widget>
+             <layout class="QGridLayout" name="gridLayout_2">
+              <item row="1" column="2" colspan="2">
+               <widget class="QComboBox" name="comboBox_for_generator">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>220</width>
+                  <height>0</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="5" colspan="2">
+               <spacer name="horizontalSpacer_3">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="1" column="0" colspan="2">
+               <widget class="QLabel" name="label_2">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>Generatorius</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="6">
+               <spacer name="horizontalSpacer_2">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="2" column="0" colspan="2">
+               <widget class="QLabel" name="label">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>Oscilografas:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="6">
+               <spacer name="horizontalSpacer_4">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="2" column="2" colspan="2">
+               <widget class="QComboBox" name="comboBox_for_oscillograph">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>220</width>
+                  <height>0</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QPushButton" name="findAllUSBTMC_devices_button">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>Prietaisai</string>
+                </property>
+                <property name="icon">
+                 <iconset>
+                  <normaloff>../Icons/reload.png</normaloff>../Icons/reload.png</iconset>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="QComboBox" name="list_of_devices_comboBox">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>220</width>
+                  <height>0</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="4">
+               <widget class="QLabel" name="custom_info_label">
+                <property name="text">
+                 <string>/DEV</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="4" colspan="2">
+               <widget class="QLabel" name="IDn_generator_label">
+                <property name="text">
+                 <string>*IDN?</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="4" colspan="2">
+               <widget class="QLabel" name="selectedIDN_label">
+                <property name="text">
+                 <string>*IDN?</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </item>
-            <item row="0" column="1">
-             <widget class="QLineEdit" name="lineEdit"/>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tcpipDevicesTab">
+           <attribute name="title">
+            <string>Tinklo (TCP/IP) prietaisai</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_4">
+            <item row="0" column="0">
+             <layout class="QHBoxLayout" name="horizontalLayout_2">
+              <item>
+               <widget class="QPushButton" name="addDeviceEntryTableButton">
+                <property name="text">
+                 <string>Pridėti naują eilutę</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="removeSelectedRowButton">
+                <property name="text">
+                 <string>Pašalinti įrašą</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_6">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Fixed</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="getIDNfroSelectedIPButton">
+                <property name="text">
+                 <string>*IDN?</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="saveEntriesButton">
+                <property name="text">
+                 <string>Išsaugoti įrašus</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="loadEntriesButton">
+                <property name="text">
+                 <string>Įkelti įrašus</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_7">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
             </item>
             <item row="1" column="0">
-             <widget class="QLabel" name="label_29">
-              <property name="text">
-               <string>Data</string>
+             <widget class="QTableWidget" name="tableWithTCPIPDevices">
+              <property name="selectionMode">
+               <enum>QAbstractItemView::SingleSelection</enum>
               </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QDateEdit" name="dateEdit"/>
-            </item>
-            <item row="2" column="1">
-             <widget class="QPushButton" name="pushButton">
-              <property name="text">
-               <string>Išsaugoti matavimo rezultatus</string>
+              <property name="selectionBehavior">
+               <enum>QAbstractItemView::SelectRows</enum>
               </property>
+              <attribute name="horizontalHeaderDefaultSectionSize">
+               <number>250</number>
+              </attribute>
+              <attribute name="horizontalHeaderStretchLastSection">
+               <bool>true</bool>
+              </attribute>
              </widget>
             </item>
            </layout>
           </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QGroupBox" name="groupBox_8">
-           <property name="title">
+          <widget class="QWidget" name="experimentParametersTabPage">
+           <attribute name="title">
             <string>Eksperimento parametrai</string>
-           </property>
-           <layout class="QGridLayout" name="gridLayout_27">
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout_28">
             <item row="0" column="0">
-             <widget class="QLabel" name="label_30">
-              <property name="text">
-               <string>Apkrovos varža R, kΩ</string>
+             <widget class="QGroupBox" name="groupBox_7">
+              <property name="title">
+               <string>Medžiagos informacija, duomenų išsaugojimas</string>
               </property>
+              <layout class="QGridLayout" name="gridLayout_26">
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_28">
+                 <property name="text">
+                  <string>Pavadinimas</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QLineEdit" name="lineEdit"/>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="label_29">
+                 <property name="text">
+                  <string>Data</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QDateEdit" name="dateEdit"/>
+               </item>
+               <item row="2" column="1">
+                <widget class="QPushButton" name="pushButton">
+                 <property name="text">
+                  <string>Išsaugoti matavimo rezultatus</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
              </widget>
+            </item>
+            <item row="0" column="2">
+             <spacer name="horizontalSpacer_14">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>528</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
             </item>
             <item row="0" column="1">
-             <widget class="QDoubleSpinBox" name="doubleSpinBox_12"/>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="label_31">
-              <property name="text">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kontakto plotas, cm²&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <widget class="QGroupBox" name="groupBox_8">
+              <property name="title">
+               <string>Eksperimento parametrai</string>
               </property>
+              <layout class="QGridLayout" name="gridLayout_27">
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_30">
+                 <property name="text">
+                  <string>Apkrovos varža R, kΩ</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QDoubleSpinBox" name="doubleSpinBox_12"/>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="label_31">
+                 <property name="text">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kontakto plotas, cm²&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QDoubleSpinBox" name="doubleSpinBox_13"/>
+               </item>
+              </layout>
              </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QDoubleSpinBox" name="doubleSpinBox_13"/>
             </item>
            </layout>
           </widget>
-         </item>
-         <item row="0" column="2">
-          <spacer name="horizontalSpacer_14">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>528</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="0" column="3">
-          <widget class="QPushButton" name="anotherExitButton">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>128</width>
-             <height>128</height>
-            </size>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>128</width>
-             <height>128</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QPushButton" name="anotherExitButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>128</width>
+            <height>128</height>
+           </size>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>128</width>
+            <height>128</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
       <widget class="QTabWidget" name="tabWidget">
        <property name="sizePolicy">
@@ -1619,6 +1601,33 @@
       </widget>
      </widget>
     </item>
+    <item row="1" column="0">
+     <widget class="QPushButton" name="closeButton">
+      <property name="text">
+       <string>Išeiti iš programos</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>927</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="1" column="2">
+     <widget class="QPushButton" name="unused_button">
+      <property name="text">
+       <string>Neveikiantis mygis</string>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -1626,8 +1635,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1213</width>
-     <height>28</height>
+     <width>1111</width>
+     <height>31</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFailas">
