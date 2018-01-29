@@ -164,10 +164,29 @@ class MainWindow(QtWidgets.QMainWindow):
         def loadEntriesFromConfig(self):
                 # TODO implement!
                 configLoader = Configuration("Configs/Entries.ini")
-                dev_dict = configLoader.USBTMCDevicesLoader(self.ui)
+                dev_dict = configLoader.USBTMCDevicesLoader()
+                # trigger device search:
+                self.scan_for_all_USBTMC_devices()
+                for key in dev_dict:
+                        if "gen" in key.lower():
+                                index = self.ui.comboBox_for_generator.findText(dev_dict[key])
+                                if index != -1:
+                                        self.ui.comboBox_for_generator.setCurrentIndex(index)
+                                else:
+                                        pass
+                                pass
+                        elif "osc" in key.lower():
+                                index = self.ui.comboBox_for_oscillograph.findText(dev_dict[key])
+                                if index != -1:
+                                        self.ui.comboBox_for_oscillograph.setCurrentIndex(index)
+                                else:
+                                        pass
+                                pass
+                        else:
+                                pass
+                        pass
                 # TODO one
-                configLoader.ConfigFileLoader(self.ui.tableWithTCPIPDevices)
-                self.DebugMessage("Not implemented yet!")
+                configLoader.ConfigTCPIPLoader(self.ui.tableWithTCPIPDevices)
                 pass
 
         def saveEntriesToConfig(self):
