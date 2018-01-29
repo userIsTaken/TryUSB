@@ -165,6 +165,8 @@ class MainWindow(QtWidgets.QMainWindow):
                 # TODO implement!
                 configLoader = Configuration("Configs/Entries.ini")
                 dev_dict = configLoader.USBTMCDevicesLoader(self.ui)
+                # TODO one
+                configLoader.ConfigFileLoader(self.ui.tableWithTCPIPDevices)
                 self.DebugMessage("Not implemented yet!")
                 pass
 

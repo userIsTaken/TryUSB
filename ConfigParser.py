@@ -16,6 +16,35 @@ class Configuration:
                 pass
 
         def ConfigFileLoader(self, tableWidget):
+                '''
+                Load IP devices
+                
+                :param tableWidget:
+                :return:
+                '''
+                self.config.read(self.FilePath)
+                section = "TCP IP devices"
+                for key in self.config[section]:
+                        print(key)
+                        print(self.config[section][key])
+                        # TODO add parsing:
+                        dev_dic = self.getKeyValue(self.config[section][key])
+                        for dkey in dev_dic:
+                                print(dkey, dev_dic[dkey])
+                                pass
+                        # ADD row, insert values:
+                        
+                        pass
+                pass
+        
+        def getKeyValue(self, string):
+                par_string = string.split("\n")
+                dev_dic = {}
+                for i in par_string:
+                        entry, value = i.split(":")
+                        print(entry, value, "ev")
+                        dev_dic[entry]=value
+                return dev_dic
                 pass
 
         def ConfigFileSaver(self, tableWidget):
@@ -44,7 +73,7 @@ class Configuration:
                                         pass
                                 else:
                                         idn, path = value.split("|")
-                                        dev_dict[idn] = path
+                                        dev_dict["gen"] = (path, idn)
                                         gui.comboBox_for_generator.addItem(idn)
                                         #
                                         pass
@@ -57,11 +86,11 @@ class Configuration:
                                         pass
                                 else:
                                         idn, path = value.split("|")
-                                        dev_dict[idn] = path
+                                        dev_dict["osc"] = (path, idn)
                                         gui.comboBox_for_oscillograph.addItem(str(idn))
                                         pass
                                 pass
                         else:
-                                pass
+                                print("Some stupid situation in ConfigParser.py")
                 return dev_dict
                 pass
