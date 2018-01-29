@@ -1,6 +1,4 @@
-import os, sys
-from PyQt5 import QtCore, QtWidgets, QtGui
-from USBTMC_Devices import *
+from Oscilographs.USBTMC_Devices import *
 from Generators.SiglentGenerator import *
 from Generators.TektronixGenerator import *
 import vxi11

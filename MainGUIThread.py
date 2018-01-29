@@ -1,21 +1,11 @@
 #!/usr/bin/python3
-from PyQt5 import QtCore, QtWidgets, QtGui
-from UIfiles.GUIThread import Ui_MainGuiWindow
 
-import sys, os
-from USBTMC_Devices import *
-from GetInfoAboutDevices import *
-from ConfigParser import *
-import vxi11
 import random
 import pyqtgraph as pG
 
 #
 
-from Generators.SiglentGenerator import *
-from Generators.TektronixGenerator import *
 from MainExperimentLoopThread import *
-from DummyFiles.DummyFunctions import *
 from Units.UnitCheck import *
 from UIfiles.UISetupFunctions import *
 # Very global dictionary for all devices?
