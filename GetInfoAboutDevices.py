@@ -88,20 +88,27 @@ def getTextLinesFromQTextEditField(QTextEdit: QtWidgets.QTextEdit):
 def scan_USBTMC_devices(mypath:str, devices_dic:dict):
        pass
 
-def GetGenerator(gui:Ui_MainGuiWindow):
+def GetGenerator(gui:Ui_MainGuiWindow, usbtmc_dev_dict):
+        '''
+
+        :param gui:
+        :param usbtmc_dev_dict:
+        :return:
+        '''
         USBTMCGenerator = gui.comboBox_for_generator.currentText()
         devices_from_IPtable = getDevicesFromTable(gui.tableWithTCPIPDevices)
         Generator = None
         try:
-                if devices_from_IPtable["Generatorius"] is not None:
-                        dev = vxi11.Instrument(devices_from_IPtable["Generatorius"])
-                        name = dev.ask("*IDN?")
-                        dev.close() # init will occur later
-                        if "Siglent" in name.lower():
-                                Generator = SiglentGenerator_TCP(devices_from_IPtable["Generatorius"])
-                        elif "Tektronix" in name.lower():
-                                Generator = TektronixGenerator_TCP(devices_from_IPtable["Generatorius"])
-                        pass
+                if "Generatorius" in devices_from_IPtable:
+                        if devices_from_IPtable["Generatorius"] is not None:
+                                dev = vxi11.Instrument(devices_from_IPtable["Generatorius"])
+                                name = dev.ask("*IDN?")
+                                dev.close() # init will occur later
+                                if "Siglent".lower() in name.lower():
+                                        Generator = SiglentGenerator_TCP(devices_from_IPtable["Generatorius"])
+                                elif "Tektronix".lower() in name.lower():
+                                        Generator = TektronixGenerator_TCP(devices_from_IPtable["Generatorius"])
+                                pass
                 elif USBTMCGenerator != "[Nėra]":
                         # Generator = RigolDS1000SeriesScope()
                         Generator = None
@@ -110,4 +117,37 @@ def GetGenerator(gui:Ui_MainGuiWindow):
                 pass
 
         return Generator
+        pass
+
+def GetOscilograph(gui:Ui_MainGuiWindow, usbtmc_dev_dict):
+        '''
+
+        :param gui:
+        :param usbtmc_dev_dict:
+        :return:
+        '''
+        USBTMOscilograph = gui.comboBox_for_oscillograph.currentText()
+        devices_from_IPtable = getDevicesFromTable(gui.tableWithTCPIPDevices)
+        Oscilograph = None
+        dev_path = None
+        try:
+                if "Oscilografas" in devices_from_IPtable:
+                        if devices_from_IPtable["Oscilografas"] is not None:
+                                dev = vxi11.Instrument(devices_from_IPtable["Oscilografas"])
+                                name = dev.ask("*IDN?")
+                                dev.close() # init will occur later
+                                if "Tektronix".lower() in name.lower():
+                                        pass
+                elif USBTMOscilograph != "[Nėra]":
+                        for key, value in usbtmc_dev_dict.items():
+                                if value == USBTMOscilograph:
+                                        dev_path = key
+                                pass
+                        Oscilograph = RigolDS1000SeriesScope(dev_path)
+                        pass
+                pass
+        except Exception as ex:
+                print("Problems with Oscilograph", str(ex))
+                pass
+        return Oscilograph
         pass

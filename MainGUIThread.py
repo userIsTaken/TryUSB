@@ -36,8 +36,8 @@ class MainWindow(QtWidgets.QMainWindow):
                 # plots:
                 #self._plots = []
                 #declare global self.dictionary:
-                self.Devices_dict={} # for USBTMC
-                self.Devices_TCP={} # for TCP/IP devices
+                self.DevicesUSBTMC={} # for USBTMC
+                self.DevicesTCP={} # for TCP/IP devices
                 # Globals for our devices
                 self.Generator = None
                 self.Osciloscope = None
@@ -542,7 +542,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 
         
         def connectGenerator(self):
-                self.Generator = GetGenerator(self.ui)
+                self.Generator = GetGenerator(self.ui, self.DevicesUSBTMC)
                 name = self.Generator.GetIDN()
                 # pass
                 # # at first, we should get an generator from our tables/comboBox:
@@ -652,7 +652,7 @@ class MainWindow(QtWidgets.QMainWindow):
         
         def scan_for_all_USBTMC_devices(self):
                 #  clear at first:
-                self.Devices_dict.clear()
+                self.DevicesUSBTMC.clear()
                 self.ui.list_of_devices_comboBox.clear()
                 self.ui.comboBox_for_oscillograph.clear()
                 self.ui.comboBox_for_generator.clear()
@@ -665,7 +665,7 @@ class MainWindow(QtWidgets.QMainWindow):
                                         answer = dvs.getName()
                                         self.DebugLog(str(answer.decode("utf-8")).replace("\n",""))
                                         # put this device name into dictionary, to use them later
-                                        self.Devices_dict["/dev/"+f] = str(answer.decode("utf-8")).replace("\n","")
+                                        self.DevicesUSBTMC["/dev/"+f] = str(answer.decode("utf-8")).replace("\n","")
                                         self.fill_all_boxes_with_devices(mypath+"/"+f)
                                         if "rigol".lower() in str(answer.decode("utf-8")).lower():
                                                 dvs.write(":KEY:FORC")
@@ -683,7 +683,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 pass
         
         def fill_all_boxes_with_devices(self, item):
-                answer= self.Devices_dict[item]
+                answer= self.DevicesUSBTMC[item]
                 # add into comboboxes:
                 self.ui.list_of_devices_comboBox.addItem(answer)
                 self.ui.comboBox_for_oscillograph.addItem(answer)
