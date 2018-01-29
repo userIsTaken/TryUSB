@@ -99,19 +99,12 @@ class MainWindow(QtWidgets.QMainWindow):
                         step = self.ui.stepForAmplitudeSweepBox.value()
                         fixedOFF = self.ui.fixedOffsetBox.value()
                         time = self.ui.timeForAmplOffsSweepBox.value()
-                        if self.ui.time_unit_mS.isChecked():
-                                t_unit = "mS"
-                        elif self.ui.time_unit_S.isChecked():
-                                t_unit = "S"
-                        else:
-                                t_unit = "uS"
                         parameters = {'key': 1,
                                       'startV': start,
                                       'stopV': stop,
                                       'stepV': step,
                                       'fixedOFF': fixedOFF,
-                                      'OFFtime': time,
-                                      'timeU': t_unit}
+                                      'OFFtime': time}
                 elif self.ui.sweepOffsetRadioButton.isChecked():
                         start = self.ui.startOffsetSweepBox.value()
                         stop = self.ui.stopOffsetSweepBox.value()
@@ -171,7 +164,7 @@ class MainWindow(QtWidgets.QMainWindow):
         def loadEntriesFromConfig(self):
                 # TODO implement!
                 configLoader = Configuration("Configs/Entries.ini")
-                configLoader.USBTMCDevicesLoader(self.ui)
+                dev_dict = configLoader.USBTMCDevicesLoader(self.ui)
                 self.DebugMessage("Not implemented yet!")
                 pass
 
@@ -224,35 +217,44 @@ class MainWindow(QtWidgets.QMainWindow):
                 
         
         def StartExperimentLoop(self):
-                # TODO it looks like the right way how I need to implement this stuff:
-                if "Pradėta" in self.ui.startExperimentButton.text():
-                        self.DebugMessage("Thread is already running")
-                        pass
-                elif "Pradėti" in self.ui.startExperimentButton.text():
-                        if len(self._threads) > 0:
-                                self._threads = []
+                try:
+                        # TODO it looks like the right way how I need to implement this stuff:
+                        if "Pradėta" in self.ui.startExperimentButton.text():
+                                self.DebugMessage("Thread is already running")
                                 pass
-                        self._plots = []
-                        self.ui.experimentDataViewPlot.clear()
-                        # get all parameters:
-                        parameters_tuple = self.GetAllParameters()
-                        #
-                        thread = QThread()
-                        thread.setObjectName("WLoop")
-                        workerLoop = LoopWorker(self.Generator, self.Osciloscope, **parameters_tuple)
-                        print(thread.objectName())
-                        self._threads.append((thread, workerLoop))
-                        workerLoop.moveToThread(thread)
-                        workerLoop.results.connect(self.drawexp)
-                        workerLoop.final.connect(self.WorkerEnded)
-                        thread.started.connect(workerLoop.run)
-                        thread.start()
-                        self.ui.startExperimentButton.setText("Pradėta")
+                        elif "Pradėti" in self.ui.startExperimentButton.text():
+                                if len(self._threads) > 0:
+                                        # self._threads = []
+                                        pass
+                                # get all parameters:
+                                parameters_tuple = self.GetAllParameters()
+                                #
+                                self.ui.startExperimentButton.setText("Pradėta")
+                                thread = QThread()
+                                thread.setObjectName("WLoop")
+                                workerLoop = LoopWorker(self.Generator, self.Osciloscope, **parameters_tuple)
+                                print(thread.objectName())
+                                self._threads.append((thread, workerLoop))
+                                workerLoop.moveToThread(thread)
+                                workerLoop.results.connect(self.drawexp)
+                                workerLoop.final.connect(self.WorkerEnded)
+                                workerLoop.errors.connect(self.ErrorHasBeenGot)
+                                thread.started.connect(workerLoop.run)
+                                thread.start()
+                                pass
+                        else:
+                                self.DebugMessage("Some shit")
+                except Exception as ex:
+                        self.DebugLog("Problems with starting of threads")
+                        self.DebugLog(str(ex))
                         pass
+
+        def ErrorHasBeenGot(self, *args):
+                self.DebugLog(str(args[0]))
+                self.DebugLog(args[1])
                 pass
         
         def WorkerEnded(self, i:int):
-                # TODO bad bad behaviour - fix it!
                 self.ui.startExperimentButton.setText("Pradėti")
                 pass
         
@@ -417,7 +419,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 # self.ekspCurveOne.setData(time, CH1)
                 # self.ekspCurveTwo.setData(time, CH2)
                 expCOne.setData(time, CH1)
-                expCTwo.setData(time, CH2)
+                # expCTwo.setData(time, CH2)
                 self.DebugMessage("Working on it ...", 1000)
                 
         
