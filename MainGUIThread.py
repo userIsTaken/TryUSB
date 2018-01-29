@@ -463,17 +463,28 @@ class MainWindow(QtWidgets.QMainWindow):
         
         def connectOscilograph(self):
                 try:
-                        connected_devices = getDevicesFromComboBoxes(self.ui.comboBox_for_generator, self.ui.comboBox_for_oscillograph, self.Devices_dict)
-                        self.Osciloscope = RigolDS1000SeriesScope(connected_devices[3])
+                        self.Osciloscope = GetOscilograph(self.ui, self.DevicesUSBTMC)
                         msg = self.Osciloscope.get_name()
                         self.ui.idn_label_oscilograph.setText((msg.decode())[0:10])
-                        self.DebugMessage("IDN: "+msg.decode(), 1000)
-                        self.initOscilograph() # do not forget to call this function
+                        self.DebugMessage("IDN: " + msg.decode(), 1000)
+                        self.initOscilograph()
+                        pass
                 except Exception as ex:
-                        self.DebugLog("===Problemos su oscilografu===")
                         self.DebugLog(str(ex))
                         pass
-                pass
+                # OLD code, it worked
+                # try:
+                #         connected_devices = getDevicesFromComboBoxes(self.ui.comboBox_for_generator, self.ui.comboBox_for_oscillograph, self.Devices_dict)
+                #         self.Osciloscope = RigolDS1000SeriesScope(connected_devices[3])
+                #         msg = self.Osciloscope.get_name()
+                #         self.ui.idn_label_oscilograph.setText((msg.decode())[0:10])
+                #         self.DebugMessage("IDN: "+msg.decode(), 1000)
+                #         self.initOscilograph() # do not forget to call this function
+                # except Exception as ex:
+                #         self.DebugLog("===Problemos su oscilografu===")
+                #         self.DebugLog(str(ex))
+                #         pass
+                # pass
 
         def initOscilograph(self):
                 osc_conf = Configuration("Configs/RigolDS1101E.ini")
