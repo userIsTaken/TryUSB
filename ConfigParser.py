@@ -112,10 +112,8 @@ class Configuration:
                 return dev_dic
                 pass
 
-        def ConfigFileSaver(self, tableWidget):
-                pass
 
-        def USBTMCDevicesSaver(self,file:str, gui:Ui_MainGuiWindow):
+        def DevicesSaver(self,file:str, gui:Ui_MainGuiWindow):
                 """
 
                 :param gui:
@@ -124,6 +122,9 @@ class Configuration:
                 tableWidget = gui.tableWithTCPIPDevices
                 comboGen = gui.comboBox_for_generator
                 comboOsc = gui.comboBox_for_oscillograph
+                #
+                
+                
                 
                 pass
 
