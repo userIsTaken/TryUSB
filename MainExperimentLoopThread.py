@@ -132,7 +132,7 @@ class LoopWorker(QObject):
                                 # sys.exit(-1)
                 except Exception as ex:
                         print(ex)
-                        self.errors.emit(-1, str(ex) + " " + ex.args)
+                        self.errors.emit(-1, str(ex))
                         # sys.exit(-1)
                         pass
                 finally:
