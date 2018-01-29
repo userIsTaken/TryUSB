@@ -1,5 +1,6 @@
 import os, sys
 import configparser
+from PyQt5 import QtCore, QtWidgets, QtGui
 from UIfiles.GUIThread import Ui_MainGuiWindow
 
 class Configuration:
@@ -16,6 +17,71 @@ class Configuration:
                 pass
 
         def ConfigFileLoader(self, tableWidget):
+                '''
+                Load IP devices
+                
+                :param tableWidget:
+                :return:
+                '''
+                
+                self.config.read(self.FilePath)
+                section = "TCP IP devices"
+                for key in self.config[section]:
+                        print(key)
+                        print(self.config[section][key])
+                        # TODO add parsing:
+                        dev_dic = self.getKeyValue(self.config[section][key])
+                        for dkey in dev_dic:
+                                print(dkey, dev_dic[dkey])
+                                pass
+                        # ADD row, insert values:
+                        self.addRow(tableWidget, dev_dic)
+                        pass
+                pass
+        
+        def addRow(self, tWidget, dev_dict):
+                listOfDevices = ["Generatorius", "Oscilografas"]
+                IP = dev_dict["IP"]
+                GENOSCI = dev_dict["GENOSCI"]
+                USE = dev_dict["USE"]
+                IDN = dev_dict["IDN"]
+                i = tWidget.rowCount()
+                if i is not None:
+                        tWidget.setRowCount(i + 1)
+                        tWidget.setCellWidget(i, 1, QtWidgets.QComboBox())
+                        tWidget.cellWidget(i, 1).addItems(listOfDevices)
+                        tWidget.setCellWidget(i, 2, QtWidgets.QCheckBox())
+                        tWidget.cellWidget(i, 2).setChecked(False)
+                        cell = QtWidgets.QTableWidgetItem()
+                        cell.setText(str(i))
+                        tWidget.setItem(i, 4, cell)
+                        tWidget.selectRow(i)
+                else:
+                        tWidget.setRowCount(1)
+                        tWidget.setCellWidget(1, 1, QtWidgets.QComboBox())
+                        tWidget.cellWidget(1, 1).addItems(listOfDevices)
+                        if "gen" in GENOSCI:
+                                pass
+                        elif "osc" in GENOSCI:
+                                pass
+                        else:
+                                pass
+                        tWidget.setCellWidget(1, 2, QtWidgets.QCheckBox())
+                        tWidget.cellWidget(1, 2).setChecked(False)
+                        cell = QtWidgets.QTableWidgetItem()
+                        cell.setText(str(1))
+                        tWidget.setItem(1, 4, cell)
+                        tWidget.selectRow(1)
+                pass
+        
+        def getKeyValue(self, string):
+                par_string = string.split("\n")
+                dev_dic = {}
+                for i in par_string:
+                        entry, value = i.split(":")
+                        print(entry, value, "ev")
+                        dev_dic[entry]=value
+                return dev_dic
                 pass
 
         def ConfigFileSaver(self, tableWidget):
@@ -44,7 +110,7 @@ class Configuration:
                                         pass
                                 else:
                                         idn, path = value.split("|")
-                                        dev_dict[idn] = path
+                                        dev_dict["gen"] = (path, idn)
                                         gui.comboBox_for_generator.addItem(idn)
                                         #
                                         pass
@@ -57,11 +123,11 @@ class Configuration:
                                         pass
                                 else:
                                         idn, path = value.split("|")
-                                        dev_dict[idn] = path
+                                        dev_dict["osc"] = (path, idn)
                                         gui.comboBox_for_oscillograph.addItem(str(idn))
                                         pass
                                 pass
                         else:
-                                pass
+                                print("Some stupid situation in ConfigParser.py")
                 return dev_dict
                 pass
