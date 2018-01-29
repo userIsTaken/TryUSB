@@ -45,7 +45,7 @@ class TektronixGenerator_TCP():
                 pass
 
         def GetInitConfiguration(self):
-                myConf = Configuration("Configs/Tektronix.ini")
+                myConf = Configuration("Configs/TektronixGenerator.ini")
                 lines = myConf.readDefaultInitCommands("TEKTRONIX INIT CONFIG", "InitCMD")
                 return lines
                 pass
