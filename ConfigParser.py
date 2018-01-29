@@ -16,7 +16,7 @@ class Configuration:
                 return longString
                 pass
 
-        def ConfigFileLoader(self, tableWidget):
+        def ConfigTCPIPLoader(self, tableWidget):
                 '''
                 Load IP devices
                 
@@ -123,39 +123,16 @@ class Configuration:
                 """
                 pass
 
-        def USBTMCDevicesLoader(self, gui:Ui_MainGuiWindow):
-                path = None
-                idn = None
-                dev_dict = {}
+        def USBTMCDevicesLoader(self):
+                '''
+                
+                :return:
+                '''
+                dev_dict= {}
                 self.config.read(self.FilePath)
                 section = "USBTMC devices"
                 for key in self.config[section]:
-                        if key == "generator":
-                                print("gen")
-                                value = self.config[section][key]
-                                if len(value) == 0:
-                                        print(value)
-                                        pass
-                                else:
-                                        idn, path = value.split("|")
-                                        dev_dict["gen"] = (path, idn)
-                                        gui.comboBox_for_generator.addItem(idn)
-                                        #
-                                        pass
-                                pass
-                        elif key == "oscilograph":
-                                print("osc")
-                                value = self.config[section][key]
-                                if len(value) == 0:
-                                        print(value)
-                                        pass
-                                else:
-                                        idn, path = value.split("|")
-                                        dev_dict["osc"] = (path, idn)
-                                        gui.comboBox_for_oscillograph.addItem(str(idn))
-                                        pass
-                                pass
-                        else:
-                                print("Some stupid situation in ConfigParser.py")
+                        dev_dict[key]=self.config[section][key]
+                        print(self.config[section][key])
+                        pass
                 return dev_dict
-                pass

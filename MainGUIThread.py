@@ -164,10 +164,10 @@ class MainWindow(QtWidgets.QMainWindow):
         def loadEntriesFromConfig(self):
                 # TODO implement!
                 configLoader = Configuration("Configs/Entries.ini")
-                dev_dict = configLoader.USBTMCDevicesLoader(self.ui)
+                dev_dict = configLoader.USBTMCDevicesLoader()
+                # trigger device search:
                 # TODO one
-                configLoader.ConfigFileLoader(self.ui.tableWithTCPIPDevices)
-                self.DebugMessage("Not implemented yet!")
+                configLoader.ConfigTCPIPLoader(self.ui.tableWithTCPIPDevices)
                 pass
 
         def saveEntriesToConfig(self):
