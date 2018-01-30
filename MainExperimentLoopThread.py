@@ -3,7 +3,8 @@ from PyQt5.QtCore import QThread, pyqtSignal, pyqtSlot, QObject
 import os, sys
 import time
 # from DummyFiles.DummyFunctions import *
-
+ON = "ON"
+OFF = "OFF"
 class LoopWorker(QObject):
         results = pyqtSignal(list, list, list, str)
         errors = pyqtSignal(int, str)
@@ -33,9 +34,11 @@ class LoopWorker(QObject):
                                 timeOFF = self.kwargs['OFFtime']
                                 time_u = self.kwargs['timeU']
                                 fixed_offset = self.kwargs['fixedOFF']
+                                wait_pls = 0
                                 i = 0
                                 try:
                                         while totalV <= stopV:
+                                                self.Generator.EnableOutput(self.Generator.CH1, OFF)
                                                 self.Generator.SetAmplitude(self.Generator.CH1, totalV)
                                                 time.sleep(0.1)
                                                 offset = self.GetOffset(totalV, fixed_offset)
@@ -57,7 +60,7 @@ class LoopWorker(QObject):
                                                         wait_pls = float(timeOFF) * 2.1
                                                         print("Laukiam ", wait_pls)
                                                         self.Oscilograph.set_trigger_edge_level(tr)
-                                                        time.sleep(wait_pls)
+                                                        # time.sleep(wait_pls)
                                                         pass
                                                 elif ("mS" == time_u):
                                                         t_u = str((timeOFF / 4) * (10 ** -3))
@@ -66,7 +69,7 @@ class LoopWorker(QObject):
                                                         wait_pls = float(timeOFF) * 2.1
                                                         print("Laukiam ", wait_pls)
                                                         self.Oscilograph.set_trigger_edge_level(tr)
-                                                        time.sleep(wait_pls)
+                                                        # time.sleep(wait_pls)
                                                         pass
                                                 elif ("S" == time_u):
                                                         t_u = str(timeOFF / 4)
@@ -76,11 +79,13 @@ class LoopWorker(QObject):
                                                         wait_pls = float(timeOFF) * 2.1
                                                         print("Laukiam ", wait_pls)
                                                         self.Oscilograph.set_trigger_edge_level(tr)
-                                                        time.sleep(wait_pls)
+                                                        # time.sleep(wait_pls)
                                                         pass
                                                 else:
                                                         print("shit here")
                                                         pass
+                                                self.Generator.EnableOutput(self.Generator.CH1, ON)
+                                                time.sleep(wait_pls)
                                                 data_from_channel, time_array, time_unit = self.Oscilograph.get_data_points_from_channel("CHAN1")
                                                 time.sleep(0.1)
                                                 data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel("CHAN2")
@@ -88,6 +93,7 @@ class LoopWorker(QObject):
                                                 time.sleep(2.0) # 2.0 seconds are enough
                                                 print("measured at ", totalV)
                                                 totalV = totalV + stepV
+                                                self.Generator.EnableOutput(self.Generator.CH1, OFF)
                                                 pass
                                 except Exception as ex:
                                         print(ex)
