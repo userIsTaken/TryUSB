@@ -84,6 +84,12 @@ class TektronixGenerator_TCP():
                 answer = self.Ask(cmd)
                 return answer
                 pass
+
+        def GetNormalizedOffset(self, channel):
+                offset = self.GetOffset(channel)
+                ampl =  self.GetAmplitude(channel)
+                normalized_offset = float(offset) - float(ampl)/2
+                pass
         
         def SetPeriod(self, channel, period, unit, power):
                 '''
