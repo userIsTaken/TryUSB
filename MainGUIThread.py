@@ -207,7 +207,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 period = self.Generator.GetPeriod(self.Generator.CH1)
                 amplitude = self.Generator.GetAmplitude(self.Generator.CH1)
                 trigger_interval = self.Generator.GetTriggerInterval()
-                offset = self.Generator.GetOffset(self.Generator.CH1)
+                offset = self.Generator.GetNormalizedOffset(self.Generator.CH1)
                 # Need to fix units, aka μS, mS, S ...
                 # Print all :
                 print("FREQ", frequency, "PERIOD", period, "AMPL", amplitude, "TRIG INT", trigger_interval, "OFFS", offset)
@@ -416,11 +416,6 @@ class MainWindow(QtWidgets.QMainWindow):
         def getVoltsFromCH2_button_clicked(self):
                 self.getVoltsFromChannel("CHAN2", self.dataCurveTwo, self.ui.dataViewWidget)
                 pass
-        
-        # def ekspMatavimas_clicked(self):
-        #         self.getVoltsFromChannel(self.Osciloscope.CH1, self.ekspCurveOne, self.ui.experimentDataViewPlot)
-        #         self.getVoltsFromChannel(self.Osciloscope.CH2, self.ekspCurveTwo, self.ui.experimentDataViewPlot)
-        #         pass
 
         def getVoltsFromChannel(self, CH:str, dataCurve, graph:pG.PlotWidget):
                 data_from_channel, time_array, time_unit = self.Osciloscope.get_data_points_from_channel(CH)
@@ -440,9 +435,9 @@ class MainWindow(QtWidgets.QMainWindow):
                 rOne = random.randint(100, 255)
                 gOne = random.randint(100, 255)
                 bOne = random.randint(100, 255)
-                rTwo = random.randint(100, 255)
-                gTwo = random.randint(100, 255)
-                bTwo = random.randint(100, 255)
+                rTwo = random.randint(150, 255)
+                gTwo = random.randint(150, 255)
+                bTwo = random.randint(150, 255)
                 expCOne.setPen((rOne, gOne, bOne))
                 expCTwo.setPen((rTwo, gTwo, bTwo))
                 #self._plots.append((expCOne, expCTwo))
