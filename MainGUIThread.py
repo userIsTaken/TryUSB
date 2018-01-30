@@ -501,7 +501,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 pass
 
         def getVoltsFromCH1_button_clicked(self):
-                self.getVoltsFromChannel("CHAN1", self.dataCurveOne)
+                self.getVoltsFromChannel("CHAN1", self.dataCurveOne, self.ui.dataViewWidget)
                 pass
         # def setupPlotWidget(self):
         #         '''
