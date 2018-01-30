@@ -31,9 +31,9 @@ class Configuration:
                         print(self.config[section][key])
                         # TODO add parsing:
                         dev_dic = self.getKeyValue(self.config[section][key])
-                        for dkey in dev_dic:
-                                print(dkey, dev_dic[dkey])
-                                pass
+                        # for dkey in dev_dic:
+                        #         # print(dkey, dev_dic[dkey])
+                        #         pass
                         # ADD row, insert values:
                         self.addRow(tableWidget, dev_dic)
                         pass
@@ -107,7 +107,7 @@ class Configuration:
                 dev_dic = {}
                 for i in par_string:
                         entry, value = i.split(":")
-                        print(entry, value, "ev")
+                        # print(entry, value, "ev")
                         dev_dic[entry]=value
                 return dev_dic
                 pass
@@ -138,6 +138,6 @@ class Configuration:
                 section = "USBTMC devices"
                 for key in self.config[section]:
                         dev_dict[key]=self.config[section][key]
-                        print(self.config[section][key])
+                        # print(self.config[section][key])
                         pass
                 return dev_dict
