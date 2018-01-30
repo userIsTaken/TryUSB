@@ -42,6 +42,7 @@ class LoopWorker(QObject):
                                                 self.Generator.SetAmplitude(self.Generator.CH1, totalV)
                                                 time.sleep(0.1)
                                                 offset = self.GetOffset(totalV, fixed_offset)
+                                                self.Generator.SetOffset(self.Generator.CH1, offset)
                                                 trigger = (totalV + offset) / 4
                                                 tr = str("{0:.2f}".format(trigger))
                                                 print(tr, "tr")
