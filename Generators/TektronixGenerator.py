@@ -1,4 +1,4 @@
-import  os, sys
+import  os, sys, time
 import vxi11
 from ConfigParser import *
 
@@ -91,6 +91,18 @@ class TektronixGenerator_TCP():
                 normalized_offset = float(offset) - float(ampl)/2
                 return normalized_offset
                 # pass
+
+        def SetNormalizedOffset(self, channel, offset, amplitude):
+                gen_offset =  amplitude / 2 + offset
+                self.SetOffset(channel, gen_offset)
+                pass
+
+        def SetNormalizedAmplOffs(self, channel, ampl, offs):
+                gen_offset = ampl / 2 + offs
+                self.SetAmplitude(channel, ampl)
+                time.sleep(0.2)
+                self.SetOffset(channel, gen_offset)
+                pass
         
         def SetPeriod(self, channel, period, unit, power):
                 '''
