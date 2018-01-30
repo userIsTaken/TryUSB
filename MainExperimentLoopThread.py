@@ -24,19 +24,22 @@ class LoopWorker(QObject):
                 try:
                         print("Try to run this stuff")
                         if self.kwargs['key'] == 1:
-                                self.Generator.SetOffset(self.Generator.CH1, self.kwargs['fixedOFF'])
-                                self.Oscilograph.set_channel_offset(self.Oscilograph.CH1, "-2")
+                                # self.Generator.SetOffset(self.Generator.CH1, self.kwargs['fixedOFF'])
+                                # self.Oscilograph.set_channel_offset(self.Oscilograph.CH1, "-2")
                                 startV = self.kwargs['startV']
                                 stopV = self.kwargs['stopV']
                                 totalV = startV
                                 stepV = self.kwargs['stepV']
                                 timeOFF = self.kwargs['OFFtime']
                                 time_u = self.kwargs['timeU']
+                                fixed_offset = self.kwargs['fixedOFF']
                                 i = 0
                                 try:
                                         while totalV <= stopV:
                                                 self.Generator.SetAmplitude(self.Generator.CH1, totalV)
-                                                trigger = (totalV + self.kwargs['fixedOFF']) / 4
+                                                time.sleep(0.1)
+                                                offset = self.GetOffset(totalV, fixed_offset)
+                                                trigger = (totalV + offset) / 4
                                                 tr = str("{0:.2f}".format(trigger))
                                                 print(tr, "tr")
                                                 scale = totalV / 4
@@ -140,3 +143,16 @@ class LoopWorker(QObject):
                         pass
                 
                 # self.deleteLater()
+                
+        def GetOffset(self, ampl, offs):
+                '''
+                
+                :param ampl:
+                :param offs:
+                :return:
+                '''
+                
+                really_good_offset = ampl/2 + offs
+                return really_good_offset
+                
+                pass
