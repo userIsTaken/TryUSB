@@ -52,8 +52,6 @@ class LoopWorker(QObject):
                                                 time.sleep(1)
                                                 self.Oscilograph.set_y_scale("CHAN1", sc)
                                                 time.sleep(1) # 100 ms is enough
-                                                
-                                                
                                                 if ("uS" == time_u):
                                                         t_u = (timeOFF / 4) * (10 ** -6)
                                                         self.Oscilograph.set_time_scale(str("{0:.8f}".format(t_u)))
