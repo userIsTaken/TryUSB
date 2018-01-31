@@ -232,7 +232,8 @@ class RigolDS1000SeriesScope:
                 # Now, we know from experimentation that the scope display range is actually
                 # 30-229.  So shift by 130 - the voltage offset in counts, then scale to
                 # get the actual voltage.
-                dataCH1 = (dataCH - 130.0 - voltoffsetCH / voltscaleCH * 25) / 25 * voltscaleCH
+                # nope, test 120 and 140
+                dataCH1 = (dataCH - 140.0 - voltoffsetCH / voltscaleCH * 25) / 25 * voltscaleCH
                 # ==========================
                 # Get a time scale:
                 time_scale = self.get_time_scale()
