@@ -151,7 +151,7 @@ class LoopWorker(QObject):
                                         self.errors.emit(-1, str(ex) + " " + ex.args)
                                         # sys.exit(-1)
                         else:
-                                print("Else fork, stopping ... ")
+                                self.progress.emit("Else fork, stopping ... ")
                                 # TODO we need to describe all variants who can occur in if conditions
                                 # sys.exit(-1)
                 except Exception as ex:
