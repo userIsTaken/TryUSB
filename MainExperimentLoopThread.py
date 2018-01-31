@@ -9,6 +9,7 @@ class LoopWorker(QObject):
         results = pyqtSignal(list, list, list, str)
         errors = pyqtSignal(int, str)
         final = pyqtSignal(int)
+        progress = pyqtSignal(str)
         
         def __init__(self, generator, oscilograph, *args, **kwargs):
                 super(LoopWorker, self).__init__()
@@ -36,6 +37,8 @@ class LoopWorker(QObject):
                                 fixed_offset = self.kwargs['fixedOFF']
                                 wait_pls = 0
                                 i = 0
+                                self.Generator.EnableOutput(self.Generator.CH1, OFF)
+                                self.Generator.SetPeriod(self.Generator.CH1, timeOFF, time_u, i)
                                 try:
                                         while totalV <= stopV:
                                                 self.Generator.EnableOutput(self.Generator.CH1, OFF)
@@ -46,56 +49,56 @@ class LoopWorker(QObject):
                                                 self.Generator.SetOffset(self.Generator.CH1, offset)
                                                 trigger = (totalV) / 4 + fixed_offset
                                                 tr = str("{0:.2f}".format(trigger))
-                                                print(tr, "tr")
+                                                # print(tr, "tr")
+                                                self.progress.emit(str(tr)+" tr")
                                                 scale = (totalV+fixed_offset) / 4
                                                 sc = str("{0:.2f}".format(scale))
-                                                self.Generator.SetPeriod(self.Generator.CH1, timeOFF, time_u, i)
                                                 time.sleep(1)
                                                 self.Oscilograph.set_y_scale(self.Oscilograph.CH1, sc)
                                                 time.sleep(2) # 100 ms is enough
                                                 if ("uS" == time_u):
                                                         t_u = (timeOFF / 4) * (10 ** -6)
                                                         self.Oscilograph.set_time_scale(str("{0:.8f}".format(t_u)))
-                                                        print("Periodas ", str("{0:.8f}".format(t_u)))
+                                                        self.progress.emit("Periodas " + str("{0:.8f}".format(t_u)))
                                                         wait_pls = float(timeOFF) * 2.1
-                                                        print("Laukiam ", wait_pls)
+                                                        self.progress.emit("Laukiam " + str( wait_pls))
                                                         self.Oscilograph.set_trigger_edge_level(tr)
                                                         # time.sleep(wait_pls)
                                                         pass
                                                 elif ("mS" == time_u):
                                                         t_u = str((timeOFF / 4) * (10 ** -3))
                                                         self.Oscilograph.set_time_scale(t_u)
-                                                        print("Periodas ", t_u)
+                                                        self.progress.emit("Periodas "+ str( t_u))
                                                         wait_pls = float(timeOFF) * 2.1
-                                                        print("Laukiam ", wait_pls)
+                                                        self.progress.emit("Laukiam " + str( wait_pls))
                                                         self.Oscilograph.set_trigger_edge_level(tr)
                                                         # time.sleep(wait_pls)
                                                         pass
                                                 elif ("S" == time_u):
                                                         t_u = str(timeOFF / 4)
                                                         self.Oscilograph.set_time_scale(t_u)
-                                                        print("Periodas ", timeOFF)
+                                                        self.progress.emit("Periodas " + str( timeOFF))
                                                         # self.Oscilograph.set_trigger_edge_level(tr)
                                                         wait_pls = float(timeOFF) * 2.1
-                                                        print("Laukiam ", wait_pls)
+                                                        self.progress.emit("Laukiam " + str( wait_pls))
                                                         self.Oscilograph.set_trigger_edge_level(tr)
                                                         # time.sleep(wait_pls)
                                                         pass
                                                 else:
-                                                        print("shit here")
+                                                        self.progress.emit("shit here")
                                                         pass
                                                 time.sleep(1)
                                                 self.Generator.EnableOutput(self.Generator.CH1, ON)
                                                 self.Oscilograph.set_channel_offset(self.Oscilograph.CH1,str(-1.0 * fixed_offset))
                                                 self.Oscilograph.unlock_key()
-                                                print("Wait 20 s")
+                                                self.progress.emit("Wait 20 s")
                                                 time.sleep(20)
                                                 data_from_channel, time_array, time_unit = self.Oscilograph.get_data_points_from_channel("CHAN1")
                                                 time.sleep(0.1)
                                                 data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel("CHAN2")
                                                 self.results.emit(data_from_channel.tolist(), data_from_channel2.tolist(), time_array.tolist(), time_unit)
                                                 time.sleep(2.0) # 2.0 seconds are enough
-                                                print("measured at ", totalV)
+                                                self.progress.emit("measured at " + str( totalV))
                                                 totalV = totalV + stepV
                                                 self.Generator.EnableOutput(self.Generator.CH1, OFF)
                                                 self.Oscilograph.unlock_key()

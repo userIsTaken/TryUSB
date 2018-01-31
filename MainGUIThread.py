@@ -290,6 +290,7 @@ class MainWindow(QtWidgets.QMainWindow):
                                 workerLoop.results.connect(self.drawexp)
                                 workerLoop.final.connect(self.WorkerEnded)
                                 workerLoop.errors.connect(self.ErrorHasBeenGot)
+                                workerLoop.progress.connect(self.ExperimentInfo)
                                 thread.started.connect(workerLoop.run)
                                 thread.start()
                                 pass
@@ -406,6 +407,7 @@ class MainWindow(QtWidgets.QMainWindow):
                                 worker = RigolBackGround_scanner(self.Osciloscope.get_data_points_from_channel, "CHAN1", time, count)
                                 worker.signals.result.connect(self.DrawOscilogramm)
                                 worker.signals.error.connect(self.DebugLog)
+                                # worker.signals.progress.connect(self.ExperimentInfo)
                                 worker.signals.finished.connect(self.FinnishedQRunnable)
                                 self.ThreadPool.start(worker)
                         else:
@@ -415,6 +417,10 @@ class MainWindow(QtWidgets.QMainWindow):
                         self.DebugMessage("Shit happened "+str(int), 1000)
                         pass
                 # self.DebugMessage("")
+
+        def ExperimentInfo(self, string):
+                self.ui.experimentPlainLog.appendPlainText(string)
+                pass
                 
         def FinnishedQRunnable(self):
                 self.ui.useRegularUpdateBox.setChecked(False)
