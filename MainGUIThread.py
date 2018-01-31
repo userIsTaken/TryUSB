@@ -91,6 +91,18 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.ui.sweepAmplitudeRadioButton.clicked.connect(self.SetSweepFunctions)
                 self.ui.sweepOffsetRadioButton.clicked.connect(self.SetSweepFunctions)
                 self.ui.sweepTimeRadioButton.clicked.connect(self.SetSweepFunctions)
+                # Oscilograph cmds:
+                self.ui.sendCustomCMDoscil.clicked.connect(self.sendCMDintoOcilograph)
+                pass
+        
+        def sendCMDintoOcilograph(self):
+                cmd = self.ui.cmdBoxForOSC.currentText()
+                try:
+                        self.Osciloscope.write(cmd)
+                        pass
+                except Exception as ex:
+                        self.DebugLog(str(ex))
+                        pass
                 pass
 
         def GetAllParameters(self):
@@ -491,6 +503,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 # It seems working until ths point:
                 for i in cmds:
                         self.Osciloscope.write(i)
+                        self.ui.cmdBoxForOSC.addItem(str(i))
                         time.sleep(0.25)
                 self.Osciloscope.unlock_key()
                 pass
