@@ -98,6 +98,7 @@ class LoopWorker(QObject):
                                                 print("measured at ", totalV)
                                                 totalV = totalV + stepV
                                                 self.Generator.EnableOutput(self.Generator.CH1, OFF)
+                                                self.Oscilograph.unlock_key()
                                                 pass
                                 except Exception as ex:
                                         print(ex)
