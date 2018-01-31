@@ -53,7 +53,6 @@ class LoopWorker(QObject):
                                                 time.sleep(1)
                                                 self.Oscilograph.set_y_scale(self.Oscilograph.CH1, sc)
                                                 time.sleep(2) # 100 ms is enough
-                                                
                                                 if ("uS" == time_u):
                                                         t_u = (timeOFF / 4) * (10 ** -6)
                                                         self.Oscilograph.set_time_scale(str("{0:.8f}".format(t_u)))
@@ -104,11 +103,10 @@ class LoopWorker(QObject):
                                 except Exception as ex:
                                         print(ex)
                                         self.errors.emit(-1, str(ex)+" " + ex.args)
-                                        # self.deleteLater()
-                                        # sys.exit(-1)
 
                         elif self.kwargs['key'] == 2:
-                                self.Generator.SetAmplitude(self.Generator.CH1, self.kwargs['fixedV'])
+                                fixedAmpl = self.kwargs['fixedV']
+                                self.Generator.SetAmplitude(self.Generator.CH1, fixedAmpl)
                                 startOFF = self.kwargs['startOFF']
                                 stopOFF = self.kwargs['stopOFF']
                                 totalOFF = startOFF
@@ -117,16 +115,22 @@ class LoopWorker(QObject):
                                 i = 0
                                 try:
                                         while totalOFF <= stopOFF:
-                                                self.Generator.SetOffset(self.Generator.CH1, totalOFF)
-                                                trigger = totalOFF + self.kwargs['fixedV'] / 4
+                                                self.Generator.EnableOutput(self.Generator.CH1, OFF)
+                                                time.sleep(1)
+                                                self.Generator.SetNormalizedOffset(self.Generator.CH1, totalOFF, float(fixedAmpl))
+                                                trigger = totalOFF + fixedAmpl / 4
                                                 tr = str("{0:.2f}".format(trigger))
                                                 print(tr, "tr")
-                                                scale = self.kwargs['fixedV'] / 4
+                                                scale = fixedAmpl / 4
                                                 sc = str("{0:.2f}".format(scale))
                                                 self.Oscilograph.set_y_scale("CHAN1", sc)
+                                                time.sleep(1)
                                                 self.Oscilograph.set_trigger_edge_level(tr)
                                                 time.sleep(3.0)
-
+                                                self.Oscilograph.set_channel_offset(self.Oscilograph.CH1, str(-1*totalOFF))
+                                                time.sleep(3.0)
+                                                self.Generator.EnableOutput(self.Generator.CH1, ON)
+                                                time.sleep(2.0)
                                                 data_from_channel, time_array, time_unit = self.Oscilograph.get_data_points_from_channel(
                                                         "CHAN1")
                                                 data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel(
@@ -135,6 +139,8 @@ class LoopWorker(QObject):
                                                                   time_array.tolist(), time_unit)
                                                 time.sleep(5.0)
                                                 print("measured at ", totalOFF)
+                                                self.Generator.EnableOutput(self.Generator.CH1, OFF)
+                                                self.Oscilograph.unlock_key()
                                                 totalOFF = totalOFF + stepOFF
 
                                 except Exception as ex:
