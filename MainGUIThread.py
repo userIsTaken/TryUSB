@@ -93,8 +93,17 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.ui.sweepTimeRadioButton.clicked.connect(self.SetSweepFunctions)
                 # Oscilograph cmds:
                 self.ui.sendCustomCMDoscil.clicked.connect(self.sendCMDintoOcilograph)
+                self.ui.fullscreenButton.clicked.connect(self.SetFullScreen)
                 pass
-        
+
+        def SetFullScreen(self):
+                if self.isFullScreen():
+                        self.showNormal()
+                        pass
+                else:
+                        self.showFullScreen()
+                pass
+
         def sendCMDintoOcilograph(self):
                 cmd = self.ui.cmdBoxForOSC.currentText()
                 try:
