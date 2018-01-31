@@ -84,10 +84,12 @@ class LoopWorker(QObject):
                                                 else:
                                                         print("shit here")
                                                         pass
+                                                self.Oscilograph.set_channel_offset(self.Oscilograph.CH1, -fixed_offset)
+                                                time.sleep(1)
                                                 self.Generator.EnableOutput(self.Generator.CH1, ON)
                                                 self.Oscilograph.unlock_key()
-                                                print("Wait 15 s")
-                                                time.sleep(15)
+                                                print("Wait 2 s")
+                                                time.sleep(2)
                                                 data_from_channel, time_array, time_unit = self.Oscilograph.get_data_points_from_channel("CHAN1")
                                                 time.sleep(0.1)
                                                 data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel("CHAN2")
