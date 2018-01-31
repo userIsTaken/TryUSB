@@ -221,7 +221,7 @@ class RigolDS1000SeriesScope:
                 self.stop()
                 # set wave data points mode to normal:
                 self.channels_mode("NORM")
-                data_array_from_channel = self.get_data_from_channel(CH, 9000)
+                data_array_from_channel = self.get_data_from_channel(CH, 9000)[10:]
                 # Walk through the data, and map it to actual voltages
                 # First invert the data (ya rly)
                 dataCH = data_array_from_channel * -1 + 255
