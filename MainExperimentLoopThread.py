@@ -39,6 +39,7 @@ class LoopWorker(QObject):
                                 try:
                                         while totalV <= stopV:
                                                 self.Generator.EnableOutput(self.Generator.CH1, OFF)
+                                                time.sleep(0.1)
                                                 self.Generator.SetAmplitude(self.Generator.CH1, totalV)
                                                 time.sleep(0.1)
                                                 offset = self.GetOffset(totalV, fixed_offset)
