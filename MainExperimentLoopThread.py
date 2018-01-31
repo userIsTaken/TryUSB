@@ -47,7 +47,7 @@ class LoopWorker(QObject):
                                                 trigger = (totalV) / 4 + fixed_offset
                                                 tr = str("{0:.2f}".format(trigger))
                                                 print(tr, "tr")
-                                                scale = totalV / 4
+                                                scale = (totalV+fixed_offset) / 4
                                                 sc = str("{0:.2f}".format(scale))
                                                 self.Generator.SetPeriod(self.Generator.CH1, timeOFF, time_u, i)
                                                 time.sleep(1)
