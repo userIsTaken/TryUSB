@@ -658,15 +658,22 @@ class MainWindow(QtWidgets.QMainWindow):
                 pass
                 
         def closeFn(self):
-                if self.Generator is not None:
-                        # self.Generator.ask("*RST")
-                        # Nereikia čia reset'o daryti.
-                        self.Generator.Close()
-                if self.Osciloscope is not None:
-                        self.Osciloscope.close()
-                # print("Debug: exit")
-                # čia turi būti funkcija, atsijungianti nuo prietaisų ir juos nustatanti į defaul režimą;
-                sys.exit(0)
+                try:
+                        if self.Generator is not None:
+                                # self.Generator.ask("*RST")
+                                # Nereikia čia reset'o daryti.
+                                self.Generator.Close()
+                        if self.Osciloscope is not None:
+                                self.Osciloscope.unlock_key()
+                                self.Osciloscope.close()
+                        # print("Debug: exit")
+                        # čia turi būti funkcija, atsijungianti nuo prietaisų ir juos nustatanti į defaul režimą;
+                        sys.exit(0)
+                        pass
+                except Exception as ex:
+                        print(ex)
+                        sys.exit(0)
+                        pass
                 pass
         
         def clearTextInIfoFiel(self):
