@@ -210,7 +210,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 offset = self.Generator.GetNormalizedOffset(self.Generator.CH1)
                 # Need to fix units, aka μS, mS, S ...
                 # Print all :
-                print("FREQ", frequency, "PERIOD", period, "AMPL", amplitude, "TRIG INT", trigger_interval, "OFFS", offset)
+                print("FREQ", frequency, "PERIOD", period, "AMPL", amplitude, "TRIG INT", trigger_interval, "Norm. OFFS", offset)
                 self.ui.voltageOffsetBox.setValue(float(offset))
                 self.ui.voltageAmplitudeBox.setValue(float(amplitude))
                 # We need appropriate values and their units
