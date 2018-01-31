@@ -84,7 +84,7 @@ class LoopWorker(QObject):
                                                 else:
                                                         print("shit here")
                                                         pass
-                                                self.Oscilograph.set_channel_offset(self.Oscilograph.CH1, -fixed_offset)
+                                                self.Oscilograph.set_channel_offset(self.Oscilograph.CH1, str(-1.0*fixed_offset))
                                                 time.sleep(1)
                                                 self.Generator.EnableOutput(self.Generator.CH1, ON)
                                                 self.Oscilograph.unlock_key()
