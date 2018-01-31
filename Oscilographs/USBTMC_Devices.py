@@ -242,9 +242,15 @@ class RigolDS1000SeriesScope:
                 # get time array:
                 time_array, time_unit, dataCH2 = self.get_time_array(dataCH1)
                 self.run()
-                self.unlock_key()
                 return dataCH2, time_array, time_unit
                 pass
+        
+        # def get_data_points_from_channel(self, channel):
+        #         # Stop data acquisition:
+        #         self.stop()
+        #         self.channels_mode("RAW")
+        #         rawdata = self.get_data_from_channel(channel, )
+        #         pass
 
         def run(self):
                 self.write(":RUN")
