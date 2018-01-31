@@ -53,6 +53,7 @@ class LoopWorker(QObject):
                                                 time.sleep(1)
                                                 self.Oscilograph.set_y_scale("CHAN1", sc)
                                                 time.sleep(1) # 100 ms is enough
+                                                self.Oscilograph.set_channel_offset(self.Oscilograph.CH1, str(-1.0 * fixed_offset))
                                                 if ("uS" == time_u):
                                                         t_u = (timeOFF / 4) * (10 ** -6)
                                                         self.Oscilograph.set_time_scale(str("{0:.8f}".format(t_u)))
@@ -84,12 +85,11 @@ class LoopWorker(QObject):
                                                 else:
                                                         print("shit here")
                                                         pass
-                                                self.Oscilograph.set_channel_offset(self.Oscilograph.CH1, str(-1.0*fixed_offset))
                                                 time.sleep(1)
                                                 self.Generator.EnableOutput(self.Generator.CH1, ON)
                                                 self.Oscilograph.unlock_key()
-                                                print("Wait 2 s")
-                                                time.sleep(2)
+                                                print("Wait 20 s")
+                                                time.sleep(20)
                                                 data_from_channel, time_array, time_unit = self.Oscilograph.get_data_points_from_channel("CHAN1")
                                                 time.sleep(0.1)
                                                 data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel("CHAN2")
