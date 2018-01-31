@@ -233,7 +233,7 @@ class RigolDS1000SeriesScope:
                 # 30-229.  So shift by 130 - the voltage offset in counts, then scale to
                 # get the actual voltage.
                 # nope, test 120 and 140
-                dataCH1 = (dataCH - 140.0 - voltoffsetCH / voltscaleCH * 25) / 25 * voltscaleCH
+                dataCH1 = (dataCH - 120.0 - voltoffsetCH / voltscaleCH * 25) / 25 * voltscaleCH
                 # ==========================
                 # Get a time scale:
                 time_scale = self.get_time_scale()
