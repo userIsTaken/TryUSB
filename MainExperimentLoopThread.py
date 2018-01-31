@@ -160,6 +160,7 @@ class LoopWorker(QObject):
                         # sys.exit(-1)
                         pass
                 finally:
+                        self.progress.emit("Pabaiga")
                         self.final.emit(42)
                         pass
                 
