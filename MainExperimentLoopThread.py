@@ -155,7 +155,7 @@ class LoopWorker(QObject):
                                 # TODO we need to describe all variants who can occur in if conditions
                                 # sys.exit(-1)
                 except Exception as ex:
-                        print(ex)
+                        self.progress.emit(str(ex))
                         self.errors.emit(-1, str(ex))
                         # sys.exit(-1)
                         pass
