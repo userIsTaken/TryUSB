@@ -6,9 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1111</width>
-    <height>908</height>
+    <width>1100</width>
+    <height>900</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1100</width>
+    <height>900</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>GenOsci</string>
@@ -36,7 +48,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="usbtmcTab">
        <attribute name="title">
@@ -271,6 +283,13 @@
             </property>
            </spacer>
           </item>
+          <item>
+           <widget class="QPushButton" name="connectoAllDevicesButton">
+            <property name="text">
+             <string>Rizikingas mygis</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </item>
         <item row="1" column="0">
@@ -407,6 +426,33 @@
      <widget class="QPushButton" name="fullscreenButton">
       <property name="text">
        <string>[  ]</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QPushButton" name="closeButton">
+      <property name="text">
+       <string>Išeiti iš programos</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>927</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="3" column="2" colspan="2">
+     <widget class="QPushButton" name="unused_button">
+      <property name="text">
+       <string>Neveikiantis mygis</string>
       </property>
      </widget>
     </item>
@@ -1604,6 +1650,29 @@
           </property>
          </spacer>
         </item>
+        <item row="2" column="3">
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0" colspan="2">
+         <widget class="QPlainTextEdit" name="experimentPlainLog">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>450</width>
+            <height>600</height>
+           </size>
+          </property>
+         </widget>
+        </item>
         <item row="3" column="2">
          <spacer name="verticalSpacer_3">
           <property name="orientation">
@@ -1616,23 +1685,6 @@
            </size>
           </property>
          </spacer>
-        </item>
-        <item row="2" column="3">
-         <widget class="QLabel" name="label_5">
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QPlainTextEdit" name="experimentPlainLog">
-          <property name="maximumSize">
-           <size>
-            <width>450</width>
-            <height>16777215</height>
-           </size>
-          </property>
-         </widget>
         </item>
        </layout>
       </widget>
@@ -1678,33 +1730,6 @@
       </widget>
      </widget>
     </item>
-    <item row="3" column="0">
-     <widget class="QPushButton" name="closeButton">
-      <property name="text">
-       <string>Išeiti iš programos</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="1">
-     <spacer name="horizontalSpacer">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>927</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="3" column="2" colspan="2">
-     <widget class="QPushButton" name="unused_button">
-      <property name="text">
-       <string>Neveikiantis mygis</string>
-      </property>
-     </widget>
-    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -1712,8 +1737,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1111</width>
-     <height>28</height>
+     <width>1100</width>
+     <height>31</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFailas">

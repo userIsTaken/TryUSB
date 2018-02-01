@@ -94,6 +94,22 @@ class MainWindow(QtWidgets.QMainWindow):
                 # Oscilograph cmds:
                 self.ui.sendCustomCMDoscil.clicked.connect(self.sendCMDintoOcilograph)
                 self.ui.fullscreenButton.clicked.connect(self.SetFullScreen)
+                #
+                self.ui.connectoAllDevicesButton.clicked.connect(self.ConnectToAllDevices)
+                pass
+        
+        def ConnectToAllDevices(self):
+                try:
+                        self.connectOscilograph()
+                        self.connectGenerator()
+                        self.runInitGenerator()
+                        self.ExperimentInfo(self.ui.connection_status_label.text())
+                        self.ExperimentInfo(self.ui.idn_label_oscilograph.text())
+                #         Ensure that we see experiment tab:
+                        self.ui.tabWidget.setCurrentIndex(2)
+                except Exception as ex:
+                        self.DebugLog(str(ex))
+                        pass
                 pass
 
         def SetFullScreen(self):
