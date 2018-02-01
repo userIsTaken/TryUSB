@@ -105,6 +105,8 @@ class MainWindow(QtWidgets.QMainWindow):
                         self.runInitGenerator()
                         self.ExperimentInfo(self.ui.connection_status_label.text())
                         self.ExperimentInfo(self.ui.idn_label_oscilograph.text())
+                #         Ensure that we see experiment tab:
+                        self.ui.tabWidget.setCurrentIndex(2)
                 except Exception as ex:
                         self.DebugLog(str(ex))
                         pass
