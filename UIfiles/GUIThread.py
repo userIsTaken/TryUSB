@@ -659,6 +659,7 @@ class Ui_MainGuiWindow(object):
         self.gridLayout_21.addWidget(self.stepForOffsetSweep, 5, 2, 1, 1)
         self.timeForAmplOffsSweepBox = QtWidgets.QSpinBox(self.expSessionTab)
         self.timeForAmplOffsSweepBox.setEnabled(False)
+        self.timeForAmplOffsSweepBox.setMaximum(10000)
         self.timeForAmplOffsSweepBox.setObjectName("timeForAmplOffsSweepBox")
         self.gridLayout_21.addWidget(self.timeForAmplOffsSweepBox, 6, 2, 1, 1)
         self.groupBoxForSweepAO = QtWidgets.QGroupBox(self.expSessionTab)

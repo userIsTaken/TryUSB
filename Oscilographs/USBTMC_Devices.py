@@ -3,6 +3,7 @@ import os
 # for timed waits
 import time
 import numpy as np
+import math
 
 class USBTMC:
         """
@@ -272,14 +273,40 @@ class RigolDS1000SeriesScope:
                 time.sleep(sleep_time)
                 pass
         
-        def set_time_scale(self, time_scale:str, sleep_time=0.5):
+        def set_time_scale(self, time_scale:str):
                 '''
 
                 :param str time_scale: time scale in seconds
                 :return:
                 '''
                 self.write(":TIM:SCAL "+ time_scale)
-                time.sleep(sleep_time)
+                # time.sleep(sleep_time)
+                pass
+        
+        def set_closest_time_scale(self, time_scale, time_unit):
+                array = [1, 2, 5, 10, 20, 50, 100, 200, 500] # can not be ns?
+                time_value=None
+                time_power=None
+                for i in array:
+                        if(math.isclose(time_scale, i, rel_tol=0.25)):
+                                time_value = i
+                                break
+                                pass
+                        pass
+                if ("uS" == time_unit) or ("µS" == time_unit):
+                        time_power = 1e-6
+                        pass
+                elif "mS" == time_unit:
+                        time_power = 1e-3
+                        pass
+                elif "S" == time_unit:
+                        time_power = 1e0
+                        pass
+                else:
+                        time_power = 1e0
+                        pass
+                req_time_scale = time_value * time_unit
+                self.set_time_scale(str(req_time_scale))
                 pass
 
         def set_trigger_edge_level(self, level:str):
