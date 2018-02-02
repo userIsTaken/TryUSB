@@ -280,10 +280,17 @@ class RigolDS1000SeriesScope:
                 :return:
                 '''
                 self.write(":TIM:SCAL "+ time_scale)
+                print(":TIM:SCAL "+ time_scale, " cmd to scale a time axis")
                 # time.sleep(sleep_time)
                 pass
         
         def set_closest_time_scale(self, time_scale, time_unit):
+                '''
+                
+                :param time_scale:
+                :param time_unit:
+                :return:
+                '''
                 array = [1, 2, 5, 10, 20, 50, 100, 200, 500] # can not be ns?
                 time_value=None
                 time_power=None
@@ -294,19 +301,35 @@ class RigolDS1000SeriesScope:
                                 pass
                         pass
                 if ("uS" == time_unit) or ("µS" == time_unit):
-                        time_power = 1e-6
+                        time_power = 10**(-6)
+                        req_time_scale = time_value * time_power
+                        self.set_time_scale(str("{0:.7f}".format(req_time_scale)))
                         pass
                 elif "mS" == time_unit:
                         time_power = 1e-3
+                        req_time_scale = time_value * time_power
+                        self.set_time_scale(str("{0:.7f}".format(req_time_scale)))
                         pass
                 elif "S" == time_unit:
                         time_power = 1e0
+                        req_time_scale = time_value * time_power
+                        self.set_time_scale(str("{0:.7f}".format(req_time_scale)))
                         pass
                 else:
                         time_power = 1e0
                         pass
-                req_time_scale = time_value * time_unit
-                self.set_time_scale(str(req_time_scale))
+                # req_time_scale = time_value * time_power
+                # self.set_time_scale(str(req_time_scale))
+                pass
+        
+        def set_time_offset(self, time_offset: str, sleep_time=0.5):
+                '''
+                
+                :param time_offset: time offset in seconds
+                :return:
+                '''
+                self.write(":TIM:OFFS " + time_offset)
+                time.sleep(sleep_time)
                 pass
 
         def set_trigger_edge_level(self, level:str):
