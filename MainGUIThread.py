@@ -171,7 +171,7 @@ class MainWindow(QtWidgets.QMainWindow):
                                       'fixedV': fixedV,
                                       'OFFtime': time,
                                       'timeU': t_unit}
-                else:
+                elif self.ui.sweepTimeRadioButton.isChecked():
                         start = self.ui.startTimeSweepBox.value()
                         stop = self.ui.stopTimeSweepBox.value()
                         step = self.ui.stepForTimeSweepBox.value()
@@ -190,6 +190,8 @@ class MainWindow(QtWidgets.QMainWindow):
                                       'fixedV': fixedV,
                                       'fixedOFF': fixedOFF,
                                       'timeU': t_unit}
+                else:
+                        parameters = None
                 return parameters
                 pass
 

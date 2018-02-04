@@ -34,6 +34,7 @@ def SweepButtonsFunctionality(gui:Ui_MainGuiWindow):
         :return:
         '''
         if gui.sweepAmplitudeRadioButton.isChecked():
+                gui.startExperimentButton.setEnabled(True)
                 #enable controls for amplitude sweep:
                 gui.startAmplitudeSweepBox.setEnabled(True)
                 gui.stopAmplitudeSweepBox.setEnabled(True)
@@ -81,6 +82,7 @@ def SweepButtonsFunctionality(gui:Ui_MainGuiWindow):
                         print("Some shit happens")
                 pass
         elif gui.sweepOffsetRadioButton.isChecked():
+                gui.startExperimentButton.setEnabled(True)
                 gui.startOffsetSweepBox.setEnabled(True)
                 gui.stopOffsetSweepBox.setEnabled(True)
                 gui.stepForOffsetSweep.setEnabled(True)
@@ -127,6 +129,7 @@ def SweepButtonsFunctionality(gui:Ui_MainGuiWindow):
                         print("Some shit happens")
                 pass
         elif gui.sweepTimeRadioButton.isChecked():
+                gui.startExperimentButton.setEnabled(True)
                 gui.startTimeSweepBox.setEnabled(True)
                 gui.stopTimeSweepBox.setEnabled(True)
                 gui.stepForTimeSweepBox.setEnabled(True)
