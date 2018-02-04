@@ -31,10 +31,6 @@ class Configuration:
                         print(self.config[section][key])
                         # TODO add parsing:
                         dev_dic = self.getKeyValue(self.config[section][key])
-                        # for dkey in dev_dic:
-                        #         # print(dkey, dev_dic[dkey])
-                        #         pass
-                        # ADD row, insert values:
                         self.addRow(tableWidget, dev_dic)
                         pass
                 pass
