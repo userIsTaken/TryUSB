@@ -244,13 +244,6 @@ class RigolDS1000SeriesScope:
                 self.run()
                 return dataCH2, time_array, time_unit
                 pass
-        
-        # def get_data_points_from_channel(self, channel):
-        #         # Stop data acquisition:
-        #         self.stop()
-        #         self.channels_mode("RAW")
-        #         rawdata = self.get_data_from_channel(channel, )
-        #         pass
 
         def run(self):
                 self.write(":RUN")
@@ -316,10 +309,9 @@ class RigolDS1000SeriesScope:
                         self.set_time_scale(str("{0:.7f}".format(req_time_scale)))
                         pass
                 else:
-                        time_power = 1e0
+                        print("We can not be here - check a code!")
                         pass
-                # req_time_scale = time_value * time_power
-                # self.set_time_scale(str(req_time_scale))
+
                 pass
         
         def set_time_offset(self, time_offset: str, sleep_time=0.5):
