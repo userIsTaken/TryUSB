@@ -137,3 +137,10 @@ class Configuration:
                         # print(self.config[section][key])
                         pass
                 return dev_dict
+
+        def get_save_path(self):
+                self.config.read(self.FilePath)
+                section = "PATH"
+                path = self.config[section]["PATH"]
+                return path
+                pass

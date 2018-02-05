@@ -110,6 +110,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 path = QtWidgets.QFileDialog().getExistingDirectory(self, "Failo išsaugojimo vieta")
                 if path is not None or len(path) > 0:
                         self._path = path
+                        self.ui.path_label.setText(self._path)
                         pass
                 pass
 
@@ -257,6 +258,10 @@ class MainWindow(QtWidgets.QMainWindow):
                         pass
                 # TODO one
                 configLoader.ConfigTCPIPLoader(self.ui.tableWithTCPIPDevices)
+                path = configLoader.get_save_path()
+                self._path = path
+                print(path, "path loaded")
+                self.ui.path_label.setText(self._path)
                 pass
 
         def saveEntriesToConfig(self):
