@@ -9,6 +9,7 @@ from ConfigParser import *
 import vxi11
 import random
 import pyqtgraph as pG
+from pyqtgraph import exporters
 
 #
 
@@ -98,8 +99,17 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.ui.fullscreenButton.clicked.connect(self.SetFullScreen)
                 #
                 self.ui.connectoAllDevicesButton.clicked.connect(self.ConnectToAllDevices)
+                #Save functionality
+                self.ui.saveToTXTbutton.clicked.connect(self.saveToTXT_oscillograph_view_function)
                 pass
-        
+
+        def saveToTXT_oscillograph_view_function(self):
+                filename = self.ui.textForTXTName.text()
+                plotItem = self.ui.dataViewWidget.plotItem()
+                export = exporters.CSVExporter(plotItem)
+                export.export(filename)
+                pass
+
         def ConnectToAllDevices(self):
                 try:
                         self.connectOscilograph()

@@ -25,6 +25,7 @@ def SetupWindow(gui:Ui_MainGuiWindow):
         # print(cDate)
         gui.dataViewWidget.plotItem.showGrid(True, True, 1.0)
         gui.experimentDataViewPlot.plotItem.showGrid(True, True, 1.0)
+        gui.textForTXTName.setText("Failas_"+".csv")
         pass
 
 def SweepButtonsFunctionality(gui:Ui_MainGuiWindow):
