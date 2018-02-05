@@ -17,6 +17,7 @@ class LoopWorker(QObject):
                 self.Oscilograph = oscilograph
                 self.args = args
                 self.kwargs = kwargs
+                self._require_stop = False
                 print("Init")
                 pass
 
@@ -40,7 +41,7 @@ class LoopWorker(QObject):
                                 self.Generator.SetPeriod(self.Generator.CH1, timeOFF, time_u, i)
                                 self.AMP_OSC_time_scale_and_offset(timeOFF, time_u)
                                 try:
-                                        while totalV <= stopV:
+                                        while ((totalV <= stopV) and (not self._require_stop)):
                                                 self.AMP_GEN_set_parameters(totalV, fixed_offset)
                                                 
                                                 self.AMP_OSC_set_parameters(totalV, fixed_offset)
@@ -69,7 +70,7 @@ class LoopWorker(QObject):
                                 timeOFF = self.kwargs['OFFtime']
                                 i = 0
                                 try:
-                                        while totalOFF <= stopOFF:
+                                        while totalOFF <= stopOFF and not self._require_stop:
                                                 self.Generator.EnableOutput(self.Generator.CH1, OFF)
                                                 time.sleep(1)
                                                 self.Generator.SetNormalizedOffset(self.Generator.CH1, totalOFF, float(fixedAmpl))
@@ -194,4 +195,9 @@ class LoopWorker(QObject):
                 self.Oscilograph.set_channel_offset(self.Oscilograph.CH1,
                                                     str(-1.0 * fixed_offset))
                 time.sleep(2)  # 100 ms is enough
+                pass
+
+        @pyqtSlot()
+        def stop(self):
+                self._require_stop = True
                 pass

@@ -34,6 +34,8 @@ class MainWindow(QtWidgets.QMainWindow):
                 #Normally this is all to be done in order to show a window
                 self.ThreadPool = QThreadPool() # because of threading?
                 self._threads = []
+                self._thread = None
+                self._worker = None
                 # plots:
                 #self._plots = []
                 #declare global self.dictionary:
@@ -290,6 +292,8 @@ class MainWindow(QtWidgets.QMainWindow):
                         # TODO it looks like the right way how I need to implement this stuff:
                         if "Pradėta" in self.ui.startExperimentButton.text():
                                 self.DebugMessage("Thread is already running")
+                                self.DebugMessage("Trying to stop it")
+                                self._worker.stop()
                                 pass
                         elif "Pradėti" in self.ui.startExperimentButton.text():
                                 if len(self._threads) > 0:
@@ -299,19 +303,19 @@ class MainWindow(QtWidgets.QMainWindow):
                                 parameters_tuple = self.GetAllParameters()
                                 #
                                 self.ui.experimentDataViewPlot.clear()
-                                self.ui.startExperimentButton.setText("Pradėta")
-                                thread = QThread()
-                                thread.setObjectName("WLoop")
-                                workerLoop = LoopWorker(self.Generator, self.Osciloscope, **parameters_tuple)
-                                print(thread.objectName())
-                                self._threads.append((thread, workerLoop))
-                                workerLoop.moveToThread(thread)
-                                workerLoop.results.connect(self.drawexp)
-                                workerLoop.final.connect(self.WorkerEnded)
-                                workerLoop.errors.connect(self.ErrorHasBeenGot)
-                                workerLoop.progress.connect(self.ExperimentInfo)
-                                thread.started.connect(workerLoop.run)
-                                thread.start()
+                                self.ui.startExperimentButton.setText("Pradėta [Sustabdyti]")
+                                self._thread = QThread()
+                                self._thread.setObjectName("WLoop")
+                                self._worker = LoopWorker(self.Generator, self.Osciloscope, **parameters_tuple)
+                                #print(thread.objectName())
+                                #self._threads.append((thread, workerLoop))
+                                self._worker.moveToThread(self._thread)
+                                self._worker.results.connect(self.drawexp)
+                                self._worker.final.connect(self.WorkerEnded)
+                                self._worker.errors.connect(self.ErrorHasBeenGot)
+                                self._worker.progress.connect(self.ExperimentInfo)
+                                self._thread.started.connect(self._worker.run)
+                                self._thread.start()
                                 pass
                         else:
                                 self.DebugMessage("Some shit")
