@@ -305,6 +305,9 @@ class Ui_MainGuiWindow(object):
         self.sendCustomCMDoscil = QtWidgets.QPushButton(self.oscligraph_tab)
         self.sendCustomCMDoscil.setObjectName("sendCustomCMDoscil")
         self.gridLayout_10.addWidget(self.sendCustomCMDoscil, 7, 1, 1, 1)
+        self.path_button = QtWidgets.QPushButton(self.oscligraph_tab)
+        self.path_button.setObjectName("path_button")
+        self.gridLayout_10.addWidget(self.path_button, 6, 1, 1, 1)
         self.tabWidget.addTab(self.oscligraph_tab, "")
         self.generator_tab = QtWidgets.QWidget()
         self.generator_tab.setObjectName("generator_tab")
@@ -787,7 +790,7 @@ class Ui_MainGuiWindow(object):
 
         self.retranslateUi(MainGuiWindow)
         self.devicesTabWidget.setCurrentIndex(1)
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainGuiWindow)
 
     def retranslateUi(self, MainGuiWindow):
@@ -828,6 +831,7 @@ class Ui_MainGuiWindow(object):
         self.saveToTXTbutton.setText(_translate("MainGuiWindow", "Išsaugoti į TXT"))
         self.label_4.setText(_translate("MainGuiWindow", "Failo pavadinimas"))
         self.sendCustomCMDoscil.setText(_translate("MainGuiWindow", "CMD"))
+        self.path_button.setText(_translate("MainGuiWindow", "..."))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.oscligraph_tab), _translate("MainGuiWindow", "Oscilografas"))
         self.connectToGeneratorButton.setText(_translate("MainGuiWindow", "Prisijunti prie generatoriaus"))
         self.runInitiallConfiguration_button.setText(_translate("MainGuiWindow", "Pirminė konfigūracija"))

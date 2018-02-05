@@ -37,6 +37,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 self._threads = []
                 self._thread = None
                 self._worker = None
+                self._path = None
                 # plots:
                 #self._plots = []
                 #declare global self.dictionary:
@@ -100,14 +101,23 @@ class MainWindow(QtWidgets.QMainWindow):
                 #
                 self.ui.connectoAllDevicesButton.clicked.connect(self.ConnectToAllDevices)
                 #Save functionality
+                #path button
+                self.ui.path_button.clicked.connect(self.set_path_function)
                 self.ui.saveToTXTbutton.clicked.connect(self.saveToTXT_oscillograph_view_function)
+                pass
+
+        def set_path_function(self):
+                path = QtWidgets.QFileDialog().getExistingDirectory(self, "Failo išsaugojimo vieta")
+                if path is not None or len(path) > 0:
+                        self._path = path
+                        pass
                 pass
 
         def saveToTXT_oscillograph_view_function(self):
                 filename = self.ui.textForTXTName.text()
                 plotItem = self.ui.dataViewWidget.plotItem()
                 export = exporters.CSVExporter(plotItem)
-                export.export(filename)
+                export.export(self._path+"/"+filename)
                 pass
 
         def ConnectToAllDevices(self):
