@@ -116,7 +116,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
         def saveToTXT_oscillograph_view_function(self):
                 filename = self.ui.textForTXTName.text()
-                plotItem = self.ui.dataViewWidget.plotItem()
+                plotItem = self.ui.dataViewWidget.plotItem
                 export = exporters.CSVExporter(plotItem)
                 export.export(self._path+"/"+filename)
                 pass
