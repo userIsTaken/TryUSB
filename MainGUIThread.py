@@ -11,6 +11,7 @@ import random
 import pyqtgraph as pG
 from pyqtgraph import exporters
 
+
 #
 
 from Generators.SiglentGenerator import *
@@ -186,7 +187,7 @@ class MainWindow(QtWidgets.QMainWindow):
                                 t_unit = "S"
                         else:
                                 t_unit = "uS"
-                                
+
                         parameters = {'key': 2,
                                       'startOFF': start,
                                       'stopOFF': stop,
@@ -218,7 +219,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 return parameters
                 pass
 
-        
+
         def SetSweepFunctions(self):
                 # we need always check if we have a proper status of generator:
                 try:
@@ -264,11 +265,12 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.ui.path_label.setText(self._path)
                 pass
 
+
         def saveEntriesToConfig(self):
                 # TODO implement
                 self.DebugMessage("Not implemented yet!")
                 pass
-        
+
         def RenewGeneratorFields(self):
                 frequency = self.Generator.GetFrequency(self.Generator.CH1)
                 period = self.Generator.GetPeriod(self.Generator.CH1)
@@ -294,7 +296,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.DebugGenerator("freq", freq_floored, unit_freq, "trigg", trigger_interval_floored, unit_trigger, "period", period_floored, unit_period)
                 self.DebugGenerator("========================")
                 pass
-        
+
         def setCorrectUnits(self, freq_unit, period_unit, trigger_unit):
                 if "μ" in period_unit:
                         self.ui.periodRadioButton_uS.setChecked(True)
@@ -310,8 +312,8 @@ class MainWindow(QtWidgets.QMainWindow):
                 else:
                         self.ui.triggerInterval_S.setChecked(True)
                         pass
-                
-        
+
+
         def StartExperimentLoop(self):
                 try:
                         # TODO it looks like the right way how I need to implement this stuff:
@@ -353,11 +355,11 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.DebugLog(str(args[0]))
                 self.DebugLog(args[1])
                 pass
-        
+
         def WorkerEnded(self, i:int):
                 self.ui.startExperimentButton.setText("Pradėti")
                 pass
-        
+
         def SetTriggerInterval_gen(self):
                 self.checkStateOfRadioButtons()
                 interval = self.ui.triggerIntervalBox.value()
@@ -395,13 +397,13 @@ class MainWindow(QtWidgets.QMainWindow):
                         self.Generator.Write(cmd)
                 pass
 
-        
-        
+
+
         def setGeneratorsAmplitude(self):
                 Amplitude = self.ui.voltageAmplitudeBox.value()
                 self.DebugMessage(str(Amplitude), 2000)
                 self.Generator.SetAmplitude(self.Generator.CH1, Amplitude)
-        
+
         def checkStateOfRadioButtons(self):
                 if(self.ui.periodRadioButton_uS.isChecked()):
                         self.PeriodUnit = "uS"
@@ -469,7 +471,7 @@ class MainWindow(QtWidgets.QMainWindow):
         def ExperimentInfo(self, string):
                 self.ui.experimentPlainLog.appendPlainText(string)
                 pass
-                
+
         def FinnishedQRunnable(self):
                 self.ui.useRegularUpdateBox.setChecked(False)
                 pass
@@ -499,7 +501,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 dataCurve.setData(time_array, data_from_channel)
                 self.DebugMessage("Working on it ...", 1000)
                 pass
-        
+
         def drawexp(self, CH1, CH2, time, time_unit):
                 self.ui.experimentDataViewPlot.setLabel('bottom', 'Time', units=time_unit)
                 self.ui.experimentDataViewPlot.setLabel('left', 'Voltage', units='V')
@@ -521,8 +523,8 @@ class MainWindow(QtWidgets.QMainWindow):
                 expCOne.setData(time, CH1)
                 # expCTwo.setData(time, CH2)
                 self.DebugMessage("Working on it ...", 1000)
-                
-        
+
+
         def DrawOscilogramm(self, result):
                 data = result[0]
                 time = result[1]
@@ -530,7 +532,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 #
                 self.dataCurveOne.setData(time, data)
                 pass
-        
+
         def connectOscilograph(self):
                 try:
                         self.Osciloscope = GetOscilograph(self.ui, self.DevicesUSBTMC)
@@ -583,7 +585,7 @@ class MainWindow(QtWidgets.QMainWindow):
         #         self.ui.dataViewWidget.plotItem.showGrid(True, True, 1.0)
         #         self.ui.experimentDataViewPlot.plotItem.showGrid(True, True, 1.0)
         #         pass
-                
+
         def changeOutputCH1(self):
                 if(self.ui.InputOutputCH1Button.isChecked()):
                         # self.Generator.ask("C1:OUTP ON")
@@ -594,7 +596,7 @@ class MainWindow(QtWidgets.QMainWindow):
                         self.Generator.EnableOutput(self.Generator.CH1, OFF)
                         self.DebugMessage("CH1 OFF", 1000)
                 pass
-        
+
         def changeOutputCH2(self):
                 if (self.ui.InputOutputCH2Button.isChecked()):
                         # self.Generator.ask("C2:OUTP ON")
@@ -605,11 +607,11 @@ class MainWindow(QtWidgets.QMainWindow):
                         self.Generator.EnableOutput(self.Generator.CH2, OFF)
                         self.DebugMessage("CH2 OFF", 1000)
                 pass
-        
+
         def runInitGenerator(self):
                 '''
                 Initialization of generator, populate QComboBox Items also.
-                
+
                 :return:
                 '''
                 listOfCommands = getTextLinesFromQTextEditField(self.ui.initialConfigurationForGenerator)
@@ -620,10 +622,10 @@ class MainWindow(QtWidgets.QMainWindow):
                         pass
                 self.RenewGeneratorFields()
                 pass
-        
-                
-                
-        
+
+
+
+
         def connectGenerator(self):
                 self.Generator = GetGenerator(self.ui, self.DevicesUSBTMC)
                 name = self.Generator.GetIDN()
@@ -661,12 +663,12 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.DebugLog(lines)
                 self.ui.initialConfigurationForGenerator.setPlainText(lines)
                 pass
-        
-        
+
+
         def removeSelectedRow(self):
                 index = self.ui.tableWithTCPIPDevices.currentRow()
                 self.ui.tableWithTCPIPDevices.removeRow(index)
-             
+
         def getIDN_from_selected_table_device(self):
                 index = self.ui.tableWithTCPIPDevices.currentRow()
                 ip_string = self.ui.tableWithTCPIPDevices.item(index,0).text()
@@ -676,16 +678,16 @@ class MainWindow(QtWidgets.QMainWindow):
                 item = QtWidgets.QTableWidgetItem(IDN)
                 self.ui.tableWithTCPIPDevices.setItem(index,3, item)
                 pass
-        
-        
+
+
         def setupTable(self):
                 self.ui.tableWithTCPIPDevices.setColumnCount(5)
                 self.ui.tableWithTCPIPDevices.setHorizontalHeaderLabels(["TCP/IP adresas","Gen/Osc?", "Naudoti?", "*IDN?", "Nr."])
                 self.ui.tableWithTCPIPDevices.setColumnWidth(0, 160)
                 self.ui.tableWithTCPIPDevices.setColumnWidth(1, 160)
                 pass
-        
-        
+
+
         def addRowIntoTable(self):
                 listOfDevices=["Generatorius", "Oscilografas"]
                 i = self.ui.tableWithTCPIPDevices.rowCount()
@@ -710,7 +712,7 @@ class MainWindow(QtWidgets.QMainWindow):
                         self.ui.tableWithTCPIPDevices.setItem(1, 4, cell)
                         self.ui.tableWithTCPIPDevices.selectRow(1)
                 pass
-                
+
         def closeFn(self):
                 try:
                         if self.Generator is not None:
@@ -729,17 +731,17 @@ class MainWindow(QtWidgets.QMainWindow):
                         sys.exit(0)
                         pass
                 pass
-        
+
         def clearTextInIfoFiel(self):
                 self.ui.advancedTextEditForErrors.clear()
                 pass
-        
-        
+
+
         def unusedFunction(self):
                 self.ui.statusbar.showMessage("Ti gi sakiau, neveikia!")
                 pass
-        
-        
+
+
         def scan_for_all_USBTMC_devices(self):
                 #  clear at first:
                 self.DevicesUSBTMC.clear()
@@ -771,7 +773,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.ui.comboBox_for_oscillograph.addItem("[Nėra]")
                 self.ui.comboBox_for_generator.addItem("[Nėra]")
                 pass
-        
+
         def fill_all_boxes_with_devices(self, item):
                 answer= self.DevicesUSBTMC[item]
                 # add into comboboxes:
@@ -779,23 +781,23 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.ui.comboBox_for_oscillograph.addItem(answer)
                 self.ui.comboBox_for_generator.addItem(answer)
                 pass
-        
+
         def DebugLog(self, error_text, error_status=0):
                 if(error_status==0):
                         self.ui.advancedTextEditForErrors.append(error_text)
                         pass
                 pass
-        
+
         def DebugMessage(self, msg, time=1000):
                 self.ui.statusbar.showMessage(msg, time)
                 pass
-        
+
         def DebugGenerator(self, msg, txt=None):
                 if txt is not None:
                         self.ui.answersFromGeneratorTextBox.appendPlainText(str(msg)+" :: "+str(txt)+" |")
                 else:
                         self.ui.answersFromGeneratorTextBox.appendPlainText(str(msg) + " |")
-                
+
                 pass
 
         def DebugGenerator(self, *args):
@@ -805,13 +807,13 @@ class MainWindow(QtWidgets.QMainWindow):
                         pass
                 self.ui.answersFromGeneratorTextBox.appendPlainText(l)
                 pass
-        
+
         def get_IDN_from_IP(self, ip_string):
                 instr = vxi11.Instrument(ip_string)
                 answer = instr.ask("*IDN?")
                 instr.close() # always close a device.
                 return answer
-        
+
 if __name__ == "__main__":
         app = QtWidgets.QApplication(sys.argv)
         window = MainWindow()
