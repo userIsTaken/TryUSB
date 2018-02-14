@@ -521,7 +521,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 # self.ekspCurveOne.setData(time, CH1)
                 # self.ekspCurveTwo.setData(time, CH2)
                 expCOne.setData(time, CH1)
-                # expCTwo.setData(time, CH2)
+                expCTwo.setData(time, CH2)
                 self.DebugMessage("Working on it ...", 1000)
 
 

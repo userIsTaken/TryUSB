@@ -164,7 +164,6 @@ class LoopWorker(QObject):
         def OSC_read(self):
                 data_from_channel, time_array, time_unit = self.Oscilograph.get_data_points_from_channel(
                         "CHAN1")
-                time.sleep(1)
                 data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel(
                         "CHAN2")
                 self.results.emit(data_from_channel.tolist(), data_from_channel2.tolist(),
