@@ -48,7 +48,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="usbtmcTab">
        <attribute name="title">
@@ -329,7 +329,7 @@
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QLineEdit" name="lineEdit"/>
+            <widget class="QLineEdit" name="experimentFileNameEdit"/>
            </item>
            <item row="1" column="0">
             <widget class="QLabel" name="label_29">
@@ -342,7 +342,7 @@
             <widget class="QDateEdit" name="dateEdit"/>
            </item>
            <item row="2" column="1">
-            <widget class="QPushButton" name="pushButton">
+            <widget class="QPushButton" name="saveRawButton">
              <property name="text">
               <string>Išsaugoti matavimo rezultatus</string>
              </property>
@@ -391,6 +391,35 @@
             <widget class="QDoubleSpinBox" name="doubleSpinBox_13"/>
            </item>
           </layout>
+         </widget>
+        </item>
+        <item row="0" column="3">
+         <widget class="QPushButton" name="saveRawData_button">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>128</width>
+            <height>128</height>
+           </size>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>../Icons/saveBig.png</normaloff>../Icons/saveBig.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>128</width>
+            <height>128</height>
+           </size>
+          </property>
          </widget>
         </item>
        </layout>
@@ -1770,7 +1799,7 @@
      <x>0</x>
      <y>0</y>
      <width>1100</width>
-     <height>28</height>
+     <height>31</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFailas">

@@ -26,6 +26,10 @@ def SetupWindow(gui:Ui_MainGuiWindow):
         gui.dataViewWidget.plotItem.showGrid(True, True, 1.0)
         gui.experimentDataViewPlot.plotItem.showGrid(True, True, 1.0)
         gui.textForTXTName.setText("Failas_"+".csv")
+        gui.experimentFileNameEdit.setText("Eksperimentas")
+        icon6 = QtGui.QIcon()
+        icon6.addPixmap(QtGui.QPixmap("Icons/saveBig.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        gui.saveRawData_button.setIcon(icon6)
         pass
 
 def SweepButtonsFunctionality(gui:Ui_MainGuiWindow):

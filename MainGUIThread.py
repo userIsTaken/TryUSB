@@ -105,6 +105,22 @@ class MainWindow(QtWidgets.QMainWindow):
                 #path button
                 self.ui.path_button.clicked.connect(self.set_path_function)
                 self.ui.saveToTXTbutton.clicked.connect(self.saveToTXT_oscillograph_view_function)
+                self.ui.saveRawData_button.clicked.connect(self.saveRawExpData)
+                self.ui.saveRawButton.clicked.connect(self.saveRawExpData)
+                pass
+        
+        def saveRawExpData(self):
+                try:
+                        filename = self.ui.experimentFileNameEdit.text()
+                        filepath = self._path
+                        dateStamp = self.ui.dateEdit.text()
+                        plotItem = self.ui.experimentDataViewPlot.plotItem
+                        export = exporters.CSVExporter(plotItem)
+                        export.export(filepath + "/" + filename+dateStamp)
+                except Exception as ex:
+                        self.DebugLog(str(ex))
+                        self.ExperimentInfo(str(ex))
+                        pass
                 pass
 
         def set_path_function(self):
