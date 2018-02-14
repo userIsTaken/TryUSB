@@ -199,5 +199,6 @@ class LoopWorker(QObject):
 
         @pyqtSlot()
         def stop(self):
+                print("measurement thread will stop anytime soon")
                 self._require_stop = True
                 pass
