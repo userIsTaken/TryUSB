@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+#-*- coding: utf-8-*-
 from PyQt5 import QtCore, QtWidgets, QtGui
 from UIfiles.GUIThread import Ui_MainGuiWindow
 
