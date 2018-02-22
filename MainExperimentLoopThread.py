@@ -19,9 +19,13 @@ class LoopWorker(QObject):
                 self.args = args
                 self.kwargs = kwargs
                 self._require_stop = False
+                self.Oscilograph.cmd_emiter.connect(self.emit_str)
                 print("Init")
                 pass
-
+        
+        def emit_str(self, string):
+                self.progress.emit(string)
+                pass
 
         @pyqtSlot()
         def run(self):
@@ -75,20 +79,19 @@ class LoopWorker(QObject):
                                                 print("max y", max_y, "change", str(change))
                                                 if change is True:
                                                         while change is True:
-                                                                self.AMP_OSC_set_parameters(self.Oscilograph.CH2, max_y * 2,
-                                                                                            (max_y*2 + fixed_offset) / 8)
+                                                                self.AMP_OSC_set_parameters(self.Oscilograph.CH2, max_y * 2)
                                                                 data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel(
                                                                         "CHAN2")
                                                                 change, max_y = check_y_scale(data_from_channel2)
                                                                 if change is False:
                                                                         self.AMP_OSC_set_parameters(
                                                                                 self.Oscilograph.CH2,
-                                                                                max_y, (max_y + fixed_offset)/8)
+                                                                                max_y)
                                                                 pass
                                                 elif change is False:
                                                         self.AMP_OSC_set_parameters(
                                                                 self.Oscilograph.CH2,
-                                                                max_y, (max_y + fixed_offset) / 8)
+                                                                max_y)
                                                 
                                                 self.OSC_read()
                                                 self.progress.emit("measured at " + str(totalV))
@@ -258,7 +261,10 @@ class LoopWorker(QObject):
         
         def AMP_OSC_set_parameters(self, CH,  amplitude, fixed_offset=0):
                 scale = (amplitude + fixed_offset) / 6
-                sc = str("{0:.2f}".format(scale))
+                sc = str("{0:.3f}".format(scale))
+                print("amplitudė " + str(amplitude))
+                print("y offsetas " + str(fixed_offset))
+                print("y skalė " + sc)
                 self.Oscilograph.set_y_scale(CH, sc)
                 trigger = (amplitude) / 4 + fixed_offset
                 tr = str("{0:.2f}".format(trigger))
@@ -269,8 +275,8 @@ class LoopWorker(QObject):
         
                 time.sleep(1)
                 self.Oscilograph.set_channel_offset(CH,
-                                                    str(-3.0 * scale))
-                time.sleep(1)  # 100 ms is enough
+                                                    str("{0:.3f}".format(-3.0 * scale)))
+                time.sleep(2)  # 100 ms is enough
                 pass
 
         @pyqtSlot()
