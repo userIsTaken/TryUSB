@@ -92,7 +92,7 @@ class LoopWorker(QObject):
                                                         self.AMP_OSC_set_parameters(
                                                                 self.Oscilograph.CH2,
                                                                 max_y)
-                                                
+                                                time.sleep(2)
                                                 self.OSC_read()
                                                 self.progress.emit("measured at " + str(totalV))
                                                 totalV = totalV + stepV
