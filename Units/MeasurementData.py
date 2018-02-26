@@ -67,10 +67,17 @@ class DataArray():
                 pass
 
         def append(self,R, S, **kwargs):
-                time_array = kwargs["time"]
-                time_unit = kwargs["time_unit"]
-                channel_one = kwargs["CH1"]
-                channel_two = kwargs["CH2"]
+                '''
+
+                :param R:
+                :param S:
+                :param kwargs: TIME, TIMEU, CHAN1, CHAN2, MPARAMS, NAME
+                :return:
+                '''
+                time_array = kwargs["TIME"]
+                time_unit = kwargs["TIMEU"]
+                channel_one = kwargs["CHAN1"]
+                channel_two = kwargs["CHAN2"]
                 measurement_params = kwargs["MPARAMS"]
                 name = kwargs["NAME"]
                 ch2_density = getCurrentDensity(channel_two, R, S)

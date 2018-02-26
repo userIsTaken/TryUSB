@@ -114,6 +114,9 @@ class MainWindow(QtWidgets.QMainWindow):
                 # easier access to some widgets:
                 self.expChannelOneView = self.ui.experimentDataPlots.ui.channelOneView
                 self.expChannelTwoView = self.ui.experimentDataPlots.ui.channelTwoView
+                # for data saving:
+                self.DataList = DataArray()
+
                 pass
         
         def saveRawExpData(self):
@@ -134,6 +137,10 @@ class MainWindow(QtWidgets.QMainWindow):
                 pass
 
         def saveData(self):
+                '''
+
+                :return:
+                '''
 
                 pass
 
@@ -564,6 +571,12 @@ class MainWindow(QtWidgets.QMainWindow):
                                 mObject.write_to_file()
                                 pass
                         else:
+                                amplitude = str(m_dict["AMPL"])
+                                offset = str(m_dict["OFFS"])
+                                period = str(m_dict["PERIOD"])
+                                time_unit = str(m_dict["TIMEU"])
+                                measurement_params = "AMPL: " + amplitude + " V | OFFS: " + offset + " V | PERIOD: " + period + " " + time_unit
+                                self.DataList.append(R, S, TIME=time, CHAN1=CH1, CHAN2=CH2, MPARAMS=measurement_params, NAME="_ampl"+amplitude+"_off"+offset+"_int"+period)
                                 pass
                 except Exception as ex:
                         self.DebugLog("================")
