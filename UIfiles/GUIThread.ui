@@ -378,7 +378,7 @@
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QDoubleSpinBox" name="doubleSpinBox_12"/>
+            <widget class="QDoubleSpinBox" name="resistanceBox"/>
            </item>
            <item row="1" column="0">
             <widget class="QLabel" name="label_31">
@@ -388,7 +388,7 @@
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QDoubleSpinBox" name="doubleSpinBox_13"/>
+            <widget class="QDoubleSpinBox" name="areaBox"/>
            </item>
            <item row="2" column="0">
             <widget class="QCheckBox" name="enableAutoSaveBox">
@@ -1799,7 +1799,7 @@
      <x>0</x>
      <y>0</y>
      <width>1100</width>
-     <height>31</height>
+     <height>28</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFailas">

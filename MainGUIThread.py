@@ -528,34 +528,42 @@ class MainWindow(QtWidgets.QMainWindow):
                 pass
 
         def draw_exp_data(self, CH1, CH2, time, time_unit, m_dict):
-                self.expChannelOneView.setLabel('bottom', 'Time', units=time_unit)
-                self.expChannelOneView.setLabel('left', 'Voltage', units='V')
-                self.expChannelTwoView.setLabel('bottom', 'Time', units=time_unit)
-                self.expChannelTwoView.setLabel('left', 'Voltage', units='V')
-                expCOne = self.expChannelOneView.plot()
-                expCTwo = self.expChannelTwoView.plot()
-                rOne = random.randint(100, 255)
-                gOne = random.randint(100, 255)
-                bOne = random.randint(100, 255)
-                rTwo = random.randint(150, 255)
-                gTwo = random.randint(150, 255)
-                bTwo = random.randint(150, 255)
-                expCOne.setPen((rOne, gOne, bOne))
-                expCTwo.setPen((rTwo, gTwo, bTwo))
-                expCOne.setData(time, CH1)
-                expCTwo.setData(time, CH2)
-                self.DebugMessage("Working on it ...", 1000)
-                if self.ui.enableAutoSaveBox.isChecked():
-                        amplitude = str(self.ui.voltageAmplitudeBox.value())
-                        offset = str(self.ui.voltageOffsetBox.value())
-                        period= str(self.ui.periodBox.value())
-                        fName = str(self.ui.experimentFileNameEdit.text()+"_ampl"+amplitude+"_off"+offset+"_int"+period+".csv")
-                        mObject = MeasurementData(fName)
-                        # mObject.set_data_array()
-                        # mObject.write_to_file()
-                        pass
-                else:
-                        pass
+                try:
+                        R = self.ui.resistanceBox.value()
+                        S = self.ui.areaBox.value()
+                        self.expChannelOneView.setLabel('bottom', 'Time', units=time_unit)
+                        self.expChannelOneView.setLabel('left', 'Voltage', units='V')
+                        self.expChannelTwoView.setLabel('bottom', 'Time', units=time_unit)
+                        self.expChannelTwoView.setLabel('left', 'Voltage', units='V')
+                        expCOne = self.expChannelOneView.plot()
+                        expCTwo = self.expChannelTwoView.plot()
+                        rOne = random.randint(100, 255)
+                        gOne = random.randint(100, 255)
+                        bOne = random.randint(100, 255)
+                        rTwo = random.randint(150, 255)
+                        gTwo = random.randint(150, 255)
+                        bTwo = random.randint(150, 255)
+                        expCOne.setPen((rOne, gOne, bOne))
+                        expCTwo.setPen((rTwo, gTwo, bTwo))
+                        expCOne.setData(time, CH1)
+                        expCTwo.setData(time, CH2)
+                        self.DebugMessage("Working on it ...", 1000)
+                        if self.ui.enableAutoSaveBox.isChecked():
+                                amplitude = str(m_dict["AMPL"])
+                                offset = str(m_dict["OFFS"])
+                                period= str(m_dict["PERIOD"])
+                                time_unit = str(m_dict["TIMEU"])
+                                measurement_params = "AMPL: "+amplitude + " V | OFFS: "+offset+" V | PERIOD: "+period+" "+time_unit
+                                fName = str(self.ui.experimentFileNameEdit.text()+"_ampl"+amplitude+"_off"+offset+"_int"+period+".csv")
+                                mObject = MeasurementData(fName)
+                                mObject.set_data_array(R, S, time, time_unit, CH1, CH2, measurement_params)
+                                mObject.write_to_file()
+                                pass
+                        else:
+                                pass
+                except Exception as ex:
+                        self.DebugLog("================")
+                        self.DebugLod(str(ex))
 
 
         def DrawOscilogramm(self, result):

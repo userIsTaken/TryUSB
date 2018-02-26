@@ -18,6 +18,13 @@ class MeasurementData():
                 pass
         
         def set_data_array(self,R,S, *args):
+                '''
+
+                :param R:
+                :param S:
+                :param args: 0 - time array, 1 time unit, 2 CH1, 3 CH2, 4 string containing generators info
+                :return:
+                '''
                 try:
                         time_array = args[0]
                         time_unit = args[1]
