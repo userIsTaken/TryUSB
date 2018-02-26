@@ -109,7 +109,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 #path button
                 self.ui.path_button.clicked.connect(self.set_path_function)
                 self.ui.saveToTXTbutton.clicked.connect(self.saveToTXT_oscillograph_view_function)
-                self.ui.saveRawData_button.clicked.connect(self.saveRawExpData)
+                self.ui.saveRawData_button.clicked.connect(self.saveData)
                 self.ui.saveRawButton.clicked.connect(self.saveRawExpData)
                 # easier access to some widgets:
                 self.expChannelOneView = self.ui.experimentDataPlots.ui.channelOneView
@@ -131,6 +131,10 @@ class MainWindow(QtWidgets.QMainWindow):
                         self.DebugLog(str(ex))
                         self.ExperimentInfo(str(ex))
                         pass
+                pass
+
+        def saveData(self):
+
                 pass
 
         def set_path_function(self):

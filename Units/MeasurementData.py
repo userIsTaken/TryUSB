@@ -22,7 +22,7 @@ class MeasurementData():
 
                 :param R:
                 :param S:
-                :param args: 0 - time array, 1 time unit, 2 CH1, 3 CH2, 4 string containing generators info
+                :param args: 0 - time array, 1  - time unit, 2  - CH1, 3  - CH2, 4 - string containing generators info
                 :return:
                 '''
                 try:
@@ -32,7 +32,7 @@ class MeasurementData():
                         channel_one = args[2]
                         channel_two =args[3]
                         channel_as_current_density = getCurrentDensity(channel_two, R, S)
-                        self._header = "?HEADER?\n"+str(measurement_parameters)+"\n"
+                        self._header = "?"+str(measurement_parameters)+"?"
                         self._frow = ["t["+str(time_unit)+"]", "CH1/Signal", "CH2/Signal", "CH2/Density"]
                         self._srow = [str(time_unit), "V", "V", "A/cm^2"]
                         self._data = itr.zip_longest(time_array, channel_one, channel_two, channel_as_current_density, fillvalue="-")
@@ -60,5 +60,24 @@ class MeasurementData():
                         print("==================")
                         pass
                 pass
-        
-        
+
+class DataArray():
+        def __init__(self, *args, **kwargs):
+                self._list = [] # nested list for all the data
+                pass
+
+        def append(self,R, S, **kwargs):
+                time_array = kwargs["time"]
+                time_unit = kwargs["time_unit"]
+                channel_one = kwargs["CH1"]
+                channel_two = kwargs["CH2"]
+                measurement_params = kwargs["MPARAMS"]
+                ch2_density = getCurrentDensity(channel_two, R, S)
+                _header = "?" + str(measurement_params) + "?"
+                _frow = ["t[" + str(time_unit) + "]", "CH1/Signal", "CH2/Signal", "CH2/Density"]
+                _srow = [str(time_unit), "V", "V", "A/cm^2"]
+                _data = itr.zip_longest(time_array, channel_one, channel_two, ch2_density,
+                                             fillvalue="-")
+                lst = [_header, _frow, _srow, _data]
+
+                pass
