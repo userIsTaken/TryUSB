@@ -89,7 +89,7 @@ class LoopWorker(QObject):
                                                         while change is True:
                                                                 self.AMP_OSC_set_parameters(self.Oscilograph.CH2, max_y * 2)
                                                                 data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel(
-                                                                        "CHAN2")
+                                                                        self.Oscilograph.CH2)
                                                                 change, max_y = check_y_scale(data_from_channel2)
                                                                 if change is False:
                                                                         self.AMP_OSC_set_parameters(
