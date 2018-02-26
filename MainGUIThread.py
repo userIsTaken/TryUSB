@@ -11,6 +11,8 @@ import random
 import pyqtgraph as pG
 from pyqtgraph import exporters
 
+from Units.MeasurementData import *
+
 
 from Generators.SiglentGenerator import *
 from Generators.TektronixGenerator import *
@@ -543,12 +545,19 @@ class MainWindow(QtWidgets.QMainWindow):
                 bTwo = random.randint(150, 255)
                 expCOne.setPen((rOne, gOne, bOne))
                 expCTwo.setPen((rTwo, gTwo, bTwo))
-                #self._plots.append((expCOne, expCTwo))
-                # self.ekspCurveOne.setData(time, CH1)
-                # self.ekspCurveTwo.setData(time, CH2)
                 expCOne.setData(time, CH1)
                 expCTwo.setData(time, CH2)
                 self.DebugMessage("Working on it ...", 1000)
+                if self.ui.enableAutoSaveBox.isChecked():
+                        amplitude = str(self.ui.voltageAmplitudeBox.value())
+                        offset = str(self.ui.voltageOffsetBox.value())
+                        period= str(self.ui.periodBox.value())
+                        fName = str(self.ui.experimentFileNameEdit.text()+"_ampl"+amplitude+"_off"+offset+"_int"+period+".csv")
+                        mObject = MeasurementData(fName)
+                        # mObject.set_data_array()
+                        pass
+                else:
+                        pass
 
 
         def DrawOscilogramm(self, result):

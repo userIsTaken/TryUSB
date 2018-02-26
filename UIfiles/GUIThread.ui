@@ -390,6 +390,13 @@
            <item row="1" column="1">
             <widget class="QDoubleSpinBox" name="doubleSpinBox_13"/>
            </item>
+           <item row="2" column="0">
+            <widget class="QCheckBox" name="enableAutoSaveBox">
+             <property name="text">
+              <string>Automatiškai išsaugoti</string>
+             </property>
+            </widget>
+           </item>
           </layout>
          </widget>
         </item>

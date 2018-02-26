@@ -12,3 +12,6 @@ def getCurrentDensity(volts, resistance, area):
         j = volts /(resistance * area)
         return j
         pass
+
+def get_file_name_parameters():
+        pass
