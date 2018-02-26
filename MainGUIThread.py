@@ -585,19 +585,6 @@ class MainWindow(QtWidgets.QMainWindow):
                 except Exception as ex:
                         self.DebugLog(str(ex))
                         pass
-                # OLD code, it worked
-                # try:
-                #         connected_devices = getDevicesFromComboBoxes(self.ui.comboBox_for_generator, self.ui.comboBox_for_oscillograph, self.Devices_dict)
-                #         self.Osciloscope = RigolDS1000SeriesScope(connected_devices[3])
-                #         msg = self.Osciloscope.get_name()
-                #         self.ui.idn_label_oscilograph.setText((msg.decode())[0:10])
-                #         self.DebugMessage("IDN: "+msg.decode(), 1000)
-                #         self.initOscilograph() # do not forget to call this function
-                # except Exception as ex:
-                #         self.DebugLog("===Problemos su oscilografu===")
-                #         self.DebugLog(str(ex))
-                #         pass
-                # pass
 
         def initOscilograph(self):
                 osc_conf = Configuration("Configs/RigolDS1101E.ini")
@@ -617,16 +604,6 @@ class MainWindow(QtWidgets.QMainWindow):
         def getVoltsFromCH1_button_clicked(self):
                 self.getVoltsFromChannel(self.Osciloscope.CH1, self.dataCurveOne, self.ui.dataViewWidget)
                 pass
-        # def setupPlotWidget(self):
-        #         '''
-        #         Draw correct axes and so on:
-        #
-        #         :return:
-        #         '''
-        #         self.ui.dataViewWidget.plotItem.showGrid(True, True, 1.0)
-        #         self.ui.experimentDataViewPlot.plotItem.showGrid(True, True, 1.0)
-        #         pass
-
         def changeOutputCH1(self):
                 if(self.ui.InputOutputCH1Button.isChecked()):
                         # self.Generator.ask("C1:OUTP ON")
@@ -670,32 +647,6 @@ class MainWindow(QtWidgets.QMainWindow):
         def connectGenerator(self):
                 self.Generator = GetGenerator(self.ui, self.DevicesUSBTMC)
                 name = self.Generator.GetIDN()
-                # pass
-                # # at first, we should get an generator from our tables/comboBox:
-                # # second, we have to check USBTMC devices for a generator
-                # Devices_from_TCP_table=getDevicesFromTable(self.ui.tableWithTCPIPDevices)
-                # for key in Devices_from_TCP_table.keys():
-                #         self.DebugLog(str(key))
-                #         self.DebugLog(Devices_from_TCP_table[key])
-                # Gen = getDevicePathWithRoleFromList("Generatorius", Devices_from_TCP_table)
-                # self.DebugLog(Gen)
-                # # test IDN again:
-                # idn = vxi11.Instrument(Gen)
-                # name = idn.ask("*IDN?")
-                # idn.close() # close device, we will initialize it a little bit later;
-                # if "Siglent".lower() in name.lower():
-                #         self.Generator = SiglentGenerator_TCP(Gen)
-                #         self.Generator.IDN = name
-                #         self.DebugLog("Siglent rastas")
-                #         pass
-                # elif "Tektronix".lower() in name.lower():
-                #         self.Generator = TektronixGenerator_TCP(Gen)
-                #         self.Generator.IDN = name
-                #         self.DebugLog("Tektronix rastas")
-                #         pass
-                # else:
-                #         self.DebugMessage("Unknown device", 2500)
-                #         pass
                 self.DebugLog("Testas prisijungimo")
                 self.ui.connection_status_label.setText(name[0:15])
                 # #  populate init commands from file:
