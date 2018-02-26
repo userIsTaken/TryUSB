@@ -141,16 +141,21 @@ class MainWindow(QtWidgets.QMainWindow):
 
                 :return:
                 '''
-                if self.ui.tabWidget.currentIndex() == 2:
-                        fileNamePath = self._path+"/"+self.ui.experimentFileNameEdit.text()
-                        self.DataList.write_all_lists(fileNamePath)
+                try:
+                        if self.ui.tabWidget.currentIndex() == 2:
+                                fileNamePath = self._path+"/"+self.ui.experimentFileNameEdit.text()
+                                self.DataList.write_all_lists(fileNamePath)
+                                pass
+                        elif self.ui.tabWidget.currentIndex() == 0:
+                                fileNamePath = self._path + "/" + self.ui.experimentFileNameEdit.text()+str(self.ui.resistanceBox.value())+"kOhm"
+                                plotItem = self.ui.dataViewWidget.plotItem
+                                export = exporters.CSVExporter(plotItem)
+                                export.export(fileNamePath)
                         pass
-                elif self.ui.tabWidget.currentIndex() == 0:
-                        fileNamePath = self._path + "/" + self.ui.experimentFileNameEdit.text()+str(self.ui.resistanceBox.value()+"kOhm")
-                        plotItem = self.ui.dataViewWidget.plotItem
-                        export = exporters.CSVExporter(plotItem)
-                        export.export(fileNamePath)
-                pass
+                except Exception as ex:
+                        self.ui.tabWidget.setCurrentIndex(3)
+                        self.DebugLog("saveData fn error")
+                        self.DebugLog(str(ex))
 
         def set_path_function(self):
                 path = QtWidgets.QFileDialog().getExistingDirectory(self, "Failo išsaugojimo vieta")
@@ -179,6 +184,7 @@ class MainWindow(QtWidgets.QMainWindow):
                         self.ui.devicesTabWidget.setCurrentIndex(2)
                 except Exception as ex:
                         self.DebugLog(str(ex))
+                        self.ui.tabWidget.setCurrentIndex(3)
                         pass
                 pass
 
@@ -197,6 +203,7 @@ class MainWindow(QtWidgets.QMainWindow):
                         pass
                 except Exception as ex:
                         self.DebugLog(str(ex))
+                        self.ui.tabWidget.setCurrentIndex(3)
                         pass
                 pass
 
@@ -273,6 +280,7 @@ class MainWindow(QtWidgets.QMainWindow):
                         pass
                 except Exception as ex:
                         self.DebugLog(str(ex))
+                        self.ui.tabWidget.setCurrentIndex(3)
                         #  we will continue even if renew function fails - we need this for debugging reasons
                         SweepButtonsFunctionality(self.ui)
                         pass
@@ -393,6 +401,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 except Exception as ex:
                         self.DebugLog("Problems with starting of threads")
                         self.DebugLog(str(ex))
+                        self.ui.tabWidget.setCurrentIndex(3)
                         pass
 
         def ErrorHasBeenGot(self, *args):
@@ -589,6 +598,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 except Exception as ex:
                         self.DebugLog("================")
                         self.DebugLod(str(ex))
+                        self.ui.tabWidget.setCurrentIndex(3)
 
 
         def DrawOscilogramm(self, result):
@@ -608,7 +618,9 @@ class MainWindow(QtWidgets.QMainWindow):
                         self.initOscilograph()
                         pass
                 except Exception as ex:
+                        self.DebugLog("connectOscilograph fn error")
                         self.DebugLog(str(ex))
+                        self.ui.tabWidget.setCurrentIndex(3)
                         pass
 
         def initOscilograph(self):
@@ -782,8 +794,10 @@ class MainWindow(QtWidgets.QMainWindow):
                                         # dvs.reset() # no reset!
                                         dvs.close()
                                 except Exception as e:
+                                        self.DebugLog("scan_for_all_USBTMC_devices fn error")
                                         self.DebugLog(str(e))
                                         self.DebugMessage("Problemos su USBTMC prietaisais?", 2500)
+                                        self.ui.tabWidget.setCurrentIndex(3)
                                         pass
                 # nothing to do
                 # last entry is related to the ability to unset any device:
