@@ -529,7 +529,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.DebugMessage("Working on it ...", 1000)
                 pass
 
-        def draw_exp_data(self, CH1, CH2, time, time_unit):
+        def draw_exp_data(self, CH1, CH2, time, time_unit, m_dict):
                 self.expChannelOneView.setLabel('bottom', 'Time', units=time_unit)
                 self.expChannelOneView.setLabel('left', 'Voltage', units='V')
                 self.expChannelTwoView.setLabel('bottom', 'Time', units=time_unit)
