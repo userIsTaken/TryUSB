@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 #-*- coding: utf-8 -*-
 
-def getCurrentDensity(volts:float, resistance:float, area:float):
+def getCurrentDensity(volts, resistance, area):
         '''
         
         :param volts: Volts
