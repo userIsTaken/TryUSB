@@ -352,7 +352,8 @@ class MainWindow(QtWidgets.QMainWindow):
                                 # get all parameters:
                                 parameters_tuple = self.GetAllParameters()
                                 #
-                                self.ui.experimentDataViewPlot.clear()
+                                self.expChannelOneView.clear()
+                                self.expChannelTwoView.clear()
                                 self.ui.startExperimentButton.setText("Pradėta [Sustabdyti]")
                                 self._thread = QThread()
                                 self._thread.setObjectName("WLoop")
@@ -360,7 +361,7 @@ class MainWindow(QtWidgets.QMainWindow):
                                 #print(thread.objectName())
                                 #self._threads.append((thread, workerLoop))
                                 self._worker.moveToThread(self._thread)
-                                self._worker.results.connect(self.drawexp)
+                                self._worker.results.connect(self.draw_exp_data)
                                 self._worker.final.connect(self.WorkerEnded)
                                 self._worker.errors.connect(self.ErrorHasBeenGot)
                                 self._worker.progress.connect(self.ExperimentInfo)
@@ -525,11 +526,13 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.DebugMessage("Working on it ...", 1000)
                 pass
 
-        def drawexp(self, CH1, CH2, time, time_unit):
-                self.ui.experimentDataViewPlot.setLabel('bottom', 'Time', units=time_unit)
-                self.ui.experimentDataViewPlot.setLabel('left', 'Voltage', units='V')
-                expCOne = self.ui.experimentDataViewPlot.plot()
-                expCTwo = self.ui.experimentDataViewPlot.plot()
+        def draw_exp_data(self, CH1, CH2, time, time_unit):
+                self.expChannelOneView.setLabel('bottom', 'Time', units=time_unit)
+                self.expChannelOneView.setLabel('left', 'Voltage', units='V')
+                self.expChannelTwoView.setLabel('bottom', 'Time', units=time_unit)
+                self.expChannelTwoView.setLabel('left', 'Voltage', units='V')
+                expCOne = self.expChannelOneView.plot()
+                expCTwo = self.expChannelTwoView.plot()
                 # self.dataCurveOne.setPen((200, 200, 100))
                 # self.dataCurveTwo.setPen((100, 200, 255))
                 rOne = random.randint(100, 255)
