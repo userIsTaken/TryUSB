@@ -7,7 +7,7 @@ import time
 ON = "ON"
 OFF = "OFF"
 class LoopWorker(QObject):
-        results = pyqtSignal(list, list, list, str, **kwargs)
+        results = pyqtSignal(list, list, list, str, dict)
         errors = pyqtSignal(int, str)
         final = pyqtSignal(int)
         progress = pyqtSignal(str)
@@ -21,6 +21,7 @@ class LoopWorker(QObject):
                 self._require_stop = False
                 self.Oscilograph.cmd_emiter.connect(self.emit_str)
                 #
+                self._measurement_parameters = {}
                 self._current_ampl = 0
                 self._current_offs = 0
                 self._current_period = 0
@@ -57,7 +58,7 @@ class LoopWorker(QObject):
                                         print("try fork:")
                                         while ((totalV <= stopV) and (not self._require_stop)):
                                                 self.AMP_GEN_set_parameters(totalV, fixed_offset)
-                                                
+                                                self._current_ampl = totalV
                                                 self.AMP_OSC_set_parameters(self.Oscilograph.CH1, totalV, fixed_offset)
                                                 
                                                 self.Generator.EnableOutput(self.Generator.CH1, ON)
@@ -241,12 +242,16 @@ class LoopWorker(QObject):
                 pass
         
         def OSC_read(self):
+                self._measurement_parameters["AMPL"]=self._current_ampl
+                self._measurement_parameters["OFFS"]=self._current_offs
+                self._measurement_parameters["PERIOD"] = self._current_period
+                self._measurement_parameters["TIMEU"] = self._current_time_unit
                 data_from_channel, time_array, time_unit = self.Oscilograph.get_data_points_from_channel(
                         self.Oscilograph.CH1)
                 data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel(
                         self.Oscilograph.CH2)
                 self.results.emit(data_from_channel.tolist(), data_from_channel2.tolist(),
-                                  time_array.tolist(), time_unit)
+                                  time_array.tolist(), time_unit, self._measurement_parameters)
                 pass
         
         def AMP_GEN_set_parameters(self, amplitude, fixed_offset):
