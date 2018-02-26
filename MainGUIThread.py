@@ -12,8 +12,6 @@ import pyqtgraph as pG
 from pyqtgraph import exporters
 
 
-#
-
 from Generators.SiglentGenerator import *
 from Generators.TektronixGenerator import *
 from MainExperimentLoopThread import *
@@ -76,8 +74,10 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.dataCurveTwo = self.ui.dataViewWidget.plot()
                 #eksperimento kreives:
                 #self.ui.startExperimentButton.clicked.connect(self.ekspMatavimas_clicked)
-                self.ekspCurveOne = self.ui.experimentDataViewPlot.plot()
-                self.ekspCurveTwo = self.ui.experimentDataViewPlot.plot()
+                # self.ekspCurveOne = self.ui.experimentDataViewPlot.plot()
+                # self.ekspCurveTwo = self.ui.experimentDataViewPlot.plot()
+                self.ekspCurveOne = self.ui.experimentDataPlots.ui.channelOneView.plot()
+                self.ekspCurveTwo =  self.ui.experimentDataPlots.ui.channelTwoView.plot()
                 #---------------------
                 self.SetupWindow()
                 self.ui.useRegularUpdateBox.stateChanged.connect(self.StateChanged)
@@ -107,6 +107,9 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.ui.saveToTXTbutton.clicked.connect(self.saveToTXT_oscillograph_view_function)
                 self.ui.saveRawData_button.clicked.connect(self.saveRawExpData)
                 self.ui.saveRawButton.clicked.connect(self.saveRawExpData)
+                # easier access to some widgets:
+                self.expChannelOneView = self.ui.experimentDataPlots.ui.channelOneView
+                self.expChannelTwoView = self.ui.experimentDataPlots.ui.channelTwoView
                 pass
         
         def saveRawExpData(self):
@@ -114,9 +117,12 @@ class MainWindow(QtWidgets.QMainWindow):
                         filename = self.ui.experimentFileNameEdit.text()
                         filepath = self._path
                         dateStamp = self.ui.dateEdit.text()
-                        plotItem = self.ui.experimentDataViewPlot.plotItem
-                        export = exporters.CSVExporter(plotItem)
-                        export.export(filepath + "/" + filename+dateStamp)
+                        plotItem_one = self.expChannelOneView.plotItem
+                        export = exporters.CSVExporter(plotItem_one)
+                        export.export(filepath + "/" + filename+"_CH1_"+dateStamp)
+                        plotItem_two = self.expChannelTwoView.plotItem
+                        export = exporters.CSVExporter(plotItem_two)
+                        export.export(filepath + "/" + filename+"_CH2_" + dateStamp)
                 except Exception as ex:
                         self.DebugLog(str(ex))
                         self.ExperimentInfo(str(ex))
