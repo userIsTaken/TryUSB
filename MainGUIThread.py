@@ -556,6 +556,7 @@ class MainWindow(QtWidgets.QMainWindow):
                         fName = str(self.ui.experimentFileNameEdit.text()+"_ampl"+amplitude+"_off"+offset+"_int"+period+".csv")
                         mObject = MeasurementData(fName)
                         # mObject.set_data_array()
+                        # mObject.write_to_file()
                         pass
                 else:
                         pass
@@ -610,7 +611,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 pass
 
         def getVoltsFromCH1_button_clicked(self):
-                self.getVoltsFromChannel("CHAN1", self.dataCurveOne, self.ui.dataViewWidget)
+                self.getVoltsFromChannel(self.Osciloscope.CH1, self.dataCurveOne, self.ui.dataViewWidget)
                 pass
         # def setupPlotWidget(self):
         #         '''

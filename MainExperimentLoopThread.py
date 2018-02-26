@@ -7,7 +7,7 @@ import time
 ON = "ON"
 OFF = "OFF"
 class LoopWorker(QObject):
-        results = pyqtSignal(list, list, list, str)
+        results = pyqtSignal(list, list, list, str, **kwargs)
         errors = pyqtSignal(int, str)
         final = pyqtSignal(int)
         progress = pyqtSignal(str)

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 #-*- codin: utf-8 -*-
-import os, sys, csv
+import os, sys
 from csv import writer
 
 import numpy as np
