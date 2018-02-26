@@ -18,6 +18,7 @@ from MainExperimentLoopThread import *
 from DummyFiles.DummyFunctions import *
 from Units.UnitCheck import *
 from UIfiles.UISetupFunctions import *
+from Units.Functions import *
 # Very global dictionary for all devices?
 
 # prettier graphs:
