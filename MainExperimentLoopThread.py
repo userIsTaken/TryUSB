@@ -20,6 +20,11 @@ class LoopWorker(QObject):
                 self.kwargs = kwargs
                 self._require_stop = False
                 self.Oscilograph.cmd_emiter.connect(self.emit_str)
+                #
+                self._current_ampl = 0
+                self._current_offs = 0
+                self._current_period = 0
+                self._current_time_unit = ""
                 print("Init")
                 pass
         
@@ -41,6 +46,9 @@ class LoopWorker(QObject):
                                 timeOFF = self.kwargs['OFFtime']
                                 time_u = self.kwargs['timeU']
                                 fixed_offset = self.kwargs['fixedOFF']
+                                self._current_offs = fixed_offset
+                                self._current_period = timeOFF
+                                self._current_time_unit = time_u
                                 i = 0
                                 self.Generator.EnableOutput(self.Generator.CH1, OFF)
                                 self.Generator.SetPeriod(self.Generator.CH1, timeOFF, time_u, i)
