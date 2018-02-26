@@ -361,8 +361,6 @@ class MainWindow(QtWidgets.QMainWindow):
                                 self._thread = QThread()
                                 self._thread.setObjectName("WLoop")
                                 self._worker = LoopWorker(self.Generator, self.Osciloscope,  **parameters_tuple)
-                                #print(thread.objectName())
-                                #self._threads.append((thread, workerLoop))
                                 self._worker.moveToThread(self._thread)
                                 self._worker.results.connect(self.draw_exp_data)
                                 self._worker.final.connect(self.WorkerEnded)
