@@ -141,7 +141,15 @@ class MainWindow(QtWidgets.QMainWindow):
 
                 :return:
                 '''
-
+                if self.ui.tabWidget.currentIndex() == 2:
+                        fileNamePath = self._path+"/"+self.ui.experimentFileNameEdit.text()
+                        self.DataList.write_all_lists(fileNamePath)
+                        pass
+                elif self.ui.tabWidget.currentIndex() == 0:
+                        fileNamePath = self._path + "/" + self.ui.experimentFileNameEdit.text()+str(self.ui.resistanceBox.value()+"kOhm")
+                        plotItem = self.ui.dataViewWidget.plotItem
+                        export = exporters.CSVExporter(plotItem)
+                        export.export(fileNamePath)
                 pass
 
         def set_path_function(self):
