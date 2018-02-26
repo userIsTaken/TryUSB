@@ -4,6 +4,7 @@ import os
 import time
 import numpy as np
 import math
+from PyQt5.QtCore import pyqtSignal, QObject
 
 class USBTMC:
         """
@@ -65,14 +66,19 @@ class SimpleInstrument:
         def close(self):
                 self.meas.closeDevice()
 
-class RigolDS1000SeriesScope:
+class RigolDS1000SeriesScope(QObject):
+        
+        cmd_emiter = pyqtSignal(str)
+        
         def __init__(self, device):
+                super(RigolDS1000SeriesScope, self).__init__()
                 self.meas = USBTMC(device)
                 self.CH1 = "CHAN1"
                 self.CH2 = "CHAN2"
                 # Initialization part
         def write(self, command):
                 """Send an arbitrary command directly to the scope"""
+                self.cmd_emiter.emit(str(command))
                 self.meas.write(command)
 
         def read(self, command):
