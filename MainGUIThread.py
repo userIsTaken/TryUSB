@@ -360,7 +360,7 @@ class MainWindow(QtWidgets.QMainWindow):
                                 self.ui.startExperimentButton.setText("Pradėta [Sustabdyti]")
                                 self._thread = QThread()
                                 self._thread.setObjectName("WLoop")
-                                self._worker = LoopWorker(self.Generator, self.Osciloscope, **parameters_tuple)
+                                self._worker = LoopWorker(self.Generator, self.Osciloscope,  **parameters_tuple)
                                 #print(thread.objectName())
                                 #self._threads.append((thread, workerLoop))
                                 self._worker.moveToThread(self._thread)
