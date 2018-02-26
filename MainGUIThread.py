@@ -536,8 +536,6 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.expChannelTwoView.setLabel('left', 'Voltage', units='V')
                 expCOne = self.expChannelOneView.plot()
                 expCTwo = self.expChannelTwoView.plot()
-                # self.dataCurveOne.setPen((200, 200, 100))
-                # self.dataCurveTwo.setPen((100, 200, 255))
                 rOne = random.randint(100, 255)
                 gOne = random.randint(100, 255)
                 bOne = random.randint(100, 255)
