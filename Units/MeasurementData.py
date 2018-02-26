@@ -1,13 +1,13 @@
 #!/usr/bin/python3
 #-*- codin: utf-8 -*-
 import os, sys, csv
-from _csv import writer
+from csv import writer
 
 import numpy as np
 from Units.Functions import *
 import itertools as itr
 
-class MeasurementData(csv):
+class MeasurementData():
         def __init__(self, filename):
                 super(MeasurementData, self).__init__()
                 self._data = None # empty
