@@ -116,7 +116,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.expChannelTwoView = self.ui.experimentDataPlots.ui.channelTwoView
                 # for data saving:
                 self.DataList = DataArray()
-
+                self.loadEntriesFromConfig()
                 pass
         
         def saveRawExpData(self):

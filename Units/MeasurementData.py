@@ -92,18 +92,21 @@ class DataArray():
 
         def write_all_lists(self, fileNameAndPathModel):
                 try:
-                        for dct in self._list:
-                                with open(fileNameAndPathModel+dct["NAME"]+".csv", 'w', newline='') as csvfile:
-                                        csvwriter = writer(csvfile, delimiter=';',
-                                    quotechar='|', quoting=csv.QUOTE_MINIMAL)
-                                        csvwriter.writerow(dict["HEADER"])
-                                        csvwriter.writerow(dict["FROW"])
-                                        csvwriter.writerow(dict["SROW"])
-                                        for a in dct["DATA"]:
-                                                csvwriter.writerow(a)
+                        if len(self._list) > 0:
+                                for dct in self._list:
+                                        with open(fileNameAndPathModel+dct["NAME"]+".csv", 'w', newline='') as csvfile:
+                                                csvwriter = writer(csvfile, delimiter=';',
+                                            quotechar='|', quoting=csv.QUOTE_MINIMAL)
+                                                csvwriter.writerow(dict["HEADER"])
+                                                csvwriter.writerow(dict["FROW"])
+                                                csvwriter.writerow(dict["SROW"])
+                                                for a in dct["DATA"]:
+                                                        csvwriter.writerow(a)
+                                                pass
                                         pass
                                 pass
-                        pass
+                        else:
+                                print("Zero length of dct")
                 except Exception as ex:
                         print("FCUK AGAIN")
                         print(str(ex))
