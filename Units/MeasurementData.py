@@ -63,7 +63,7 @@ class MeasurementData():
 
 class DataArray():
         def __init__(self, *args, **kwargs):
-                self._list = [] # nested list for all the data
+                self._list = [] # nested list/dictionary for all the data
                 pass
 
         def append(self,R, S, **kwargs):
@@ -72,12 +72,31 @@ class DataArray():
                 channel_one = kwargs["CH1"]
                 channel_two = kwargs["CH2"]
                 measurement_params = kwargs["MPARAMS"]
+                name = kwargs["NAME"]
                 ch2_density = getCurrentDensity(channel_two, R, S)
                 _header = "?" + str(measurement_params) + "?"
                 _frow = ["t[" + str(time_unit) + "]", "CH1/Signal", "CH2/Signal", "CH2/Density"]
                 _srow = [str(time_unit), "V", "V", "A/cm^2"]
                 _data = itr.zip_longest(time_array, channel_one, channel_two, ch2_density,
                                              fillvalue="-")
-                lst = [_header, _frow, _srow, _data]
-
+                lst = {"NAME":name, "HEADER":_header, "FROW":_frow, "SROW":_srow, "DATA":_data}
+                self._list.append(lst)
                 pass
+
+        def write_all_lists(self, fileNameAndPathModel):
+                try:
+                        for dct in self._list:
+                                with open(fileNameAndPathModel+dct["NAME"]+".csv", 'w', newline='') as csvfile:
+                                        csvwriter = writer(csvfile, delimiter=';',
+                                    quotechar='|', quoting=csv.QUOTE_MINIMAL)
+                                        csvwriter.writerow(dict["HEADER"])
+                                        csvwriter.writerow(dict["FROW"])
+                                        csvwriter.writerow(dict["SROW"])
+                                        for a in dct["DATA"]:
+                                                csvwriter.writerow(a)
+                                        pass
+                                pass
+                        pass
+                except Exception as ex:
+                        print("FCUK AGAIN")
+                        print(str(ex))
