@@ -13,5 +13,8 @@ def getCurrentDensity(volts, resistance, area):
         return j
         pass
 
-def get_file_name_parameters():
+def getCurrentDensity(volts_array, R, S):
+        current_density = []
+        newList = [x / (R*S) for x in volts_array]
+        return current_density
         pass
