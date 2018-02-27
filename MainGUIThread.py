@@ -148,7 +148,10 @@ class MainWindow(QtWidgets.QMainWindow):
                                 self.DataList.write_all_lists(fileNamePath)
                                 pass
                         elif self.ui.tabWidget.currentIndex() == 0:
-                                fileNamePath = self._path + "/" + self.ui.experimentFileNameEdit.text()+str(self.ui.resistanceBox.value())+"kOhm"
+                                self.RenewGeneratorFields()
+                                additional_text = "_AMPL"+str(self.ui.voltageAmplitudeBox.value())+"_OFFS" +str( self.ui.voltageOffsetBox.value())+"_per"+str(self.ui.periodBox.value())
+                                # additionl_text = self.ui.
+                                fileNamePath = self._path + "/" + self.ui.experimentFileNameEdit.text()+str(self.ui.resistanceBox.value())+"kOhm"+additional_text
                                 plotItem = self.ui.dataViewWidget.plotItem
                                 export = exporters.CSVExporter(plotItem)
                                 export.export(fileNamePath)
