@@ -586,6 +586,7 @@ class MainWindow(QtWidgets.QMainWindow):
                                 mObject = MeasurementData(fName)
                                 mObject.set_data_array(R, S, time, time_unit, CH1, CH2, measurement_params)
                                 mObject.write_to_file()
+                                self.ExperimentInfo("Saved to "+fName)
                                 pass
                         else:
                                 amplitude = str(m_dict["AMPL"])
