@@ -386,7 +386,17 @@
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QDoubleSpinBox" name="resistanceBox"/>
+            <widget class="QDoubleSpinBox" name="resistanceBox">
+             <property name="locale">
+              <locale language="C" country="AnyCountry"/>
+             </property>
+             <property name="decimals">
+              <number>3</number>
+             </property>
+             <property name="maximum">
+              <double>1200.000000000000000</double>
+             </property>
+            </widget>
            </item>
            <item row="1" column="0">
             <widget class="QLabel" name="label_31">
@@ -396,9 +406,16 @@
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QDoubleSpinBox" name="areaBox"/>
+            <widget class="QDoubleSpinBox" name="areaBox">
+             <property name="locale">
+              <locale language="C" country="AnyCountry"/>
+             </property>
+             <property name="maximum">
+              <double>120.000000000000000</double>
+             </property>
+            </widget>
            </item>
-           <item row="2" column="0">
+           <item row="2" column="0" colspan="2">
             <widget class="QCheckBox" name="enableAutoSaveBox">
              <property name="text">
               <string>Automatiškai išsaugoti</string>

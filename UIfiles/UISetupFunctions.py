@@ -31,6 +31,8 @@ def SetupWindow(gui:Ui_MainGuiWindow):
         icon6 = QtGui.QIcon()
         icon6.addPixmap(QtGui.QPixmap("Icons/saveBig.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         gui.saveRawData_button.setIcon(icon6)
+        gui.resistanceBox.setValue(1)
+        gui.areaBox.setValue(0.1)
         pass
 
 def SweepButtonsFunctionality(gui:Ui_MainGuiWindow):

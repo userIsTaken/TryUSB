@@ -596,11 +596,11 @@ class MainWindow(QtWidgets.QMainWindow):
                                 period = str(m_dict["PERIOD"])
                                 time_unit = str(m_dict["TIMEU"])
                                 measurement_params = "AMPL: " + amplitude + " V | OFFS: " + offset + " V | PERIOD: " + period + " " + time_unit
-                                self.DataList.append(R, S, TIME=time, CHAN1=CH1, CHAN2=CH2, MPARAMS=measurement_params, NAME="_ampl"+amplitude+"_off"+offset+"_int"+period)
+                                self.DataList.append(R, S, TIME=time, CHAN1=CH1, CHAN2=CH2, MPARAMS=measurement_params,TIMEU=time_unit, NAME="_ampl"+amplitude+"_off"+offset+"_int"+period)
                                 pass
                 except Exception as ex:
                         self.DebugLog("================")
-                        self.DebugLod(str(ex))
+                        self.DebugLog(str(ex))
                         self.ui.tabWidget.setCurrentIndex(3)
 
 
