@@ -34,7 +34,7 @@ class MeasurementData():
                         channel_as_current_density = getCurrentDensity(channel_two, R, S)
                         self._header = ["?"+str(measurement_parameters)+"?", "", "", ""]
                         self._frow = ["t["+str(time_unit)+"]", "CH1/Signal", "CH2/Signal", "CH2/Density"]
-                        self._srow = [str(time_unit), "V", "V", "A/cm^2"]
+                        self._srow = [str(time_unit), "V", "V", "mA/cm^2"]
                         self._data = itr.zip_longest(time_array, channel_one, channel_two, channel_as_current_density, fillvalue="-")
                         pass
                 except Exception as ex:
