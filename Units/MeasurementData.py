@@ -97,9 +97,9 @@ class DataArray():
                                         with open(fileNameAndPathModel+dct["NAME"]+".csv", 'w', newline='') as csvfile:
                                                 csvwriter = writer(csvfile, delimiter=';',
                                             quotechar='|', quoting=csv.QUOTE_MINIMAL)
-                                                csvwriter.writerow(dict["HEADER"])
-                                                csvwriter.writerow(dict["FROW"])
-                                                csvwriter.writerow(dict["SROW"])
+                                                csvwriter.writerow(dct["HEADER"])
+                                                csvwriter.writerow(dct["FROW"])
+                                                csvwriter.writerow(dct["SROW"])
                                                 for a in dct["DATA"]:
                                                         csvwriter.writerow(a)
                                                 pass
