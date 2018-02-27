@@ -14,6 +14,13 @@ def getCurrentDensity(volts, resistance, area):
         pass
 
 def getCurrentDensity(volts_array, R, S):
+        '''
+        
+        :param volts_array: volts from channel
+        :param R: load in kOhms
+        :param S: load in squared cm's.
+        :return: array/list of current density (A/cm^2)
+        '''
         # current_density = []
         current_density = [x / (R*S) for x in volts_array]
         return current_density
