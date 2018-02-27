@@ -582,7 +582,7 @@ class MainWindow(QtWidgets.QMainWindow):
                                 period= str(m_dict["PERIOD"])
                                 time_unit = str(m_dict["TIMEU"])
                                 measurement_params = "AMPL: "+amplitude + " V | OFFS: "+offset+" V | PERIOD: "+period+" "+time_unit
-                                fName = str(self.ui.experimentFileNameEdit.text()+"_ampl"+amplitude+"_off"+offset+"_int"+period+".csv")
+                                fName = self._path+"/"+str(self.ui.experimentFileNameEdit.text()+"_ampl"+amplitude+"_off"+offset+"_int"+period+".csv")
                                 mObject = MeasurementData(fName)
                                 mObject.set_data_array(R, S, time, time_unit, CH1, CH2, measurement_params)
                                 mObject.write_to_file()
