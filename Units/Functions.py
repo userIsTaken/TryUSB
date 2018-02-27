@@ -14,7 +14,7 @@ def getCurrentDensity(volts, resistance, area):
         pass
 
 def getCurrentDensity(volts_array, R, S):
-        current_density = []
-        newList = [x / (R*S) for x in volts_array]
+        # current_density = []
+        current_density = [x / (R*S) for x in volts_array]
         return current_density
         pass
