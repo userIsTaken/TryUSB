@@ -622,6 +622,7 @@ class MainWindow(QtWidgets.QMainWindow):
                         self.ui.idn_label_oscilograph.setText((msg.decode())[0:10])
                         self.DebugMessage("IDN: " + msg.decode(), 1000)
                         self.initOscilograph()
+                        self.ui.connectToOscilograph_button.setText("Prisijungta")
                         pass
                 except Exception as ex:
                         self.DebugLog("connectOscilograph fn error")
