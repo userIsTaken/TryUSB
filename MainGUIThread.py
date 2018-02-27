@@ -114,6 +114,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 # easier access to some widgets:
                 self.expChannelOneView = self.ui.experimentDataPlots.ui.channelOneView
                 self.expChannelTwoView = self.ui.experimentDataPlots.ui.channelTwoView
+                self.ui.setSavePathButton.clicked.connect(self.set_path_function)
                 # for data saving:
                 self.DataList = DataArray()
                 self.loadEntriesFromConfig()
@@ -162,6 +163,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 if path is not None or len(path) > 0:
                         self._path = path
                         self.ui.path_label.setText(self._path)
+                        self.ui.pathLabel.setText(self._path)
                         pass
                 pass
 
