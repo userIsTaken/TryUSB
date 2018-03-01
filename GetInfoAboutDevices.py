@@ -105,7 +105,7 @@ def GetGenerator(gui:Ui_MainGuiWindow, usbtmc_dev_dict):
                                 dev.close() # init will occur later
                                 if "Siglent".lower() in name.lower():
                                         Generator = SiglentGenerator_TCP(devices_from_IPtable["Generatorius"])
-                                elif "Tektronix".lower() in name.lower():
+                                elif "Tektronix,A".lower() in name.lower():
                                         Generator = TektronixGenerator_TCP(devices_from_IPtable["Generatorius"])
                                 pass
                 elif USBTMCGenerator != "[Nėra]":
@@ -136,7 +136,7 @@ def GetOscilograph(gui:Ui_MainGuiWindow, usbtmc_dev_dict):
                                 name = dev.ask("*IDN?")
                                 dev.close() # init will occur later
                                 if "Tektronix".lower() in name.lower():
-                                        pass
+                                        Oscilograph = TektronixScope_TCP(devices_from_IPtable["Oscilografas"])
                 elif USBTMOscilograph != "[Nėra]":
                         for key, value in usbtmc_dev_dict.items():
                                 if value == USBTMOscilograph:
