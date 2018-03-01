@@ -1,6 +1,7 @@
 from Oscilographs.USBTMC_Devices import *
 from Generators.SiglentGenerator import *
 from Generators.TektronixGenerator import *
+from Oscilographs.TektronixScope import *
 import vxi11
 
 from UIfiles.GUIThread import Ui_MainGuiWindow

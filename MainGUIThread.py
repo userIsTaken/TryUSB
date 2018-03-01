@@ -5,6 +5,7 @@ from UIfiles.GUIThread import Ui_MainGuiWindow
 
 import sys, os
 from Oscilographs.USBTMC_Devices import *
+from Oscilographs.TektronixScope import *
 from GetInfoAboutDevices import *
 from ConfigParser import *
 import vxi11
