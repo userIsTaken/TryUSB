@@ -205,7 +205,22 @@ class MainWindow(QtWidgets.QMainWindow):
         def sendCMDintoOcilograph(self):
                 cmd = self.ui.cmdBoxForOSC.currentText()
                 try:
-                        self.Osciloscope.write(cmd)
+                        if "?" in cmd:
+                                answer = self.Osciloscope.read(cmd)
+                                try:
+                                        ats = answer.decode()
+                                        self.showTextInOsc("====CMD====")
+                                        self.showTextInOsc(cmd)
+                                        self.showTextInOsc("===ANSW===")
+                                        self.showTextInOsc(ats)
+                                except:
+                                        self.showTextInOsc("====CMD====")
+                                        self.showTextInOsc(cmd)
+                                        self.showTextInOsc("===ANSW===")
+                                        self.showTextInOsc(answer)
+                                pass
+                        else:
+                                self.Osciloscope.write(cmd)
                         pass
                 except Exception as ex:
                         self.DebugLog(str(ex))
@@ -645,10 +660,15 @@ class MainWindow(QtWidgets.QMainWindow):
                         time.sleep(0.25)
                 self.Osciloscope.unlock_key()
                 pass
+        
+        def showTextInOsc(self, text):
+                self.ui.plainConfigOscilograph.appendPlainText(str(text))
 
         def getVoltsFromCH1_button_clicked(self):
                 self.getVoltsFromChannel(self.Osciloscope.CH1, self.dataCurveOne, self.ui.dataViewWidget)
                 pass
+        
+        
         def changeOutputCH1(self):
                 if(self.ui.InputOutputCH1Button.isChecked()):
                         # self.Generator.ask("C1:OUTP ON")
