@@ -86,7 +86,8 @@ class RigolDS1000SeriesScope(QObject):
                 return self.meas.read(command)
 
         def get_name(self):
-                return self.meas.getName()
+                name = self.meas.getName()
+                return name.decode()
 
         def reset(self):
                 """Reset the instrument"""

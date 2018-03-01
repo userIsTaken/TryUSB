@@ -620,8 +620,8 @@ class MainWindow(QtWidgets.QMainWindow):
                 try:
                         self.Osciloscope = GetOscilograph(self.ui, self.DevicesUSBTMC)
                         msg = self.Osciloscope.get_name()
-                        self.ui.idn_label_oscilograph.setText((msg.decode())[0:10])
-                        self.DebugMessage("IDN: " + msg.decode(), 1000)
+                        self.ui.idn_label_oscilograph.setText((msg)[0:10])
+                        self.DebugMessage("IDN: " + msg, 1000)
                         self.initOscilograph()
                         self.ui.connectToOscilograph_button.setText("Prisijungta")
                         pass
