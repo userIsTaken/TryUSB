@@ -1,20 +1,24 @@
 import  os, sys, time
 import vxi11
 from ConfigParser import *
+from PyQt5.QtCore import  QObject
 
-class TektronixScope_TCP():
+class TektronixScope_TCP(QObject):
         '''
         
         '''
+        cmd_emiter = pyqtSignal(str)
+        
         def __init__(self, path:str):
                 '''
                 
                 :param gen_path: path (IP) for generator
                 '''
+                super(TektronixScope_TCP, self).__init__()
                 self.Instrument = vxi11.Instrument(path)
                 # self.Instrument.timeout = 1
-                self.CH1 = "SOUR1"
-                self.CH2 = "SOUR2"
+                self.CH1 = "CH1"
+                self.CH2 = "CH2"
                 self.IDN = None
                 # channel 1 - CH1, channel 2 - CH2
                 pass
@@ -30,11 +34,13 @@ class TektronixScope_TCP():
 
         def write(self, command):
                 """Send an arbitrary command directly to the scope"""
+                self.cmd_emiter.emit(str(command))
                 self.Instrument.write(command)
                 pass
 
         def read(self, command):
                 """Read an arbitrary amount of data directly from the scope"""
+                self.cmd_emiter.emit(str(command))
                 answer = self.Instrument.ask(command)
                 return answer
                 pass
@@ -44,12 +50,13 @@ class TektronixScope_TCP():
                 pass
 
         def close(self):
-                pass
+                self.Instrument.close()
 
         def stop(self):
+                self.Instrument.write("STOP")
                 pass
 
-        def channels_mode(self, mode: str = "NORM"):
+        def channels_mode(self, mode):
                 pass
 
         def get_channels_mode(self):
@@ -82,7 +89,12 @@ class TektronixScope_TCP():
                 pass
 
         def get_data_points_from_channel(self, CH: str):
+                '''
+                Use this function in order to get all data points from scope:
                 
+                :param CH: specify a channel, str
+                :return: array of time and data points, time unit
+                '''
                 pass
 
         def run(self):
@@ -113,4 +125,20 @@ class TektronixScope_TCP():
                 
                 pass
         
+        
+        def set_channel_input_terminator(self, CH, terminator='M'):
+                if terminator == 'M' or terminator == 1e6 or terminator == "m":
+                        cmd = CH+":TER "+"MEG"
+                        self.Instrument.write(cmd)
+                elif terminator == "F" or terminator == 50 or terminator == 'f':
+                        cmd = CH+":TER "+"FIF"
+                        self.Instrument.write(cmd)
+                        pass
+                else:
+                        print("Wrong argument")
+                pass
+        
+        def get_channel_input_terminator(self, CH):
+                terminator = self.Instrument.ask(CH+":TER?")
+                return terminator
         

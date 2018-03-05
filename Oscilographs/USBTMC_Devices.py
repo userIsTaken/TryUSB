@@ -341,3 +341,22 @@ class RigolDS1000SeriesScope(QObject):
 
                 self.write(":TRIG:EDGE:LEV "+level)
                 pass
+
+        def set_channel_input_terminator(self, CH, terminator='M'):
+                '''
+                Rigol does not support this feature:
+                
+                :param CH:
+                :param terminator:
+                :return:
+                '''
+                pass
+        def get_channel_input_terminator(self, CH):
+                '''
+                Rigol does not support this feature:
+                
+                :param CH:
+                :return:
+                '''
+                terminator = 1E6
+                return terminator
