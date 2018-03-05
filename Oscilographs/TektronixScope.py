@@ -1,7 +1,7 @@
 import  os, sys, time
 import vxi11
 from ConfigParser import *
-from PyQt5.QtCore import  QObject
+from PyQt5.QtCore import  QObject, pyqtSignal
 
 class TektronixScope_TCP(QObject):
         '''
