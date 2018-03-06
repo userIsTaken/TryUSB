@@ -123,6 +123,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.ui.setSavePathButton.clicked.connect(self.set_path_function)
                 # for data saving:
                 self.DataList = DataArray()
+                self.DataList.results.connect(self.DebugLog)
                 self.loadEntriesFromConfig()
                 pass
         
@@ -611,6 +612,7 @@ class MainWindow(QtWidgets.QMainWindow):
                                 measurement_params = "AMPL: "+amplitude + " V | OFFS: "+offset+" V | PERIOD: "+period+" "+time_unit
                                 fName = self._path+"/"+str(self.ui.experimentFileNameEdit.text()+"_ampl"+amplitude+"_off"+offset+"_int"+period+".csv")
                                 mObject = MeasurementData(fName)
+                                mObject.results.connect(self.DebugLog)
                                 mObject.set_data_array(R, S, time, time_unit, CH1, CH2, measurement_params)
                                 mObject.write_to_file()
                                 self.ExperimentInfo("Saved to "+fName)
