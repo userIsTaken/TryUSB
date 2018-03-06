@@ -112,9 +112,9 @@ class TektronixScope_TCP(QObject):
                 
                 self.Instrument.write("WFMO:ENC ASCii")
                 
-                yof = self.Instrument.ask("WFMO:YOF?")
-                ymu = self.Instrument.ask("WFMO:YMU?")
-                yze = self.Instrument.ask("WFMO:YZE?")
+                yof = float(self.Instrument.ask("WFMO:YOF?"))
+                ymu = float(self.Instrument.ask("WFMO:YMU?"))
+                yze = float(self.Instrument.ask("WFMO:YZE?"))
 
                 # % retrieve
                 # horizontal
@@ -124,9 +124,9 @@ class TektronixScope_TCP(QObject):
                 # xin = query(dpo, ':wfmo:xin?;', '%s', '%E');
                 # xze = query(dpo, ':wfmo:xze?;', '%s', '%E');
                 
-                nrp = self.Instrument.ask("WFMO:NR_P?")
-                xin = self.Instrument.ask("WFMO:XIN?")
-                xze = self.Instrument.ask("WFMO:XZE?")
+                nrp = float(self.Instrument.ask("WFMO:NR_P?"))
+                xin = float(self.Instrument.ask("WFMO:XIN?"))
+                xze = float(self.Instrument.ask("WFMO:XZE?"))
                 
                 # get all the data:
                 Y_array =  self.Instrument.ask("CURVE?")
