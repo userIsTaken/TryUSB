@@ -187,7 +187,7 @@ class LoopWorker(QObject):
                                 except Exception as ex:
                                         #print(ex)
                                         self.errors.emit(-1, str(ex) + " " + str(ex.args))
-                        elif self.kwargs['key'] == 3:
+                        elif self.kwargs['key'] == 3:  # time sweep
                                 # self.Generator.SetOffset(self.Generator.CH1, self.kwargs['fixedOFF'])
                                 # self.Oscilograph.set_channel_offset(self.Oscilograph.CH1, "-2")
                                 startT = self.kwargs['startT']
@@ -208,11 +208,14 @@ class LoopWorker(QObject):
                                 self._current_ampl = fixedV
                                 try:
                                         # print("try fork:")
-                                        while ((totalT <= totalT) and (not self._require_stop)):
+                                        while ((totalT <= stopT) and (not self._require_stop)):
+                                                if (totalT <= stopT):
+                                                        print("DEBUG: totalT, stopT", totalT, stopT)
                                                 self.Generator.SetPeriod(self.Generator.CH1, totalT, time_u, i)
-                                                self.AMP_OSC_time_scale_and_offset(totalT, time_u)
+                                                
+                                                time.sleep(1)
                                                 self.AMP_OSC_set_parameters(self.Oscilograph.CH1, fixedV, fixed_offset)
-                        
+                                                self.AMP_OSC_time_scale_and_offset(totalT, time_u)
                                                 self.Generator.EnableOutput(self.Generator.CH1, ON)
                                                 signal_wait = self.Generator.GetTriggerInterval()
                                                 # print("what?")
@@ -238,19 +241,19 @@ class LoopWorker(QObject):
                                                 # print("kreipimasis", time_unit2)
                                                 change, max_y = check_y_scale(data_from_channel2)
                                                 # print("max y", max_y, "change", str(change))
-                                                if change is True:
-                                                        while change is True:
+                                                if change is True and not self._require_stop:
+                                                        while change is True and not self._require_stop:
                                                                 self.AMP_OSC_set_parameters(self.Oscilograph.CH2,
                                                                                             max_y * 2)
                                                                 data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel(
                                                                         self.Oscilograph.CH2)
                                                                 change, max_y = check_y_scale(data_from_channel2)
-                                                                if change is False:
+                                                                if change is False and not self._require_stop:
                                                                         self.AMP_OSC_set_parameters(
                                                                                 self.Oscilograph.CH2,
                                                                                 max_y)
                                                                 pass
-                                                elif change is False:
+                                                elif change is False and not self._require_stop:
                                                         self.AMP_OSC_set_parameters(
                                                                 self.Oscilograph.CH2,
                                                                 max_y)
@@ -258,12 +261,18 @@ class LoopWorker(QObject):
                                                 self.OSC_read()
                                                 self.progress.emit("measured at " + str(totalT))
                                                 totalT = totalT + stepT
+                                                print("DEBUG: totalT, stepT", totalT,stepT)
+                                                print("DEBUG : ", str(self._require_stop))
+                                                if (totalT <= stopT):
+                                                        print("DEBUG: totalT, stopT", totalT, stopT)
                                                 self.Generator.EnableOutput(self.Generator.CH1, OFF)
                                                 self.Oscilograph.unlock_key()
                                                 pass
+                                        #=============================================================
+                                        #=============================================================
                                 except Exception as ex:
                                         # print(ex)
-                                        self.errors.emit(-1, str(ex) + " " + ex.args)
+                                        self.errors.emit(-1, str(ex) + " " + str(ex.args))
                         else:
                                 self.progress.emit("Else fork, stopping ... ")
                                 # TODO we need to describe all variants who can occur in if conditions
