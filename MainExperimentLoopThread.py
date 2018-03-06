@@ -186,7 +186,7 @@ class LoopWorker(QObject):
                                                 pass
                                 except Exception as ex:
                                         #print(ex)
-                                        self.errors.emit(-1, str(ex) + " " + ex.args)
+                                        self.errors.emit(-1, str(ex) + " " + str(ex.args))
                         else:
                                 self.progress.emit("Else fork, stopping ... ")
                                 # TODO we need to describe all variants who can occur in if conditions
