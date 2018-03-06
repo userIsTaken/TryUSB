@@ -31,6 +31,11 @@ pG.setConfigOptions(antialias=True)
 ON = "ON"
 OFF = "OFF"
 from ThreadedRigolreading import *
+import traceback
+
+
+
+
 class MainWindow(QtWidgets.QMainWindow):
         def __init__(self):
                 super(MainWindow, self).__init__()

@@ -4,6 +4,7 @@ from ConfigParser import *
 from PyQt5.QtCore import  QObject, pyqtSignal
 import numpy as np
 from Units.UnitCheck import *
+import traceback
 
 class TektronixScope_TCP(QObject):
         '''

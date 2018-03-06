@@ -6,6 +6,9 @@ import time
 # from DummyFiles.DummyFunctions import *
 ON = "ON"
 OFF = "OFF"
+
+import traceback
+
 class LoopWorker(QObject):
         results = pyqtSignal(list, list, list, str, dict)
         errors = pyqtSignal(int, str)
@@ -189,7 +192,10 @@ class LoopWorker(QObject):
                                 # TODO we need to describe all variants who can occur in if conditions
                                 # sys.exit(-1)
                 except Exception as ex:
+                        exc_type, exc_value, exc_tb = sys.exc_info()
+                        traceback.print_exception(exc_type, exc_value, exc_tb)
                         self.progress.emit(str(ex))
+                        
                         self.errors.emit(-1, str(ex))
                         # sys.exit(-1)
                         pass
