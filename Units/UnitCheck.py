@@ -19,7 +19,7 @@ def getNumberSIprefix(value:float):
                         flt = value * 1e6
                         unit = "μ"
                         pass
-                if log<=-6:
+                if log<-6:
                         flt = value * 1e9
                         unit = "n"
                         pass
@@ -69,7 +69,7 @@ def getNumberSIprefix(val: str):
                         flt = value * 1e6
                         unit = "μ"
                         pass
-                if log<=-6:
+                if log<-6:
                         flt = value * 1e9
                         unit = "n"
                         pass

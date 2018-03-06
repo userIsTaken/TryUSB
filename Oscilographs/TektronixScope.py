@@ -3,6 +3,7 @@ import vxi11
 from ConfigParser import *
 from PyQt5.QtCore import  QObject, pyqtSignal
 import numpy as np
+from Units.UnitCheck import *
 
 class TektronixScope_TCP(QObject):
         '''
@@ -73,6 +74,10 @@ class TektronixScope_TCP(QObject):
                 pass
 
         def get_time_scale(self):
+                # HORIZONTAL: SCALE?
+                h_scale = float( self.Instrument.ask("HORIZONTAL:SCALE?"))
+                # nmb, preffix = getNumberSIprefix(h_scale)
+                return h_scale
                 pass
         
 
@@ -139,10 +144,14 @@ class TektronixScope_TCP(QObject):
                 dataCH2 = [(float(x)-yof)*ymu+yze for x in Y]
                 # time array: scaled_time = linspace(xze,xze+(xin*nrp),nrp);
                 time_array = np.linspace(xze, xze+(xin*nrp), nrp)
-                time_unit = "OMS!"
+                scale = self.get_time_scale()
+                print("Scale : ", scale)
+                value, time_unit = getNumberSIprefix(scale)
+                print("time value and time unit:", value, time_unit)
+                # time_unit = "OMS!"
                 print("length of Y", len(Y))
                 print("length of time", len(time_array))
-                return np.asarray(dataCH2), time_array, time_unit
+                return np.asarray(dataCH2), time_array, "S"
                 pass
 
         def run(self):

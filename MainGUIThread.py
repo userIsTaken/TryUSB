@@ -560,16 +560,17 @@ class MainWindow(QtWidgets.QMainWindow):
                 pass
 
         def getDatafromBothChannels_button_clicked(self):
-                self.getVoltsFromChannel("CHAN1", self.dataCurveOne, self.ui.dataViewWidget)
-                self.getVoltsFromChannel("CHAN2", self.dataCurveTwo, self.ui.dataViewWidget)
+                self.getVoltsFromChannel(self.Osciloscope.CH1, self.dataCurveOne, self.ui.dataViewWidget)
+                self.getVoltsFromChannel(self.Osciloscope.CH2, self.dataCurveTwo, self.ui.dataViewWidget)
                 pass
 
         def getVoltsFromCH2_button_clicked(self):
-                self.getVoltsFromChannel("CHAN2", self.dataCurveTwo, self.ui.dataViewWidget)
+                self.getVoltsFromChannel(self.Osciloscope.CH2, self.dataCurveTwo, self.ui.dataViewWidget)
                 pass
 
         def getVoltsFromChannel(self, CH:str, dataCurve, graph:pG.PlotWidget):
                 data_from_channel, time_array, time_unit = self.Osciloscope.get_data_points_from_channel(CH)
+                print("time unit", time_unit)
                 graph.setLabel('bottom', 'Time', units=time_unit)
                 graph.setLabel('left', 'Voltage', units='V')
                 dataCurve.setData(time_array, data_from_channel)
