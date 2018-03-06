@@ -24,6 +24,7 @@ def SetupWindow(gui:Ui_MainGuiWindow):
         gui.dateEdit.setDate(cDate)
         # print(cDate)
         gui.dataViewWidget.plotItem.showGrid(True, True, 1.0)
+        # gui.dataViewWidget.a
         gui.experimentDataPlots.ui.channelOneView.plotItem.showGrid(True, True, 1.0)
         gui.experimentDataPlots.ui.channelTwoView.plotItem.showGrid(True, True, 1.0)
         gui.textForTXTName.setText("Failas_"+".csv")
