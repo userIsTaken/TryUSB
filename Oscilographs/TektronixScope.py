@@ -2,6 +2,7 @@ import  os, sys, time
 import vxi11
 from ConfigParser import *
 from PyQt5.QtCore import  QObject, pyqtSignal
+import numpy as np
 
 class TektronixScope_TCP(QObject):
         '''
@@ -53,7 +54,7 @@ class TektronixScope_TCP(QObject):
                 self.Instrument.close()
 
         def stop(self):
-                self.Instrument.write("STOP")
+                self.Instrument.write("ACQUIRE:STATE STOP")
                 pass
 
         def channels_mode(self, mode):
@@ -95,6 +96,48 @@ class TektronixScope_TCP(QObject):
                 :param CH: specify a channel, str
                 :return: array of time and data points, time unit
                 '''
+                # % retrieve
+                # vertical
+                # scaling
+                # informaiton
+                # yof = query(dpo, ':wfmo:yof?;', '%s', '%E');
+                # ymu = query(dpo, ':wfmo:ymu?;', '%s', '%E');
+                # yze = query(dpo, ':wfmo:yze?;', '%s', '%E');
+
+                self.Instrument.write("DATA:SOURCE "+CH)
+                
+                # ASCII encoding:
+                # WFMOutpre: ENCdg
+                # {ASCii | BINary}
+                
+                self.Instrument.write("WFMO:ENC ASCii")
+                
+                yof = self.Instrument.ask("WFMO:YOF?")
+                ymu = self.Instrument.ask("WFMO:YMU?")
+                yze = self.Instrument.ask("WFMO:YZE?")
+
+                # % retrieve
+                # horizontal
+                # scaling
+                # information
+                # nrp = query(dpo, ':wfmo:nr_p?;', '%s', '%E');
+                # xin = query(dpo, ':wfmo:xin?;', '%s', '%E');
+                # xze = query(dpo, ':wfmo:xze?;', '%s', '%E');
+                
+                nrp = self.Instrument.ask("WFMO:NR_P?")
+                xin = self.Instrument.ask("WFMO:XIN?")
+                xze = self.Instrument.ask("WFMO:XZE?")
+                
+                # get all the data:
+                Y_array =  self.Instrument.ask("CURVE?")
+                # (double(wave
+                # ')-yof).*ymu+yze
+                # return data arrays:
+                dataCH2 = [(float(x)-yof)*ymu+yze for x in Y_array]
+                # time array: scaled_time = linspace(xze,xze+(xin*nrp),nrp);
+                time_array = np.arange(xze, xze+(xin*nrp), nrp)
+                time_unit = "OMS!"
+                return np.asarray(dataCH2), time_array, time_unit
                 pass
 
         def run(self):
@@ -102,7 +145,10 @@ class TektronixScope_TCP(QObject):
                 pass
 
         def unlock_key(self):
+                '''
                 
+                :return:
+                '''
                 pass
 
         def set_y_scale(self, CHAN, y_scale: str, sleep_time=0.5):
