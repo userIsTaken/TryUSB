@@ -187,6 +187,83 @@ class LoopWorker(QObject):
                                 except Exception as ex:
                                         #print(ex)
                                         self.errors.emit(-1, str(ex) + " " + str(ex.args))
+                        elif self.kwargs['key'] == 3:
+                                # self.Generator.SetOffset(self.Generator.CH1, self.kwargs['fixedOFF'])
+                                # self.Oscilograph.set_channel_offset(self.Oscilograph.CH1, "-2")
+                                startT = self.kwargs['startT']
+                                stopT = self.kwargs['stopT']
+                                totalT = startT
+                                stepT = self.kwargs['stepT']
+                                fixedV = self.kwargs['fixedV']
+                                time_u = self.kwargs['timeU']
+                                fixed_offset = self.kwargs['fixedOFF']
+                                self._current_offs = fixed_offset
+                                self._current_period = totalT
+                                self._current_time_unit = time_u
+                                i = 0
+                                self.Generator.EnableOutput(self.Generator.CH1, OFF)
+                                self.Generator.SetPeriod(self.Generator.CH1, totalT, time_u, i)
+                                self.AMP_OSC_time_scale_and_offset(totalT, time_u)
+                                self.AMP_GEN_set_parameters(fixedV, fixed_offset)
+                                self._current_ampl = fixedV
+                                try:
+                                        # print("try fork:")
+                                        while ((totalT <= totalT) and (not self._require_stop)):
+                                                self.Generator.SetPeriod(self.Generator.CH1, totalT, time_u, i)
+                                                self.AMP_OSC_time_scale_and_offset(totalT, time_u)
+                                                self.AMP_OSC_set_parameters(self.Oscilograph.CH1, fixedV, fixed_offset)
+                        
+                                                self.Generator.EnableOutput(self.Generator.CH1, ON)
+                                                signal_wait = self.Generator.GetTriggerInterval()
+                                                # print("what?")
+                        
+                                                if ("uS" == time_u):
+                                                        t_u = (totalT) * (10 ** -6)
+                                                        # print((float(signal_wait) + float(t_u)) * 2)
+                                                        time.sleep((float(signal_wait) + float(t_u)) * 2)
+                                                        pass
+                                                elif ("mS" == time_u):
+                                                        t_u = (totalT) * (10 ** -3)
+                                                        # print((float(signal_wait) + float(t_u)) * 2)
+                                                        time.sleep((float(signal_wait) + float(t_u)) * 2)
+                                                        pass
+                                                elif ("S" == time_u):
+                                                        t_u = totalT
+                                                        # print((float(signal_wait) + float(t_u)) * 2)
+                                                        time.sleep((float(signal_wait) + float(t_u)) * 2)
+                                                        pass
+                                                # print("data scanning ...")
+                                                data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel(
+                                                        self.Oscilograph.CH2)
+                                                # print("kreipimasis", time_unit2)
+                                                change, max_y = check_y_scale(data_from_channel2)
+                                                # print("max y", max_y, "change", str(change))
+                                                if change is True:
+                                                        while change is True:
+                                                                self.AMP_OSC_set_parameters(self.Oscilograph.CH2,
+                                                                                            max_y * 2)
+                                                                data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel(
+                                                                        self.Oscilograph.CH2)
+                                                                change, max_y = check_y_scale(data_from_channel2)
+                                                                if change is False:
+                                                                        self.AMP_OSC_set_parameters(
+                                                                                self.Oscilograph.CH2,
+                                                                                max_y)
+                                                                pass
+                                                elif change is False:
+                                                        self.AMP_OSC_set_parameters(
+                                                                self.Oscilograph.CH2,
+                                                                max_y)
+                                                time.sleep(2)
+                                                self.OSC_read()
+                                                self.progress.emit("measured at " + str(totalT))
+                                                totalT = totalT + stepT
+                                                self.Generator.EnableOutput(self.Generator.CH1, OFF)
+                                                self.Oscilograph.unlock_key()
+                                                pass
+                                except Exception as ex:
+                                        # print(ex)
+                                        self.errors.emit(-1, str(ex) + " " + ex.args)
                         else:
                                 self.progress.emit("Else fork, stopping ... ")
                                 # TODO we need to describe all variants who can occur in if conditions
@@ -285,12 +362,15 @@ class LoopWorker(QObject):
                 #print("y offsetas " + str(fixed_offset))
                 #print("y skalė " + sc)
                 self.Oscilograph.set_y_scale(CH, sc)
-                trigger = (amplitude) / 4 + fixed_offset
-                tr = str("{0:.2f}".format(trigger))
-                time.sleep(1)
-                self.Oscilograph.set_trigger_edge_level(tr)
+                if CH == self.Oscilograph.CH1:
+                        trigger = (amplitude) / 4 + fixed_offset
+                        tr = str("{0:.2f}".format(trigger))
+                        time.sleep(1)
+                        self.Oscilograph.set_trigger_edge_level(tr)
+                        self.progress.emit(str(tr) + " tr")
+                        pass
                 # #print(tr, "tr")
-                self.progress.emit(str(tr) + " tr")
+                
         
                 time.sleep(1)
                 self.Oscilograph.set_channel_offset(CH,
