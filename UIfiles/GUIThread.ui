@@ -495,7 +495,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="oscligraph_tab">
        <attribute name="title">
@@ -1776,6 +1776,21 @@
          <widget class="QPlainTextEdit" name="rawDataViewEdit"/>
         </item>
        </layout>
+      </widget>
+      <widget class="QWidget" name="variousOutputTabPage">
+       <attribute name="title">
+        <string>Įvairūs eigos pranešimai</string>
+       </attribute>
+       <widget class="QPlainTextEdit" name="variousOutputField">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>1031</width>
+          <height>531</height>
+         </rect>
+        </property>
+       </widget>
       </widget>
      </widget>
     </item>

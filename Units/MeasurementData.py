@@ -2,12 +2,15 @@
 #-*- codin: utf-8 -*-
 import os, sys, csv
 from csv import writer
+from PyQt5.QtCore import pyqtSignal, QObject
 
+import traceback as tcb
 import numpy as np
 from Units.Functions import *
 import itertools as itr
 
-class MeasurementData():
+class MeasurementData(QObject):
+        results = pyqtSignal(str)
         def __init__(self, filename):
                 super(MeasurementData, self).__init__()
                 self._data = None # empty
@@ -38,8 +41,8 @@ class MeasurementData():
                         self._data = itr.zip_longest(time_array, channel_one, channel_two, channel_as_current_density, fillvalue="-")
                         pass
                 except Exception as ex:
-                        print("FCUK")
-                        print(str(ex))
+                        err = tcb.format_exc()
+                        self.results.emit("=====ERROR=====\n" + err)
                 pass
         
         def write_to_file(self):
@@ -55,14 +58,17 @@ class MeasurementData():
                                 pass
                         pass
                 except Exception as ex:
-                        print("==================")
-                        print(str(ex))
-                        print("==================")
+                        err = tcb.format_exc()
+                        self.results.emit("=====ERROR=====\n"+err)
                         pass
                 pass
 
-class DataArray():
+class DataArray(QObject):
+
+        results = pyqtSignal(str)
+
         def __init__(self, *args, **kwargs):
+                super(DataArray, self).__init__()
                 self._list = [] # nested list/dictionary for all the data
                 pass
 
@@ -97,6 +103,7 @@ class DataArray():
                                         with open(fileNameAndPathModel+dct["NAME"]+".csv", 'w', newline='') as csvfile:
                                                 csvwriter = writer(csvfile, delimiter=';',
                                             quotechar='|', quoting=csv.QUOTE_MINIMAL)
+                                                self.results.emit("Rašoma bus į failą: "+fileNameAndPathModel+dct["NAME"]+".csv")
                                                 csvwriter.writerow(dct["HEADER"])
                                                 csvwriter.writerow(dct["FROW"])
                                                 csvwriter.writerow(dct["SROW"])
@@ -106,7 +113,9 @@ class DataArray():
                                         pass
                                 pass
                         else:
-                                print("Zero length of dct")
+                                self.results.emit("Zero length of dct")
                 except Exception as ex:
+                        err = tcb.format_exc()
+                        self.results.emit("=====ERROR=====\n" + err)
                         print("FCUK AGAIN")
                         print(str(ex))

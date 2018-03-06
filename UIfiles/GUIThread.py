@@ -777,6 +777,12 @@ class Ui_MainGuiWindow(object):
         self.rawDataViewEdit.setObjectName("rawDataViewEdit")
         self.gridLayout_24.addWidget(self.rawDataViewEdit, 0, 0, 1, 1)
         self.tabWidget.addTab(self.rawDataViewPage, "")
+        self.variousOutputTabPage = QtWidgets.QWidget()
+        self.variousOutputTabPage.setObjectName("variousOutputTabPage")
+        self.variousOutputField = QtWidgets.QPlainTextEdit(self.variousOutputTabPage)
+        self.variousOutputField.setGeometry(QtCore.QRect(30, 20, 1031, 531))
+        self.variousOutputField.setObjectName("variousOutputField")
+        self.tabWidget.addTab(self.variousOutputTabPage, "")
         self.gridLayout_28.addWidget(self.tabWidget, 1, 0, 1, 4)
         self.closeButton = QtWidgets.QPushButton(self.centralwidget)
         self.closeButton.setObjectName("closeButton")
@@ -820,7 +826,7 @@ class Ui_MainGuiWindow(object):
 
         self.retranslateUi(MainGuiWindow)
         self.devicesTabWidget.setCurrentIndex(2)
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainGuiWindow)
 
     def retranslateUi(self, MainGuiWindow):
@@ -919,6 +925,7 @@ class Ui_MainGuiWindow(object):
         self.clearErrorTextButton.setText(_translate("MainGuiWindow", "Išvalyti klaidų pranešimus"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainGuiWindow", "Klaidų/informacijos pranešimai"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.rawDataViewPage), _translate("MainGuiWindow", "Pliki duomenys"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.variousOutputTabPage), _translate("MainGuiWindow", "Įvairūs eigos pranešimai"))
         self.closeButton.setText(_translate("MainGuiWindow", "Išeiti iš programos"))
         self.pathLabel.setText(_translate("MainGuiWindow", "Aplankas?"))
         self.unused_button.setText(_translate("MainGuiWindow", "Neveikiantis mygis"))
