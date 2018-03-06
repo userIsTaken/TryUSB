@@ -130,13 +130,18 @@ class TektronixScope_TCP(QObject):
                 
                 # get all the data:
                 Y_array =  self.Instrument.ask("CURVE?")
+                Y = Y_array.split(",")
                 # (double(wave
                 # ')-yof).*ymu+yze
                 # return data arrays:
-                dataCH2 = [(float(x)-yof)*ymu+yze for x in Y_array]
+                # for i in Y_array:
+                #         print(i)
+                dataCH2 = [(float(x)-yof)*ymu+yze for x in Y]
                 # time array: scaled_time = linspace(xze,xze+(xin*nrp),nrp);
-                time_array = np.arange(xze, xze+(xin*nrp), nrp)
+                time_array = np.linspace(xze, xze+(xin*nrp), nrp)
                 time_unit = "OMS!"
+                print("length of Y", len(Y))
+                print("length of time", len(time_array))
                 return np.asarray(dataCH2), time_array, time_unit
                 pass
 
