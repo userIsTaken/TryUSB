@@ -163,11 +163,7 @@ class TektronixScope_TCP(QObject):
                 # get all the data:
                 Y_array =  self.Instrument.ask("CURVE?")
                 Y = Y_array.split(",")
-                # (double(wave
-                # ')-yof).*ymu+yze
-                # return data arrays:
-                # for i in Y_array:
-                #         print(i)
+                # (double('wave')-yof).*ymu+yze
                 dataCH2 = [(float(x)-yof)*ymu+yze for x in Y]
                 # time array: scaled_time = linspace(xze,xze+(xin*nrp),nrp);
                 time_array = np.linspace(xze, xze+(xin*nrp), nrp)
