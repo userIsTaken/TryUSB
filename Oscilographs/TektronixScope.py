@@ -262,16 +262,40 @@ class TektronixScope_TCP(QObject):
                 self.Instrument.write(cmd)
                 pass
         
+        def set_trigger_mode(self, mode):
+                '''
+                It uses A trigger!
+                
+                :param mode: EDGE, etc ...
+                :return:
+                '''
+                cmd = "TRIG:A:TYP "+mode
+                self.Instrument.write(cmd)
+                pass
+        
+        def get_trigger_mode(self):
+                '''
+                It uses A trigger
+                
+                :return: mode of trigger (EDGE, etc ...)
+                '''
+                cmd = "TRIG:A:TYP?"
+                mode = self.Instrument.ask(cmd)
+                return mode
+        
         def set_trigger_source(self, source):
                 '''
                 
-                :param source: CH1, CH2,
+                :param source: CH1, CH2, etc ...
                 :return:
                 '''
+                cmd = "TRIG:A:EDGE:SOU "+source
+                self.Instrument.write(cmd)
                 pass
 
         def set_trigger_edge_level(self, level: str):
-                
+                cmd = "TRIG:A:LEV "+level
+                self.Instrument.write(cmd)
                 pass
         
         

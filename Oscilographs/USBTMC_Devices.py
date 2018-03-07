@@ -344,6 +344,26 @@ class RigolDS1000SeriesScope(QObject):
 
                 self.write(":TRIG:EDGE:LEV "+level)
                 pass
+        
+        def set_trigger_mode(self, mode):
+                '''
+                
+                :param mode: EDGE, etc ...
+                :return:
+                '''
+                cmd = ":TRIG:MODE "+mode
+                self.write(cmd)
+                pass
+        
+        def set_trigger_source(self, source):
+                '''
+                
+                :param source:
+                :return:
+                '''
+                cmd = ":TRIG:EDGE:SOUR "+source
+                self.write(cmd)
+                pass
 
         def set_channel_input_terminator(self, CH, terminator='M'):
                 '''
