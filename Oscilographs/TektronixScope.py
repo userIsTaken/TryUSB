@@ -97,9 +97,27 @@ class TektronixScope_TCP(QObject):
                 pass
 
         def get_channel_offset(self, CHANNEL):
+                '''
+                
+                :param CHANNEL:
+                :return:
+                '''
+                
+                cmd = CHANNEL+":OFF?"
+                channel_offset = self.Instrument.ask(cmd)
+                return channel_offset
                 pass
 
         def set_channel_offset(self, CHANNEL, OFFset: str):
+                '''
+                
+                :param CHANNEL:
+                :param OFFset:
+                :return:
+                '''
+                
+                cmd = CHANNEL+":OFF "+OFFset
+                self.Instrument.write(cmd)
                 
                 pass
 
@@ -193,6 +211,7 @@ class TektronixScope_TCP(QObject):
 
         def set_time_scale(self, time_scale: str):
                 cmd = "HOR:SCA "+str(time_scale)
+                self.Instrument.write(cmd)
                 pass
 
         def set_closest_time_scale(self, time_scale, time_unit):
@@ -239,7 +258,16 @@ class TektronixScope_TCP(QObject):
                 pass
 
         def set_time_offset(self, time_offset: str, sleep_time=0.5):
+                cmd = "HOR:OFF "+time_offset
+                self.Instrument.write(cmd)
+                pass
+        
+        def set_trigger_source(self, source):
+                '''
                 
+                :param source: CH1, CH2,
+                :return:
+                '''
                 pass
 
         def set_trigger_edge_level(self, level: str):
