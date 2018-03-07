@@ -123,6 +123,11 @@ class LoopWorker(QObject):
                                 stepOFF = self.kwargs['stepOFF']
                                 timeOFF = self.kwargs['OFFtime']
                                 time_u = self.kwargs['timeU']
+                                # info for data savings
+                                # self._current_offs = fixed_offset
+                                self._current_period = timeOFF
+                                self._current_time_unit = time_u
+                                self._current_ampl = fixedV
                                 i = 0
                                 self.Generator.EnableOutput(self.Generator.CH1, OFF)
                                 self.Generator.SetPeriod(self.Generator.CH1, timeOFF, time_u, i)
@@ -130,6 +135,7 @@ class LoopWorker(QObject):
                                 try:
                                         #print("try fork:")
                                         while ((totalOFF <= stopOFF) and (not self._require_stop)):
+                                                self._current_offs = totalOFF
                                                 self.OFF_GEN_set_parameters(fixedV, totalOFF)
                 
                                                 self.AMP_OSC_set_parameters(self.Oscilograph.CH1, fixedV, totalOFF)
@@ -198,17 +204,19 @@ class LoopWorker(QObject):
                                 time_u = self.kwargs['timeU']
                                 fixed_offset = self.kwargs['fixedOFF']
                                 self._current_offs = fixed_offset
-                                self._current_period = totalT
+                                # self._current_period = totalT
                                 self._current_time_unit = time_u
+                                self._current_ampl = fixedV
                                 i = 0
                                 self.Generator.EnableOutput(self.Generator.CH1, OFF)
                                 self.Generator.SetPeriod(self.Generator.CH1, totalT, time_u, i)
                                 self.AMP_OSC_time_scale_and_offset(totalT, time_u)
                                 self.AMP_GEN_set_parameters(fixedV, fixed_offset)
-                                self._current_ampl = fixedV
+                                # self._current_ampl = fixedV
                                 try:
                                         # print("try fork:")
                                         while ((totalT <= stopT) and (not self._require_stop)):
+                                                self._current_period = totalT
                                                 if (totalT <= stopT):
                                                         print("DEBUG: totalT, stopT", totalT, stopT)
                                                 self.Generator.SetPeriod(self.Generator.CH1, totalT, time_u, i)
@@ -311,7 +319,7 @@ class LoopWorker(QObject):
                         self.Oscilograph.set_closest_time_scale(signal_t / 8, unit)
                         time.sleep(1)
                         self.Oscilograph.set_time_offset(str("{0:.8f}".format(-t_u * 4)))
-                        self.progress.emit("Periodas " + str("{0:.8f}".format(t_u)))
+                        # self.progress.emit("Periodas " + str("{0:.8f}".format(t_u)))
                         # time.sleep(wait_pls)
                         pass
                 elif ("mS" == unit):
@@ -319,14 +327,14 @@ class LoopWorker(QObject):
                         self.Oscilograph.set_closest_time_scale(signal_t / 8, unit)
                         time.sleep(1)
                         self.Oscilograph.set_time_offset(str("{0:.8f}".format(-t_u * 4)))
-                        self.progress.emit("Periodas " + str("{0:.8f}".format(t_u)))
+                        # self.progress.emit("Periodas " + str("{0:.8f}".format(t_u)))
                         pass
                 elif ("S" == unit):
                         t_u = signal_t / 8
                         self.Oscilograph.set_closest_time_scale(signal_t / 8, unit)
                         time.sleep(1)
                         self.Oscilograph.set_time_offset(str("{0:.8f}".format(-t_u * 4)))
-                        self.progress.emit("Periodas " + str("{0:.8f}".format(t_u)))
+                        # self.progress.emit("Periodas " + str("{0:.8f}".format(t_u)))
                         pass
                 else:
                         self.progress.emit("shit here")
