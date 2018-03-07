@@ -178,7 +178,7 @@ class TektronixScope_TCP(QObject):
                 # time_unit = "OMS!"
                 # print("length of Y", len(Y))
                 # print("length of time", len(time_array))
-                return np.asarray(dataCH2), time_array, time_unit
+                return np.asarray(dataCH2), time_array, "S" # hardcoded time unit for Tektronix
                 pass
 
         def run(self):
