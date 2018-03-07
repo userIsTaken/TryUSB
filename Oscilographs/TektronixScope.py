@@ -198,6 +198,9 @@ class TektronixScope_TCP(QObject):
                 
                 :return:
                 '''
+                cmd = "UNL ALL" # unlock all knobs and buttons
+                self.Instrument.write(cmd)
+
                 pass
 
         def set_y_scale(self, CHAN, y_scale: str, sleep_time=0.5, yUnit="V"):
