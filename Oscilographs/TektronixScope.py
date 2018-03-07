@@ -50,7 +50,7 @@ class TektronixScope_TCP(QObject):
 
         
         def reset(self):
-                pass
+                self.Instrument.write("*RST")
 
         def close(self):
                 self.Instrument.close()
@@ -69,6 +69,14 @@ class TektronixScope_TCP(QObject):
                 pass
 
         def get_channel_scale(self, CH: str):
+                '''
+                Vertical scale of channel
+                
+                :param CH: (str) channel CH1, CH2, CH3, CH4 ...
+                :return:
+                '''
+                scale = self.Instrument.ask(CH+":SCA?")
+                return scale
                 pass
 
         def get_channel_CHAN2_scale(self):
@@ -148,15 +156,15 @@ class TektronixScope_TCP(QObject):
                 scale = self.get_time_scale()
                 print("Scale : ", scale)
                 value, time_unit = getNumberSIprefix(scale)
-                print("time value and time unit:", value, time_unit)
+                # print("time value and time unit:", value, time_unit)
                 # time_unit = "OMS!"
-                print("length of Y", len(Y))
-                print("length of time", len(time_array))
+                # print("length of Y", len(Y))
+                # print("length of time", len(time_array))
                 return np.asarray(dataCH2), time_array, time_unit
                 pass
 
         def run(self):
-                
+                self.Instrument.write("ACQUIRE:STATE RUN")
                 pass
 
         def unlock_key(self):
@@ -166,8 +174,21 @@ class TektronixScope_TCP(QObject):
                 '''
                 pass
 
-        def set_y_scale(self, CHAN, y_scale: str, sleep_time=0.5):
+        def set_y_scale(self, CHAN, y_scale: str, sleep_time=0.5, yUnit="V"):
+                '''
+                Sets Y scale for a specified channel:
                 
+                :param CHAN: channel
+                :param y_scale: volts
+                :param sleep_time: not used, 0.5 s default
+                :return:
+                '''
+                
+                cmd_unit = CHAN+":YUN "+"\""+yUnit+"\""
+                self.Instrument.write(cmd_unit)
+                # we can pass any value, default it will be in Volts
+                cmd = CHAN+":SCA "+y_scale # Volts?
+                self.Instrument.write(cmd)
                 pass
 
         def set_time_scale(self, time_scale: str):

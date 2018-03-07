@@ -261,7 +261,7 @@ class RigolDS1000SeriesScope(QObject):
                 self.write(":KEY:FORC")
                 pass
         
-        def set_y_scale(self, CHAN, y_scale:str, sleep_time = 0.5):
+        def set_y_scale(self, CHAN, y_scale:str, sleep_time = 0.5, yUnit="V"):
                 '''
 
                 :param CHAN: channel CHAN1, CHAN2
@@ -271,7 +271,7 @@ class RigolDS1000SeriesScope(QObject):
 
                 #self.write(":CHAN1:PROB 1")
                 self.write(":"+CHAN+":SCAL "+y_scale)
-                time.sleep(sleep_time)
+                # time.sleep(sleep_time)
                 pass
         
         def set_time_scale(self, time_scale:str):
