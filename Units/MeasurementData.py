@@ -89,7 +89,7 @@ class DataArray(QObject):
                 ch2_density = getCurrentDensity(channel_two, R, S)
                 _header = ["?" + str(measurement_params) + "?", "","",""]
                 _frow = ["t[" + str(time_unit) + "]", "CH1/Signal", "CH2/Signal", "CH2/Density"]
-                _srow = [str(time_unit), "V", "V", "A/cm^2"]
+                _srow = [str(time_unit), "V", "V", "mA/cm^2"]
                 _data = itr.zip_longest(time_array, channel_one, channel_two, ch2_density,
                                              fillvalue="-")
                 lst = {"NAME":name, "HEADER":_header, "FROW":_frow, "SROW":_srow, "DATA":_data}
