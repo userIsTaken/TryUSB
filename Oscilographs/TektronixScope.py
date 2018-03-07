@@ -192,11 +192,50 @@ class TektronixScope_TCP(QObject):
                 pass
 
         def set_time_scale(self, time_scale: str):
-                
+                cmd = "HOR:SCA "+str(time_scale)
                 pass
 
         def set_closest_time_scale(self, time_scale, time_unit):
+                '''
                 
+                :param time_scale:
+                :param time_unit:
+                :return:
+                '''
+
+                print("TEKTRONIX OSC||DEBUG: t scale, t unit", time_scale, time_unit)
+
+                array = [500, 200, 100, 50, 20, 10, 5, 2, 1]  # can not be ns?
+                time_value = None
+                time_power = None
+                for i in array:
+                        if (math.isclose(time_scale, i, rel_tol=0.35)):
+                                time_value = i
+                                break
+                                pass
+                        pass
+                if ("uS" == time_unit) or ("µS" == time_unit):
+                        time_power = 10 ** (-6)
+                        req_time_scale = time_value * time_power
+                        self.set_time_scale(str("{0:.8f}".format(req_time_scale)))
+                        pass
+                elif "mS" == time_unit:
+                        time_power = 1e-3
+                        req_time_scale = time_value * time_power
+                        self.set_time_scale(str("{0:.8f}".format(req_time_scale)))
+                        pass
+                elif "S" == time_unit:
+                        time_power = 1e0
+                        req_time_scale = time_value * time_power
+                        self.set_time_scale(str("{0:.8f}".format(req_time_scale)))
+                        pass
+                else:
+                        print("We can not be here - check a code!")
+                        pass
+
+                pass
+                
+                # self.set_time_scale(time_scale)
                 pass
 
         def set_time_offset(self, time_offset: str, sleep_time=0.5):
