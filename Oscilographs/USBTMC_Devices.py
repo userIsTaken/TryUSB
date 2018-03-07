@@ -99,7 +99,7 @@ class RigolDS1000SeriesScope(QObject):
         def stop(self):
                 self.meas.write(":STOP")
                 
-        def channels_mode(self, mode:str="NORM"):
+        def set_channels_mode(self, mode:str="NORM"):
                 '''
                 Sets mode for CHAN1 and CHAN2
                 

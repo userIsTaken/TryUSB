@@ -59,10 +59,22 @@ class TektronixScope_TCP(QObject):
                 self.Instrument.write("ACQUIRE:STATE STOP")
                 pass
 
-        def channels_mode(self, mode):
+        def set_channels_mode(self, mode):
+                '''
+                Tektronix does not support this command
+
+                :param mode:
+                :return:
+                '''
                 pass
 
         def get_channels_mode(self):
+                '''
+                Tektronix does not support this command
+
+                :return: always return NORM
+                '''
+                return "NORM"
                 pass
 
         def get_data_from_channel(self, channel, length=9000):
