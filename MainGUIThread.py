@@ -475,7 +475,8 @@ class MainWindow(QtWidgets.QMainWindow):
 
         def setOffset_generator(self):
                 offset = self.ui.voltageOffsetBox.value()
-                self.Generator.SetOffset(self.Generator.CH1, offset)
+                amplitude = self.ui.voltageAmplitudeBox.value()
+                self.Generator.SetNormalizedOffset(self.Generator.CH1, offset, amplitude)
                 # Test:
                 off = self.Generator.GetOffset(self.Generator.CH1)
                 self.DebugGenerator("Offset'as", off)
@@ -580,12 +581,12 @@ class MainWindow(QtWidgets.QMainWindow):
                 pass
 
         def getDatafromBothChannels_button_clicked(self):
-                self.getVoltsFromChannel(self.Osciloscope.CH1, self.dataCurveOne, self.ui.dataViewWidget)
-                self.getVoltsFromChannel(self.Osciloscope.CH2, self.dataCurveTwo, self.ui.dataViewWidget)
+                self.getVoltsFromChannel(self.Osciloscope.signalChannel, self.dataCurveOne, self.ui.dataViewWidget)
+                self.getVoltsFromChannel(self.Osciloscope.responseChannel, self.dataCurveTwo, self.ui.dataViewWidget)
                 pass
 
         def getVoltsFromCH2_button_clicked(self):
-                self.getVoltsFromChannel(self.Osciloscope.CH2, self.dataCurveTwo, self.ui.dataViewWidget)
+                self.getVoltsFromChannel(self.Osciloscope.responseChannel, self.dataCurveTwo, self.ui.dataViewWidget)
                 pass
 
         def getVoltsFromChannel(self, CH:str, dataCurve, graph:pG.PlotWidget):
@@ -698,7 +699,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.ui.plainConfigOscilograph.appendPlainText(str(text))
 
         def getVoltsFromCH1_button_clicked(self):
-                self.getVoltsFromChannel(self.Osciloscope.CH1, self.dataCurveOne, self.ui.dataViewWidget)
+                self.getVoltsFromChannel(self.Osciloscope.signalChannel, self.dataCurveOne, self.ui.dataViewWidget)
                 pass
         
         
