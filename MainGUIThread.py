@@ -98,6 +98,8 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.ui.setPeriodButton.clicked.connect(self.setPeriod_generator)
                 self.ui.setTriggerIntervalButton.clicked.connect(self.SetTriggerInterval_gen)
                 self.ui.renewGeneratorInfoButton.clicked.connect(self.RenewGeneratorFields)
+                self.ui.responseChannelOscBox.currentIndexChanged.connect(self.updateChannelsOsc)
+                self.ui.signalChannelOscBox.currentIndexChanged.connect(self.updateChannelsOsc)
                 # Main loop:
                 self.ui.startExperimentButton.clicked.connect(self.StartExperimentLoop)
                 # Configuration saving and loading:
@@ -125,6 +127,18 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.DataList = DataArray()
                 self.DataList.results.connect(self.DebugLog)
                 self.loadEntriesFromConfig()
+                pass
+        
+        def updateChannelsOsc(self):
+                try:
+                        signalChannelKey = self.ui.signalChannelOscBox.currentText()
+                        responseChannelKey = self.ui.responseChannelOscBox.currentText()
+                        # print(signalChannelKey, responseChannelKey, "sig & resp")
+                        self.Osciloscope.responseChannel = self.Osciloscope._channels[responseChannelKey]
+                        self.Osciloscope.signalChannel = self.Osciloscope._channels[signalChannelKey]
+                        self.DebugMessage("OSC signalas - "+ self.Osciloscope.signalChannel+" ; atsakas : "+self.Osciloscope.responseChannel, 2500)
+                except Exception as ex:
+                        pass
                 pass
         
         def saveRawExpData(self):
@@ -667,6 +681,17 @@ class MainWindow(QtWidgets.QMainWindow):
                         self.ui.cmdBoxForOSC.addItem(str(i))
                         time.sleep(0.25)
                 self.Osciloscope.unlock_key()
+                # fill all additional information:
+                self.fillChannelCombos()
+                self.updateChannelsOsc()
+                pass
+        
+        def fillChannelCombos(self):
+                channels_count = len(self.Osciloscope._channels)
+                for i in range(1, channels_count+1):
+                        self.ui.signalChannelOscBox.addItem(str(i))
+                        self.ui.responseChannelOscBox.addItem(str(i))
+                        pass
                 pass
         
         def showTextInOsc(self, text):

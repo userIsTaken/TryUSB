@@ -76,6 +76,9 @@ class RigolDS1000SeriesScope(QObject):
                 self.meas = USBTMC(device)
                 self.CH1 = "CHAN1"
                 self.CH2 = "CHAN2"
+                self._channels = {"1": self.CH1, "2": self.CH2}
+                self.signalChannel = None
+                self.responseChannel = None
                 # Initialization part
         def write(self, command):
                 """Send an arbitrary command directly to the scope"""

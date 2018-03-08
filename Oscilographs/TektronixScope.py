@@ -22,7 +22,12 @@ class TektronixScope_TCP(QObject):
                 self.Instrument = vxi11.Instrument(path)
                 # self.Instrument.timeout = 1
                 self.CH1 = "CH1"
-                self.CH2 = "CH3"
+                self.CH2 = "CH2"
+                self.CH3 = "CH3"
+                self.CH4 = "CH4"
+                self._channels={"1":self.CH1, "2":self.CH2, "3":self.CH3, "4":self.CH4}
+                self.signalChannel = None
+                self.responseChannel = None
                 self.IDN = None
                 # channel 1 - CH1, channel 2 - CH2
                 pass
