@@ -28,9 +28,13 @@ class TektronixScope_TCP(QObject):
                 pass
         
         def get_init_conf(self):
-                myConf = Configuration("Configs/TektronixScope.ini")
+                # try:
+                myConf = Configuration("Configs/TextronixScope.ini")
                 lines = myConf.readDefaultInitCommands("TEKTRONIX OSC INIT CONFIG", "InitTektronixOsc")
                 return lines
+                # except Exception as ex:
+                #         print(str(ex))
+                #         pass
                 pass
         
         def get_name(self):
