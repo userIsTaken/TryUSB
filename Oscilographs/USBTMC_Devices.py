@@ -5,6 +5,7 @@ import time
 import numpy as np
 import math
 from PyQt5.QtCore import pyqtSignal, QObject
+from ConfigParser import *
 
 class USBTMC:
         """
@@ -383,3 +384,9 @@ class RigolDS1000SeriesScope(QObject):
                 '''
                 terminator = 1E6
                 return terminator
+        
+        def get_init_conf(self):
+                myConf = Configuration("Configs/RigolDS1101E.ini")
+                lines = myConf.readDefaultInitCommands("RIGOL INIT SETUP", "InitRigol")
+                return lines
+                pass

@@ -5,6 +5,7 @@ from PyQt5.QtCore import  QObject, pyqtSignal
 import numpy as np
 from Units.UnitCheck import *
 import traceback
+from ConfigParser import *
 
 class TektronixScope_TCP(QObject):
         '''
@@ -21,9 +22,15 @@ class TektronixScope_TCP(QObject):
                 self.Instrument = vxi11.Instrument(path)
                 # self.Instrument.timeout = 1
                 self.CH1 = "CH1"
-                self.CH2 = "CH2"
+                self.CH2 = "CH3"
                 self.IDN = None
                 # channel 1 - CH1, channel 2 - CH2
+                pass
+        
+        def get_init_conf(self):
+                myConf = Configuration("Configs/TektronixScope.ini")
+                lines = myConf.readDefaultInitCommands("TEKTRONIX OSC INIT CONFIG", "InitTektronixOsc")
+                return lines
                 pass
         
         def get_name(self):

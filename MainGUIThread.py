@@ -655,9 +655,9 @@ class MainWindow(QtWidgets.QMainWindow):
                         pass
 
         def initOscilograph(self):
-                osc_conf = Configuration("Configs/RigolDS1101E.ini")
-                list_cmds = osc_conf.readDefaultInitCommands("RIGOL INIT SETUP","InitRigol")
-                self.DebugLog("===Rigol init file===")
+                # osc_conf = Configuration("Configs/RigolDS1101E.ini")
+                list_cmds = self.Osciloscope.get_init_conf()
+                self.DebugLog("===Osciloscope init file ===")
                 self.DebugLog(list_cmds)
                 self.ui.plainConfigOscilograph.setPlainText(list_cmds)
                 cmds = getTextLinesFromQTextEditField(self.ui.plainConfigOscilograph)
