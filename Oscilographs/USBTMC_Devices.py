@@ -206,7 +206,7 @@ class RigolDS1000SeriesScope(QObject):
         
                 return time, tUnit, dataCHANNEL
         
-        def get_channel_offset(self, CHANNEL):
+        def get_channel_position(self, CHANNEL):
                 '''
                 This function returns offset of specified channel
                 
@@ -217,7 +217,7 @@ class RigolDS1000SeriesScope(QObject):
                 voltoffsetCH = float(self.read(20))
                 return voltoffsetCH
         
-        def set_channel_offset(self, CHANNEL, OFFset:str):
+        def set_channel_position(self, CHANNEL, OFFset:str):
                 self.write(":" + CHANNEL + ":OFFS " + OFFset)
                 pass
         

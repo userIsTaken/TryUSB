@@ -72,7 +72,7 @@ class TektronixScope_TCP(QObject):
 
         def set_channels_mode(self, mode):
                 '''
-                Tektronix does not support this command
+                Tektronix does not support this command, just pass over it.
 
                 :param mode:
                 :return:
@@ -143,6 +143,16 @@ class TektronixScope_TCP(QObject):
                 self.Instrument.write(cmd)
                 
                 pass
+        
+        def set_channel_position(self, CHANNEL, POSset:str):
+                cmd = CHANNEL+":POS "+POSset
+                self.Instrument.write(cmd)
+                pass
+        
+        def get_channel_position(self, CHANNEL):
+                cmd = CHANNEL+":POS?"
+                position = self.Instrument.ask(cmd)
+                return position
 
         def get_data_points_from_channel(self, CH: str):
                 '''
