@@ -549,7 +549,7 @@ class MainWindow(QtWidgets.QMainWindow):
                         if self.ThreadPool.activeThreadCount()<=0:
                                 time = self.ui.secondsToWait.value()
                                 count = self.ui.noMoreThanTimes_oscilograph.value()
-                                worker = RigolBackGround_scanner(self.Osciloscope.get_data_points_from_channel, "CHAN1", time, count)
+                                worker = RigolBackGround_scanner(self.Osciloscope.get_data_points_from_channel, self.Osciloscope.signalChannel, time, count)
                                 worker.signals.result.connect(self.DrawOscilogramm)
                                 worker.signals.error.connect(self.DebugLog)
                                 # worker.signals.progress.connect(self.ExperimentInfo)
