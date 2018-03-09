@@ -42,7 +42,7 @@ class LoopWorker(QObject):
                         #print("Try to run this stuff")
                         if self.kwargs['key'] == 1:
                                 # self.Generator.SetOffset(self.Generator.CH1, self.kwargs['fixedOFF'])
-                                # self.Oscilograph.set_channel_offset(self.Oscilograph.CH1, "-2")
+                                # self.Oscilograph.set_channel_position(self.Oscilograph.CH1, "-2")
                                 startV = self.kwargs['startV']
                                 stopV = self.kwargs['stopV']
                                 totalV = startV
@@ -62,7 +62,7 @@ class LoopWorker(QObject):
                                         while ((totalV <= stopV) and (not self._require_stop)):
                                                 self.AMP_GEN_set_parameters(totalV, fixed_offset)
                                                 self._current_ampl = totalV
-                                                self.AMP_OSC_set_parameters(self.Oscilograph.CH1, totalV, fixed_offset)
+                                                self.AMP_OSC_set_parameters(self.Oscilograph.signalChannel, totalV, fixed_offset)
                                                 
                                                 self.Generator.EnableOutput(self.Generator.CH1, ON)
                                                 signal_wait = self.Generator.GetTriggerInterval()
@@ -85,24 +85,24 @@ class LoopWorker(QObject):
                                                         pass
                                                 #print("data scanning ...")
                                                 data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel(
-                                                        self.Oscilograph.CH2)
+                                                        self.Oscilograph.responseChannel)
                                                 #print("kreipimasis", time_unit2)
                                                 change, max_y = check_y_scale(data_from_channel2)
                                                 #print("max y", max_y, "change", str(change))
                                                 if change is True:
                                                         while change is True:
-                                                                self.AMP_OSC_set_parameters(self.Oscilograph.CH2, max_y * 2)
+                                                                self.AMP_OSC_set_parameters(self.Oscilograph.responseChannel, max_y * 2)
                                                                 data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel(
-                                                                        self.Oscilograph.CH2)
+                                                                        self.Oscilograph.responseChannel)
                                                                 change, max_y = check_y_scale(data_from_channel2)
                                                                 if change is False:
                                                                         self.AMP_OSC_set_parameters(
-                                                                                self.Oscilograph.CH2,
+                                                                                self.Oscilograph.responseChannel,
                                                                                 max_y)
                                                                 pass
                                                 elif change is False:
                                                         self.AMP_OSC_set_parameters(
-                                                                self.Oscilograph.CH2,
+                                                                self.Oscilograph.responseChannel,
                                                                 max_y)
                                                 time.sleep(2)
                                                 self.OSC_read()
@@ -135,10 +135,11 @@ class LoopWorker(QObject):
                                 try:
                                         #print("try fork:")
                                         while ((totalOFF <= stopOFF) and (not self._require_stop)):
+                                                print("ciklas prasidejo")
                                                 self._current_offs = totalOFF
                                                 self.OFF_GEN_set_parameters(fixedV, totalOFF)
                 
-                                                self.AMP_OSC_set_parameters(self.Oscilograph.CH1, fixedV, totalOFF)
+                                                self.AMP_OSC_set_parameters(self.Oscilograph.signalChannel, fixedV, totalOFF)
                 
                                                 self.Generator.EnableOutput(self.Generator.CH1, ON)
                                                 signal_wait = self.Generator.GetTriggerInterval()
@@ -161,41 +162,40 @@ class LoopWorker(QObject):
                                                         pass
                                                 #print("data scanning ...")
                                                 data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel(
-                                                        self.Oscilograph.CH2)
+                                                        self.Oscilograph.responseChannel)
                                                 #print("kreipimasis", time_unit2)
                                                 change, max_y = check_y_scale(data_from_channel2)
                                                 #print("max y", max_y, "change", str(change))
                                                 if change is True:
                                                         while change is True:
-                                                                self.AMP_OSC_set_parameters(self.Oscilograph.CH2,
-                                                                                            max_y * 2,
-                                                                                            (
-                                                                                                    max_y * 2 + totalOFF) / 8)
+                                                                self.AMP_OSC_set_parameters(self.Oscilograph.responseChannel,
+                                                                                            max_y * 2, totalOFF)
                                                                 data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel(
-                                                                        "CHAN2")
+                                                                        self.Oscilograph.responseChannel)
                                                                 change, max_y = check_y_scale(data_from_channel2)
                                                                 if change is False:
                                                                         self.AMP_OSC_set_parameters(
-                                                                                self.Oscilograph.CH2,
-                                                                                max_y, (max_y + totalOFF) / 8)
+                                                                                self.Oscilograph.responseChannel,
+                                                                                max_y, totalOFF)
                                                                 pass
                                                 elif change is False:
                                                         self.AMP_OSC_set_parameters(
-                                                                self.Oscilograph.CH2,
-                                                                max_y, (max_y + totalOFF) / 8)
+                                                                self.Oscilograph.responseChannel,
+                                                                max_y, totalOFF)
                 
                                                 self.OSC_read()
                                                 self.progress.emit("measured at " + str(totalOFF))
                                                 totalOFF = totalOFF + stepOFF
                                                 self.Generator.EnableOutput(self.Generator.CH1, OFF)
                                                 self.Oscilograph.unlock_key()
+                                                time.sleep(2)
                                                 pass
                                 except Exception as ex:
                                         #print(ex)
                                         self.errors.emit(-1, str(ex) + " " + str(ex.args))
                         elif self.kwargs['key'] == 3:  # time sweep
                                 # self.Generator.SetOffset(self.Generator.CH1, self.kwargs['fixedOFF'])
-                                # self.Oscilograph.set_channel_offset(self.Oscilograph.CH1, "-2")
+                                # self.Oscilograph.set_channel_position(self.Oscilograph.CH1, "-2")
                                 startT = self.kwargs['startT']
                                 stopT = self.kwargs['stopT']
                                 totalT = startT
@@ -222,7 +222,7 @@ class LoopWorker(QObject):
                                                 self.Generator.SetPeriod(self.Generator.CH1, totalT, time_u, i)
                                                 
                                                 time.sleep(1)
-                                                self.AMP_OSC_set_parameters(self.Oscilograph.CH1, fixedV, fixed_offset)
+                                                self.AMP_OSC_set_parameters(self.Oscilograph.signalChannel, fixedV, fixed_offset)
                                                 self.AMP_OSC_time_scale_and_offset(totalT, time_u)
                                                 self.Generator.EnableOutput(self.Generator.CH1, ON)
                                                 signal_wait = self.Generator.GetTriggerInterval()
@@ -245,25 +245,25 @@ class LoopWorker(QObject):
                                                         pass
                                                 # print("data scanning ...")
                                                 data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel(
-                                                        self.Oscilograph.CH2)
+                                                        self.Oscilograph.responseChannel)
                                                 # print("kreipimasis", time_unit2)
                                                 change, max_y = check_y_scale(data_from_channel2)
                                                 # print("max y", max_y, "change", str(change))
                                                 if change is True and not self._require_stop:
                                                         while change is True and not self._require_stop:
-                                                                self.AMP_OSC_set_parameters(self.Oscilograph.CH2,
+                                                                self.AMP_OSC_set_parameters(self.Oscilograph.responseChannel,
                                                                                             max_y * 2)
                                                                 data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel(
-                                                                        self.Oscilograph.CH2)
+                                                                        self.Oscilograph.responseChannel)
                                                                 change, max_y = check_y_scale(data_from_channel2)
                                                                 if change is False and not self._require_stop:
                                                                         self.AMP_OSC_set_parameters(
-                                                                                self.Oscilograph.CH2,
+                                                                                self.Oscilograph.responseChannel,
                                                                                 max_y)
                                                                 pass
                                                 elif change is False and not self._require_stop:
                                                         self.AMP_OSC_set_parameters(
-                                                                self.Oscilograph.CH2,
+                                                                self.Oscilograph.responseChannel,
                                                                 max_y)
                                                 time.sleep(2)
                                                 self.OSC_read()
@@ -347,9 +347,9 @@ class LoopWorker(QObject):
                 self._measurement_parameters["PERIOD"] = self._current_period
                 self._measurement_parameters["TIMEU"] = self._current_time_unit
                 data_from_channel, time_array, time_unit = self.Oscilograph.get_data_points_from_channel(
-                        self.Oscilograph.CH1)
+                        self.Oscilograph.signalChannel)
                 data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel(
-                        self.Oscilograph.CH2)
+                        self.Oscilograph.responseChannel)
                 self.results.emit(data_from_channel.tolist(), data_from_channel2.tolist(),
                                   time_array.tolist(), time_unit, self._measurement_parameters)
                 pass
@@ -374,24 +374,31 @@ class LoopWorker(QObject):
         
         def AMP_OSC_set_parameters(self, CH,  amplitude, fixed_offset=0):
                 scale = (amplitude + fixed_offset) / 6
-                sc = str("{0:.3f}".format(scale))
                 #print("amplitudė " + str(amplitude))
                 #print("y offsetas " + str(fixed_offset))
                 #print("y skalė " + sc)
-                self.Oscilograph.set_y_scale(CH, sc)
-                if CH == self.Oscilograph.CH1:
-                        trigger = (amplitude) / 4 + fixed_offset
+                self.Oscilograph.set_closest_voltage_scale(CH, scale)
+                time.sleep(1)
+                if CH == self.Oscilograph.signalChannel:
+                        trigger = amplitude / 4 + fixed_offset
                         tr = str("{0:.2f}".format(trigger))
                         time.sleep(1)
                         self.Oscilograph.set_trigger_edge_level(tr)
                         self.progress.emit(str(tr) + " tr")
+                        time.sleep(1)
+                        position = -3.0 * scale + (amplitude / 2 - fixed_offset)
+                        self.Oscilograph.set_channel_position(CH, str("{0:.3f}".format(position)))
+                        #print("signalo skalė: " + str(scale))
+                        print("signalo pozicija: " + str("{0:.3f}".format(-3.0 * scale + (amplitude / 2 - fixed_offset))))
+                        pass
+                if CH == self.Oscilograph.responseChannel:
+                        time.sleep(1)
+                        self.Oscilograph.set_channel_position(CH, str("{0:.3f}".format(-3.0 * scale)))
                         pass
                 # #print(tr, "tr")
                 
         
-                time.sleep(1)
-                self.Oscilograph.set_channel_offset(CH,
-                                                    str("{0:.3f}".format(-3.0 * scale)))
+                
                 time.sleep(2)  # 100 ms is enough
                 pass
 

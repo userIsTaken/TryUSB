@@ -233,7 +233,7 @@ class RigolDS1000SeriesScope(QObject):
                 # Stop data acquisition:
                 self.stop()
                 # set wave data points mode to normal:
-                self.channels_mode("NORM")
+                self.set_channels_mode("NORM")
                 data_array_from_channel = self.get_data_from_channel(CH, 9000)[10:]
                 # Walk through the data, and map it to actual voltages
                 # First invert the data (ya rly)
@@ -241,7 +241,7 @@ class RigolDS1000SeriesScope(QObject):
                 # Voltage scale:
                 voltscaleCH = self.get_channel_scale(CH)
                 # Voltage offset
-                voltoffsetCH = self.get_channel_offset(CH)
+                voltoffsetCH = self.get_channel_position(CH)
                 # Now, we know from experimentation that the scope display range is actually
                 # 30-229.  So shift by 130 - the voltage offset in counts, then scale to
                 # get the actual voltage.
@@ -327,6 +327,25 @@ class RigolDS1000SeriesScope(QObject):
                         print("We can not be here - check a code!")
                         pass
 
+                pass
+        
+        def set_closest_voltage_scale(self, chan, scale):
+                scale_str = "1"
+                if 10 > scale >= 1:
+                        scale_str = str("{0:.1f}".format(scale))
+                        print(chan + " signalo skalė: " + str(scale_str))
+                elif 1 > scale >= 0.1:
+                        scale_str = str("{0:.2f}".format(scale))
+                        print(chan + "signalo skalė: " + str(scale_str))
+                elif 0.1 > scale >= 0.01:
+                        scale_str = str("{0:.3f}".format(scale))
+                        print(chan + "signalo skalė: " + str(scale_str))
+                elif 0.01 > scale >= 0.002:
+                        scale_str = str("{0:.4f}".format(scale))
+                        print(chan + "signalo skalė: " + str(scale_str))
+                
+                        
+                self.set_y_scale(chan, scale_str)
                 pass
         
         def set_time_offset(self, time_offset: str, sleep_time=0.5):
