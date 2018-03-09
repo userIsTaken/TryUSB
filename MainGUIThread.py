@@ -693,6 +693,7 @@ class MainWindow(QtWidgets.QMainWindow):
                         self.ui.signalChannelOscBox.addItem(str(i))
                         self.ui.responseChannelOscBox.addItem(str(i))
                         pass
+                self.ui.responseChannelOscBox.setCurrentIndex(1) # usually oscilloscopes have two channels, safe to set it.
                 pass
         
         def showTextInOsc(self, text):
