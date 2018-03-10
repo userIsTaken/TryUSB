@@ -6,6 +6,8 @@ from ConfigParser import *
 class SiglentGenerator_TCP():
         '''
         Class for TCP-enabled Siglent generators
+        Note that SCPI command strings must be terminated with a “\n” (new line)
+character in programming. {From official programming guide}
         '''
         
         def __init__(self, gen_path: str):
@@ -46,6 +48,21 @@ class SiglentGenerator_TCP():
                 pass
 
         def GetAmplitude(self, channel):
+                '''
+                In Volts,
+
+                :param channel: string of channel
+                :return: ampl in Volts
+                '''
+                command = channel+":BSWV AMPL?"
+                amplitude = self.Ask(command)
+                return amplitude
+                pass
+
+        def SetNormalizedOffSet(self):
+                pass
+
+        def GetNormalizedOffset(self):
                 pass
 
         def SetOffset(self, channel, offset):
