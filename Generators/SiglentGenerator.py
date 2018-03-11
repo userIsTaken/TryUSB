@@ -54,7 +54,7 @@ character in programming. {From official programming guide}
                 :param channel: string of channel
                 :return: ampl in Volts
                 '''
-                command = channel+":BSWV AMPL?"
+                command = channel+":BSWV AMP?"
                 amplitude = self.Ask(command)
                 return amplitude
                 pass
@@ -66,19 +66,50 @@ character in programming. {From official programming guide}
                 pass
 
         def SetOffset(self, channel, offset):
+                '''
+
+                :param channel:
+                :param offset:
+                :return:
+                '''
+                command = channel+":BSWV OFST "+offset
+                self.Instrument.write(command)
                 pass
 
         def GetOffset(self, channel):
+                command = channel + ":BSWV OFST?"
+                offset = self.Instrument.ask(command)
+                return offset
                 pass
 
         def SetPeriod(self, channel, period):
+                command = channel+":BSWV PERI "+period
+                self.Instrument.write(command)
                 pass
 
         def GetPeriod(self, channel):
+                command = channel + ":BSWV PERI?"
+                period = self.Instrument.ask(command)
+                return period
                 pass
 
         def SetFrequency(self, channel, freq):
+                command = channel+":BSWV FRQ "+freq
+                self.Instrument.write(command)
                 pass
 
         def GetFrequency(self, channel):
+                command = channel + ":BSWV FRQ?"
+                frequency = self.Instrument.ask(command)
+                return frequency
+                pass
+
+        def SetTriggerSource(self, source):
+                '''
+
+                :param source: EXT, INT, MAN
+                :return:
+                '''
+                command= ":IQ:TRIG:SOUR "+source
+                self.Instrument.write(command)
                 pass
