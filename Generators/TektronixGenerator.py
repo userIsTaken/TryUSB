@@ -18,6 +18,8 @@ class TektronixGenerator_TCP():
                 self.CH1 = "SOUR1"
                 self.CH2 = "SOUR2"
                 self.IDN = None
+                self.TRIG_INT = "TIM"
+                self.TRIG_EXT = "EXT"
                 # channel 1 - CH1, channel 2 - CH2
                 pass
 

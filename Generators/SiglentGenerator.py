@@ -19,6 +19,8 @@ character in programming. {From official programming guide}
                 self.CH1 = "C1"
                 self.CH2 = "C2"
                 self.IDN = None
+                self.TRIG_INT = "INT"
+                self.TRIG_EXT = "EXT"
                 # channel 1 - CH1, channel 2 - CH2
                 pass
         
