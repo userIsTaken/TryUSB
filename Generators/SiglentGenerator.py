@@ -84,7 +84,7 @@ character in programming. {From official programming guide}
                 :param offset:
                 :return:
                 '''
-                command = channel+":BSWV OFST "+offset
+                command = channel+":BSWV OFST,"+offset
                 self.Instrument.write(command)
                 pass
 
@@ -95,7 +95,7 @@ character in programming. {From official programming guide}
                 pass
 
         def SetPeriod(self, channel, period):
-                command = channel+":BSWV PERI "+period
+                command = channel+":BSWV PERI,"+period
                 self.Instrument.write(command)
                 pass
 
@@ -106,7 +106,7 @@ character in programming. {From official programming guide}
                 pass
 
         def SetFrequency(self, channel, freq):
-                command = channel+":BSWV FRQ "+freq
+                command = channel+":BSWV FRQ,"+freq
                 self.Instrument.write(command)
                 pass
 
@@ -127,6 +127,6 @@ character in programming. {From official programming guide}
                 pass
 
         def SetAmplitude(self, channel, amplitude):
-                command = channel+":BSWV "+str(amplitude)
+                command = channel+":BSWV AMP,"+str(amplitude)
                 self.Instrument.write(command)
                 pass
