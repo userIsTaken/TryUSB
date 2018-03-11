@@ -59,10 +59,22 @@ character in programming. {From official programming guide}
                 return amplitude
                 pass
 
-        def SetNormalizedOffSet(self):
+        def GetNormalizedOffset(self, channel):
+                offset = self.GetOffset(channel)
+                ampl = self.GetAmplitude(channel)
+                normalized_offset = float(offset) - float(ampl) / 2
+                return normalized_offset
+                # pass
+
+        def SetNormalizedOffset(self, channel, offset, amplitude):
+                gen_offset = amplitude / 2 + offset
+                self.SetOffset(channel, gen_offset)
                 pass
 
-        def GetNormalizedOffset(self):
+        def SetNormalizedAmplOffs(self, channel, ampl, offs):
+                gen_offset = ampl / 2 + offs
+                self.SetAmplitude(channel, ampl)
+                self.SetOffset(channel, gen_offset)
                 pass
 
         def SetOffset(self, channel, offset):
@@ -111,5 +123,10 @@ character in programming. {From official programming guide}
                 :return:
                 '''
                 command= ":IQ:TRIG:SOUR "+source
+                self.Instrument.write(command)
+                pass
+
+        def SetAmplitude(self, channel, amplitude):
+                command = channel+":BSWV "+str(amplitude)
                 self.Instrument.write(command)
                 pass
