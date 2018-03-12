@@ -188,7 +188,8 @@ class RigolDS1000SeriesScope(QObject):
                 size_of_data = dataCHANNEL.size
                 # Now, generate a time axis.
                 time = np.linspace(timeoffset - 6 * timescale, timeoffset + 6 * timescale, num=len(dataCHANNEL))
-
+                # this lets us to count in an offset of time, ensuring that the signal will be always
+                # at the same position (will start)
                 # Now, generate a time axis.  The scope display range is 0-600, with 300 being
                 # time zero.
                 # time = np.arange(-300.0 / 50 * timescale, 300.0 / 50 * timescale, timescale / 50.0)
