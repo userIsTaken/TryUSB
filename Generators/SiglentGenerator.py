@@ -102,7 +102,21 @@ character in programming. {From official programming guide}
                 return offset[:-1]
                 pass
 
-        def SetPeriod(self, channel, period):
+        def SetPeriod(self, channel, period, unit, power):
+                if ("uS" == unit):
+                        period = period * 1e-6
+                        # print(freq_pow +" " + unit)
+                        pass
+                elif ("mS" == unit):
+                        period = period * 1e-3
+                        # print(freq_pow + " " + unit)
+                        pass
+                elif ("S" == unit):
+                        period = period
+                        # print(freq_pow + " " + unit)
+                        pass
+                else:
+                        period = period
                 command = channel+":BSWV PERI,"+str(period)
                 self.Instrument.write(command)
                 pass
