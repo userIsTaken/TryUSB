@@ -59,8 +59,8 @@ character in programming. {From official programming guide}
                 :return: ampl in Volts
                 '''
                 parameters = self.get_inner_parameters(channel)
-                for k in parameters:
-                        print("KEY : ", k)
+                # for k in parameters:
+                #         print("KEY : ", k)
                 amplitude = parameters["AMP"]
                 return amplitude[:-1]
                 pass
@@ -171,15 +171,15 @@ character in programming. {From official programming guide}
                         params_dict = {}
                         cmd = channel+":"+mode+"?"
                         output = self.Instrument.ask(cmd)
-                        print("OUTPUT SIGLENT:", output)
+                        # print("OUTPUT SIGLENT:", output)
                         out_list = output.split()
-                        print(out_list, "OUTPUT LIST SIGLENT")
+                        # print(out_list, "OUTPUT LIST SIGLENT")
                         param_list = out_list[1]
                         params = param_list.split(",")
-                        print("PARAMS SIGLENT", params)
+                        # print("PARAMS SIGLENT", params)
                         i = 0
                         l = len(params)
-                        print(l, "LEN(PARAMS)")
+                        # print(l, "LEN(PARAMS)")
                         while i < l-1:
                                 params_dict[params[i]]=params[i+1]
                                 i = i + 2
