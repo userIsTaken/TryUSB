@@ -91,7 +91,7 @@ character in programming. {From official programming guide}
                 :param offset:
                 :return:
                 '''
-                command = channel+":BSWV OFST,"+offset
+                command = channel+":BSWV OFST,"+str(offset)
                 self.Instrument.write(command)
                 pass
 
@@ -103,7 +103,7 @@ character in programming. {From official programming guide}
                 pass
 
         def SetPeriod(self, channel, period):
-                command = channel+":BSWV PERI,"+period
+                command = channel+":BSWV PERI,"+str(period)
                 self.Instrument.write(command)
                 pass
 
@@ -116,7 +116,7 @@ character in programming. {From official programming guide}
                 pass
 
         def SetFrequency(self, channel, freq):
-                command = channel+":BSWV FRQ,"+freq
+                command = channel+":BSWV FRQ,"+str(freq)
                 self.Instrument.write(command)
                 pass
 
@@ -158,11 +158,11 @@ character in programming. {From official programming guide}
         def SetTriggerInterval(self, interval, unit:str, channel=None):
                 if channel is None:
                         interv = getNumberFromSIprefix(interval, unit)
-                        cmd = self.CH1+":BTWV PRD,"+interv
+                        cmd = self.CH1+":BTWV PRD,"+str(interv)
                         pass
                 else:
                         interv = getNumberFromSIprefix(interval, unit)
-                        cmd = channel + ":BTWV PRD," + interv
+                        cmd = channel + ":BTWV PRD," + str(interv)
                 self.Instrument.write(cmd)
                 pass
         
