@@ -65,6 +65,7 @@ character in programming. {From official programming guide}
         def GetNormalizedOffset(self, channel):
                 offset = self.GetOffset(channel)
                 ampl = self.GetAmplitude(channel)
+                print("Siglent offset and ampl", offset, ampl)
                 normalized_offset = float(offset) - float(ampl) / 2
                 return normalized_offset
                 # pass
