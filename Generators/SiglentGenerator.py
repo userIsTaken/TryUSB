@@ -164,6 +164,7 @@ character in programming. {From official programming guide}
                         params_dict = {}
                         cmd = channel+":"+mode+"?"
                         output = self.Instrument.ask(cmd)
+                        print("OUTPUT SIGLENT:", output)
                         out_list = output.split(" ")
                         param_list = out_list[1]
                         params = param_list.split(",")
