@@ -165,12 +165,15 @@ character in programming. {From official programming guide}
                         cmd = channel+":"+mode+"?"
                         output = self.Instrument.ask(cmd)
                         print("OUTPUT SIGLENT:", output)
-                        out_list = output.split(" ")
+                        out_list = output.split()
+                        print(out_list, "OUTPUT LIST SIGLENT")
                         param_list = out_list[1]
                         params = param_list.split(",")
+                        print("PARAMS SIGLENT", params)
                         i = 0
                         l = len(param_list)
-                        while i < l:
+                        print(l, "LEN(PARAMS)")
+                        while i < l-1:
                                 params_dict[param_list[i]]=param_list[i+1]
                                 i = i + 2
                         return params_dict
