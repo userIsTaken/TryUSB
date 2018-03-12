@@ -144,14 +144,15 @@ character in programming. {From official programming guide}
                 pass
         
         def GetTriggerInterval(self, channel=None):
+                chn = None
                 if channel is None:
-                        cmd =self.CH1+":BTWV PRD?"
-                        pass
+                        chn = self.CH1
                 else:
-                        cmd = channel+":BTWV PRD?"
+                        cmd = channel
                 
-                trigger_interval = self.Instrument.ask(cmd)
-                return trigger_interval
+                params = self.get_inner_parameters(chn, "BTWV")
+                trigger_interval = params["PRD"]
+                return trigger_interval[:-1]
                 pass
         
         def SetTriggerInterval(self, interval, unit:str, channel=None):
