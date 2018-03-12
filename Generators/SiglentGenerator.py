@@ -108,9 +108,11 @@ character in programming. {From official programming guide}
                 pass
 
         def GetPeriod(self, channel):
-                command = channel + ":BSWV PERI?"
-                period = self.Instrument.ask(command)
-                return period
+                # command = channel + ":BSWV PERI?"
+                # period = self.Instrument.ask(command)
+                params = self.get_inner_parameters(channel)
+                period = params["PERI"]
+                return period[:-1]
                 pass
 
         def SetFrequency(self, channel, freq):
@@ -119,9 +121,11 @@ character in programming. {From official programming guide}
                 pass
 
         def GetFrequency(self, channel):
-                command = channel + ":BSWV FRQ?"
-                frequency = self.Instrument.ask(command)
-                return frequency
+                # command = channel + ":BSWV FRQ?"
+                # frequency = self.Instrument.ask(command)
+                params = self.get_inner_parameters(channel)
+                frequency = params["FRQ"]
+                return frequency[:-2]
                 pass
 
         def SetTriggerSource(self, source):
