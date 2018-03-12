@@ -184,11 +184,16 @@ class RigolDS1000SeriesScope(QObject):
                 :return: time, time Unit - time array and time dimension
                 '''
                 timescale = self.get_time_scale()
+                timeoffset = self.get_time_offset()
                 size_of_data = dataCHANNEL.size
+                # Now, generate a time axis.
+                time = np.linspace(timeoffset - 6 * timescale, timeoffset + 6 * timescale, num=len(dataCHANNEL))
+
                 # Now, generate a time axis.  The scope display range is 0-600, with 300 being
                 # time zero.
                 # time = np.arange(-300.0 / 50 * timescale, 300.0 / 50 * timescale, timescale / 50.0)
-                time = np.arange(-(size_of_data/2) / 50 * timescale, (size_of_data/2) / 50 * timescale, timescale / 50.0)
+                #  last working entry was:
+                # time = np.arange(-(size_of_data/2) / 50 * timescale, (size_of_data/2) / 50 * timescale, timescale / 50.0)
                 # If we generated too many points due to overflow, crop the length of time.
                 if (time.size > dataCHANNEL.size):
                         time = time[0:size_of_data:1]  # need to adopt to my needs// was [0:600:1].
