@@ -746,13 +746,14 @@ class MainWindow(QtWidgets.QMainWindow):
 
         def connectGenerator(self):
                 self.Generator = GetGenerator(self.ui, self.DevicesUSBTMC)
+                self.Generator.errors.connect(self.DebugLog)
                 name = self.Generator.GetIDN()
                 self.DebugLog("Testas prisijungimo")
                 self.ui.connection_status_label.setText(name[0:15])
                 # #  populate init commands from file:
                 # # myConf = Configuration("Configs/Siglent.ini")
                 lines = self.Generator.GetInitConfiguration()
-                self.DebugLog(lines)
+                # self.DebugLog(lines)
                 self.ui.initialConfigurationForGenerator.setPlainText(lines)
                 pass
 

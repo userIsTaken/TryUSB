@@ -2,17 +2,22 @@ import  os, sys, time
 import vxi11
 from ConfigParser import *
 
+from PyQt5.QtCore import QObject, pyqtSignal
 
-class TektronixGenerator_TCP():
+
+class TektronixGenerator_TCP(QObject):
         '''
         Class for TCP-enabled Tektronix generators
         '''
+
+        errors = pyqtSignal(str)
 
         def __init__(self, gen_path: str):
                 '''
 
                 :param gen_path: path (IP) for generator
                 '''
+                super(TektronixGenerator_TCP, self).__init__()
                 self.Instrument = vxi11.Instrument(gen_path)
                 # self.Instrument.timeout = 1
                 self.CH1 = "SOUR1"

@@ -4,14 +4,17 @@ from ConfigParser import *
 from Units.UnitCheck import *
 import time
 
+from PyQt5.QtCore import QObject, pyqtSignal
 
-class SiglentGenerator_TCP():
+
+class SiglentGenerator_TCP(QObject):
         """
         Class for TCP-enabled Siglent generators
         Note that SCPI command strings must be terminated with a “\n” (new line)
 character in programming. {From official programming guide}
         """
-        
+        errors = pyqtSignal(str)
+
         def __init__(self, gen_path: str):
                 """
 
@@ -207,4 +210,4 @@ character in programming. {From official programming guide}
                                 i = i + 2
                         return params_dict
                 except Exception as ex:
-                        print(str(ex), "get_inner_parameters")
+                        self.errors.emit(str(ex)+ "in get_inner_parameters")
