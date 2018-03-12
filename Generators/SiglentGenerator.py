@@ -58,16 +58,14 @@ character in programming. {From official programming guide}
                 :param channel: string of channel
                 :return: ampl in Volts
                 '''
-                command = channel+":BSWV AMP?"
-                amplitude = self.Ask(command)
+                parameters = self.get_inner_parameters(channel)
+                amplitude = parameters["AMP"]
                 return amplitude
                 pass
 
         def GetNormalizedOffset(self, channel):
                 offset = self.GetOffset(channel)
-                time.sleep(1)
                 ampl = self.GetAmplitude(channel)
-                time.sleep(1)
                 print("Siglent offset and ampl", offset, ampl)
                 normalized_offset = float(offset) - float(ampl) / 2
                 return normalized_offset
@@ -96,8 +94,9 @@ character in programming. {From official programming guide}
                 pass
 
         def GetOffset(self, channel):
-                command = channel + ":BSWV OFST?"
-                offset = self.Instrument.ask(command)
+        
+                parameters = self.get_inner_parameters(channel)
+                offset = parameters["OFST"]
                 return offset
                 pass
 
@@ -159,3 +158,20 @@ character in programming. {From official programming guide}
                         cmd = channel + ":BTWV PRD," + interv
                 self.Instrument.write(cmd)
                 pass
+        
+        def get_inner_parameters(self, channel, mode="BSWV"):
+                try:
+                        params_dict = {}
+                        cmd = channel+":"+mode+"?"
+                        output = self.Instrument.ask(cmd)
+                        out_list = output.split(" ")
+                        param_list = out_list[1]
+                        params = param_list.split(",")
+                        i = 0
+                        l = len(param_list)
+                        while i < l:
+                                params_dict[param_list[i]]=param_list[i+1]
+                                i = i + 2
+                        return params_dict
+                except Exception as ex:
+                        print(str(ex), "get_inner_parameters")
