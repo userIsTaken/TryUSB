@@ -58,7 +58,7 @@ character in programming. {From official programming guide}
                 :param channel: string of channel
                 :return: ampl in Volts
                 """
-                parameters = self.get_inner_parameters(channel)
+                parameters = self.__get_inner_parameters(channel)
                 # for k in parameters:
                 #         print("KEY : ", k)
                 amplitude = parameters["AMP"]
@@ -97,7 +97,7 @@ character in programming. {From official programming guide}
 
         def GetOffset(self, channel):
         
-                parameters = self.get_inner_parameters(channel)
+                parameters = self.__get_inner_parameters(channel)
                 offset = parameters["OFST"]
                 return offset[:-1]
                 pass
@@ -132,7 +132,7 @@ character in programming. {From official programming guide}
         def GetPeriod(self, channel):
                 # command = channel + ":BSWV PERI?"
                 # period = self.Instrument.ask(command)
-                params = self.get_inner_parameters(channel)
+                params = self.__get_inner_parameters(channel)
                 period = params["PERI"]
                 return period[:-1]
                 pass
@@ -145,7 +145,7 @@ character in programming. {From official programming guide}
         def GetFrequency(self, channel):
                 # command = channel + ":BSWV FRQ?"
                 # frequency = self.Instrument.ask(command)
-                params = self.get_inner_parameters(channel)
+                params = self.__get_inner_parameters(channel)
                 frequency = params["FRQ"]
                 return frequency[:-2]
                 pass
@@ -172,7 +172,7 @@ character in programming. {From official programming guide}
                 else:
                         cmd = channel
                 
-                params = self.get_inner_parameters(chn, "BTWV")
+                params = self.__get_inner_parameters(chn, "BTWV")
                 trigger_interval = params["PRD"]
                 return trigger_interval[:-1]
                 pass
@@ -188,7 +188,7 @@ character in programming. {From official programming guide}
                 self.Instrument.write(cmd)
                 pass
         
-        def get_inner_parameters(self, channel, mode="BSWV"):
+        def __get_inner_parameters(self, channel, mode="BSWV"):
                 try:
                         params_dict = {}
                         cmd = channel+":"+mode+"?"
