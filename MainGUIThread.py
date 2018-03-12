@@ -31,7 +31,7 @@ pG.setConfigOptions(antialias=True)
 ON = "ON"
 OFF = "OFF"
 from ThreadedRigolreading import *
-import traceback
+import traceback as tb
 
 
 
@@ -153,7 +153,7 @@ class MainWindow(QtWidgets.QMainWindow):
                         export = exporters.CSVExporter(plotItem_two)
                         export.export(filepath + "/" + filename+"_CH2_" + dateStamp)
                 except Exception as ex:
-                        self.DebugLog(str(ex))
+                        self.DebugLog(tb.print_exc())
                         self.ExperimentInfo(str(ex))
                         pass
                 pass
@@ -180,7 +180,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 except Exception as ex:
                         self.ui.tabWidget.setCurrentIndex(3)
                         self.DebugLog("saveData fn error")
-                        self.DebugLog(str(ex))
+                        self.DebugLog(tb.print_exc())
 
         def set_path_function(self):
                 path = QtWidgets.QFileDialog().getExistingDirectory(self, "Failo išsaugojimo vieta")
@@ -209,7 +209,7 @@ class MainWindow(QtWidgets.QMainWindow):
                         self.ui.tabWidget.setCurrentIndex(2)
                         self.ui.devicesTabWidget.setCurrentIndex(2)
                 except Exception as ex:
-                        self.DebugLog(str(ex))
+                        self.DebugLog(tb.print_exc())
                         self.ui.tabWidget.setCurrentIndex(3)
                         pass
                 pass
@@ -243,7 +243,7 @@ class MainWindow(QtWidgets.QMainWindow):
                                 self.Osciloscope.write(cmd)
                         pass
                 except Exception as ex:
-                        self.DebugLog(str(ex))
+                        self.DebugLog(tb.print_exc())
                         self.ui.tabWidget.setCurrentIndex(3)
                         pass
                 pass
@@ -320,7 +320,7 @@ class MainWindow(QtWidgets.QMainWindow):
                         SweepButtonsFunctionality(self.ui)
                         pass
                 except Exception as ex:
-                        self.DebugLog(str(ex))
+                        self.DebugLog(tb.print_exc())
                         self.ui.tabWidget.setCurrentIndex(3)
                         #  we will continue even if renew function fails - we need this for debugging reasons
                         SweepButtonsFunctionality(self.ui)
@@ -441,7 +441,7 @@ class MainWindow(QtWidgets.QMainWindow):
                                 self.DebugMessage("Some shit")
                 except Exception as ex:
                         self.DebugLog("Problems with starting of threads")
-                        self.DebugLog(str(ex))
+                        self.DebugLog(tb.print_exc())
                         self.ui.tabWidget.setCurrentIndex(3)
                         pass
 
@@ -642,7 +642,7 @@ class MainWindow(QtWidgets.QMainWindow):
                                 pass
                 except Exception as ex:
                         self.DebugLog("================")
-                        self.DebugLog(str(ex))
+                        self.DebugLog(tb.print_exc())
                         self.ui.tabWidget.setCurrentIndex(3)
 
 
@@ -665,7 +665,7 @@ class MainWindow(QtWidgets.QMainWindow):
                         pass
                 except Exception as ex:
                         self.DebugLog("connectOscilograph fn error")
-                        self.DebugLog(str(ex))
+                        self.DebugLog(tb.print_exc())
                         self.ui.tabWidget.setCurrentIndex(3)
                         pass
 
