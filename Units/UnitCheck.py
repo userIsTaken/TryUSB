@@ -96,3 +96,21 @@ def getNumberSIprefix(val: str):
                 pass
         return flt, unit
         pass
+
+
+def getNumberFromSIprefix(value, unit):
+        ret_val = value
+        if "m" in unit:
+                ret_val = value * 1e-3
+        elif "u" in unit or "µ" in unit:
+                ret_val = value*1e-6
+        elif "n" in unit:
+                ret_val = value * 1e-9
+        elif "k" in unit or "K" in unit:
+                ret_val = value * 1e3
+        elif "M" in unit:
+                ret_val = value * 1e6
+        else:
+                ret_val = value
+        return ret_val
+        pass

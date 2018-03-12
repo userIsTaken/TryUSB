@@ -1,6 +1,7 @@
 import os, sys
 import vxi11
 from ConfigParser import *
+from Units.UnitCheck import *
 
 
 class SiglentGenerator_TCP():
@@ -133,9 +134,24 @@ character in programming. {From official programming guide}
                 self.Instrument.write(command)
                 pass
         
-        def GetTriggerInterval(self):
+        def GetTriggerInterval(self, channel=None):
+                if channel is None:
+                        cmd =self.CH1+":BTWV PRD?"
+                        pass
+                else:
+                        cmd = channel+":BTWV PRD?"
                 
+                trigger_interval = self.Instrument.ask(cmd)
+                return trigger_interval
                 pass
         
-        def SetTriggerInterval(self):
+        def SetTriggerInterval(self, interval, unit:str, channel=None):
+                if channel is None:
+                        interv = getNumberFromSIprefix(interval, unit)
+                        cmd = self.CH1+":BTWV PRD,"+interv
+                        pass
+                else:
+                        interv = getNumberFromSIprefix(interval, unit)
+                        cmd = channel + ":BTWV PRD," + interv
+                self.Instrument.write(cmd)
                 pass
