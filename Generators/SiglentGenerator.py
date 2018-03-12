@@ -2,6 +2,7 @@ import os, sys
 import vxi11
 from ConfigParser import *
 from Units.UnitCheck import *
+import time
 
 
 class SiglentGenerator_TCP():
@@ -64,7 +65,9 @@ character in programming. {From official programming guide}
 
         def GetNormalizedOffset(self, channel):
                 offset = self.GetOffset(channel)
+                time.sleep(1)
                 ampl = self.GetAmplitude(channel)
+                time.sleep(1)
                 print("Siglent offset and ampl", offset, ampl)
                 normalized_offset = float(offset) - float(ampl) / 2
                 return normalized_offset
