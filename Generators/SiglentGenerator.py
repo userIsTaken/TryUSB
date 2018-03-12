@@ -62,7 +62,7 @@ character in programming. {From official programming guide}
                 for k in parameters:
                         print("KEY : ", k)
                 amplitude = parameters["AMP"]
-                return amplitude
+                return amplitude[:-1]
                 pass
 
         def GetNormalizedOffset(self, channel):
@@ -99,7 +99,7 @@ character in programming. {From official programming guide}
         
                 parameters = self.get_inner_parameters(channel)
                 offset = parameters["OFST"]
-                return offset
+                return offset[:-1]
                 pass
 
         def SetPeriod(self, channel, period):
