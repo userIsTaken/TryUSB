@@ -173,10 +173,10 @@ character in programming. {From official programming guide}
                         params = param_list.split(",")
                         print("PARAMS SIGLENT", params)
                         i = 0
-                        l = len(param_list)
+                        l = len(params)
                         print(l, "LEN(PARAMS)")
                         while i < l-1:
-                                params_dict[param_list[i]]=param_list[i+1]
+                                params_dict[params[i]]=params[i+1]
                                 i = i + 2
                         return params_dict
                 except Exception as ex:
