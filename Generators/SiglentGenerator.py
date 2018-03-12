@@ -59,6 +59,8 @@ character in programming. {From official programming guide}
                 :return: ampl in Volts
                 '''
                 parameters = self.get_inner_parameters(channel)
+                for k in parameters:
+                        print("KEY : ", k)
                 amplitude = parameters["AMP"]
                 return amplitude
                 pass
