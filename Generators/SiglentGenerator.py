@@ -6,17 +6,17 @@ import time
 
 
 class SiglentGenerator_TCP():
-        '''
+        """
         Class for TCP-enabled Siglent generators
         Note that SCPI command strings must be terminated with a “\n” (new line)
 character in programming. {From official programming guide}
-        '''
+        """
         
         def __init__(self, gen_path: str):
-                '''
+                """
 
                 :param gen_path: path (IP) for generator
-                '''
+                """
                 self.Instrument = vxi11.Instrument(gen_path)
                 self.CH1 = "C1"
                 self.CH2 = "C2"
@@ -52,12 +52,12 @@ character in programming. {From official programming guide}
                 pass
 
         def GetAmplitude(self, channel):
-                '''
+                """
                 In Volts,
 
                 :param channel: string of channel
                 :return: ampl in Volts
-                '''
+                """
                 parameters = self.get_inner_parameters(channel)
                 # for k in parameters:
                 #         print("KEY : ", k)
@@ -85,12 +85,12 @@ character in programming. {From official programming guide}
                 pass
 
         def SetOffset(self, channel, offset):
-                '''
+                """
 
                 :param channel:
                 :param offset:
                 :return:
-                '''
+                """
                 command = channel+":BSWV OFST,"+str(offset)
                 self.Instrument.write(command)
                 pass
@@ -103,14 +103,14 @@ character in programming. {From official programming guide}
                 pass
 
         def SetPeriod(self, channel, period, unit, power):
-                '''
+                """
                 
                 :param channel:
                 :param period: in [S] !!!
                 :param unit:
                 :param power:
                 :return:
-                '''
+                """
                 if ("uS" == unit):
                         period = period * 1e-6
                         # print(freq_pow +" " + unit)
@@ -151,11 +151,11 @@ character in programming. {From official programming guide}
                 pass
 
         def SetTriggerSource(self, source):
-                '''
+                """
 
                 :param source: EXT, INT, MAN
                 :return:
-                '''
+                """
                 command= ":IQ:TRIG:SOUR "+source
                 self.Instrument.write(command)
                 pass
