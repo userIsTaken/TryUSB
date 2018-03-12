@@ -132,3 +132,10 @@ character in programming. {From official programming guide}
                 command = channel+":BSWV AMP,"+str(amplitude)
                 self.Instrument.write(command)
                 pass
+        
+        def GetTriggerInterval(self):
+                
+                pass
+        
+        def SetTriggerInterval(self):
+                pass
