@@ -103,6 +103,14 @@ character in programming. {From official programming guide}
                 pass
 
         def SetPeriod(self, channel, period, unit, power):
+                '''
+                
+                :param channel:
+                :param period: in [S] !!!
+                :param unit:
+                :param power:
+                :return:
+                '''
                 if ("uS" == unit):
                         period = period * 1e-6
                         # print(freq_pow +" " + unit)
