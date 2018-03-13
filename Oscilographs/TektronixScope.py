@@ -29,7 +29,7 @@ class TektronixScope_TCP(QObject):
                 self._channels = {"1": self.CH1, "2": self.CH2, "3": self.CH3, "4": self.CH4}
                 self.signalChannel = None
                 self.responseChannel = None
-                self.IDN = None
+                self.IDN = self.Instrument.ask("*IDN?")
                 # channel 1 - CH1, channel 2 - CH2
                 pass
         
@@ -143,14 +143,16 @@ class TektronixScope_TCP(QObject):
                 :return:
                 '''
                 
-                cmd = CHANNEL + ":OFF " + OFFset
+                cmd = CHANNEL + ":OFFS " + OFFset
                 self.Instrument.write(cmd)
                 
                 pass
         
-        def set_channel_position(self, CHANNEL, POSset: str):
-                cmd = CHANNEL + ":POS " + POSset
+        def set_channel_position(self, CHANNEL, POSset: str, OFST=0):
+                cmd = CHANNEL + ":POS " + "-3"
+                set_offset = OFST
                 self.Instrument.write(cmd)
+                self.set_channel_offset(CHANNEL, str(set_offset))
                 pass
         
         def get_channel_position(self, CHANNEL):
@@ -245,9 +247,28 @@ class TektronixScope_TCP(QObject):
                 cmd = CHAN + ":SCA " + y_scale  # Volts?
                 self.Instrument.write(cmd)
                 pass
+
+        def set_closest_voltage_scale(self, chan, scale):
+                scale_str = "1"
+                if 10 > scale >= 2:
+                        scale_str = str("{0:.1f}".format(scale))
+                        print(chan + " signalo skalė: " + str(scale_str))
+                elif 1 > scale >= 0.1:
+                        scale_str = str("{0:.2f}".format(scale))
+                        print(chan + "signalo skalė: " + str(scale_str))
+                elif 0.1 > scale >= 0.02:
+                        scale_str = str("{0:.3f}".format(scale))
+                        print(chan + "signalo skalė: " + str(scale_str))
+                elif 0.02 > scale >= 0.002:
+                        scale_str = str("{0:.4f}".format(scale))
+                        print(chan + "signalo skalė: " + str(scale_str))
+        
+                self.set_y_scale(chan, scale_str)
+                pass
         
         def set_time_scale(self, time_scale: str):
                 cmd = "HOR:SCA " + str(time_scale)
+                print("DEBUG: TEKTRONIX TIME SCALE ", cmd)
                 self.Instrument.write(cmd)
                 pass
         
@@ -261,12 +282,13 @@ class TektronixScope_TCP(QObject):
                 
                 print("TEKTRONIX OSC||DEBUG: t scale, t unit", time_scale, time_unit)
                 
-                array = [500, 200, 100, 50, 20, 10, 5, 2, 1]  # can not be ns?
+                array = [400, 200, 100, 40, 20, 10, 4, 2, 1]  # can not be ns?
                 time_value = None
                 time_power = None
                 for i in array:
-                        if (math.isclose(time_scale, i, rel_tol=0.35)):
+                        if (math.isclose(time_scale, i, rel_tol=0.45)):
                                 time_value = i
+                                print("DEBUG: SELCTED TEKTRONIX TIME VALUE ", str(time_value))
                                 break
                                 pass
                         pass
@@ -295,7 +317,7 @@ class TektronixScope_TCP(QObject):
                 pass
         
         def set_time_offset(self, time_offset: str, sleep_time=0.5):
-                cmd = "HOR:OFF " + time_offset
+                cmd = "HOR:POS " + "90"
                 self.Instrument.write(cmd)
                 pass
         

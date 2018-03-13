@@ -79,6 +79,7 @@ class RigolDS1000SeriesScope(QObject):
                 self._channels = {"1": self.CH1, "2": self.CH2}
                 self.signalChannel = None
                 self.responseChannel = None
+                self.IDN = self.get_name()
                 # Initialization part
         def write(self, command):
                 """Send an arbitrary command directly to the scope"""
@@ -226,7 +227,7 @@ class RigolDS1000SeriesScope(QObject):
                 voltoffsetCH = float(self.read(20))
                 return voltoffsetCH
         
-        def set_channel_position(self, CHANNEL, OFFset:str):
+        def set_channel_position(self, CHANNEL, OFFset:str, OFST=0):
                 self.write(":" + CHANNEL + ":OFFS " + OFFset)
                 pass
         

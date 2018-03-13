@@ -113,7 +113,7 @@ class LoopWorker(QObject):
                                                 pass
                                 except Exception as ex:
                                         #print(ex)
-                                        self.errors.emit(-1, str(ex)+" " + ex.args)
+                                        self.errors.emit(-1, str(ex)+" " + str(ex.args))
 
                         elif self.kwargs['key'] == 2:
                                 fixedV = self.kwargs['fixedV']
@@ -359,8 +359,7 @@ class LoopWorker(QObject):
                 time.sleep(0.1)
                 self.Generator.SetAmplitude(self.Generator.CH1, amplitude)
                 time.sleep(0.1)
-                offset = self.GetOffset(amplitude, fixed_offset)
-                self.Generator.SetOffset(self.Generator.CH1, offset)
+                self.Generator.SetNormalizedOffset(self.Generator.CH1, fixed_offset, amplitude)
                 pass
         
         def OFF_GEN_set_parameters(self, fixed_amplitude, offset):
@@ -368,12 +367,12 @@ class LoopWorker(QObject):
                 time.sleep(0.1)
                 self.Generator.SetAmplitude(self.Generator.CH1, fixed_amplitude)
                 time.sleep(0.1)
-                self.Generator.SetOffset(self.Generator.CH1, offset)
+                self.Generator.SetNormalizedOffset(self.Generator.CH1, offset, fixed_amplitude)
                 pass
                 
         
         def AMP_OSC_set_parameters(self, CH,  amplitude, fixed_offset=0):
-                scale = (amplitude + fixed_offset) / 6
+                scale = amplitude / 6
                 #print("amplitudė " + str(amplitude))
                 #print("y offsetas " + str(fixed_offset))
                 #print("y skalė " + sc)
@@ -386,14 +385,16 @@ class LoopWorker(QObject):
                         self.Oscilograph.set_trigger_edge_level(tr)
                         self.progress.emit(str(tr) + " tr")
                         time.sleep(1)
-                        position = -3.0 * scale + (amplitude / 2 - fixed_offset)
-                        self.Oscilograph.set_channel_position(CH, str("{0:.3f}".format(position)))
+                        # position = -3.0 * scale + (amplitude / 2 - fixed_offset)
+                        position = -3.0 * scale - fixed_offset
+                        self.Oscilograph.set_channel_position(CH, str("{0:.3f}".format(position)), fixed_offset)
                         #print("signalo skalė: " + str(scale))
-                        print("signalo pozicija: " + str("{0:.3f}".format(-3.0 * scale + (amplitude / 2 - fixed_offset))))
+                        # print("signalo pozicija: " + str("{0:.3f}".format(-3.0 * scale + (amplitude / 2 - fixed_offset))))
                         pass
                 if CH == self.Oscilograph.responseChannel:
                         time.sleep(1)
                         self.Oscilograph.set_channel_position(CH, str("{0:.3f}".format(-3.0 * scale)))
+                        print(CH + "signalo pozicija: " + str("{0:.3f}".format(-3.0 * scale)))
                         pass
                 # #print(tr, "tr")
                 

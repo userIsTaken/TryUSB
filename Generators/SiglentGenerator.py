@@ -14,12 +14,13 @@ class SiglentGenerator_TCP(QObject):
 character in programming. {From official programming guide}
         """
         errors = pyqtSignal(str)
-
+        
         def __init__(self, gen_path: str):
                 """
 
                 :param gen_path: path (IP) for generator
                 """
+                super(SiglentGenerator_TCP, self).__init__()
                 self.Instrument = vxi11.Instrument(gen_path)
                 self.CH1 = "C1"
                 self.CH2 = "C2"
