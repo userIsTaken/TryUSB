@@ -27,6 +27,7 @@ character in programming. {From official programming guide}
                 self.IDN = None
                 self.TRIG_INT = "INT"
                 self.TRIG_EXT = "EXT"
+                self.IDN = self.GetIDN()
                 # channel 1 - CH1, channel 2 - CH2
                 pass
         
@@ -72,7 +73,7 @@ character in programming. {From official programming guide}
         def GetNormalizedOffset(self, channel):
                 offset = self.GetOffset(channel)
                 ampl = self.GetAmplitude(channel)
-                print("Siglent offset and ampl", offset, ampl)
+                # print("Siglent offset and ampl", offset, ampl)
                 normalized_offset = float(offset) - float(ampl) / 2
                 return normalized_offset
                 # pass
