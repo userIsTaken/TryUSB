@@ -174,46 +174,51 @@ class TektronixScope_TCP(QObject):
                 # yof = query(dpo, ':wfmo:yof?;', '%s', '%E');
                 # ymu = query(dpo, ':wfmo:ymu?;', '%s', '%E');
                 # yze = query(dpo, ':wfmo:yze?;', '%s', '%E');
-                
-                self.Instrument.write("DATA:SOURCE " + CH)
-                
-                # ASCII encoding:
-                # WFMOutpre: ENCdg
-                # {ASCii | BINary}
-                
-                self.Instrument.write("WFMO:ENC ASCii")
-                
-                yof = float(self.Instrument.ask("WFMO:YOF?"))
-                ymu = float(self.Instrument.ask("WFMO:YMU?"))
-                yze = float(self.Instrument.ask("WFMO:YZE?"))
-                
-                # % retrieve
-                # horizontal
-                # scaling
-                # information
-                # nrp = query(dpo, ':wfmo:nr_p?;', '%s', '%E');
-                # xin = query(dpo, ':wfmo:xin?;', '%s', '%E');
-                # xze = query(dpo, ':wfmo:xze?;', '%s', '%E');
-                
-                nrp = float(self.Instrument.ask("WFMO:NR_P?"))
-                xin = float(self.Instrument.ask("WFMO:XIN?"))
-                xze = float(self.Instrument.ask("WFMO:XZE?"))
-                
-                # get all the data:
-                Y_array = self.Instrument.ask("CURVE?")
-                Y = Y_array.split(",")
-                # (double('wave')-yof).*ymu+yze
-                dataCH2 = [(float(x) - yof) * ymu + yze for x in Y]
-                # time array: scaled_time = linspace(xze,xze+(xin*nrp),nrp);
-                time_array = np.linspace(xze, xze + (xin * nrp), nrp)
-                scale = self.get_time_scale()
-                print("Scale : ", scale)
-                value, time_unit = getNumberSIprefix(scale)
-                # print("time value and time unit:", value, time_unit)
-                # time_unit = "OMS!"
-                # print("length of Y", len(Y))
-                # print("length of time", len(time_array))
-                return np.asarray(dataCH2), time_array, "S"  # hardcoded time unit for Tektronix
+
+                try:
+                        self.Instrument.write("DATA:SOURCE " + CH)
+
+                        # ASCII encoding:
+                        # WFMOutpre: ENCdg
+                        # {ASCii | BINary}
+
+                        self.Instrument.write("WFMO:ENC ASCii")
+
+                        yof = float(self.Instrument.ask("WFMO:YOF?"))
+                        ymu = float(self.Instrument.ask("WFMO:YMU?"))
+                        yze = float(self.Instrument.ask("WFMO:YZE?"))
+
+                        # % retrieve
+                        # horizontal
+                        # scaling
+                        # information
+                        # nrp = query(dpo, ':wfmo:nr_p?;', '%s', '%E');
+                        # xin = query(dpo, ':wfmo:xin?;', '%s', '%E');
+                        # xze = query(dpo, ':wfmo:xze?;', '%s', '%E');
+
+                        nrp = float(self.Instrument.ask("WFMO:NR_P?"))
+                        xin = float(self.Instrument.ask("WFMO:XIN?"))
+                        xze = float(self.Instrument.ask("WFMO:XZE?"))
+
+                        # get all the data:
+                        Y_array = self.Instrument.ask("CURVE?")
+                        Y = Y_array.split(",")
+                        # (double('wave')-yof).*ymu+yze
+                        dataCH2 = [(float(x) - yof) * ymu + yze for x in Y]
+                        # time array: scaled_time = linspace(xze,xze+(xin*nrp),nrp);
+                        time_array = np.linspace(xze, xze + (xin * nrp), nrp)
+                        scale = self.get_time_scale()
+                        print("Scale : ", scale)
+                        value, time_unit = getNumberSIprefix(scale)
+                        # print("time value and time unit:", value, time_unit)
+                        # time_unit = "OMS!"
+                        # print("length of Y", len(Y))
+                        # print("length of time", len(time_array))
+                        return np.asarray(dataCH2), time_array, "S"  # hardcoded time unit for Tektronix
+                except Exception as ex:
+                        return 9999, 9999, "S"
+                        pass
+                # return np.asarray(dataCH2), time_array, "S"  # hardcoded time unit for Tektronix
                 pass
         
         def run(self):
