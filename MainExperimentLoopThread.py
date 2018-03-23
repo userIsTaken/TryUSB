@@ -131,6 +131,7 @@ class LoopWorker(QObject):
                                 i = 0
                                 self.Generator.EnableOutput(self.Generator.CH1, OFF)
                                 self.Generator.SetPeriod(self.Generator.CH1, timeOFF, time_u, i)
+                                self.Generator.SetTriggerInterval(timeOFF * 5, time_u, self.Generator.CH1)
                                 self.AMP_OSC_time_scale_and_offset(timeOFF, time_u)
                                 try:
                                         #print("try fork:")
@@ -210,6 +211,7 @@ class LoopWorker(QObject):
                                 i = 0
                                 self.Generator.EnableOutput(self.Generator.CH1, OFF)
                                 self.Generator.SetPeriod(self.Generator.CH1, totalT, time_u, i)
+                                self.Generator.SetTriggerInterval(totalT * 5, time_u, self.Generator.CH1)
                                 self.AMP_OSC_time_scale_and_offset(totalT, time_u)
                                 self.AMP_GEN_set_parameters(fixedV, fixed_offset)
                                 # self._current_ampl = fixedV
@@ -220,7 +222,8 @@ class LoopWorker(QObject):
                                                 if (totalT <= stopT):
                                                         print("DEBUG: totalT, stopT", totalT, stopT)
                                                 self.Generator.SetPeriod(self.Generator.CH1, totalT, time_u, i)
-                                                
+                                                time.sleep(1)
+                                                self.Generator.SetTriggerInterval(totalT*5, time_u, self.Generator.CH1)
                                                 time.sleep(1)
                                                 self.AMP_OSC_set_parameters(self.Oscilograph.signalChannel, fixedV, fixed_offset)
                                                 self.AMP_OSC_time_scale_and_offset(totalT, time_u)
@@ -269,10 +272,11 @@ class LoopWorker(QObject):
                                                 self.OSC_read()
                                                 self.progress.emit("measured at " + str(totalT))
                                                 totalT = totalT + stepT
-                                                print("DEBUG: totalT, stepT", totalT,stepT)
-                                                print("DEBUG : ", str(self._require_stop))
-                                                if (totalT <= stopT):
-                                                        print("DEBUG: totalT, stopT", totalT, stopT)
+                                                # print("DEBUG: totalT, stepT", totalT,stepT)
+                                                # print("DEBUG : ", str(self._require_stop))
+                                                # if (totalT <= stopT):
+                                                #         pass
+                                                        # print("DEBUG: totalT, stopT", totalT, stopT)
                                                 self.Generator.EnableOutput(self.Generator.CH1, OFF)
                                                 self.Oscilograph.unlock_key()
                                                 pass
