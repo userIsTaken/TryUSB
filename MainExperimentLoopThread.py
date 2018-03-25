@@ -87,7 +87,7 @@ class LoopWorker(QObject):
                                                 data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel(
                                                         self.Oscilograph.responseChannel)
                                                 #print("kreipimasis", time_unit2)
-                                                change, max_y = check_y_scale(data_from_channel2)
+                                                change, max_y, make_bigger = check_y_scale(data_from_channel2)
                                                 #print("max y", max_y, "change", str(change))
                                                 if change is True:
                                                         while change is True:
@@ -165,7 +165,7 @@ class LoopWorker(QObject):
                                                 data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel(
                                                         self.Oscilograph.responseChannel)
                                                 #print("kreipimasis", time_unit2)
-                                                change, max_y = check_y_scale(data_from_channel2)
+                                                change, max_y, make_bigger = check_y_scale(data_from_channel2)
                                                 #print("max y", max_y, "change", str(change))
                                                 if change is True:
                                                         while change is True:
@@ -250,7 +250,7 @@ class LoopWorker(QObject):
                                                 data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel(
                                                         self.Oscilograph.responseChannel)
                                                 # print("kreipimasis", time_unit2)
-                                                change, max_y = check_y_scale(data_from_channel2)
+                                                change, max_y, make_bigger = check_y_scale(data_from_channel2)
                                                 # print("max y", max_y, "change", str(change))
                                                 if change is True and not self._require_stop:
                                                         while change is True and not self._require_stop:
