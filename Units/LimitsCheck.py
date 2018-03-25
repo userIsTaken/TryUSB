@@ -20,7 +20,7 @@ def check_y_scale(*args, **kwargs):
                 # print(max_y)
                 need_scale = True
                 make_bigger = True
-        elif (max_y < 0.8*average):
+        elif (max_y < 1.3*average):
                 need_scale = True
                 make_bigger = False
                 pass
