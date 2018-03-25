@@ -143,7 +143,7 @@ class LoopWorker(QObject):
                                                 self.AMP_OSC_set_parameters(self.Oscilograph.signalChannel, fixedV, totalOFF)
                 
                                                 self.Generator.EnableOutput(self.Generator.CH1, ON)
-                                                signal_wait = self.Generator.GetTriggerInterval()
+                                                signal_wait = self.Generator.GetTriggerInterval()#+self.Generator.GetPeriod())
                                                 #print("what?")
                 
                                                 if ("uS" == time_u):
@@ -228,7 +228,7 @@ class LoopWorker(QObject):
                                                 self.AMP_OSC_set_parameters(self.Oscilograph.signalChannel, fixedV, fixed_offset)
                                                 self.AMP_OSC_time_scale_and_offset(totalT, time_u)
                                                 self.Generator.EnableOutput(self.Generator.CH1, ON)
-                                                signal_wait = self.Generator.GetTriggerInterval()
+                                                signal_wait = self.Generator.GetTriggerInterval()#+self.Generator.GetPeriod())
                                                 # print("what?")
                         
                                                 if ("uS" == time_u):
@@ -304,18 +304,18 @@ class LoopWorker(QObject):
                 
                 # self.deleteLater()
                 
-        def GetOffset(self, ampl, offs):
-                '''
-                
-                :param ampl:
-                :param offs:
-                :return:
-                '''
-                
-                really_good_offset = ampl/2 + offs
-                return really_good_offset
-                
-                pass
+        # def GetOffset(self, ampl, offs):
+        #         '''
+        #
+        #         :param ampl:
+        #         :param offs:
+        #         :return:
+        #         '''
+        #
+        #         really_good_offset = ampl/2 + offs
+        #         return really_good_offset
+        #
+        #         pass
         
         def AMP_OSC_time_scale_and_offset(self, signal_t, unit):
                 if ("uS" == unit):
