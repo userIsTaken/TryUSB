@@ -91,7 +91,7 @@ class LoopWorker(QObject):
                                                 #print("max y", max_y, "change", str(change))
                                                 if change is True:
                                                         while change is True:
-                                                                self.AMP_OSC_set_parameters(self.Oscilograph.responseChannel, max_y * 2)
+                                                                self.AMP_OSC_set_parameters(self.Oscilograph.responseChannel, max_y, bigger=make_bigger)
                                                                 data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel(
                                                                         self.Oscilograph.responseChannel)
                                                                 change, max_y = check_y_scale(data_from_channel2)
@@ -170,7 +170,7 @@ class LoopWorker(QObject):
                                                 if change is True:
                                                         while change is True:
                                                                 self.AMP_OSC_set_parameters(self.Oscilograph.responseChannel,
-                                                                                            max_y * 2, totalOFF)
+                                                                                            max_y, totalOFF, bigger=make_bigger)
                                                                 data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel(
                                                                         self.Oscilograph.responseChannel)
                                                                 change, max_y = check_y_scale(data_from_channel2)
@@ -255,7 +255,7 @@ class LoopWorker(QObject):
                                                 if change is True and not self._require_stop:
                                                         while change is True and not self._require_stop:
                                                                 self.AMP_OSC_set_parameters(self.Oscilograph.responseChannel,
-                                                                                            max_y * 2)
+                                                                                            max_y, bigger=make_bigger)
                                                                 data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel(
                                                                         self.Oscilograph.responseChannel)
                                                                 change, max_y = check_y_scale(data_from_channel2)
@@ -375,8 +375,12 @@ class LoopWorker(QObject):
                 pass
                 
         
-        def AMP_OSC_set_parameters(self, CH,  amplitude, fixed_offset=0):
-                scale = amplitude / 6
+        def AMP_OSC_set_parameters(self, CH,  amplitude, fixed_offset=0, bigger=False):
+                if bigger:
+                        factor = 0.5
+                else:
+                        factor = 2
+                scale = (amplitude*factor) / 6
                 #print("amplitudė " + str(amplitude))
                 #print("y offsetas " + str(fixed_offset))
                 #print("y skalė " + sc)
