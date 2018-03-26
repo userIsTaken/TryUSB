@@ -87,6 +87,15 @@ class LoopWorker(QObject):
                                                 data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel(
                                                         self.Oscilograph.responseChannel)
                                                 #print("kreipimasis", time_unit2)
+
+                                                change, max_y, make_bigger = check_y_scale(data_from_channel2)
+                                                bad_scale=self.Oscilograph.get_channel_scale(self.Oscilograph.responseChannel)
+                                                if bad_scale * 5 >= max_y:
+                                                        self.AMP_OSC_set_parameters(
+                                                                self.Oscilograph.responseChannel,
+                                                                0.012, bigger=make_bigger)
+                                                data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel(
+                                                        self.Oscilograph.responseChannel)
                                                 change, max_y, make_bigger = check_y_scale(data_from_channel2)
                                                 #print("max y", max_y, "change", str(change))
                                                 if change is True:
@@ -94,16 +103,16 @@ class LoopWorker(QObject):
                                                                 self.AMP_OSC_set_parameters(self.Oscilograph.responseChannel, max_y, bigger=make_bigger)
                                                                 data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel(
                                                                         self.Oscilograph.responseChannel)
-                                                                change, max_y = check_y_scale(data_from_channel2)
+                                                                change, max_y, make_bigger = check_y_scale(data_from_channel2)
                                                                 if change is False:
                                                                         self.AMP_OSC_set_parameters(
                                                                                 self.Oscilograph.responseChannel,
-                                                                                max_y)
+                                                                                max_y, bigger=make_bigger)
                                                                 pass
                                                 elif change is False:
                                                         self.AMP_OSC_set_parameters(
                                                                 self.Oscilograph.responseChannel,
-                                                                max_y)
+                                                                max_y, bigger=make_bigger)
                                                 time.sleep(2)
                                                 self.OSC_read()
                                                 self.progress.emit("measured at " + str(totalV))
@@ -164,7 +173,17 @@ class LoopWorker(QObject):
                                                 #print("data scanning ...")
                                                 data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel(
                                                         self.Oscilograph.responseChannel)
-                                                #print("kreipimasis", time_unit2)
+                                                # print("kreipimasis", time_unit2)
+
+                                                change, max_y, make_bigger = check_y_scale(data_from_channel2)
+                                                bad_scale = self.Oscilograph.get_channel_scale(
+                                                        self.Oscilograph.responseChannel)
+                                                if bad_scale * 5 >= max_y:
+                                                        self.AMP_OSC_set_parameters(
+                                                                self.Oscilograph.responseChannel,
+                                                                0.012, bigger=make_bigger)
+                                                data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel(
+                                                        self.Oscilograph.responseChannel)
                                                 change, max_y, make_bigger = check_y_scale(data_from_channel2)
                                                 #print("max y", max_y, "change", str(change))
                                                 if change is True:
@@ -173,16 +192,16 @@ class LoopWorker(QObject):
                                                                                             max_y, totalOFF, bigger=make_bigger)
                                                                 data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel(
                                                                         self.Oscilograph.responseChannel)
-                                                                change, max_y = check_y_scale(data_from_channel2)
+                                                                change, max_y, make_bigger = check_y_scale(data_from_channel2)
                                                                 if change is False:
                                                                         self.AMP_OSC_set_parameters(
                                                                                 self.Oscilograph.responseChannel,
-                                                                                max_y, totalOFF)
+                                                                                max_y, totalOFF, bigger=make_bigger)
                                                                 pass
                                                 elif change is False:
                                                         self.AMP_OSC_set_parameters(
                                                                 self.Oscilograph.responseChannel,
-                                                                max_y, totalOFF)
+                                                                max_y, totalOFF, bigger=make_bigger)
                 
                                                 self.OSC_read()
                                                 self.progress.emit("measured at " + str(totalOFF))
@@ -250,6 +269,16 @@ class LoopWorker(QObject):
                                                 data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel(
                                                         self.Oscilograph.responseChannel)
                                                 # print("kreipimasis", time_unit2)
+
+                                                change, max_y, make_bigger = check_y_scale(data_from_channel2)
+                                                bad_scale = self.Oscilograph.get_channel_scale(
+                                                        self.Oscilograph.responseChannel)
+                                                if bad_scale * 5 >= max_y:
+                                                        self.AMP_OSC_set_parameters(
+                                                                self.Oscilograph.responseChannel,
+                                                                0.012, bigger=make_bigger)
+                                                data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel(
+                                                        self.Oscilograph.responseChannel)
                                                 change, max_y, make_bigger = check_y_scale(data_from_channel2)
                                                 # print("max y", max_y, "change", str(change))
                                                 if change is True and not self._require_stop:
@@ -258,16 +287,16 @@ class LoopWorker(QObject):
                                                                                             max_y, bigger=make_bigger)
                                                                 data_from_channel2, time_array2, time_unit2 = self.Oscilograph.get_data_points_from_channel(
                                                                         self.Oscilograph.responseChannel)
-                                                                change, max_y = check_y_scale(data_from_channel2)
+                                                                change, max_y, make_bigger = check_y_scale(data_from_channel2)
                                                                 if change is False and not self._require_stop:
                                                                         self.AMP_OSC_set_parameters(
                                                                                 self.Oscilograph.responseChannel,
-                                                                                max_y)
+                                                                                max_y, bigger=make_bigger)
                                                                 pass
                                                 elif change is False and not self._require_stop:
                                                         self.AMP_OSC_set_parameters(
                                                                 self.Oscilograph.responseChannel,
-                                                                max_y)
+                                                                max_y, bigger=make_bigger)
                                                 time.sleep(2)
                                                 self.OSC_read()
                                                 self.progress.emit("measured at " + str(totalT))
@@ -376,10 +405,11 @@ class LoopWorker(QObject):
                 
         
         def AMP_OSC_set_parameters(self, CH,  amplitude, fixed_offset=0, bigger=False):
+                factor = 2
                 if bigger:
                         factor = 0.5
                 else:
-                        factor = 2
+                        factor = 1
                 scale = (amplitude*factor) / 6
                 #print("amplitudė " + str(amplitude))
                 #print("y offsetas " + str(fixed_offset))

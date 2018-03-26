@@ -347,11 +347,12 @@ class RigolDS1000SeriesScope(QObject):
                 elif 0.1 > scale >= 0.01:
                         scale_str = str("{0:.3f}".format(scale))
                         print(chan + "signalo skalė: " + str(scale_str))
-                elif 0.01 > scale >= 0.002:
+                elif 0.01 > scale > 0.002:
                         scale_str = str("{0:.4f}".format(scale))
                         print(chan + "signalo skalė: " + str(scale_str))
-                
-                        
+                elif 0.002 >= scale:
+                        scale_str = str("{0:.4f}".format(0.002))
+                        print(chan + "signalo skalė: " + str(scale_str))
                 self.set_y_scale(chan, scale_str)
                 pass
         

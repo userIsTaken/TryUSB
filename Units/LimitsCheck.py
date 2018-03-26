@@ -14,7 +14,7 @@ def check_y_scale(*args, **kwargs):
         minimum_limit_of_y = 0.985*max_y
         array_of_greater_y = np_y_array[np_y_array>=minimum_limit_of_y]
         average = avg(np_y_array)
-        if len(array_of_greater_y) > 0.05*length_of_y:
+        if len(array_of_greater_y) > 0.15*length_of_y:
                 # print("out of limits and saturated")
                 # print(array_of_greater_y)
                 # print(max_y)
